@@ -27,6 +27,10 @@ void DrivetrainSub::driveStop()
 	rightMotor->Set(0);
 }
 
+void DrivetrainSub::driveSingle()
+{
+	rightMotor->Set(0.8);
+}
 void DrivetrainSub::InitDefaultCommand()
 {
 	// Set the default command for a subsystem here.

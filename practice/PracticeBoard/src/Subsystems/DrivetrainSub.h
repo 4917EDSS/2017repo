@@ -17,6 +17,7 @@ public:
 	void driveForward();
 	void driveBackwards();
 	void driveStop();
+	void driveSingle();
 };
 
 #endif
