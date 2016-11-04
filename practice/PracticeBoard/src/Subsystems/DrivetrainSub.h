@@ -9,8 +9,8 @@ class DrivetrainSub: public Subsystem
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-	std::unique_ptr<Talon> leftMotor;
-	std::unique_ptr<Talon> rightMotor;
+	std::unique_ptr<CANTalon> leftMotor;
+	std::unique_ptr<CANTalon> rightMotor;
 public:
 	DrivetrainSub();
 	void InitDefaultCommand();
