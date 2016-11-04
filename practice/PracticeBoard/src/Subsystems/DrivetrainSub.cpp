@@ -4,8 +4,8 @@
 DrivetrainSub::DrivetrainSub() :
 		Subsystem("DrivetrainSub")
 {
-	leftMotor.reset(new Talon(LEFT_MOTOR_PORT));
-	rightMotor.reset(new Talon(RIGHT_MOTOR_PORT));
+	leftMotor.reset(new CANTalon(LEFT_MOTOR_CAN_ID));
+	rightMotor.reset(new CANTalon(RIGHT_MOTOR_CAN_ID));
 
 }
 
@@ -27,6 +27,10 @@ void DrivetrainSub::driveStop()
 	rightMotor->Set(0);
 }
 
+void DrivetrainSub::driveSingle()
+{
+	rightMotor->Set(0.8);
+}
 void DrivetrainSub::InitDefaultCommand()
 {
 	// Set the default command for a subsystem here.

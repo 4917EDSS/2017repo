@@ -14,8 +14,8 @@
 // following variables to use with your drivetrain subsystem.
 //const int LEFTMOTOR = 1;
 //const int RIGHTMOTOR = 2;
-const int LEFT_MOTOR_PORT = 1;
-const int RIGHT_MOTOR_PORT = 2;
+const int LEFT_MOTOR_CAN_ID = 10;
+const int RIGHT_MOTOR_CAN_ID = 5;
 
 const int LIMIT_SWITCH1_DIO_PORT = 0;
 const int LIMIT_SWITCH2_DIO_PORT = 1;
