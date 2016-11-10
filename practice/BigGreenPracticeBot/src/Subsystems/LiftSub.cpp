@@ -1,5 +1,6 @@
 #include "LiftSub.h"
 #include "../RobotMap.h"
+#include "Commands/LiftWithJoystickCmd.h"
 
 LiftSub::LiftSub() :
 		Subsystem("LiftSub")
@@ -22,7 +23,7 @@ LiftSub::LiftSub() :
 void LiftSub::InitDefaultCommand()
 {
 	// Set the default command for a subsystem here.
-	//SetDefaultCommand(new MySpecialCommand());
+	SetDefaultCommand(new LiftWithJoystickCmd());
 }
 
 // Put methods for controlling this subsystem

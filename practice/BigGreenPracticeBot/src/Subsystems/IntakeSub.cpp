@@ -1,5 +1,6 @@
 #include "IntakeSub.h"
 #include "../RobotMap.h"
+#include "Commands/IntakeWithJoystickCmd.h"
 
 IntakeSub::IntakeSub() :
 		Subsystem("IntakeSub")
@@ -19,7 +20,7 @@ IntakeSub::IntakeSub() :
 void IntakeSub::InitDefaultCommand()
 {
 	// Set the default command for a subsystem here.
-	//SetDefaultCommand(new MySpecialCommand());
+	SetDefaultCommand(new IntakeWithJoystickCmd());
 }
 
 // Put methods for controlling this subsystem
