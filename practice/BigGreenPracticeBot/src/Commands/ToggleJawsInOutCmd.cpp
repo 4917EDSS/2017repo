@@ -1,38 +1,38 @@
-#include "ExampleCommand.h"
+#include "ToggleJawsInOutCmd.h"
 
-ExampleCommand::ExampleCommand()
+ToggleJawsInOutCmd::ToggleJawsInOutCmd()
 {
 	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(chassis);
+	Requires((Subsystem *)(liftSub.get()));
 }
 
 // Called just before this Command runs the first time
-void ExampleCommand::Initialize()
+void ToggleJawsInOutCmd::Initialize()
 {
-
+	liftSub->ToggleLocksInOut();
 }
 
 // Called repeatedly when this Command is scheduled to run
-void ExampleCommand::Execute()
+void ToggleJawsInOutCmd::Execute()
 {
 
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool ExampleCommand::IsFinished()
+bool ToggleJawsInOutCmd::IsFinished()
 {
-	return false;
+	return true;
 }
 
 // Called once after isFinished returns true
-void ExampleCommand::End()
+void ToggleJawsInOutCmd::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void ExampleCommand::Interrupted()
+void ToggleJawsInOutCmd::Interrupted()
 {
 
 }

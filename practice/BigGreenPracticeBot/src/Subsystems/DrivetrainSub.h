@@ -13,10 +13,13 @@ private:
 	std::unique_ptr<CANTalon> rightMotor;
 	std::unique_ptr<Encoder> leftMotorEncoder;
 	std::unique_ptr<Encoder> rightMotorEncoder;
-	std::unique_ptr<DoubleSolenoid> driveShifter;	// Not present on Big Green but needed for the practice board
+	std::unique_ptr<Solenoid> driveShifter;	// Not present on Big Green but needed for the practice board
 public:
 	DrivetrainSub();
 	void InitDefaultCommand();
+	void SetDriveSpeed(float leftMotor, float rightMotor);
+	void SetDriveShifter(bool on);
+	void ToggleDriveShifter(void);
 };
 
 #endif

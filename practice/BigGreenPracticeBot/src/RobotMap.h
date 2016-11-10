@@ -22,14 +22,10 @@ const int RIGHT_INTAKE_MOTOR_CANID = 5;
 
 
 // Pneumatic Control Module Outputs (0..7)
-const int LOCKS_OPENCLOSE_DBLSOLENOID1_PCM_CHAN = 0;
-const int LOCKS_OPENCLOSE_DBLSOLENOID2_PCM_CHAN = 1;
-const int LOCKS_INOUT_DBLSOLENOID1_PCM_CHAN = 2;
-const int LOCKS_INOUT_DBLSOLENOID2_PCM_CHAN = 3;
-const int INTAKE_OPENCLOSE_DBLSOLENOID1_PCM_CHAN = 4;
-const int INTAKE_OPENCLOSE_DBLSOLENOID2_PCM_CHAN = 5;
-const int DRIVE_SHIFTER_DBLSOLENOID1_PCM_CHAN = 6;	// Not used in Big Green but needed for practice board
-const int DRIVE_SHIFTER_DBLSOLENOID2_PCM_CHAN = 7;
+const int DRIVE_SHIFTER_SOLENOID_PCM_CHAN = 0;	// Not used in Big Green but needed for practice board
+const int INTAKE_ARMS_OPENCLOSE_SOLENOID_PCM_CHAN = 1;
+const int LOCKS_OPENCLOSE_SOLENOID_PCM_CHAN = 2;
+const int LOCKS_INOUT_SOLENOID_PCM_CHAN = 3;
 
 
 // Digital inputs/outputs (0..9)

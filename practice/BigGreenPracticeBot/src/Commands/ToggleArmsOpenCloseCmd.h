@@ -1,13 +1,13 @@
-#ifndef EXAMPLE_COMMAND_H
-#define EXAMPLE_COMMAND_H
+#ifndef ToggleArmsOpenCloseCmd_H
+#define ToggleArmsOpenCloseCmd_H
 
 #include "../CommandBase.h"
 #include "WPILib.h"
 
-class ExampleCommand: public CommandBase
+class ToggleArmsOpenCloseCmd: public CommandBase
 {
 public:
-	ExampleCommand();
+	ToggleArmsOpenCloseCmd();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

@@ -11,11 +11,15 @@ private:
 	// for methods that implement subsystem capabilities
 	std::unique_ptr<CANTalon> leftMotor;
 	std::unique_ptr<CANTalon> rightMotor;
-	std::unique_ptr<DoubleSolenoid> beltArmsOpenCloseActuator;
+	std::unique_ptr<Solenoid> beltArmsOpenCloseActuator;
 	std::unique_ptr<DigitalInput> rearLimitSwitch;
 public:
 	IntakeSub();
 	void InitDefaultCommand();
+	void SetIntakeSpeed(float speed);
+	void SetArmsOpenClose(bool open);
+	void ToggleArmsOpenClose();
+	bool IsRearLimitSwitchHit();
 };
 
 #endif
