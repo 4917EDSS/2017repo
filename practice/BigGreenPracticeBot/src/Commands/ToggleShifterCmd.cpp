@@ -3,7 +3,7 @@
 ToggleShifterCmd::ToggleShifterCmd()
 {
 	// Use Requires() here to declare subsystem dependencies
-	Requires((Subsystem *)(drivetrainSub.get()));
+	Requires(drivetrainSub.get());
 }
 
 // Called just before this Command runs the first time

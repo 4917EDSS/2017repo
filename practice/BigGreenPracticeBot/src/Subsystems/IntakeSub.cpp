@@ -11,10 +11,10 @@ IntakeSub::IntakeSub() :
 	rearLimitSwitch.reset(new DigitalInput(INTAKE_LIMIT_SWITCH_DIO));
 
 	// Make the hardware available to be controlled in Test mode
-	LiveWindow::GetInstance()->AddActuator("Intake", "leftMotor", (CANTalon *)(leftMotor.get()));
-	LiveWindow::GetInstance()->AddActuator("Intake", "rightMotor", (CANTalon *)(rightMotor.get()));
-	LiveWindow::GetInstance()->AddActuator("Intake", "beltArmsOpenCloseActuator", (Solenoid *)(beltArmsOpenCloseActuator.get()));
-	LiveWindow::GetInstance()->AddSensor("Intake", "rearLimitSwitch", (DigitalInput *)(rearLimitSwitch.get()));
+	LiveWindow::GetInstance()->AddActuator("Intake", "leftMotor", leftMotor.get());
+	LiveWindow::GetInstance()->AddActuator("Intake", "rightMotor", rightMotor.get());
+	LiveWindow::GetInstance()->AddActuator("Intake", "beltArmsOpenCloseActuator", beltArmsOpenCloseActuator.get());
+	LiveWindow::GetInstance()->AddSensor("Intake", "rearLimitSwitch", rearLimitSwitch.get());
 }
 
 void IntakeSub::InitDefaultCommand()

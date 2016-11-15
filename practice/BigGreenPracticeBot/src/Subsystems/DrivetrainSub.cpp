@@ -12,11 +12,11 @@ DrivetrainSub::DrivetrainSub() :
 	driveShifter.reset(new Solenoid(DRIVE_SHIFTER_SOLENOID_PCM_CHAN));
 
 	// Make the hardware available to be controlled in Test mode
-	LiveWindow::GetInstance()->AddActuator("Drivetrain", "leftMotor", (CANTalon *)(leftMotor.get()));
-	LiveWindow::GetInstance()->AddActuator("Drivetrain", "rightMotor", (CANTalon *)(rightMotor.get()));
-	LiveWindow::GetInstance()->AddSensor("Drivetrain", "leftMotorEncoder", (Encoder *)(leftMotorEncoder.get()));
-	LiveWindow::GetInstance()->AddSensor("Drivetrain", "rightMotorEncoder", (Encoder *)(rightMotorEncoder.get()));
-	LiveWindow::GetInstance()->AddActuator("Drivetrain", "driveShifter", (Solenoid *)(driveShifter.get()));
+	LiveWindow::GetInstance()->AddActuator("Drivetrain", "leftMotor", leftMotor.get());
+	LiveWindow::GetInstance()->AddActuator("Drivetrain", "rightMotor", rightMotor.get());
+	LiveWindow::GetInstance()->AddSensor("Drivetrain", "leftMotorEncoder", leftMotorEncoder.get());
+	LiveWindow::GetInstance()->AddSensor("Drivetrain", "rightMotorEncoder", rightMotorEncoder.get());
+	LiveWindow::GetInstance()->AddActuator("Drivetrain", "driveShifter", driveShifter.get());
 
 	// Initialize hardware that needs to start in a specific state
 	driveShifter->Set(true);

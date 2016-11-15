@@ -3,7 +3,7 @@
 ToggleJawsInOutCmd::ToggleJawsInOutCmd()
 {
 	// Use Requires() here to declare subsystem dependencies
-	Requires((Subsystem *)(liftSub.get()));
+	Requires(liftSub.get());
 }
 
 // Called just before this Command runs the first time

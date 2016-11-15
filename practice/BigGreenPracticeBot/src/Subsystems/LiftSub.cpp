@@ -13,10 +13,10 @@ LiftSub::LiftSub() :
 	//bottomLimitSwitch.reset(new DigitalInput());
 
 	// Make the hardware available to be controlled in Test mode
-	LiveWindow::GetInstance()->AddActuator("Lift", "LiftMotor", (CANTalon *)(liftMotor.get()));
-	LiveWindow::GetInstance()->AddActuator("Lift", "lockOpenCloseActuators", (Solenoid *)(lockOpenCloseActuator.get()));
-	LiveWindow::GetInstance()->AddActuator("Lift", "lockInOutActuators", (Solenoid *)(lockInOutActuator.get()));
-	LiveWindow::GetInstance()->AddSensor("Lift", "topLimitSwitch", (DigitalInput *)(topLimitSwitch.get()));
+	LiveWindow::GetInstance()->AddActuator("Lift", "LiftMotor", liftMotor.get());
+	LiveWindow::GetInstance()->AddActuator("Lift", "lockOpenCloseActuators", lockOpenCloseActuator.get());
+	LiveWindow::GetInstance()->AddActuator("Lift", "lockInOutActuators", lockInOutActuator.get());
+	LiveWindow::GetInstance()->AddSensor("Lift", "topLimitSwitch", topLimitSwitch.get());
 
 }
 

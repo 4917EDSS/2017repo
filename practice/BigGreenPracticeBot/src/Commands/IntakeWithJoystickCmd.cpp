@@ -3,7 +3,7 @@
 IntakeWithJoystickCmd::IntakeWithJoystickCmd()
 {
 	// Use Requires() here to declare subsystem dependencies
-	Requires((Subsystem *)(intakeSub.get()));
+	Requires(intakeSub.get());
 }
 
 // Called just before this Command runs the first time
