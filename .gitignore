@@ -27,5 +27,7 @@
 *.exe
 *.out
 *.app
-practice/PracticeBoard/.settings/language.settings.xml
-practice/BigGreenPraticeBrian/.settings/language.settings.xml
+
+**/.settings/language.settings.xml
+**/sysProps.xml
+FRCUserProgram
