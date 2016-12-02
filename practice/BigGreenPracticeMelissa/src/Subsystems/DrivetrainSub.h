@@ -11,6 +11,7 @@ private:
 	// for methods that implement subsystem capabilities
 	std::unique_ptr<CANTalon> leftMotor;
 	std::unique_ptr<CANTalon> rightMotor;
+
 public:
 	DrivetrainSub();
 	void InitDefaultCommand();
