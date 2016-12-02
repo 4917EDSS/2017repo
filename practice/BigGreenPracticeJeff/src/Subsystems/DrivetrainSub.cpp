@@ -18,6 +18,7 @@ void DrivetrainSub::InitDefaultCommand()
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 
-void DriverainSub::drive(float rSpeed, float lSpeed){
-
+void DrivetrainSub::drive(float rSpeed, float lSpeed){
+	leftMotor->Set(lSpeed);
+	rightMotor->Set(rSpeed);
 }
