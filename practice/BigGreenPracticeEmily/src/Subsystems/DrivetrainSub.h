@@ -16,6 +16,7 @@ private:
 
 
 public:
+	void drive(float rSpeed, float lSpeed);
 	DrivetrainSub();
 	void InitDefaultCommand();
 };
