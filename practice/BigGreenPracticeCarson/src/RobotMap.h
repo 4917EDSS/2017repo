@@ -16,6 +16,9 @@
 //const int RIGHTMOTOR = 2;
 const int MOTOR1_CANID = 1;
 const int MOTOR2_CANID = 2;
+const int MOTOR_ENC1_DIO = 0;
+const int MOTOR_ENC2_DIO = 1;
+const int SHIFTER_DIO = 3;
 
 // If you are using multiple modules, make sure to define both the port
 // number and the module. For example you with a rangefinder:
