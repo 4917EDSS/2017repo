@@ -1,4 +1,5 @@
 #include "DriveCmd.h"
+//#include "Subsystems/DrivetrainSub.h"
 
 DriveCmd::DriveCmd()
 {
@@ -10,7 +11,7 @@ DriveCmd::DriveCmd()
 // Called just before this Command runs the first time
 void DriveCmd::Initialize()
 {
-	drivetrainSub->drive(0.8, -0.8);
+	drivetrainSub->drive(1.0, 1.0);
 }
 
 // Called repeatedly when this Command is scheduled to run

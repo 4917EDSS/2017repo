@@ -7,9 +7,12 @@ DrivetrainSub::DrivetrainSub() :
 {
 	motor1.reset(new CANTalon(MOTOR1_CANID));
 	motor2.reset(new CANTalon(MOTOR2_CANID));
+
+#ifdef SHIFTING
 	motorEnc1.reset(new Encoder(MOTOR_ENC1_DIO));
 	motorEnc2.reset(new Encoder(MOTOR_ENC2_DIO));
 	shifter.reset(new DoubleSolenoid(SHIFTER_DIO));
+#endif
 }
 
 void DrivetrainSub::InitDefaultCommand()
@@ -27,6 +30,7 @@ void DrivetrainSub::drive(float oneSpeed, float twoSpeed)
 	motor2->Set(twoSpeed);
 }
 
+#ifdef SHIFTING
 void DrivetrainSub::shift(ShiftState gear){
 	if(gear == ShiftState::HIGH){
 		shifter->Set(DoubleSolenoid::Value::kForward);
@@ -48,3 +52,4 @@ DrivetrainSub::ShiftState DrivetrainSub::getGear(){
 double DrivetrainSub::getDriveRate(){
 	return std::max(motorEnc1->GetRate(), motorEnc2->GetRate());
 }
+#endif
