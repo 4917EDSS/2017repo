@@ -1,13 +1,13 @@
-#ifndef DriveStraightCmd_H
-#define DriveStraightCmd_H
+#ifndef StopCmd_H
+#define StopCmd_H
 
 #include "../CommandBase.h"
 #include "WPILib.h"
 
-class DriveStraightCmd: public CommandBase
+class StopCmd: public CommandBase
 {
 public:
-	DriveStraightCmd();
+	StopCmd();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

@@ -4,7 +4,7 @@
 
 // Initialize a single static instance of all of your subsystems to NULL
 std::unique_ptr<ExampleSubsystem> CommandBase::examplesubsystem;
-std::unique_ptr<DrivetrainSub> CommandBase::drivetrainSub;
+std::unique_ptr<DrivetrainSub> CommandBase::drivetrainSub = NULL;
 std::unique_ptr<OI> CommandBase::oi;
 
 CommandBase::CommandBase(const std::string &name) :
@@ -24,6 +24,5 @@ void CommandBase::init()
 	// line should be repeated for each subsystem in the project.
 	examplesubsystem.reset(new ExampleSubsystem());
 	drivetrainSub.reset(new DrivetrainSub());
-
 	oi.reset(new OI());
 }

@@ -1,10 +1,16 @@
 #include "OI.h"
-#include "Commands/DriveStraightCmd.h"
+#include "Commands/DriveCmd.h"
+#include "Commands/StopCmd.h"
+#include "Commands/ShiftCmd.h"
 
 OI::OI()
 {
-	driverController.reset(new Joystick(DRIVER_CONTROLLER_PORT));
-	driveStraightBtn.reset(new JoystickButton(DRIVER_CONTROLLER_PORT, DRIVE_STRAIGHT_BTN));
-	driveStraightBtn->WhileHeld(new DriveStraightCmd);
 	// Process operator interface input here.
+	driverController.reset(new Joystick(DRIVER_CONTROLLER_PORT));
+	driveBtn.reset(new JoystickButton(driverController.get(), DRIVE_BTN));
+	stopBtn.reset(new JoystickButton(driverController.get(), STOP_BTN));
+	shiftBtn.reset(new JoystickButton(driverController.get(), SHIFT_BTN));
+	driveBtn->WhenPressed(new DriveCmd);
+	stopBtn->WhenPressed(new StopCmd);
+	shiftBtn->WhenPressed(new ShiftCmd);
 }

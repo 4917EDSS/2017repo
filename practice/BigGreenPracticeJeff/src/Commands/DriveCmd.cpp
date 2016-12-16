@@ -1,6 +1,6 @@
-#include "DriveStraightCmd.h"
+#include "DriveCmd.h"
 
-DriveStraightCmd::DriveStraightCmd()
+DriveCmd::DriveCmd()
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
@@ -8,31 +8,32 @@ DriveStraightCmd::DriveStraightCmd()
 }
 
 // Called just before this Command runs the first time
-void DriveStraightCmd::Initialize()
+void DriveCmd::Initialize()
 {
-	drivetrainSub->drive(0.5, 0.5);
+	drivetrainSub->drive(0.8, -0.8);
 }
+
 // Called repeatedly when this Command is scheduled to run
-void DriveStraightCmd::Execute()
+void DriveCmd::Execute()
 {
 
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool DriveStraightCmd::IsFinished()
+bool DriveCmd::IsFinished()
 {
-	return false;
+	return true;
 }
 
 // Called once after isFinished returns true
-void DriveStraightCmd::End()
+void DriveCmd::End()
 {
-	drivetrainSub->drive(0, 0);
+
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void DriveStraightCmd::Interrupted()
+void DriveCmd::Interrupted()
 {
-	DriveStraightCmd::End();
+
 }
