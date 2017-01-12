@@ -3,6 +3,7 @@
 
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
+#include "CANTalon.h"
 
 class DrivetrainSub: public Subsystem
 {
