@@ -32,8 +32,8 @@ const int LOCKS_INOUT_SOLENOID_PCM_CHAN = 3;
 
 
 // Digital inputs/outputs (0..9)
-const int INTAKE_LIMIT_SWITCH_DIO = 0;
-const int LIFT_BOTTOM_LIMIT_SWITCH_DIO = 1;
+const int INTAKE_LIMIT_SWITCH_DIO = 5;
+const int LIFT_BOTTOM_LIMIT_SWITCH_DIO = 4;
 //const int LIFT_TOP_LIMIT_SWITCH_DIO = ?;
 const int LEFT_DRIVE_MOTOR_ENCODER1_DIO = 0;
 const int LEFT_DRIVE_MOTOR_ENCODER2_DIO = 1;
