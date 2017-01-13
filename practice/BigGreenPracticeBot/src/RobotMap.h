@@ -11,11 +11,14 @@
  */
 
 // CAN Bus Devices
-const int LEFT_DRIVE_MOTOR_CANID = 6;
-const int RIGHT_DRIVE_MOTOR_CANID = 2;
-const int LIFT_MOTOR_CANID = 7;				// Includes encoder
-const int LEFT_INTAKE_MOTOR_CANID = 10;
-const int RIGHT_INTAKE_MOTOR_CANID = 5;
+const int LEFT_DRIVE_MOTOR_CANID = 10;
+const int LEFT2_DRIVE_MOTOR_CANID = 1;
+const int RIGHT_DRIVE_MOTOR_CANID = 3;
+const int RIGHT2_DRIVE_MOTOR_CANID = 2;
+const int LIFT_MOTOR_CANID = 8;				// Includes encoder
+const int LIFT2_MOTOR_CANID = 9;
+const int LEFT_INTAKE_MOTOR_CANID = 5;
+const int RIGHT_INTAKE_MOTOR_CANID = 7;
 
 
 // PWM Outputs (0..9)
@@ -32,10 +35,10 @@ const int LOCKS_INOUT_SOLENOID_PCM_CHAN = 3;
 const int INTAKE_LIMIT_SWITCH_DIO = 0;
 const int LIFT_BOTTOM_LIMIT_SWITCH_DIO = 1;
 //const int LIFT_TOP_LIMIT_SWITCH_DIO = ?;
-const int LEFT_DRIVE_MOTOR_ENCODER1_DIO = 6;
-const int LEFT_DRIVE_MOTOR_ENCODER2_DIO = 7;
-const int RIGHT_DRIVE_MOTOR_ENCODER1_DIO = 8;
-const int RIGHT_DRIVE_MOTOR_ENCODER2_DIO = 9;
+const int LEFT_DRIVE_MOTOR_ENCODER1_DIO = 0;
+const int LEFT_DRIVE_MOTOR_ENCODER2_DIO = 1;
+const int RIGHT_DRIVE_MOTOR_ENCODER1_DIO = 2;
+const int RIGHT_DRIVE_MOTOR_ENCODER2_DIO = 3;
 
 // Analog inputs (0..3)
 

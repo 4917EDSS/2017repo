@@ -6,6 +6,7 @@ LiftSub::LiftSub() :
 		Subsystem("LiftSub")
 {
 	liftMotor.reset(new CANTalon(LIFT_MOTOR_CANID));
+	lift2Motor.reset(new CANTalon(LIFT2_MOTOR_CANID));
 	//liftMotorEncoder.reset(new Encoder());
 	lockOpenCloseActuator.reset(new Solenoid(LOCKS_OPENCLOSE_SOLENOID_PCM_CHAN));
 	lockInOutActuator.reset(new Solenoid(LOCKS_INOUT_SOLENOID_PCM_CHAN));
@@ -14,6 +15,7 @@ LiftSub::LiftSub() :
 
 	// Make the hardware available to be controlled in Test mode
 	LiveWindow::GetInstance()->AddActuator("Lift", "LiftMotor", liftMotor.get());
+	LiveWindow::GetInstance()->AddActuator("Lift", "Lift2Motor", lift2Motor.get());
 	LiveWindow::GetInstance()->AddActuator("Lift", "lockOpenCloseActuators", lockOpenCloseActuator.get());
 	LiveWindow::GetInstance()->AddActuator("Lift", "lockInOutActuators", lockInOutActuator.get());
 	LiveWindow::GetInstance()->AddSensor("Lift", "topLimitSwitch", topLimitSwitch.get());

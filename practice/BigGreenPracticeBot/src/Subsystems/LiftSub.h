@@ -11,6 +11,7 @@ private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 	std::unique_ptr<CANTalon> liftMotor;
+	std::unique_ptr<CANTalon> lift2Motor;
 	//std::unique_ptr<Encoder> liftMotorEncoder;
 	std::unique_ptr<Solenoid> lockOpenCloseActuator;
 	std::unique_ptr<Solenoid> lockInOutActuator;

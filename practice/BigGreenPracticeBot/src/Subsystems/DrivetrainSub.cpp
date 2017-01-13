@@ -7,6 +7,8 @@ DrivetrainSub::DrivetrainSub() :
 {
 	leftMotor.reset(new CANTalon(LEFT_DRIVE_MOTOR_CANID));
 	rightMotor.reset(new CANTalon(RIGHT_DRIVE_MOTOR_CANID));
+	left2Motor.reset(new CANTalon(LEFT2_DRIVE_MOTOR_CANID));
+	right2Motor.reset(new CANTalon(RIGHT2_DRIVE_MOTOR_CANID));
 	leftMotorEncoder.reset(new Encoder(LEFT_DRIVE_MOTOR_ENCODER1_DIO, LEFT_DRIVE_MOTOR_ENCODER2_DIO));
 	rightMotorEncoder.reset(new Encoder(RIGHT_DRIVE_MOTOR_ENCODER1_DIO, LEFT_DRIVE_MOTOR_ENCODER2_DIO));
 	driveShifter.reset(new Solenoid(DRIVE_SHIFTER_SOLENOID_PCM_CHAN));
@@ -14,8 +16,10 @@ DrivetrainSub::DrivetrainSub() :
 	// Make the hardware available to be controlled in Test mode
 	LiveWindow::GetInstance()->AddActuator("Drivetrain", "leftMotor", leftMotor.get());
 	LiveWindow::GetInstance()->AddActuator("Drivetrain", "rightMotor", rightMotor.get());
-	LiveWindow::GetInstance()->AddSensor("Drivetrain", "leftMotorEncoder", leftMotorEncoder.get());
-	LiveWindow::GetInstance()->AddSensor("Drivetrain", "rightMotorEncoder", rightMotorEncoder.get());
+	LiveWindow::GetInstance()->AddActuator("Drivetrain", "left2Motor", left2Motor.get());
+	LiveWindow::GetInstance()->AddActuator("Drivetrain", "right2Motor", right2Motor.get());
+//	LiveWindow::GetInstance()->AddSensor("Drivetrain", "leftMotorEncoder", leftMotorEncoder.get());
+//	LiveWindow::GetInstance()->AddSensor("Drivetrain", "rightMotorEncoder", rightMotorEncoder.get());
 	LiveWindow::GetInstance()->AddActuator("Drivetrain", "driveShifter", driveShifter.get());
 
 	// Initialize hardware that needs to start in a specific state
@@ -34,6 +38,9 @@ void DrivetrainSub::SetDriveSpeed(float leftSpeed, float rightSpeed)
 {
 	leftMotor->Set(leftSpeed);
 	rightMotor->Set(rightSpeed);
+	left2Motor->Set(leftSpeed);
+	right2Motor->Set(rightSpeed);
+
 }
 
 void DrivetrainSub::SetDriveShifter(bool on)
