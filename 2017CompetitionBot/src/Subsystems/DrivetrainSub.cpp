@@ -7,6 +7,9 @@ DrivetrainSub::DrivetrainSub() : Subsystem("DrivetrainSub") {
 	leftMotor2.reset(new CANTalon(LEFT2_DRIVE_MOTOR_CANID));
 	rightMotor1.reset(new CANTalon(RIGHT1_DRIVE_MOTOR_CANID));
 	rightMotor2.reset(new CANTalon(RIGHT2_DRIVE_MOTOR_CANID));
+	leftMotorEnc.reset(new frc::Encoder(LEFT_MOTOR_ENC1_DIO, LEFT_MOTOR_ENC2_DIO));
+	rightMotorEnc.reset(new frc::Encoder(RIGHT_MOTOR_ENC1_DIO, RIGHT_MOTOR_ENC2_DIO));
+
 
 	// Make these properly available in Test mode
 	frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
@@ -27,6 +30,15 @@ void DrivetrainSub::drive(double lSpeed, double rSpeed)
 {
 	leftMotor1->Set(lSpeed);
 	leftMotor2->Set(lSpeed);
-	rightMotor1->Set(rSpeed);
-	rightMotor2->Set(rSpeed);
+	rightMotor1->Set(-rSpeed);
+	rightMotor2->Set(-rSpeed);
+}
+
+float DrivetrainSub::getLeftEncoder()
+{
+	return leftMotorEnc->GetRaw();
+}
+float DrivetrainSub::getRightEncoder()
+{
+	return rightMotorEnc->GetRaw();
 }
