@@ -28,6 +28,11 @@ public:
 	static std::unique_ptr<ShooterSub> shooterSub;
 	static std::unique_ptr<LiftSub> liftSub;
 	static std::unique_ptr<OI> oi;
+
+	enum Alliance {
+		RED,
+		BLUE
+	};
 };
 
 #endif  // COMMAND_BASE_H

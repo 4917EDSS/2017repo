@@ -9,16 +9,16 @@
 
 #include "Commands/DriveWithJoystickCmd.h"									// TODO: Change this to a valid AUTO command!
 #include "CommandBase.h"
+#include "Commands/AutoDefaultGrp.h"
+#include "Commands/AutoLoadStraightGrp.h"
+
 
 class Robot: public frc::IterativeRobot {
 public:
 
 	void RobotInit() override {
 		CommandBase::Init();
-		chooser.AddDefault("Default Auto", new DriveWithJoystickCmd());		// TODO: Change this to a valid AUTO command!
-		//chooser.AddObject("My Auto", new MyAutoCommand());
-		frc::SmartDashboard::PutData("Auto Modes", &chooser);
-
+		SetSmartDashboardAutoOptions();
 	}
 
 	/**
@@ -76,6 +76,7 @@ public:
 	}
 	void TeleopPeriodic() override {
 		frc::Scheduler::GetInstance()->Run();
+		UpdateSmartDashboard();
 	}
 	void TestPeriodic() override {
 		std::printf("TestPeriodic");
@@ -83,11 +84,33 @@ public:
 	}
 private:
 	std::unique_ptr<frc::Command> autonomousCommand;
-	frc::SendableChooser<frc::Command*> chooser;
+	std::unique_ptr<frc::Command> autoLocation;
+	std::unique_ptr<frc::SendableChooser<CommandBase::Alliance> > autoAllianceOptions;
+	std::unique_ptr<frc::SendableChooser<std::shared_ptr<frc::Command>> > autoLocationOptions;
 	void UpdateSmartDashboard()
 	{
 		SmartDashboard::PutNumber("Left Drive Motor Enc", CommandBase::drivetrainSub->getLeftEncoder());
 		SmartDashboard::PutNumber("Right Drive Motor Enc", CommandBase::drivetrainSub->getRightEncoder());
+	}
+	void SetSmartDashboardAutoOptions()
+	{
+		autoAllianceOptions.reset(new frc::SendableChooser<CommandBase::Alliance>());
+		autoAllianceOptions->AddObject("Red", CommandBase::Alliance::RED);
+		autoAllianceOptions->AddObject("Blue", CommandBase::Alliance::BLUE);
+
+		autoLocationOptions.reset(new frc::SendableChooser<std::shared_ptr<frc::Command>>());
+		autoLocationOptions->AddDefault("Do Nothing", std::shared_ptr<frc::Command>(new AutoDefaultGrp()));
+		autoLocationOptions->AddObject("Load Straight", std::shared_ptr<frc::Command>(new AutoLoadStraightGrp()));
+		/*autoLocationOptions->AddObject("Load Left", new AutoPosition2ShootGrp());
+		autoLocationOptions->AddObject("Load Right", new AutoPosition2ShootLeftGrp());
+		autoLocationOptions->AddObject("Load Left Shoot", new AutoPosition3ShootGrp());
+		autoLocationOptions->AddObject("Load Right Shoot", new AutoPosition3ShootRightGrp());
+		autoLocationOptions->AddObject("Load Straight Shoot", new AutoPosition4ShootGrp());
+		autoLocationOptions->AddObject("Load Straight Around", new AutoPosition5ShootGrp());
+*/
+		//chooser->AddObject("My Auto", new MyAutoCommand());
+		SmartDashboard::PutData("Auto Alliance", autoAllianceOptions.get());
+		SmartDashboard::PutData("Auto Modes ", autoLocationOptions.get());
 	}
 };
 

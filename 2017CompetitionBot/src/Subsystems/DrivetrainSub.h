@@ -32,6 +32,7 @@ public:
 	void drive( double lSpeed, double rSpeed );
 	float getLeftEncoder();
 	float getRightEncoder();
+	void resetEncoders();
 };
 
 #endif  // DrivetrainSub_H

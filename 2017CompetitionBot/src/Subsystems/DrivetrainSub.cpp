@@ -42,3 +42,8 @@ float DrivetrainSub::getRightEncoder()
 {
 	return rightMotorEnc->GetRaw();
 }
+void DrivetrainSub::resetEncoders(){
+	leftMotorEnc->Reset();
+	rightMotorEnc->Reset();
+
+}

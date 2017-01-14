@@ -23,8 +23,8 @@ constexpr int LEFT2_DRIVE_MOTOR_CANID = 1;
 constexpr int RIGHT1_DRIVE_MOTOR_CANID = 2;
 constexpr int RIGHT2_DRIVE_MOTOR_CANID = 3;
 constexpr int TOP_SHOOTER_MOTOR_CANID = 5;
-constexpr int BOTTOM_SHOOTER_MOTOR_CANID = 7;
-constexpr int LIFT_MOTOR_CANID = 12;
+constexpr int BOTTOM_SHOOTER_MOTOR_CANID = 12;
+constexpr int LIFT_MOTOR_CANID = 7;
 //constexpr int CLIMBER_MOTOR_CANID = 8;
 //constexpr int UNUSED_MOTOR_CANID = 9;
 
