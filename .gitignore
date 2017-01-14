@@ -34,4 +34,4 @@ FRCUserProgram
 
 *.cproject
 *.swp
-practice/*
+practice/**/*
