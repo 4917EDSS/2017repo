@@ -12,10 +12,13 @@
 
 class Robot: public frc::IterativeRobot {
 public:
+
 	void RobotInit() override {
+		CommandBase::Init();
 		chooser.AddDefault("Default Auto", new DriveWithJoystickCmd());		// TODO: Change this to a valid AUTO command!
-		// chooser.AddObject("My Auto", new MyAutoCommand());
+		//chooser.AddObject("My Auto", new MyAutoCommand());
 		frc::SmartDashboard::PutData("Auto Modes", &chooser);
+
 	}
 
 	/**
@@ -43,19 +46,19 @@ public:
 	 * to the if-else structure below with additional strings & commands.
 	 */
 	void AutonomousInit() override {
-		/* std::string autoSelected = frc::SmartDashboard::GetString("Auto Selector", "Default");
-		if (autoSelected == "My Auto") {
+		std::string autoSelected = frc::SmartDashboard::GetString("Auto Selector", "Default");
+		/*if (autoSelected == "My Auto") {
 			autonomousCommand.reset(new MyAutoCommand());
 		}
 		else {
 			autonomousCommand.reset(new ExampleCommand());
-		} */
-
+		}
 		autonomousCommand.reset(chooser.GetSelected());
 
 		if (autonomousCommand.get() != nullptr) {
 			autonomousCommand->Start();
 		}
+		*/
 	}
 
 	void AutonomousPeriodic() override {
@@ -71,18 +74,21 @@ public:
 			autonomousCommand->Cancel();
 		}
 	}
-
 	void TeleopPeriodic() override {
 		frc::Scheduler::GetInstance()->Run();
 	}
-
 	void TestPeriodic() override {
+		std::printf("TestPeriodic");
 		frc::LiveWindow::GetInstance()->Run();
 	}
-
 private:
 	std::unique_ptr<frc::Command> autonomousCommand;
 	frc::SendableChooser<frc::Command*> chooser;
+	void UpdateSmartDashboard()
+	{
+		SmartDashboard::PutNumber("Left Drive Motor Enc", CommandBase::drivetrainSub->getLeftEncoder());
+		SmartDashboard::PutNumber("Right Drive Motor Enc", CommandBase::drivetrainSub->getRightEncoder());
+	}
 };
 
 START_ROBOT_CLASS(Robot)

@@ -20,6 +20,7 @@ class CommandBase: public frc::Command {
 public:
 	CommandBase(const std::string& name);
 	CommandBase() = default;
+	static void Init();
 
 	// Create a single static instance of all of your subsystems
 	static std::unique_ptr<DrivetrainSub> drivetrainSub;

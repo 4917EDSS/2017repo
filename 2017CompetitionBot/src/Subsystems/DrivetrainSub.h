@@ -3,8 +3,9 @@
 
 #include <Commands/Subsystem.h>
 #include <CANTalon.h>
+#include "WPILib.h"
 
-class DrivetrainSub : public Subsystem {
+class DrivetrainSub : public frc::Subsystem {
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
@@ -22,11 +23,15 @@ private:
 	std::shared_ptr<CANTalon> leftMotor2;
 	std::shared_ptr<CANTalon> rightMotor1;
 	std::shared_ptr<CANTalon> rightMotor2;
+	std::shared_ptr<frc::Encoder> leftMotorEnc;
+	std::shared_ptr<frc::Encoder> rightMotorEnc;
 
 public:
 	DrivetrainSub();
 	void InitDefaultCommand();
 	void drive( double lSpeed, double rSpeed );
+	float getLeftEncoder();
+	float getRightEncoder();
 };
 
 #endif  // DrivetrainSub_H

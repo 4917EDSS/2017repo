@@ -4,7 +4,7 @@
 #include <Commands/Subsystem.h>
 #include <CANTalon.h>
 
-class ShooterSub : public Subsystem {
+class ShooterSub : public frc::Subsystem {
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
