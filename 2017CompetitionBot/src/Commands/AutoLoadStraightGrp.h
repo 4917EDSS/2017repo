@@ -2,6 +2,7 @@
 #define AutoLoadStraightGrp_H
 
 #include <Commands/CommandGroup.h>
+#include "RobotMap.h"
 
 class AutoLoadStraightGrp : public frc::CommandGroup {
 public:

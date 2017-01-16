@@ -5,7 +5,7 @@
 
 class DriveStraightCmd : public CommandBase {
 public:
-	DriveStraightCmd();
+	DriveStraightCmd(int distance);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
@@ -14,6 +14,7 @@ public:
 private:
 	float leftSpeed=1.0;
 	float rightSpeed=1.0;
+	int endDistance;
 };
 
 #endif  // DriveStraightCmd_H

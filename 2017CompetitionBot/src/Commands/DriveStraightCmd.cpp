@@ -1,10 +1,10 @@
 #include "DriveStraightCmd.h"
 
-DriveStraightCmd::DriveStraightCmd() {
+DriveStraightCmd::DriveStraightCmd(int distance) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(drivetrainSub.get());
-
+	endDistance = distance;
 }
 
 // Called just before this Command runs the first time
@@ -42,7 +42,7 @@ void DriveStraightCmd::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool DriveStraightCmd::IsFinished() {
-	if(drivetrainSub->getRightEncoder()>1000){
+	if(drivetrainSub->getRightEncoder()>endDistance){
 		return true;
 	}
 	else{

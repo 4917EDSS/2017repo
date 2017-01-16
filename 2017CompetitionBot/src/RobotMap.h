@@ -35,4 +35,7 @@ constexpr int LEFT_MOTOR_ENC2_DIO = 1;
 constexpr int RIGHT_MOTOR_ENC1_DIO = 2;
 constexpr int RIGHT_MOTOR_ENC2_DIO = 3;
 
+//Auto Enc Distances
+constexpr int LOAD_STRAIGHT_DIST = 1000;
+
 #endif  // ROBOTMAP_H
