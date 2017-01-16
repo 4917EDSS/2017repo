@@ -9,15 +9,15 @@ DriveStraightCmd::DriveStraightCmd(int distance) {
 
 // Called just before this Command runs the first time
 void DriveStraightCmd::Initialize() {
-	leftSpeed=1.0;
-	rightSpeed=1.0;
+	leftSpeed=0.5;
+	rightSpeed=0.5;
 	drivetrainSub->drive(leftSpeed,rightSpeed);
 	drivetrainSub->resetEncoders();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void DriveStraightCmd::Execute() {
-	if(drivetrainSub->getLeftEncoder()>drivetrainSub->getRightEncoder()+100){
+	/*if(drivetrainSub->getLeftEncoder()>drivetrainSub->getRightEncoder()+100){
 		if(rightSpeed==1.0){
 			leftSpeed=leftSpeed-0.05;
 		}
@@ -37,6 +37,7 @@ void DriveStraightCmd::Execute() {
 		leftSpeed=1.0;
 		rightSpeed=1.0;
 	}
+	*/
 	drivetrainSub->drive(leftSpeed,rightSpeed);
 }
 

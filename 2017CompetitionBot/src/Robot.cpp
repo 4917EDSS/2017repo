@@ -11,6 +11,7 @@
 #include "CommandBase.h"
 #include "Commands/AutoDefaultGrp.h"
 #include "Commands/AutoLoadStraightGrp.h"
+#include "Commands/DriveStraightCmd.h"
 
 
 class Robot: public frc::IterativeRobot {
@@ -73,6 +74,7 @@ public:
 		if (autonomousCommand != nullptr) {
 			autonomousCommand->Cancel();
 		}
+		SetSmartDashboardDriverContent();
 	}
 	void TeleopPeriodic() override {
 		frc::Scheduler::GetInstance()->Run();
@@ -111,6 +113,11 @@ private:
 		//chooser->AddObject("My Auto", new MyAutoCommand());
 		SmartDashboard::PutData("Auto Alliance", autoAllianceOptions.get());
 		SmartDashboard::PutData("Auto Modes ", autoLocationOptions.get());
+	}
+	void SetSmartDashboardDriverContent()
+	{
+		SmartDashboard::PutData("Drive mostly straight", new DriveStraightCmd(LOAD_STRAIGHT_DIST));
+		//SmartDashboard::PutData("Hopefully Turn", new DriveTurnCmd(LOAD_STRAIGHT_DIST));
 	}
 };
 
