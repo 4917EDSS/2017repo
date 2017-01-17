@@ -33,12 +33,14 @@ const int DRIVER_RIGHT_TANK_DRIVE_AXIS = 3;
 
 // Joystick Buttons
 const int DRIVER_LIFT_BTN = 4;
+const int DRIVER_LOWER_BTN = 3;
 const int DRIVER_INTAKE_BTN = 1;
 
 class OI {
 private:
 	std::shared_ptr<frc::Joystick> driverController;
 	std::shared_ptr<frc::JoystickButton>liftBtn;
+	std::shared_ptr<frc::JoystickButton>lowerBtn;
 	std::shared_ptr<frc::JoystickButton> dIntakeBtn;
 
 public:

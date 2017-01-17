@@ -93,6 +93,9 @@ private:
 	{
 		SmartDashboard::PutNumber("Left Drive Motor Enc", CommandBase::drivetrainSub->getLeftEncoder());
 		SmartDashboard::PutNumber("Right Drive Motor Enc", CommandBase::drivetrainSub->getRightEncoder());
+		SmartDashboard::PutNumber("Yaw", CommandBase::drivetrainSub->getYaw());
+		SmartDashboard::PutNumber("Pitch", CommandBase::drivetrainSub->getPitch());
+		SmartDashboard::PutNumber("Roll", CommandBase::drivetrainSub->getRoll());
 	}
 	void SetSmartDashboardAutoOptions()
 	{

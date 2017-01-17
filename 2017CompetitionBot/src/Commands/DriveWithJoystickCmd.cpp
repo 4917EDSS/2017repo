@@ -16,8 +16,8 @@ void DriveWithJoystickCmd::Initialize() {
 void DriveWithJoystickCmd::Execute() {
 //	std::printf("Drive with joystick");
 	std::shared_ptr<frc::Joystick> dCtrl = oi->getDriverController();
-	drivetrainSub->drive(dCtrl->GetRawAxis(DRIVER_LEFT_TANK_DRIVE_AXIS),
-						 dCtrl->GetRawAxis(DRIVER_RIGHT_TANK_DRIVE_AXIS));
+	drivetrainSub->drive(-dCtrl->GetRawAxis(DRIVER_LEFT_TANK_DRIVE_AXIS),
+						 -dCtrl->GetRawAxis(DRIVER_RIGHT_TANK_DRIVE_AXIS));
 }
 
 // Make this return true when this Command no longer needs to run execute()

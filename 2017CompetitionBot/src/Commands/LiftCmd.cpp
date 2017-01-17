@@ -1,14 +1,15 @@
 #include "LiftCmd.h"
 
-LiftCmd::LiftCmd() {
+LiftCmd::LiftCmd(int speed) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(liftSub.get());
+	setSpeed = speed;
 }
 
 // Called just before this Command runs the first time
 void LiftCmd::Initialize() {
-	liftSub->SetLiftMotor(1.0);
+	liftSub->SetLiftMotor(setSpeed);
 }
 
 // Called repeatedly when this Command is scheduled to run

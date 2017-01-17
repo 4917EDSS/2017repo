@@ -4,6 +4,7 @@
 #include <Commands/Subsystem.h>
 #include <CANTalon.h>
 #include "WPILib.h"
+#include "AHRS.h"
 
 class DrivetrainSub : public frc::Subsystem {
 private:
@@ -25,6 +26,7 @@ private:
 	std::shared_ptr<CANTalon> rightMotor2;
 	std::shared_ptr<frc::Encoder> leftMotorEnc;
 	std::shared_ptr<frc::Encoder> rightMotorEnc;
+	std::shared_ptr<AHRS> ahrs;
 
 public:
 	DrivetrainSub();
@@ -33,6 +35,9 @@ public:
 	float getLeftEncoder();
 	float getRightEncoder();
 	void resetEncoders();
+	float getYaw();
+	float getPitch();
+	float getRoll();
 };
 
 #endif  // DrivetrainSub_H

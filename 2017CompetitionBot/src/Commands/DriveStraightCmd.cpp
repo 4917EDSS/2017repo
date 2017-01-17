@@ -17,28 +17,26 @@ void DriveStraightCmd::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void DriveStraightCmd::Execute() {
-	/*if(drivetrainSub->getLeftEncoder()>drivetrainSub->getRightEncoder()+100){
-		if(rightSpeed==1.0){
+	if(drivetrainSub->getLeftEncoder()>drivetrainSub->getRightEncoder()+100){
+		if(rightSpeed==0.5){
 			leftSpeed=leftSpeed-0.05;
 		}
 		else{
-			rightSpeed=1.0;
+			rightSpeed=0.5;
 		}
 	}
 	else if(drivetrainSub->getRightEncoder()>drivetrainSub->getLeftEncoder()+100){
-		if(leftSpeed==1.0){
+		if(leftSpeed==0.5){
 			rightSpeed=rightSpeed-0.05;
 		}
 		else{
-			leftSpeed=1.0;
+			leftSpeed=0.5;
 		}
 	}
 	else{
-		leftSpeed=1.0;
-		rightSpeed=1.0;
+		leftSpeed=0.5;
+		rightSpeed=0.5;
 	}
-	*/
-	drivetrainSub->drive(leftSpeed,rightSpeed);
 }
 
 // Make this return true when this Command no longer needs to run execute()

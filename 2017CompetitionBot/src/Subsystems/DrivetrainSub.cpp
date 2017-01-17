@@ -9,6 +9,7 @@ DrivetrainSub::DrivetrainSub() : Subsystem("DrivetrainSub") {
 	rightMotor2.reset(new CANTalon(RIGHT2_DRIVE_MOTOR_CANID));
 	leftMotorEnc.reset(new frc::Encoder(LEFT_MOTOR_ENC1_DIO, LEFT_MOTOR_ENC2_DIO));
 	rightMotorEnc.reset(new frc::Encoder(RIGHT_MOTOR_ENC1_DIO, RIGHT_MOTOR_ENC2_DIO));
+	ahrs.reset(new AHRS(AHRSInterface));
 
 
 	// Make these properly available in Test mode
@@ -28,10 +29,10 @@ void DrivetrainSub::InitDefaultCommand() {
 // here. Call these from Commands.
 void DrivetrainSub::drive(double lSpeed, double rSpeed)
 {
-	leftMotor1->Set(lSpeed);
-	leftMotor2->Set(lSpeed);
-	rightMotor1->Set(-rSpeed);
-	rightMotor2->Set(-rSpeed);
+	leftMotor1->Set(-lSpeed);
+	leftMotor2->Set(-lSpeed);
+	rightMotor1->Set(rSpeed);
+	rightMotor2->Set(rSpeed);
 }
 
 float DrivetrainSub::getLeftEncoder()
@@ -46,4 +47,13 @@ void DrivetrainSub::resetEncoders(){
 	leftMotorEnc->Reset();
 	rightMotorEnc->Reset();
 
+}
+float DrivetrainSub::getYaw(){
+	return ahrs->GetYaw();
+}
+float DrivetrainSub::getPitch(){
+	return ahrs->GetPitch();
+}
+float DrivetrainSub::getRoll(){
+	return ahrs->GetRoll();
 }

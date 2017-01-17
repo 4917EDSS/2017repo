@@ -17,6 +17,11 @@
 // constexpr int RANGE_FINDER_PORT = 1;
 // constexpr int RANGE_FINDER_MODULE = 1;
 
+
+//AHRS define
+#define AHRSInterface SPI::kMXP
+
+
 // CAN IDs
 constexpr int LEFT1_DRIVE_MOTOR_CANID = 10;
 constexpr int LEFT2_DRIVE_MOTOR_CANID = 1;
@@ -36,6 +41,6 @@ constexpr int RIGHT_MOTOR_ENC1_DIO = 2;
 constexpr int RIGHT_MOTOR_ENC2_DIO = 3;
 
 //Auto Enc Distances
-constexpr int LOAD_STRAIGHT_DIST = 1000;
+constexpr int LOAD_STRAIGHT_DIST = 5000;
 
 #endif  // ROBOTMAP_H
