@@ -2,13 +2,13 @@
 #include "../RobotMap.h"
 
 ShooterSub::ShooterSub() : Subsystem("ShooterSub") {
-	topMotor.reset(new CANTalon(TOP_SHOOTER_MOTOR_CANID));
-	bottomMotor.reset(new CANTalon(BOTTOM_SHOOTER_MOTOR_CANID));
+	motor.reset(new CANTalon(SHOOTER_MOTOR_CANID));
+	motorEnc.reset(new frc::Encoder(SHOOTER_MOTOR_ENC1_DIO, SHOOTER_MOTOR_ENC2_DIO));
 
 	// Make these properly available in Test mode
 	frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
-	lw->AddActuator("Shooter", "Top Motor", topMotor);
-	lw->AddActuator("Shooter", "Bottom Motor", bottomMotor);
+	lw->AddActuator("Shooter", "Motor", motor);
+	//lw->AddActuator("Shooter", "Bottom Motor", bottomMotor);
 }
 
 void ShooterSub::InitDefaultCommand() {
@@ -18,8 +18,15 @@ void ShooterSub::InitDefaultCommand() {
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-void ShooterSub::setShooterSpeed(double tSpeed, double bSpeed)
+void ShooterSub::setShooterSpeed(double speed)
 {
-	topMotor->Set(tSpeed);
-	bottomMotor->Set(bSpeed);
+	motor->Set(speed);
+	//bottomMotor->Set(bSpeed);
+}
+float ShooterSub::getEncoder()
+{
+	return motorEnc->GetRaw();
+}
+void ShooterSub::resetEncoder(){
+	motorEnc->Reset();
 }

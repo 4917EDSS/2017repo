@@ -27,8 +27,7 @@ constexpr int LEFT1_DRIVE_MOTOR_CANID = 10;
 constexpr int LEFT2_DRIVE_MOTOR_CANID = 1;
 constexpr int RIGHT1_DRIVE_MOTOR_CANID = 2;
 constexpr int RIGHT2_DRIVE_MOTOR_CANID = 3;
-constexpr int TOP_SHOOTER_MOTOR_CANID = 5;
-constexpr int BOTTOM_SHOOTER_MOTOR_CANID = 12;
+constexpr int SHOOTER_MOTOR_CANID = 5;
 constexpr int LIFT_MOTOR_CANID = 7;
 constexpr int PICKUP_MOTOR_CANID = 4;
 //constexpr int CLIMBER_MOTOR_CANID = 8;
@@ -39,6 +38,9 @@ constexpr int LEFT_MOTOR_ENC1_DIO = 0;
 constexpr int LEFT_MOTOR_ENC2_DIO = 1;
 constexpr int RIGHT_MOTOR_ENC1_DIO = 2;
 constexpr int RIGHT_MOTOR_ENC2_DIO = 3;
+constexpr int SHOOTER_MOTOR_ENC1_DIO = 4;
+constexpr int SHOOTER_MOTOR_ENC2_DIO = 5;
+
 
 //Auto Enc Distances
 constexpr int LOAD_STRAIGHT_DIST = 5000;

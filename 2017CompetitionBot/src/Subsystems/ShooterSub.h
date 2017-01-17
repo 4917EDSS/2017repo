@@ -3,6 +3,8 @@
 
 #include <Commands/Subsystem.h>
 #include <CANTalon.h>
+#include "WPILib.h"
+
 
 class ShooterSub : public frc::Subsystem {
 private:
@@ -12,13 +14,16 @@ private:
 	// Note:  These are declared as shared_ptr (not unique_ptr) because we share them with the
 	//        LiveWindow for testing purposes.
 
-	std::shared_ptr<CANTalon> topMotor;
-	std::shared_ptr<CANTalon> bottomMotor;
+	std::shared_ptr<CANTalon> motor;
+	std::shared_ptr<frc::Encoder> motorEnc;
+
 
 public:
 	ShooterSub();
 	void InitDefaultCommand();
-	void setShooterSpeed(double tSpeed, double bSpeed);
+	void setShooterSpeed(double speed);
+	float getEncoder();
+	void resetEncoder();
 };
 
 #endif  // ShooterSub_H
