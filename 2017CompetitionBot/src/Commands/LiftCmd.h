@@ -5,13 +5,13 @@
 
 class LiftCmd : public CommandBase {
 public:
-	LiftCmd(int speed);
+	LiftCmd(double speed);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
-	int setSpeed;
+	double setSpeed;
 };
 
 #endif  // LiftCmd_H

@@ -1,15 +1,16 @@
 #include "SetShooterSpeedCmd.h"
 
 
-SetShooterSpeedCmd::SetShooterSpeedCmd(double speed) {
+SetShooterSpeedCmd::SetShooterSpeedCmd() {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(shooterSub.get());
-	targetSpeed = speed;
 }
 
 // Called just before this Command runs the first time
 void SetShooterSpeedCmd::Initialize() {
+	Preferences *prefs = Preferences::GetInstance();
+	targetSpeed = prefs->GetDouble("SetShooterSpeed", 0.0);
 	shooterSub->setShooterSpeed(targetSpeed);
 
 }

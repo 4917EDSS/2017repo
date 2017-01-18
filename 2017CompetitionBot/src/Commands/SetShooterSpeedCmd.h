@@ -7,7 +7,7 @@ class SetShooterSpeedCmd : public CommandBase {
 private:
 	double targetSpeed;
 public:
-	SetShooterSpeedCmd(double speed);
+	SetShooterSpeedCmd();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

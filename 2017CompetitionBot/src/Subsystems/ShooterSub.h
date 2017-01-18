@@ -22,8 +22,9 @@ public:
 	ShooterSub();
 	void InitDefaultCommand();
 	void setShooterSpeed(double speed);
-	float getEncoder();
+	int getEncoder();
 	void resetEncoder();
+	double getSpeed();
 };
 
 #endif  // ShooterSub_H
