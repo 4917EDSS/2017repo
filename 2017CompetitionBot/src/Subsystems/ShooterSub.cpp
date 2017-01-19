@@ -3,9 +3,18 @@
 
 ShooterSub::ShooterSub() : Subsystem("ShooterSub") {
 	motor.reset(new CANTalon(SHOOTER_MOTOR_CANID));
-	motor->SetControlMode(frc::CANSpeedController::ControlMode::kSpeed);
+	motor->SetControlMode(frc::CANSpeedController::kSpeed);
 	motor->Set(0);
 	motorEnc.reset(new frc::Encoder(SHOOTER_MOTOR_ENC1_DIO, SHOOTER_MOTOR_ENC2_DIO));
+	motor->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
+	motor->SetSensorDirection(false);
+	motor->ConfigNominalOutputVoltage(0., 0.);
+	motor->ConfigPeakOutputVoltage(+12., -12.);
+	motor->SelectProfileSlot(0);
+	motor->SetF(0.1);
+	motor->SetP(0.1);
+	motor->SetI(0.001);
+	motor->SetD(0.000001);
 	// Make these properly available in Test mode
 	frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
 	lw->AddActuator("Shooter", "Motor", motor);

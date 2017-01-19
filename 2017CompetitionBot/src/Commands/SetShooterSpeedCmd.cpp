@@ -12,7 +12,6 @@ void SetShooterSpeedCmd::Initialize() {
 	Preferences *prefs = Preferences::GetInstance();
 	targetSpeed = prefs->GetDouble("SetShooterSpeed", 0.0);
 	shooterSub->setShooterSpeed(targetSpeed);
-
 }
 
 // Called repeatedly when this Command is scheduled to run
