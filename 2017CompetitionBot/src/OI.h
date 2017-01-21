@@ -38,6 +38,7 @@ const int DRIVER_INTAKE_BTN = 1;
 const int DRIVER_SHOOT_BTN = 2;
 const int DRIVER_INCREASE_SPEED_BTN = 6;
 const int DRIVER_DECREASE_SPEED_BTN = 5;
+const int DRIVER_DRIVETURN_BTN =7;
 
 class OI {
 private:
@@ -48,6 +49,7 @@ private:
 	std::shared_ptr<frc::JoystickButton> shooterEnableBtn;
 	std::shared_ptr<frc::JoystickButton> increaseSpeedBtn;
 	std::shared_ptr<frc::JoystickButton> decreaseSpeedBtn;
+	std::shared_ptr<frc::JoystickButton> driveTurnBtn;
 
 public:
 	OI();

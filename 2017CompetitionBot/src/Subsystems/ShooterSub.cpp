@@ -2,8 +2,7 @@
 #include "../RobotMap.h"
 
 ShooterSub::ShooterSub() : Subsystem("ShooterSub") {
-	Preferences *prefs = Preferences::GetInstance();
-	targetSpeed = prefs->GetDouble("SetShooterSpeed", 0.0);
+	targetSpeed = -2400;
 	motor.reset(new CANTalon(SHOOTER_MOTOR_CANID));
 	motor->SetControlMode(frc::CANSpeedController::kSpeed);
 	motor->Set(0);
