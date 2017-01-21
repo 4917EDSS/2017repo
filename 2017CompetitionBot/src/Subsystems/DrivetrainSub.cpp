@@ -9,6 +9,11 @@ DrivetrainSub::DrivetrainSub() : Subsystem("DrivetrainSub") {
 	rightMotor2.reset(new CANTalon(RIGHT2_DRIVE_MOTOR_CANID));
 	leftMotorEnc.reset(new frc::Encoder(LEFT_MOTOR_ENC1_DIO, LEFT_MOTOR_ENC2_DIO));
 	rightMotorEnc.reset(new frc::Encoder(RIGHT_MOTOR_ENC1_DIO, RIGHT_MOTOR_ENC2_DIO));
+	turnBalancer.reset(new MotorBalancer());
+	Preferences *prefs = Preferences::GetInstance();
+	driveTurnPID.reset(new frc::PIDController(prefs->GetFloat("DriveBalanceP", DRIVE_TURN_P),
+			   	   	   	   	   	   	   	   	  prefs->GetFloat("DriveBalanceI", DRIVE_TURN_I),
+											  prefs->GetFloat("DriveBalanceD", DRIVE_TURN_D), ahrs.get(), turnBalancer.get()));
 	ahrs.reset(new AHRS(AHRSInterface));
 
 
@@ -56,4 +61,29 @@ float DrivetrainSub::getPitch(){
 }
 float DrivetrainSub::getRoll(){
 	return ahrs->GetRoll();
+}
+void DrivetrainSub::resetAHRS()
+{
+	ahrs->ZeroYaw();
+}
+void DrivetrainSub::enableTurnPID(double setPoint)
+{
+	Preferences *prefs = Preferences::GetInstance();
+	driveTurnPID->SetPID(prefs->GetFloat("DriveTurnP", DRIVE_TURN_P), prefs->GetFloat("DriveTurnI", DRIVE_TURN_I), prefs->GetFloat("DriveTurnD", DRIVE_TURN_D));
+	driveTurnPID->SetAbsoluteTolerance(prefs->GetFloat("DriveTurnTolerance", DRIVE_TURN_TOLERANCE));
+	driveTurnPID->SetSetpoint(setPoint);
+	driveTurnPID->Enable();
+}
+void DrivetrainSub::disableTurnPID(){
+	driveTurnPID->Disable();
+}
+void DrivetrainSub::PIDTurn()
+{
+	leftMotor1->Set(-turnBalancer->GetDifference());
+	leftMotor2->Set(-turnBalancer->GetDifference());
+	rightMotor1->Set(-turnBalancer->GetDifference());
+	rightMotor2->Set(-turnBalancer->GetDifference());
+}
+bool DrivetrainSub::isTurnFinished(){
+	return driveTurnPID->OnTarget();
 }

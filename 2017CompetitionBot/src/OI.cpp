@@ -4,6 +4,7 @@
 #include "Commands/RunPickupCmd.h"
 #include "Commands/LiftCmd.h"
 #include "Commands/SetShooterSpeedCmd.h"
+#include "Commands/DriveTurnCmd.h"
 
 OI::OI() {
 	// Process operator interface input here.
@@ -17,6 +18,8 @@ OI::OI() {
 	lowerBtn->WhileHeld (new LiftCmd(-1.0));
 	shooterEnableBtn.reset(new JoystickButton(driverController.get(), DRIVER_SHOOT_BTN));
 	shooterEnableBtn->WhileHeld (new SetShooterSpeedCmd());
+	driveTurnBtn.reset(new JoystickButton(driverController.get(), DRIVER_DRIVETURN_BTN));
+	driveTurnBtn->WhenPressed(new DriveTurnCmd(60));
 }
 
 std::shared_ptr<frc::Joystick> OI::getDriverController()

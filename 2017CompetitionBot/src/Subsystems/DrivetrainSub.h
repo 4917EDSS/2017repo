@@ -5,6 +5,7 @@
 #include <CANTalon.h>
 #include "WPILib.h"
 #include "AHRS.h"
+#include "Components/MotorBalancer.h"
 
 class DrivetrainSub : public frc::Subsystem {
 private:
@@ -27,6 +28,8 @@ private:
 	std::shared_ptr<frc::Encoder> leftMotorEnc;
 	std::shared_ptr<frc::Encoder> rightMotorEnc;
 	std::shared_ptr<AHRS> ahrs;
+	std::shared_ptr<MotorBalancer> turnBalancer;
+	std::shared_ptr<frc::PIDController> driveTurnPID;
 
 public:
 	DrivetrainSub();
@@ -38,6 +41,11 @@ public:
 	float getYaw();
 	float getPitch();
 	float getRoll();
+	void resetAHRS();
+	void enableTurnPID(double setSpeed);
+	void disableTurnPID();
+	void PIDTurn();
+	bool isTurnFinished();
 };
 
 #endif  // DrivetrainSub_H

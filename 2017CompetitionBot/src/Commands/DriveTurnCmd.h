@@ -2,17 +2,20 @@
 #define DriveTurnCmd_H
 
 #include "../CommandBase.h"
+#include "RobotMap.h"
 
 class DriveTurnCmd : public CommandBase {
 public:
-	DriveTurnCmd(int angle);
+	DriveTurnCmd(double angle);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
 private:
-	int targetAngle;
+	double turnDegrees;
+	double lastCheckpoint;
+	double lastCheckpointTime;
 };
 
 #endif  // DriveTurnCmd_H

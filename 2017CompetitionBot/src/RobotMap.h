@@ -45,4 +45,12 @@ constexpr int SHOOTER_MOTOR_ENC2_DIO = 5;
 //Auto Enc Distances
 constexpr int LOAD_STRAIGHT_DIST = 5000;
 
+//PID Values
+constexpr int DRIVE_TURN_P = 1;
+constexpr int DRIVE_TURN_I = 1;
+constexpr int DRIVE_TURN_D = 1;
+constexpr int DRIVE_TURN_TOLERANCE = 10;
+constexpr int TURN_TOLERANCE_DURATION = 1000;
+
+
 #endif  // ROBOTMAP_H
