@@ -4,17 +4,8 @@
 ShooterSub::ShooterSub() : Subsystem("ShooterSub") {
 	targetSpeed = -2400;
 	motor.reset(new CANTalon(SHOOTER_MOTOR_CANID));
-	motor->SetControlMode(frc::CANSpeedController::kSpeed);
 	motor->Set(0);
 	motorEnc.reset(new frc::Encoder(SHOOTER_MOTOR_ENC1_DIO, SHOOTER_MOTOR_ENC2_DIO));
-	motor->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
-	motor->SetSensorDirection(false);
-	motor->ConfigNominalOutputVoltage(0., 0.);
-	motor->ConfigPeakOutputVoltage(+12., -12.);
-	motor->SelectProfileSlot(0);
-	motor->SetF(0.055);
-	motor->SetP(0.1);
-	motor->SetD(10);
 	// Make these properly available in Test mode
 	frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
 	lw->AddActuator("Shooter", "Motor", motor);
@@ -62,6 +53,14 @@ double ShooterSub::getTargetSpeed()
 }
 void ShooterSub::enableSpeedController(){
 	motor->SetControlMode(frc::CANSpeedController::kSpeed);
+	motor->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
+	motor->SetSensorDirection(false);
+	motor->ConfigNominalOutputVoltage(0., 0.);
+	motor->ConfigPeakOutputVoltage(+12., -12.);
+	motor->SelectProfileSlot(0);
+	motor->SetF(0.056);
+	motor->SetP(0.1);
+	motor->SetD(10);
 }
 void ShooterSub::disableSpeedController(){
 	motor->SetControlMode(frc::CANSpeedController::kPercentVbus);
