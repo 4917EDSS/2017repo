@@ -16,15 +16,21 @@ private:
 
 	std::shared_ptr<CANTalon> motor;
 	std::shared_ptr<frc::Encoder> motorEnc;
-
+	double targetSpeed;
 
 public:
 	ShooterSub();
 	void InitDefaultCommand();
-	void setShooterSpeed(double speed);
+	void updateShooter();
+	void disableShooter();
+	void increaseSpeed();
+	void decreaseSpeed();
 	int getEncoder();
 	void resetEncoder();
 	double getSpeed();
+	double getTargetSpeed();
+	void enableSpeedController();
+	void disableSpeedController();
 };
 
 #endif  // ShooterSub_H
