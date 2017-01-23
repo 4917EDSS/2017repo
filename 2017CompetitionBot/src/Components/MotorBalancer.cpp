@@ -11,11 +11,12 @@ MotorBalancer::MotorBalancer() {
 	difference = 0;
 }
 
+#include <iostream>
 void MotorBalancer::PIDWrite(double output) {
 	difference = output;
+	std::cout << "PID Write called" << std::endl;
 }
-
-float MotorBalancer::GetDifference() {
+double MotorBalancer::GetDifference() {
 	return difference; //always equal to 0
 }
 

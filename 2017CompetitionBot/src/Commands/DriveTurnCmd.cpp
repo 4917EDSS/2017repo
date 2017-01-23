@@ -1,4 +1,5 @@
 #include "DriveTurnCmd.h"
+#include <math.h>
 
 DriveTurnCmd::DriveTurnCmd(double angle) {
 	// Use Requires() here to declare subsystem dependencies
@@ -6,25 +7,21 @@ DriveTurnCmd::DriveTurnCmd(double angle) {
 	Requires(drivetrainSub.get());
 	turnDegrees = angle;
 }
-#include <iostream>
 // Called just before this Command runs the first time
 void DriveTurnCmd::Initialize() {
-	std::cerr << "initialized";
 	drivetrainSub->resetAHRS();
 	drivetrainSub->enableTurnPID(turnDegrees);
 	lastCheckpoint = drivetrainSub->getYaw();
 	lastCheckpointTime = TimeSinceInitialized();
 }
-
+#include <iostream>
 // Called repeatedly when this Command is scheduled to run
 void DriveTurnCmd::Execute() {
 	drivetrainSub->PIDTurn();
-	std::cout << "EXECUTING";
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool DriveTurnCmd::IsFinished() {
-	std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!DONE!!!!!!!!!!!!!!!!!!!!!!";
 	if (fabs(lastCheckpoint - drivetrainSub->getYaw()) > DRIVE_TURN_TOLERANCE){
 		lastCheckpoint = drivetrainSub->getYaw();
 		lastCheckpointTime = TimeSinceInitialized();
@@ -40,6 +37,7 @@ bool DriveTurnCmd::IsFinished() {
 
 // Called once after isFinished returns true
 void DriveTurnCmd::End() {
+	drivetrainSub->disableTurnPID();
 	drivetrainSub->drive(0.0, 0.0);
 }
 

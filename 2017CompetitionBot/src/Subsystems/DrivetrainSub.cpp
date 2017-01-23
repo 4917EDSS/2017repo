@@ -1,6 +1,7 @@
 #include "DrivetrainSub.h"
 #include "../RobotMap.h"
 #include "Commands/DriveWithJoystickCmd.h"
+#include <iostream>
 
 DrivetrainSub::DrivetrainSub() : Subsystem("DrivetrainSub") {
 	leftMotor1.reset(new CANTalon(LEFT1_DRIVE_MOTOR_CANID));
@@ -15,7 +16,6 @@ DrivetrainSub::DrivetrainSub() : Subsystem("DrivetrainSub") {
 			   	   	   	   	   	   	   	   	  prefs->GetFloat("DriveBalanceI", DRIVE_TURN_I),
 											  prefs->GetFloat("DriveBalanceD", DRIVE_TURN_D), ahrs.get(), turnBalancer.get()));
 	ahrs.reset(new AHRS(AHRSInterface));
-
 
 	// Make these properly available in Test mode
 	frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
@@ -34,6 +34,7 @@ void DrivetrainSub::InitDefaultCommand() {
 // here. Call these from Commands.
 void DrivetrainSub::drive(double lSpeed, double rSpeed)
 {
+	std::cout << "Drive called" << std::endl;
 	leftMotor1->Set(-lSpeed);
 	leftMotor2->Set(-lSpeed);
 	rightMotor1->Set(rSpeed);
@@ -69,6 +70,7 @@ void DrivetrainSub::resetAHRS()
 void DrivetrainSub::enableTurnPID(double setPoint)
 {
 	Preferences *prefs = Preferences::GetInstance();
+	std::cout << "Enable turn PID called" << std::endl;
 	driveTurnPID->SetPID(prefs->GetFloat("DriveTurnP", DRIVE_TURN_P), prefs->GetFloat("DriveTurnI", DRIVE_TURN_I), prefs->GetFloat("DriveTurnD", DRIVE_TURN_D));
 	driveTurnPID->SetAbsoluteTolerance(prefs->GetFloat("DriveTurnTolerance", DRIVE_TURN_TOLERANCE));
 	driveTurnPID->SetSetpoint(setPoint);
@@ -79,10 +81,12 @@ void DrivetrainSub::disableTurnPID(){
 }
 void DrivetrainSub::PIDTurn()
 {
-	leftMotor1->Set(-turnBalancer->GetDifference());
-	leftMotor2->Set(-turnBalancer->GetDifference());
-	rightMotor1->Set(-turnBalancer->GetDifference());
-	rightMotor2->Set(-turnBalancer->GetDifference());
+	std::cout << "PID turn called with turnbalancer " << turnBalancer->GetDifference() << std::endl;
+	std::cout << "driveTurnPID is enabled? " << driveTurnPID->IsEnabled() << std::endl;
+	leftMotor1->Set(turnBalancer->GetDifference());
+	leftMotor2->Set(turnBalancer->GetDifference());
+	rightMotor1->Set(turnBalancer->GetDifference());
+	rightMotor2->Set(turnBalancer->GetDifference());
 }
 bool DrivetrainSub::isTurnFinished(){
 	return driveTurnPID->OnTarget();

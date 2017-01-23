@@ -10,13 +10,14 @@
 
 #include <PIDOutput.h>
 
-class MotorBalancer: public frc::PIDOutput {
+class MotorBalancer : public frc::PIDOutput {
 private:
-	float difference;
+	double difference;
 public:
+	virtual ~MotorBalancer() = default;
 	MotorBalancer();
-	void PIDWrite(double output);
-	float GetDifference();
+	void PIDWrite(double output) override;
+	double GetDifference();
 	void Reset();
 };
 
