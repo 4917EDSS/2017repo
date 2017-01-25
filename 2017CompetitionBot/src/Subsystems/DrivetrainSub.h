@@ -30,6 +30,7 @@ private:
 	std::shared_ptr<AHRS> ahrs;
 	std::shared_ptr<MotorBalancer> turnBalancer;
 	std::shared_ptr<frc::PIDController> driveTurnPID;
+	std::shared_ptr<frc::DoubleSolenoid> shifter;
 
 public:
 	DrivetrainSub();
@@ -46,6 +47,8 @@ public:
 	void disableTurnPID();
 	void PIDTurn();
 	bool isTurnFinished();
+	void setShifter(frc::DoubleSolenoid::Value shiftState);
+	frc::DoubleSolenoid::Value getShifterState();
 };
 
 #endif  // DrivetrainSub_H

@@ -7,6 +7,7 @@
 #include "Commands/IncreaseSpeedCmd.h"
 #include "Commands/DecreaseSpeedCmd.h"
 #include "Commands/DriveTurnCmd.h"
+#include "Commands/ToggleShifterCmd.h"
 
 OI::OI() {
 	// Process operator interface input here.
@@ -26,6 +27,9 @@ OI::OI() {
 	decreaseSpeedBtn->WhenPressed(new DecreaseSpeedCmd());
 	driveTurnBtn.reset(new JoystickButton(driverController.get(), DRIVER_DRIVETURN_BTN));
 	driveTurnBtn->WhenPressed(new DriveTurnCmd(60));
+	shiftBtn.reset(new JoystickButton(driverController.get(), DRIVER_SHIFT_BTN));
+	shiftBtn->WhenPressed(new ToggleShifterCmd());
+
 }
 std::shared_ptr<frc::Joystick> OI::getDriverController()
 {

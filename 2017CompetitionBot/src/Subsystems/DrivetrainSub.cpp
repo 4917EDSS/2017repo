@@ -10,12 +10,13 @@ DrivetrainSub::DrivetrainSub() : Subsystem("DrivetrainSub") {
 	rightMotor2.reset(new CANTalon(RIGHT2_DRIVE_MOTOR_CANID));
 	leftMotorEnc.reset(new frc::Encoder(LEFT_MOTOR_ENC1_DIO, LEFT_MOTOR_ENC2_DIO));
 	rightMotorEnc.reset(new frc::Encoder(RIGHT_MOTOR_ENC1_DIO, RIGHT_MOTOR_ENC2_DIO));
+	shifter.reset(new frc::DoubleSolenoid(SHIFTER_DIO_1, SHIFTER_DIO_2));
 	turnBalancer.reset(new MotorBalancer());
+	ahrs.reset(new AHRS(AHRSInterface));
 	Preferences *prefs = Preferences::GetInstance();
 	driveTurnPID.reset(new frc::PIDController(prefs->GetFloat("DriveBalanceP", DRIVE_TURN_P),
 			   	   	   	   	   	   	   	   	  prefs->GetFloat("DriveBalanceI", DRIVE_TURN_I),
 											  prefs->GetFloat("DriveBalanceD", DRIVE_TURN_D), ahrs.get(), turnBalancer.get()));
-	ahrs.reset(new AHRS(AHRSInterface));
 
 	// Make these properly available in Test mode
 	frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
@@ -90,4 +91,10 @@ void DrivetrainSub::PIDTurn()
 }
 bool DrivetrainSub::isTurnFinished(){
 	return driveTurnPID->OnTarget();
+}
+void DrivetrainSub::setShifter(frc::DoubleSolenoid::Value shiftState){
+	shifter->Set(shiftState);
+}
+frc::DoubleSolenoid::Value DrivetrainSub::getShifterState(){
+	return shifter->Get();
 }
