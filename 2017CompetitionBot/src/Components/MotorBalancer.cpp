@@ -14,10 +14,10 @@ MotorBalancer::MotorBalancer() {
 #include <iostream>
 void MotorBalancer::PIDWrite(double output) {
 	difference = output;
-	std::cout << "PID Write called" << std::endl;
+	printf( "Motor Power = %f\n", difference );
 }
 double MotorBalancer::GetDifference() {
-	return difference; //always equal to 0
+	return difference/5; //always equal to 0
 }
 
 void MotorBalancer::Reset() {
