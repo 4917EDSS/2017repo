@@ -12,6 +12,7 @@
 #include "Commands/AutoDefaultGrp.h"
 #include "Commands/AutoLoadStraightGrp.h"
 #include "Commands/DriveStraightCmd.h"
+#include "Commands/SilkyDriveStraightCmd.h"
 
 
 class Robot: public frc::IterativeRobot {
@@ -53,13 +54,12 @@ public:
 		}
 		else {
 			autonomousCommand.reset(new ExampleCommand());
-		}
-		autonomousCommand.reset(chooser.GetSelected());
+		}*/
+		autonomousCommand = autoLocationOptions->GetSelected();
 
 		if (autonomousCommand.get() != nullptr) {
 			autonomousCommand->Start();
 		}
-		*/
 	}
 
 	void AutonomousPeriodic() override {
@@ -85,7 +85,7 @@ public:
 		frc::LiveWindow::GetInstance()->Run();
 	}
 private:
-	std::unique_ptr<frc::Command> autonomousCommand;
+	std::shared_ptr<frc::Command> autonomousCommand;
 	std::unique_ptr<frc::Command> autoLocation;
 	std::unique_ptr<frc::SendableChooser<CommandBase::Alliance> > autoAllianceOptions;
 	std::unique_ptr<frc::SendableChooser<std::shared_ptr<frc::Command>> > autoLocationOptions;
@@ -107,6 +107,7 @@ private:
 
 		autoLocationOptions.reset(new frc::SendableChooser<std::shared_ptr<frc::Command>>());
 		autoLocationOptions->AddDefault("Do Nothing", std::shared_ptr<frc::Command>(new AutoDefaultGrp()));
+		autoLocationOptions->AddObject("Silky straight", std::shared_ptr<frc::Command>(new SilkyDriveStraightCmd(2)));
 		autoLocationOptions->AddObject("Load Straight", std::shared_ptr<frc::Command>(new AutoLoadStraightGrp()));
 		/*autoLocationOptions->AddObject("Load Left", new AutoPosition2ShootGrp());
 		autoLocationOptions->AddObject("Load Right", new AutoPosition2ShootLeftGrp());
