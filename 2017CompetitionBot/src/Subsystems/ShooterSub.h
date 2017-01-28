@@ -15,13 +15,12 @@ private:
 	//        LiveWindow for testing purposes.
 
 	std::shared_ptr<CANTalon> motor;
-	std::shared_ptr<frc::Encoder> motorEnc;
 	double targetSpeed;
 
 public:
 	ShooterSub();
 	void InitDefaultCommand();
-	void updateShooter();
+	void setSpeed();
 	void disableShooter();
 	void increaseSpeed();
 	void decreaseSpeed();

@@ -5,7 +5,6 @@ ShooterSub::ShooterSub() : Subsystem("ShooterSub") {
 	targetSpeed = -2400;
 	motor.reset(new CANTalon(SHOOTER_MOTOR_CANID));
 	motor->Set(0);
-	motorEnc.reset(new frc::Encoder(SHOOTER_MOTOR_ENC1_DIO, SHOOTER_MOTOR_ENC2_DIO));
 	// Make these properly available in Test mode
 	frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
 	lw->AddActuator("Shooter", "Motor", motor);
@@ -19,10 +18,9 @@ void ShooterSub::InitDefaultCommand() {
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-void ShooterSub::updateShooter()
+void ShooterSub::setSpeed()
 {
 	motor->Set(targetSpeed);
-	//bottomMotor->Set(bSpeed);
 }
 void ShooterSub::disableShooter()
 {
@@ -36,16 +34,10 @@ void ShooterSub::decreaseSpeed()
 {
 	targetSpeed += 50.0;
 }
-int ShooterSub::getEncoder()
-{
-	return motorEnc->GetRaw();
-}
-void ShooterSub::resetEncoder(){
-	motorEnc->Reset();
-}
+#include <iostream>
 double ShooterSub::getSpeed()
 {
-	return motor->GetSpeed();
+	return motor->GetEncVel()*60*10/4096; //Discovered from reading source code and playing with numbers
 }
 double ShooterSub::getTargetSpeed()
 {
@@ -59,8 +51,8 @@ void ShooterSub::enableSpeedController(){
 	motor->ConfigPeakOutputVoltage(+12., -12.);
 	motor->SelectProfileSlot(0);
 	motor->SetF(0.056);
-	motor->SetP(0.1);
-	motor->SetD(10);
+	motor->SetP(0.001);
+	motor->SetD(8);
 }
 void ShooterSub::disableSpeedController(){
 	motor->SetControlMode(frc::CANSpeedController::kPercentVbus);

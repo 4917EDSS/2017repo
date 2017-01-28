@@ -97,7 +97,7 @@ private:
 		SmartDashboard::PutNumber("Yaw", CommandBase::drivetrainSub->getYaw());
 		SmartDashboard::PutNumber("Pitch", CommandBase::drivetrainSub->getPitch());
 		SmartDashboard::PutNumber("Roll", CommandBase::drivetrainSub->getRoll());
-		SmartDashboard::PutNumber("Actual Shooter Speed", CommandBase::shooterSub->getSpeed());
+		SmartDashboard::PutNumber("Real Shooter Speed", CommandBase::shooterSub->getSpeed());
 		SmartDashboard::PutNumber("Target Shooter Speed", CommandBase::shooterSub->getTargetSpeed());
 	}
 	void SetSmartDashboardAutoOptions()

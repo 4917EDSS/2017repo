@@ -13,7 +13,7 @@ void ShootWhileHeldCmd::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ShootWhileHeldCmd::Execute() {
-	shooterSub->updateShooter();
+	shooterSub->setSpeed();
 }
 
 // Make this return true when this Command no longer needs to run execute()
