@@ -17,7 +17,7 @@ void MotorBalancer::PIDWrite(double output) {
 	printf( "Motor Power = %f\n", difference );
 }
 double MotorBalancer::GetDifference() {
-	return difference/5; //always equal to 0
+	return difference; //always equal to 0
 }
 
 void MotorBalancer::Reset() {

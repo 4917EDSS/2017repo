@@ -29,7 +29,7 @@ bool DriveTurnCmd::IsFinished() {
 		lastCheckpointTime = TimeSinceInitialized();
 		return false;
 	}
-	else if ((TimeSinceInitialized() - lastCheckpointTime) > TURN_TOLERANCE_DURATION){
+	else if ((TimeSinceInitialized() - lastCheckpointTime) > TURN_TOLERANCE_DURATION_S){
 		return true;
 	}
 	else {

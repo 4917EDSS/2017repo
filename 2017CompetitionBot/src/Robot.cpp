@@ -19,6 +19,7 @@ class Robot: public frc::IterativeRobot {
 public:
 
 	void RobotInit() override {
+		frc::CameraServer::GetInstance()->StartAutomaticCapture();
 		CommandBase::Init();
 		SetSmartDashboardAutoOptions();
 	}

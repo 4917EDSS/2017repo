@@ -47,11 +47,11 @@ constexpr int SHIFTER_DIO_2 = 7;
 constexpr int LOAD_STRAIGHT_DIST = 5000;
 
 //PID Values
-constexpr int DRIVE_TURN_P = 1;
+constexpr int DRIVE_TURN_P = 0.045;
 constexpr int DRIVE_TURN_I = 0;
-constexpr int DRIVE_TURN_D = 0;
-constexpr int DRIVE_TURN_TOLERANCE = 0.2;
-constexpr int TURN_TOLERANCE_DURATION = 1000;
+constexpr int DRIVE_TURN_D = 0.09;
+constexpr int DRIVE_TURN_TOLERANCE = 1;
+constexpr int TURN_TOLERANCE_DURATION_S = 1;
 
 
 #endif  // ROBOTMAP_H
