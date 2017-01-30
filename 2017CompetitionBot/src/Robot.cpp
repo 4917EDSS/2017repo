@@ -21,7 +21,7 @@ public:
 	void RobotInit() override {
 		cs::UsbCamera usbCamera = frc::CameraServer::GetInstance()->StartAutomaticCapture();
 
-#if 1 // The camera might need its own subsystem
+#if 0 // The camera might need its own subsystem
 		// Try to connect to the Axis camera and make sure worked
 		cs::AxisCamera axisCamera = frc::CameraServer::GetInstance()->AddAxisCamera(AXIS_ADDRESS);
 		if(axisCamera)
