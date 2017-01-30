@@ -19,7 +19,23 @@ class Robot: public frc::IterativeRobot {
 public:
 
 	void RobotInit() override {
-		frc::CameraServer::GetInstance()->StartAutomaticCapture();
+		cs::UsbCamera usbCamera = frc::CameraServer::GetInstance()->StartAutomaticCapture();
+
+#if 1 // The camera might need its own subsystem
+		// Try to connect to the Axis camera and make sure worked
+		cs::AxisCamera axisCamera = frc::CameraServer::GetInstance()->AddAxisCamera(AXIS_ADDRESS);
+		if(axisCamera)
+		{
+			// Setup for vision target tracking
+			axisCamera.SetResolution(AXIS_VISION_RESOLUTION_WIDTH, AXIS_VISION_RESOLUTION_HEIGHT);
+			axisCamera.SetExposureManual(AXIS_VISION_TARGETS_EXPOSURE_VALUE);
+
+			// Or setup for driving
+			axisCamera.SetResolution(AXIS_STREAM_RESOLUTION_WIDTH, AXIS_STREAM_RESOLUTION_HEIGHT);
+			axisCamera.SetExposureAuto();
+		}
+#endif
+
 		CommandBase::Init();
 		SetSmartDashboardAutoOptions();
 	}

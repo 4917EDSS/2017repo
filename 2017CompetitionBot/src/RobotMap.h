@@ -53,5 +53,13 @@ constexpr int DRIVE_TURN_D = 0.09;
 constexpr int DRIVE_TURN_TOLERANCE = 1;
 constexpr int TURN_TOLERANCE_DURATION_S = 1;
 
+// Axis Camera
+#define AXIS_ADDRESS "10.49.17.11"
+constexpr int AXIS_VISION_TARGETS_EXPOSURE_VALUE = 16;
+constexpr int AXIS_VISION_RESOLUTION_WIDTH = 320;
+constexpr int AXIS_VISION_RESOLUTION_HEIGHT = 240;
+constexpr int AXIS_STREAM_RESOLUTION_WIDTH = 320;
+constexpr int AXIS_STREAM_RESOLUTION_HEIGHT = 240;
+
 
 #endif  // ROBOTMAP_H
