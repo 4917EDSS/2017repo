@@ -40,8 +40,10 @@ constexpr int RIGHT_MOTOR_ENC1_DIO = 2;
 constexpr int RIGHT_MOTOR_ENC2_DIO = 3;
 constexpr int SHOOTER_MOTOR_ENC1_DIO = 4;
 constexpr int SHOOTER_MOTOR_ENC2_DIO = 5;
-constexpr int SHIFTER_DIO_1 = 6;
-constexpr int SHIFTER_DIO_2 = 7;
+
+// Pneumatic control module outputs
+constexpr int SHIFTER_PCM_ID1 = 0;
+constexpr int SHIFTER_PCM_ID2 = 1;
 
 //Auto Enc Distances
 constexpr int LOAD_STRAIGHT_DIST = 5000;
