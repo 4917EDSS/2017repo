@@ -8,7 +8,7 @@ RunPickupCmd::RunPickupCmd() {
 
 // Called just before this Command runs the first time
 void RunPickupCmd::Initialize() {
-	intakeSub->setPickupMotor(0.5);
+	intakeSub->setPickupMotor(1.0);
 }
 
 // Called repeatedly when this Command is scheduled to run
