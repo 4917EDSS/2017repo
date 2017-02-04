@@ -15,6 +15,8 @@ private:
 	//        LiveWindow for testing purposes.
 
 	std::shared_ptr<CANTalon> motor;
+	std::shared_ptr<CANTalon> feederMotor1;
+	std::shared_ptr<CANTalon> feederMotor2;
 	double targetSpeed;
 
 public:
@@ -30,6 +32,7 @@ public:
 	double getTargetSpeed();
 	void enableSpeedController();
 	void disableSpeedController();
+	void setFeederSpeed(float speed);
 };
 
 #endif  // ShooterSub_H

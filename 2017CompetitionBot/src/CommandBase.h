@@ -11,7 +11,6 @@
 #include "Subsystems/ShooterSub.h"
 #include "Subsystems/IntakeSub.h"
 #include "Subsystems/LiftSub.h"
-#include "Subsystems/ShooterIntakeSub.h"
 #include "Subsystems/AgitatorSub.h"
 
 
@@ -32,7 +31,6 @@ public:
 	static std::unique_ptr<ShooterSub> shooterSub;
 	static std::unique_ptr<IntakeSub> intakeSub;
 	static std::unique_ptr<LiftSub> liftSub;
-	static std::unique_ptr<ShooterIntakeSub> shooterIntakeSub;
 	static std::unique_ptr<AgitatorSub> agitatorSub;
 	static std::unique_ptr<OI> oi;
 
