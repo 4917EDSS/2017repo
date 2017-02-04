@@ -21,7 +21,7 @@ public:
 	void RobotInit() override {
 		cs::UsbCamera usbCamera = frc::CameraServer::GetInstance()->StartAutomaticCapture();
 
-#if 0 // The camera might need its own subsystem
+ // The camera might need its own subsystem
 		// Try to connect to the Axis camera and make sure worked
 		cs::AxisCamera axisCamera = frc::CameraServer::GetInstance()->AddAxisCamera(AXIS_ADDRESS);
 		if(axisCamera)
@@ -34,7 +34,7 @@ public:
 			axisCamera.SetResolution(AXIS_STREAM_RESOLUTION_WIDTH, AXIS_STREAM_RESOLUTION_HEIGHT);
 			axisCamera.SetExposureAuto();
 		}
-#endif
+
 
 		CommandBase::Init();
 		SetSmartDashboardAutoOptions();
