@@ -48,7 +48,14 @@ constexpr int SHIFTER_PCM_ID1 = 0;
 constexpr int SHIFTER_PCM_ID2 = 1;
 
 //Auto Enc Distances
-constexpr int LOAD_STRAIGHT_DIST = 5000;
+constexpr int LOAD_STRAIGHT_DIST = 1886;
+constexpr int CENTER_TO_BOILER = 2224;
+constexpr int TURN_TO_BOILER_DEGREE = -119;
+constexpr int BACK_OFF_OF_SHAFT_DIST = -301;
+constexpr int GEAR_WAIT_TIME = 2;
+constexpr int LOADER_SIDE_APPROACH_DIST = 1353;
+constexpr int TURN_TO_LOADER_SIDE_SHAFT = -45;
+constexpr int DRIVE_TO_LOADER_SIDE_SHAFT = 2500;
 
 //PID Values
 constexpr int DRIVE_TURN_P = 0.045;

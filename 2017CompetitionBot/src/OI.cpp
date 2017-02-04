@@ -1,9 +1,9 @@
+#include <Commands/ShootCmd.h>
 #include "OI.h"
 
 #include <WPILib.h>
 #include "Commands/RunPickupCmd.h"
 #include "Commands/LiftCmd.h"
-#include "Commands/ShootWhileHeldCmd.h"
 #include "Commands/IncreaseSpeedCmd.h"
 #include "Commands/DecreaseSpeedCmd.h"
 #include "Commands/DriveTurnCmd.h"
@@ -20,7 +20,7 @@ OI::OI() {
 	lowerBtn.reset(new JoystickButton(driverController.get(), DRIVER_LOWER_BTN));
 	lowerBtn->WhileHeld(new LiftCmd(-1.0));
 	shooterEnableBtn.reset(new JoystickButton(driverController.get(), DRIVER_SHOOT_BTN));
-	shooterEnableBtn->WhileHeld(new ShootWhileHeldCmd());
+	shooterEnableBtn->WhileHeld(new ShootCmd());
 	increaseSpeedBtn.reset(new JoystickButton(driverController.get(), DRIVER_INCREASE_SPEED_BTN));
 	increaseSpeedBtn->WhenPressed(new IncreaseSpeedCmd());
 	decreaseSpeedBtn.reset(new JoystickButton(driverController.get(), DRIVER_DECREASE_SPEED_BTN));

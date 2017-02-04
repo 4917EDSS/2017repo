@@ -3,9 +3,9 @@
 
 #include "../CommandBase.h"
 
-class ShootWhileHeldCmd : public CommandBase {
+class ShootCmd : public CommandBase {
 public:
-	ShootWhileHeldCmd();
+	ShootCmd();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
