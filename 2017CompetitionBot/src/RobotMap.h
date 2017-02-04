@@ -17,6 +17,10 @@
 // constexpr int RANGE_FINDER_PORT = 1;
 // constexpr int RANGE_FINDER_MODULE = 1;
 
+enum Alliance {
+	RED,
+	BLUE
+};
 
 //AHRS define
 #define AHRSInterface SPI::kMXP

@@ -36,10 +36,7 @@ public:
 	static std::unique_ptr<AgitatorSub> agitatorSub;
 	static std::unique_ptr<OI> oi;
 
-	enum Alliance {
-		RED,
-		BLUE
-	};
+
 };
 
 #endif  // COMMAND_BASE_H
