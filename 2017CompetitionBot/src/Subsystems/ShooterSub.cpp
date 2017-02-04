@@ -4,6 +4,10 @@
 ShooterSub::ShooterSub() : Subsystem("ShooterSub") {
 	targetSpeed = -2400;
 	motor.reset(new CANTalon(SHOOTER_MOTOR_CANID));
+	feederMotor1.reset(new CANTalon(FEEDER_MOTOR1_CANID));
+	feederMotor2.reset(new CANTalon(FEEDER_MOTOR2_CANID));
+	feederMotor1->Set(0);
+	feederMotor2->Set(0);
 	motor->Set(0);
 	// Make these properly available in Test mode
 	frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
@@ -58,3 +62,7 @@ void ShooterSub::disableSpeedController(){
 	motor->SetControlMode(frc::CANSpeedController::kPercentVbus);
 }
 
+void ShooterSub::setFeederSpeed(float speed){
+	feederMotor1->Set(-speed);
+	feederMotor2->Set(-speed);
+}

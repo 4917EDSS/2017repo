@@ -6,6 +6,9 @@
 #include "WPILib.h"
 #include "AHRS.h"
 #include "Components/MotorBalancer.h"
+#include "RobotMap.h"
+
+class CommandBase;
 
 class DrivetrainSub : public frc::Subsystem {
 private:
@@ -31,6 +34,7 @@ private:
 	std::shared_ptr<MotorBalancer> turnBalancer;
 	std::shared_ptr<frc::PIDController> driveTurnPID;
 	std::shared_ptr<frc::DoubleSolenoid> shifter;
+	Alliance alliance;
 
 public:
 	DrivetrainSub();
@@ -49,6 +53,8 @@ public:
 	bool isTurnFinished();
 	void setShifter(frc::DoubleSolenoid::Value shiftState);
 	frc::DoubleSolenoid::Value getShifterState();
+	void setAlliance(Alliance newAlliance);
+	Alliance getAlliance();
 };
 
 #endif  // DrivetrainSub_H

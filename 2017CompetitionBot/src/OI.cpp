@@ -14,7 +14,7 @@ OI::OI() {
 	driverController.reset(new frc::Joystick(DRIVER_CONTROLLER_PORT));
 
 	dIntakeBtn.reset(new frc::JoystickButton(driverController.get(), DRIVER_INTAKE_BTN));
-	dIntakeBtn->WhileHeld(new RunPickupCmd);
+	dIntakeBtn->WhileHeld(new RunPickupCmd());
 	liftBtn.reset(new JoystickButton(driverController.get(), DRIVER_LIFT_BTN));
 	liftBtn->WhileHeld(new LiftCmd(1.0));
 	lowerBtn.reset(new JoystickButton(driverController.get(), DRIVER_LOWER_BTN));

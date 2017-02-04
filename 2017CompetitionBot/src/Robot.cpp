@@ -21,7 +21,7 @@ public:
 	void RobotInit() override {
 		cs::UsbCamera usbCamera = frc::CameraServer::GetInstance()->StartAutomaticCapture();
 
-#if 0 // The camera might need its own subsystem
+ // The camera might need its own subsystem
 		// Try to connect to the Axis camera and make sure worked
 		cs::AxisCamera axisCamera = frc::CameraServer::GetInstance()->AddAxisCamera(AXIS_ADDRESS);
 		if(axisCamera)
@@ -34,7 +34,7 @@ public:
 			axisCamera.SetResolution(AXIS_STREAM_RESOLUTION_WIDTH, AXIS_STREAM_RESOLUTION_HEIGHT);
 			axisCamera.SetExposureAuto();
 		}
-#endif
+
 
 		CommandBase::Init();
 		SetSmartDashboardAutoOptions();
@@ -72,6 +72,7 @@ public:
 		else {
 			autonomousCommand.reset(new ExampleCommand());
 		}*/
+		CommandBase::drivetrainSub->setAlliance(*(autoAllianceOptions->GetSelected()));
 		autonomousCommand = autoLocationOptions->GetSelected();
 
 		if (autonomousCommand.get() != nullptr) {
@@ -104,7 +105,7 @@ public:
 private:
 	std::shared_ptr<frc::Command> autonomousCommand;
 	std::unique_ptr<frc::Command> autoLocation;
-	std::unique_ptr<frc::SendableChooser<CommandBase::Alliance> > autoAllianceOptions;
+	std::unique_ptr<frc::SendableChooser<std::shared_ptr<Alliance> > > autoAllianceOptions;
 	std::unique_ptr<frc::SendableChooser<std::shared_ptr<frc::Command>> > autoLocationOptions;
 	void UpdateSmartDashboard()
 	{
@@ -118,9 +119,9 @@ private:
 	}
 	void SetSmartDashboardAutoOptions()
 	{
-		autoAllianceOptions.reset(new frc::SendableChooser<CommandBase::Alliance>());
-		autoAllianceOptions->AddObject("Red", CommandBase::Alliance::RED);
-		autoAllianceOptions->AddObject("Blue", CommandBase::Alliance::BLUE);
+		autoAllianceOptions.reset(new frc::SendableChooser<std::shared_ptr<Alliance> >());
+		autoAllianceOptions->AddObject("Red", std::shared_ptr<Alliance>(new Alliance(Alliance::RED)));
+		autoAllianceOptions->AddDefault("Blue", std::shared_ptr<Alliance>(new Alliance(Alliance::BLUE)));
 
 		autoLocationOptions.reset(new frc::SendableChooser<std::shared_ptr<frc::Command>>());
 		autoLocationOptions->AddDefault("Do Nothing", std::shared_ptr<frc::Command>(new AutoDefaultGrp()));

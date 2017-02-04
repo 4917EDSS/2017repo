@@ -9,6 +9,9 @@ DriveTurnCmd::DriveTurnCmd(double angle) {
 }
 // Called just before this Command runs the first time
 void DriveTurnCmd::Initialize() {
+	if (drivetrainSub->getAlliance() == RED) {
+		turnDegrees = -turnDegrees;
+	}
 	printf( "Enabling turn %f\n", turnDegrees );
 	drivetrainSub->resetAHRS();
 	drivetrainSub->enableTurnPID(turnDegrees);

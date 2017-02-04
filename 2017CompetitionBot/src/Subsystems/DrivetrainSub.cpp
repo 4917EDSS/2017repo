@@ -40,6 +40,15 @@ void DrivetrainSub::drive(double lSpeed, double rSpeed)
 	rightMotor1->Set(rSpeed);
 	rightMotor2->Set(rSpeed);
 }
+void DrivetrainSub::setAlliance(Alliance newAlliance)
+{
+	alliance = newAlliance;
+}
+
+Alliance DrivetrainSub::getAlliance()
+{
+	return alliance;
+}
 
 float DrivetrainSub::getLeftEncoder()
 {

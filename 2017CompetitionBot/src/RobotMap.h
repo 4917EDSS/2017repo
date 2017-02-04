@@ -17,6 +17,10 @@
 // constexpr int RANGE_FINDER_PORT = 1;
 // constexpr int RANGE_FINDER_MODULE = 1;
 
+enum Alliance {
+	RED,
+	BLUE
+};
 
 //AHRS define
 #define AHRSInterface SPI::kMXP
@@ -30,8 +34,9 @@ constexpr int RIGHT2_DRIVE_MOTOR_CANID = 3;
 constexpr int SHOOTER_MOTOR_CANID = 4;
 constexpr int LIFT_MOTOR_CANID = 9; //switched this for shooter test, should be 7
 constexpr int PICKUP_MOTOR_CANID = 5;
-constexpr int INTAKE_SHOOTER_MOTOR_CANID = 8;
-constexpr int AGITATOR_MOTOR_CANID = 7;
+constexpr int FEEDER_MOTOR1_CANID = 8;
+constexpr int FEEDER_MOTOR2_CANID = 6;
+//constexpr int AGITATOR_MOTOR_CANID = 7;
 //constexpr int CLIMBER_MOTOR_CANID = 8;
 //constexpr int UNUSED_MOTOR_CANID = 9;
 
@@ -56,6 +61,18 @@ constexpr int GEAR_WAIT_TIME = 2;
 constexpr int LOADER_SIDE_APPROACH_DIST = 1353;
 constexpr int TURN_TO_LOADER_SIDE_SHAFT = -45;
 constexpr int DRIVE_TO_LOADER_SIDE_SHAFT = 2500;
+constexpr int SHOOTING_DRIVE_DISTANCE = -269;
+constexpr int SHOOTING_TURN_ANGLE = 50;
+constexpr int BOILER_HOPPER_DISTANCE = 1994;
+constexpr int ANGLE_AT_HOPPER = -90;
+constexpr int BACK_INTO_HOPPER = 533;
+constexpr int HOPPER_WAIT_TIME = 2;
+constexpr int DRIVE_AWAY_FROM_HOPPER = 100;
+constexpr int GEAR_WAIT_TIME = 2;
+constexpr int DRIVE_AWAY_FROM_HOPPER = 0;
+constexpr int TURN_TOWARDS_BOILER = 0;
+constexpr int DRIVE_TOWARDS_BOILER = 0;
+constexpr int ANGLE_OF_BOILER = 0;
 
 //PID Values
 constexpr int DRIVE_TURN_P = 0.045;
@@ -71,6 +88,5 @@ constexpr int AXIS_VISION_RESOLUTION_WIDTH = 320;
 constexpr int AXIS_VISION_RESOLUTION_HEIGHT = 240;
 constexpr int AXIS_STREAM_RESOLUTION_WIDTH = 320;
 constexpr int AXIS_STREAM_RESOLUTION_HEIGHT = 240;
-
 
 #endif  // ROBOTMAP_H
