@@ -54,6 +54,16 @@ constexpr int SHIFTER_PCM_ID2 = 1;
 
 //Auto Enc Distances
 constexpr int LOAD_STRAIGHT_DIST = 5000;
+constexpr int SHOOTING_DRIVE_DISTANCE = -269;
+constexpr int SHOOTING_TURN_ANGLE = 50;
+constexpr int BOILER_HOPPER_DISTANCE = 1994;
+constexpr int ANGLE_AT_HOPPER = -90;
+constexpr int BACK_INTO_HOPPER = 533;
+constexpr int HOPPER_WAIT_TIME = 2;
+constexpr int DRIVE_AWAY_FROM_HOPPER = ;
+constexpr int TURN_TOWARDS_BOILER = 0;
+constexpr int DRIVE_TOWARDS_BOILER = 0;
+constexpr int ANGLE_OF_BOILER = 0;
 
 //PID Values
 constexpr int DRIVE_TURN_P = 0.045;
@@ -69,6 +79,5 @@ constexpr int AXIS_VISION_RESOLUTION_WIDTH = 320;
 constexpr int AXIS_VISION_RESOLUTION_HEIGHT = 240;
 constexpr int AXIS_STREAM_RESOLUTION_WIDTH = 320;
 constexpr int AXIS_STREAM_RESOLUTION_HEIGHT = 240;
-
 
 #endif  // ROBOTMAP_H
