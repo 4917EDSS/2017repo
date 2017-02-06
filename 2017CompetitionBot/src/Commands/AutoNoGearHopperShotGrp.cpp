@@ -26,6 +26,6 @@ AutoNoGearHopperShotGrp::AutoNoGearHopperShotGrp() {
 	AddSequential(new DriveTurnCmd(TURN_TOWARDS_BOILER));
 	AddSequential(new DriveStraightCmd(DRIVE_TOWARDS_BOILER));
 	AddSequential(new DriveTurnCmd(ANGLE_OF_BOILER));
-	AddSequential(new ShootWhileHeldCmd());
+	AddSequential(new ShootCmd());
 
 }

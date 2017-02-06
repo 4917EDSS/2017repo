@@ -2,7 +2,7 @@
 #define AutoNoGearShotGrp_H
 
 #include <Commands/CommandGroup.h>
-#include "ShootWhileHeldCmd.h"
+#include "ShootCmd.h"
 #include "DriveStraightCmd.h"
 #include "DriveTurnCmd.h"
 #include "WPILib.h"

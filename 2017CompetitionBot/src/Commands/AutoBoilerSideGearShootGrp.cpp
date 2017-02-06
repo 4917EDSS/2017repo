@@ -25,5 +25,5 @@ AutoBoilerSideGearShootGrp::AutoBoilerSideGearShootGrp() {
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 	AddSequential(new DriveTurnCmd(TURN_TOWARDS_BOILER));
 	AddSequential(new DriveStraightCmd(DRIVE_TOWARDS_BOILER));
-	AddSequential(new ShootWhileHeldCmd());
+	AddSequential(new ShootCmd());
 }

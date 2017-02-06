@@ -36,7 +36,7 @@ constexpr int LIFT_MOTOR_CANID = 9; //switched this for shooter test, should be 
 constexpr int PICKUP_MOTOR_CANID = 5;
 constexpr int FEEDER_MOTOR1_CANID = 8;
 constexpr int FEEDER_MOTOR2_CANID = 6;
-//constexpr int AGITATOR_MOTOR_CANID = 7;
+constexpr int AGITATOR_MOTOR_CANID = 7;
 //constexpr int CLIMBER_MOTOR_CANID = 8;
 //constexpr int UNUSED_MOTOR_CANID = 9;
 
@@ -68,11 +68,11 @@ constexpr int ANGLE_AT_HOPPER = -90;
 constexpr int BACK_INTO_HOPPER = 533;
 constexpr int HOPPER_WAIT_TIME = 2;
 constexpr int DRIVE_AWAY_FROM_HOPPER = 100;
-constexpr int GEAR_WAIT_TIME = 2;
-constexpr int DRIVE_AWAY_FROM_HOPPER = 0;
 constexpr int TURN_TOWARDS_BOILER = 0;
 constexpr int DRIVE_TOWARDS_BOILER = 0;
 constexpr int ANGLE_OF_BOILER = 0;
+constexpr int LOADER_SHAFT_TO_BOILER_ANGLE = -70;
+constexpr int LOADER_SHAFT_TO_BOILER_DIST = 3000;
 
 //PID Values
 constexpr int DRIVE_TURN_P = 0.045;

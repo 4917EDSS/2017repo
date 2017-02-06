@@ -1,4 +1,8 @@
 #include "AutoLoaderSideShootGrp.h"
+#include "DriveStraightCmd.h"
+#include "DriveTurnCmd.h"
+#include "ShootCmd.h"
+#include <WPILib.h>
 
 AutoLoaderSideShootGrp::AutoLoaderSideShootGrp() {
 	// Add Commands here:
@@ -23,7 +27,9 @@ AutoLoaderSideShootGrp::AutoLoaderSideShootGrp() {
 	AddSequential(new DriveStraightCmd(DRIVE_TO_LOADER_SIDE_SHAFT));
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 	AddSequential(new DriveStraightCmd(BACK_OFF_OF_SHAFT_DIST));
-	AddSequential(new DriveTurnCmd())
+	AddSequential(new DriveTurnCmd(LOADER_SHAFT_TO_BOILER_ANGLE));
+	AddSequential(new DriveStraightCmd(LOADER_SHAFT_TO_BOILER_DIST));
+	AddSequential(new ShootCmd());
 
 
 }

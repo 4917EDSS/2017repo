@@ -5,7 +5,7 @@
 #include "WPILib.h"
 #include "Commands/DriveStraightCmd.h"
 #include "Commands/DriveTurnCmd.h"
-#include "Commands/ShootWhileHeldCmd.h"
+#include "Commands/ShootCmd.h"
 
 class AutoBoilerSideGearShootGrp : public CommandGroup {
 public:

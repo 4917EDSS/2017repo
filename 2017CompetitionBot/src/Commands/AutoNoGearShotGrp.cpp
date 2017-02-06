@@ -1,5 +1,5 @@
 #include <Commands/AutoNoGearShotGrp.h>
-#include "ShootWhileHeldCmd.h"
+#include "ShootCmd.h"
 #include "DriveStraightCmd.h"
 #include "DriveTurnCmd.h"
 
@@ -22,5 +22,5 @@ AutoNoGearShotGrp::AutoNoGearShotGrp() {
 	// arm.
 	AddSequential(new DriveStraightCmd(SHOOTING_DRIVE_DISTANCE));
 	AddSequential(new DriveTurnCmd(SHOOTING_TURN_ANGLE));
-	AddSequential(new ShootWhileHeldCmd());
+	AddSequential(new ShootCmd());
 }

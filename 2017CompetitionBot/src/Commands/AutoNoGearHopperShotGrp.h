@@ -4,7 +4,7 @@
 #include <Commands/CommandGroup.h>
 #include "DriveStraightCmd.h"
 #include "DriveTurnCmd.h"
-#include "ShootWhileHeldCmd.h"
+#include "ShootCmd.h"
 #include "WPILib.h"
 
 class AutoNoGearHopperShotGrp : public CommandGroup {
