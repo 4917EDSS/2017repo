@@ -13,10 +13,10 @@ void RotateToVisionCmd::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void RotateToVisionCmd::Execute() {
-	if(GetVisionCenter()<0){
+	if(CommandBase::x<0){
 		drivetrainSub->drive(-0.5, 0.5);
 	}
-	else if(GetVisionCenter()>0){
+	else if(CommandBase::x>0){
 		drivetrainSub->drive(0.5, -0.5);
 	}
 }

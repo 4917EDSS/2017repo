@@ -29,6 +29,9 @@ public:
 	CommandBase(const std::string& name);
 	CommandBase() = default;
 	static void Init();
+	static void VisionThread();
+	static int x;
+	static int y;
 	// Create a single static instance of all of your subsystems
 	static std::unique_ptr<DrivetrainSub> drivetrainSub;
 	static std::unique_ptr<ShooterSub> shooterSub;

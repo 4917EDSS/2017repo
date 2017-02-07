@@ -1,6 +1,7 @@
 #include "CommandBase.h"
 
 #include <Commands/Scheduler.h>
+#include <mutex>
 
 #include "Subsystems/DrivetrainSub.h"
 #include "Subsystems/ShooterSub.h"
@@ -13,13 +14,12 @@ std::unique_ptr<DrivetrainSub> CommandBase::drivetrainSub;
 std::unique_ptr<ShooterSub> CommandBase::shooterSub;
 std::unique_ptr<LiftSub> CommandBase::liftSub;
 std::unique_ptr<IntakeSub> CommandBase::intakeSub;
+int CommandBase::x;
+int CommandBase::y;
 //std::unique_ptr<AgitatorSub> CommandBase::agitatorSub;
 
 
 std::unique_ptr<OI> CommandBase::oi;
-std::unique_ptr<cs::AxisCamera> axisCamera;
-std::unique_ptr<grip::GripPipeline> gripPipeline;
-std::unique_ptr<cs::CvSink> cvSink;
 
 CommandBase::CommandBase(const std::string &name) :
 		frc::Command(name) {
@@ -33,23 +33,27 @@ void CommandBase::Init()
 	liftSub.reset(new LiftSub());
 	intakeSub.reset(new IntakeSub());
 	oi.reset(new OI());
-	//axisCamera.reset(frc::CameraServer::GetInstance()->AddAxisCamera(AXIS_ADDRESS));
-	//frc::CameraServer::GetInstance()->StartAutomaticCapture(*axisCamera);
-	//cvSink.reset(new cs::CvSink(CameraServer::GetInstance()->GetVideo()));
+
+	std::thread visionThread(VisionThread);
+	visionThread.detach();
 }
-/*
-void CommandBase::cameraTest() {
-		cv::Mat source;
-		cvSink->GrabFrame(source);
-		gripPipeline->Process(source);
-		std::cout << gripPipeline->GetFilterContoursOutput()->size() << std::endl;
-		for(auto i: *(gripPipeline->GetFilterContoursOutput()))
+
+void CommandBase::VisionThread()
+{
+	cs::AxisCamera axisCamera = frc::CameraServer::GetInstance()->AddAxisCamera(AXIS_ADDRESS);
+	grip::GripPipeline gripPipeline;
+	frc::CameraServer::GetInstance()->StartAutomaticCapture(axisCamera);
+	cs::CvSink cvSink = CameraServer::GetInstance()->GetVideo();
+	cv::Mat source;
+	while(true) {
+		cvSink.GrabFrame(source);
+		gripPipeline.Process(source);
+		std::cout << gripPipeline.GetFilterContoursOutput()->size() << std::endl;
+		for(auto i: *(gripPipeline.GetFilterContoursOutput()))
 		{
 			cv::Moments M = cv::moments(i);
-			double x = (M.m10 / M.m00);
-			double y = (M.m01 / M.m00);
-			std::cout << "(" << x << ", " << y << ")" << std::endl;
+			x = (M.m10 / M.m00) - AXIS_VISION_RESOLUTION_WIDTH/2;
+			y = (M.m01 / M.m00) - AXIS_VISION_RESOLUTION_HEIGHT/2;
 		}
-		std::cout << std::endl;
 	}
-*/
+}
