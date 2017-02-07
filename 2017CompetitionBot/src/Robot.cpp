@@ -6,6 +6,7 @@
 #include <LiveWindow/LiveWindow.h>
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
+#include <WPILib.h>
 
 #include "Commands/DriveWithJoystickCmd.h"									// TODO: Change this to a valid AUTO command!
 #include "CommandBase.h"
@@ -19,22 +20,11 @@ class Robot: public frc::IterativeRobot {
 public:
 
 	void RobotInit() override {
-		cs::UsbCamera usbCamera = frc::CameraServer::GetInstance()->StartAutomaticCapture();
+		//cs::UsbCamera usbCamera = frc::CameraServer::GetInstance()->StartAutomaticCapture();
 
- // The camera might need its own subsystem
-		// Try to connect to the Axis camera and make sure worked
-		cs::AxisCamera axisCamera = frc::CameraServer::GetInstance()->AddAxisCamera(AXIS_ADDRESS);
-		if(axisCamera)
-		{
-			// Setup for vision target tracking
-			axisCamera.SetResolution(AXIS_VISION_RESOLUTION_WIDTH, AXIS_VISION_RESOLUTION_HEIGHT);
-			axisCamera.SetExposureManual(AXIS_VISION_TARGETS_EXPOSURE_VALUE);
 
-			// Or setup for driving
-			axisCamera.SetResolution(AXIS_STREAM_RESOLUTION_WIDTH, AXIS_STREAM_RESOLUTION_HEIGHT);
-			axisCamera.SetExposureAuto();
-		}
-
+		std::thread visionThread(VisionThread);
+		visionThread.detach();
 
 		CommandBase::Init();
 		SetSmartDashboardAutoOptions();
@@ -83,6 +73,7 @@ public:
 	void AutonomousPeriodic() override {
 		frc::Scheduler::GetInstance()->Run();
 	}
+
 
 	void TeleopInit() override {
 		// This makes sure that the autonomous stops running when
@@ -142,6 +133,30 @@ private:
 	{
 		SmartDashboard::PutData("Drive mostly straight", new DriveStraightCmd(LOAD_STRAIGHT_DIST));
 		//SmartDashboard::PutData("Hopefully Turn", new DriveTurnCmd(LOAD_STRAIGHT_DIST));
+	}
+#include <iostream>
+	static void VisionThread()
+	{
+
+	    // The camera might need its own subsystem
+		// Try to connect to the Axis camera and make sure worked
+		cs::AxisCamera axisCamera = frc::CameraServer::GetInstance()->AddAxisCamera(AXIS_ADDRESS);
+		grip::GripPipeline gripPipeline;
+		frc::CameraServer::GetInstance()->StartAutomaticCapture(axisCamera);
+		cs::CvSink cvSink = CameraServer::GetInstance()->GetVideo();
+		cv::Mat source;
+		while(true) {
+			cvSink.GrabFrame(source);
+			gripPipeline.Process(source);
+			std::cout << gripPipeline.GetFilterContoursOutput()->size() << std::endl;
+			for(auto i: *(gripPipeline.GetFilterContoursOutput()))
+			{
+				cv::Moments M = cv::moments(i);
+				double x = (M.m10 / M.m00);
+				double y = (M.m01 / M.m00);
+				std::cout << x << ", " << y << std::endl;
+			}
+		}
 	}
 };
 

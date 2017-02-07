@@ -11,6 +11,10 @@
 #include "Subsystems/ShooterSub.h"
 #include "Subsystems/IntakeSub.h"
 #include "Subsystems/LiftSub.h"
+
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/core/core.hpp>
+#include "Components/GripPipeline.h"
 //#include "Subsystems/AgitatorSub.h"
 
 
@@ -25,7 +29,6 @@ public:
 	CommandBase(const std::string& name);
 	CommandBase() = default;
 	static void Init();
-
 	// Create a single static instance of all of your subsystems
 	static std::unique_ptr<DrivetrainSub> drivetrainSub;
 	static std::unique_ptr<ShooterSub> shooterSub;
@@ -33,6 +36,10 @@ public:
 	static std::unique_ptr<LiftSub> liftSub;
 //	static std::unique_ptr<AgitatorSub> agitatorSub;
 	static std::unique_ptr<OI> oi;
+//	static std::unique_ptr<cs::AxisCamera> axisCamera;
+//	static std::unique_ptr<grip::GripPipeline> gripPipeline;
+//	static std::unique_ptr<cs::CvSink> cvSink;
+//	static void cameraTest();
 
 
 };

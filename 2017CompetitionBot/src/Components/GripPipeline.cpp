@@ -11,9 +11,9 @@ void GripPipeline::Process(cv::Mat& source0){
 	//Step HSV_Threshold0:
 	//input
 	cv::Mat hsvThresholdInput = source0;
-	double hsvThresholdHue[] = {80.93525179856115, 90.92150170648466};
-	double hsvThresholdSaturation[] = {185.74640287769782, 255.0};
-	double hsvThresholdValue[] = {144.46942446043167, 255.0};
+	double hsvThresholdHue[] = {71.87050359712231, 104.24242424242422};
+	double hsvThresholdSaturation[] = {255.0, 255.0};
+	double hsvThresholdValue[] = {59.62230215827338, 255.0};
 	hsvThreshold(hsvThresholdInput, hsvThresholdHue, hsvThresholdSaturation, hsvThresholdValue, this->hsvThresholdOutput);
 	//Step Find_Contours0:
 	//input
@@ -23,11 +23,11 @@ void GripPipeline::Process(cv::Mat& source0){
 	//Step Filter_Contours0:
 	//input
 	std::vector<std::vector<cv::Point> > filterContoursContours = findContoursOutput;
-	double filterContoursMinArea = 50.0;  // default Double
+	double filterContoursMinArea = 100.0;  // default Double
 	double filterContoursMinPerimeter = 0.0;  // default Double
 	double filterContoursMinWidth = 0.0;  // default Double
-	double filterContoursMaxWidth = 1000.0;  // default Double
-	double filterContoursMinHeight = 0.0;  // default Double
+	double filterContoursMaxWidth = 500.0;  // default Double
+	double filterContoursMinHeight = 13.0;  // default Double
 	double filterContoursMaxHeight = 1000.0;  // default Double
 	double filterContoursSolidity[] = {0, 100};
 	double filterContoursMaxVertices = 1000000.0;  // default Double
@@ -104,6 +104,7 @@ std::vector<std::vector<cv::Point> >* GripPipeline::GetFilterContoursOutput(){
 	 * @param maxRatio maximum ratio of width to height.
 	 * @param output vector of filtered contours.
 	 */
+#include <iostream>
 	void GripPipeline::filterContours(std::vector<std::vector<cv::Point> > &inputContours, double minArea, double minPerimeter, double minWidth, double maxWidth, double minHeight, double maxHeight, double solidity[], double maxVertexCount, double minVertexCount, double minRatio, double maxRatio, std::vector<std::vector<cv::Point> > &output) {
 		std::vector<cv::Point> hull;
 		output.clear();
@@ -122,6 +123,7 @@ std::vector<std::vector<cv::Point> >* GripPipeline::GetFilterContoursOutput(){
 			if (ratio < minRatio || ratio > maxRatio) continue;
 			output.push_back(contour);
 		}
+		std::cout << "size " << output.size() << std::endl;
 	}
 
 

@@ -17,6 +17,9 @@ std::unique_ptr<IntakeSub> CommandBase::intakeSub;
 
 
 std::unique_ptr<OI> CommandBase::oi;
+std::unique_ptr<cs::AxisCamera> axisCamera;
+std::unique_ptr<grip::GripPipeline> gripPipeline;
+std::unique_ptr<cs::CvSink> cvSink;
 
 CommandBase::CommandBase(const std::string &name) :
 		frc::Command(name) {
@@ -30,4 +33,23 @@ void CommandBase::Init()
 	liftSub.reset(new LiftSub());
 	intakeSub.reset(new IntakeSub());
 	oi.reset(new OI());
+	//axisCamera.reset(frc::CameraServer::GetInstance()->AddAxisCamera(AXIS_ADDRESS));
+	//frc::CameraServer::GetInstance()->StartAutomaticCapture(*axisCamera);
+	//cvSink.reset(new cs::CvSink(CameraServer::GetInstance()->GetVideo()));
 }
+/*
+void CommandBase::cameraTest() {
+		cv::Mat source;
+		cvSink->GrabFrame(source);
+		gripPipeline->Process(source);
+		std::cout << gripPipeline->GetFilterContoursOutput()->size() << std::endl;
+		for(auto i: *(gripPipeline->GetFilterContoursOutput()))
+		{
+			cv::Moments M = cv::moments(i);
+			double x = (M.m10 / M.m00);
+			double y = (M.m01 / M.m00);
+			std::cout << "(" << x << ", " << y << ")" << std::endl;
+		}
+		std::cout << std::endl;
+	}
+*/
