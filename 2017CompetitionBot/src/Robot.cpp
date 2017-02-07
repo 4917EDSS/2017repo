@@ -13,7 +13,7 @@
 #include "Commands/AutoLoadStraightGrp.h"
 #include "Commands/DriveStraightCmd.h"
 #include "Commands/SilkyDriveStraightCmd.h"
-
+#include "Commands/AutoNoGearShotGrp.h"
 
 class Robot: public frc::IterativeRobot {
 public:
@@ -127,6 +127,7 @@ private:
 		autoLocationOptions->AddDefault("Do Nothing", std::shared_ptr<frc::Command>(new AutoDefaultGrp()));
 		autoLocationOptions->AddObject("Silky straight", std::shared_ptr<frc::Command>(new SilkyDriveStraightCmd(2)));
 		autoLocationOptions->AddObject("Load Straight", std::shared_ptr<frc::Command>(new AutoLoadStraightGrp()));
+		autoLocationOptions->AddObject("Shoot immediately", std::shared_ptr<frc::Command>(new AutoNoGearShotGrp()));
 		/*autoLocationOptions->AddObject("Load Left", new AutoPosition2ShootGrp());
 		autoLocationOptions->AddObject("Load Right", new AutoPosition2ShootLeftGrp());
 		autoLocationOptions->AddObject("Load Left Shoot", new AutoPosition3ShootGrp());
