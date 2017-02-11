@@ -84,7 +84,7 @@ constexpr float DRIVE_TURN_TOLERANCE = 1;
 constexpr float TURN_TOLERANCE_DURATION_S = 1;
 
 // Axis Camera
-#define AXIS_ADDRESS "10.49.17.11"
+#define AXIS_ADDRESS "10.49.17.12"
 constexpr int AXIS_VISION_TARGETS_EXPOSURE_VALUE = 16;
 constexpr int AXIS_VISION_RESOLUTION_WIDTH = 320;
 constexpr int AXIS_VISION_RESOLUTION_HEIGHT = 240;

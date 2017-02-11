@@ -114,3 +114,12 @@ void DrivetrainSub::setShifter(frc::DoubleSolenoid::Value shiftState){
 frc::DoubleSolenoid::Value DrivetrainSub::getShifterState(){
 	return shifter->Get();
 }
+
+double DrivetrainSub::getLeftEncoderRaw()
+{
+	return leftMotorEnc->GetRaw();
+}
+double DrivetrainSub::getRightEncoderRaw()
+{
+	return rightMotorEnc->GetRaw();
+}

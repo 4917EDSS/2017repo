@@ -57,6 +57,8 @@ public:
 	frc::DoubleSolenoid::Value getShifterState();
 	void setAlliance(Alliance newAlliance);
 	Alliance getAlliance();
+	double getLeftEncoderRaw();
+	double getRightEncoderRaw();
 };
 
 #endif  // DrivetrainSub_H

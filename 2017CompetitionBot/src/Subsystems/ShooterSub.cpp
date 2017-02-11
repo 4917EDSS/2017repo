@@ -63,6 +63,6 @@ void ShooterSub::disableSpeedController(){
 }
 
 void ShooterSub::setFeederSpeed(float speed){
-	feederMotor1->Set(-speed);
-	feederMotor2->Set(-speed);
+	feederMotor1->Set(speed);
+	feederMotor2->Set(speed);
 }

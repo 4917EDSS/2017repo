@@ -42,6 +42,7 @@ void CommandBase::VisionThread()
 {
 	cs::AxisCamera axisCamera = frc::CameraServer::GetInstance()->AddAxisCamera(AXIS_ADDRESS);
 	grip::GripPipeline gripPipeline;
+	frc::CameraServer::GetInstance()->StartAutomaticCapture(axisCamera);
 	cs::CvSink cvSink = CameraServer::GetInstance()->GetVideo(axisCamera);
 	cv::Mat source;
 	while(true) {
