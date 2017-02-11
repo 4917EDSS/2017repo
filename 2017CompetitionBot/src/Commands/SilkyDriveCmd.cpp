@@ -2,14 +2,14 @@
 
 SilkyDriveCmd::SilkyDriveCmd(std::vector<double> leftPositions, std::vector<double> rightPositions)
  : smm(leftPositions, rightPositions, MAX_ACCEL, MAX_DECEL, MAX_VEL, STOPPING_DISTANCE_TOLERANCE, STOPPING_SPEED_TOLERANCE) {
-	smm.setKvKaKpKd(SILKY_KV, SILKY_KA, SILKY_KP, SILKY_KD);
 	// Use Requires() here to declare subsystem dependencies
 	Requires(drivetrainSub.get());
 }
 
 // Called just before this Command runs the first time
 void SilkyDriveCmd::Initialize() {
-
+	smm.setKvKaKpKd(SILKY_KV, SILKY_KA, SILKY_KP, SILKY_KD);
+	drivetrainSub->reset();
 }
 
 // Called repeatedly when this Command is scheduled to run

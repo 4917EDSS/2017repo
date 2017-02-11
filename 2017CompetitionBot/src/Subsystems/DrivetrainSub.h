@@ -49,6 +49,7 @@ public:
 	float getPitch();
 	float getRoll();
 	void resetAHRS();
+	void reset();
 	void enableTurnPID(double setSpeed);
 	void disableTurnPID();
 	void PIDTurn();

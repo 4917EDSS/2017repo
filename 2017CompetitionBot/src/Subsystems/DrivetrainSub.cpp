@@ -67,10 +67,17 @@ double DrivetrainSub::getRightEncoder()
 {
 	return rightMotorEnc->GetDistance();
 }
+void DrivetrainSub::reset() {
+	resetAHRS();
+	resetEncoders();
+}
+void DrivetrainSub::resetAHRS()
+{
+	ahrs->ZeroYaw();
+}
 void DrivetrainSub::resetEncoders(){
 	leftMotorEnc->Reset();
 	rightMotorEnc->Reset();
-
 }
 float DrivetrainSub::getYaw(){
 	return ahrs->GetYaw();
@@ -80,10 +87,6 @@ float DrivetrainSub::getPitch(){
 }
 float DrivetrainSub::getRoll(){
 	return ahrs->GetRoll();
-}
-void DrivetrainSub::resetAHRS()
-{
-	ahrs->ZeroYaw();
 }
 void DrivetrainSub::enableTurnPID(double setPoint)
 {
