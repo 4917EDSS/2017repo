@@ -1,14 +1,15 @@
-#ifndef SilkyDriveStraightCmd_H
-#define SilkyDriveStraightCmd_H
+#ifndef SilkyDriveCmd_H
+#define SilkyDriveCmd_H
 
 #include "../CommandBase.h"
 #include "Components/SilkyMotionManager.h"
+#include <vector>
 
-class SilkyDriveStraightCmd : public CommandBase {
+class SilkyDriveCmd : public CommandBase {
 private:
 	SilkyMotionManager smm;
 public:
-	SilkyDriveStraightCmd(float targetDis);
+	SilkyDriveCmd(std::vector<double> leftPositions, std::vector<double> rightPositions);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
@@ -16,4 +17,4 @@ public:
 	void Interrupted();
 };
 
-#endif  // SilkyDriveStraightCmd_H
+#endif

@@ -10,6 +10,8 @@ DrivetrainSub::DrivetrainSub() : Subsystem("DrivetrainSub") {
 	rightMotor2.reset(new CANTalon(RIGHT2_DRIVE_MOTOR_CANID));
 	leftMotorEnc.reset(new frc::Encoder(LEFT_MOTOR_ENC1_DIO, LEFT_MOTOR_ENC2_DIO));
 	rightMotorEnc.reset(new frc::Encoder(RIGHT_MOTOR_ENC1_DIO, RIGHT_MOTOR_ENC2_DIO));
+	leftMotorEnc->SetDistancePerPulse(DRIVETRAIN_DIS_PER_PULSE);
+	rightMotorEnc->SetDistancePerPulse(DRIVETRAIN_DIS_PER_PULSE);
 	shifter.reset(new frc::DoubleSolenoid(SHIFTER_PCM_ID1, SHIFTER_PCM_ID2));
 	turnBalancer.reset(new MotorBalancer());
 	ahrs.reset(new AHRS(AHRSInterface));
@@ -49,14 +51,21 @@ Alliance DrivetrainSub::getAlliance()
 {
 	return alliance;
 }
-
-float DrivetrainSub::getLeftEncoder()
+double DrivetrainSub::getLeftEncoderSpeed()
 {
-	return leftMotorEnc->GetRaw();
+	return leftMotorEnc->GetRate();
 }
-float DrivetrainSub::getRightEncoder()
+double DrivetrainSub::getRightEncoderSpeed()
 {
-	return rightMotorEnc->GetRaw();
+	return rightMotorEnc->GetRate();
+}
+double DrivetrainSub::getLeftEncoder()
+{
+	return leftMotorEnc->GetDistance();
+}
+double DrivetrainSub::getRightEncoder()
+{
+	return rightMotorEnc->GetDistance();
 }
 void DrivetrainSub::resetEncoders(){
 	leftMotorEnc->Reset();

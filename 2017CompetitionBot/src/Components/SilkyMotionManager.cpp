@@ -10,21 +10,20 @@
 #include <iostream>
 
 	SilkyMotionManager::SilkyMotionManager(std::vector<double> leftWheel, std::vector<double> rightWheel,
-      double maxAccel, double maxDecel, double maxVel,
+			double maxAccel, double maxDecel, double maxVel,
 			double stoppingDistanceTolerance, double stoppingSpeedTolerance) :
-    maxAccel(maxAccel), maxDecel(maxDecel), maxVel(maxVel),
-		stoppingDistanceTolerance(stoppingDistanceTolerance),
-		stoppingSpeedTolerance(stoppingSpeedTolerance), startTime(-1),
-		Kv(1/maxVel), Ka(0), Kp(0), Kd(0), lastLeftError(0), lastRightError(0),
-    lastTime(0){
-
+			maxAccel(maxAccel), maxDecel(maxDecel), maxVel(maxVel),
+			stoppingDistanceTolerance(stoppingDistanceTolerance),
+			stoppingSpeedTolerance(stoppingSpeedTolerance), startTime(-1),
+			Kv(1/maxVel), Ka(0), Kp(0), Kd(0), lastLeftError(0), lastRightError(0),
+			lastTime(0){
 	stoppingLocationLeft = leftWheel[leftWheel.size()-1];
 	stoppingLocationRight = rightWheel[rightWheel.size()-1];
-  if (stoppingLocationLeft > stoppingLocationRight) {
-    spline.set_points(leftWheel, rightWheel);
-  } else {
-    spline.set_points(rightWheel, leftWheel);
-  }
+	if (stoppingLocationLeft > stoppingLocationRight) {
+		spline.set_points(leftWheel, rightWheel);
+	} else {
+		spline.set_points(rightWheel, leftWheel);
+	}
 }
 
 // Returns the current path info for TRAPEZOIDAL side
@@ -116,27 +115,27 @@ std::pair<double, double> SilkyMotionManager::execute(double currentLeftPos, dou
     right = getGenerallyFasterSide(stoppingLocationRight, timeSinceStart);
   }
 
-  leftError = left.dis - currentLeftPos;
-  leftErrorDeriv = (leftError - lastLeftError) / (timeSinceStart - lastTime);
-  rightError = right.dis - currentRightPos;
-  rightErrorDeriv = (rightError - lastRightError) / (timeSinceStart - lastTime);
+  double leftError = left.dis - currentLeftPos;
+  double leftErrorDeriv = (leftError - lastLeftError) / (timeSinceStart - lastTime);
+  double rightError = right.dis - currentRightPos;
+  double rightErrorDeriv = (rightError - lastRightError) / (timeSinceStart - lastTime);
 
   lastLeftError = leftError;
   lastRightError = rightError;
   lastTime = timeSinceStart;
 
-  leftSetpoint = Kv * left.vel
+  double leftMotorValue = Kv * left.vel
     + Ka * left.accel
     + Kp * leftError
     + Kd * leftErrorDeriv;
-  rightSetpoint = Kv * right.vel
+  double rightMotorValue = Kv * right.vel
     + Ka * right.accel
     + Kp * rightError
     + Kd * rightErrorDeriv;
-  return std::make_pair(leftSetpoint, rightSetpoint);
+  return std::make_pair(leftMotorValue, rightMotorValue);
 }
 
-bool SilkyMotionManager::isFinished(double leftPos, double leftVel, double rightPos, double rightVel);
+bool SilkyMotionManager::isFinished(double leftPos, double leftVel, double rightPos, double rightVel){
 	if(abs(leftPos - stoppingLocationLeft) < stoppingDistanceTolerance
       && abs(rightPos - stoppingLocationRight) < stoppingDistanceTolerance
       && abs(leftVel) < stoppingSpeedTolerance
