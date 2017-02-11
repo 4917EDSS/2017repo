@@ -40,8 +40,10 @@ public:
 	DrivetrainSub();
 	void InitDefaultCommand();
 	void drive( double lSpeed, double rSpeed );
-	float getLeftEncoder();
-	float getRightEncoder();
+	double getLeftEncoder();
+	double getRightEncoder();
+	double getLeftEncoderSpeed();
+	double getRightEncoderSpeed();
 	void resetEncoders();
 	float getYaw();
 	float getPitch();
@@ -55,6 +57,8 @@ public:
 	frc::DoubleSolenoid::Value getShifterState();
 	void setAlliance(Alliance newAlliance);
 	Alliance getAlliance();
+	double getLeftEncoderRaw();
+	double getRightEncoderRaw();
 };
 
 #endif  // DrivetrainSub_H

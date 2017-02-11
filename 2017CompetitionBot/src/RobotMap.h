@@ -27,16 +27,15 @@ enum Alliance {
 
 
 // CAN IDs
-constexpr int LEFT1_DRIVE_MOTOR_CANID = 10;
-constexpr int LEFT2_DRIVE_MOTOR_CANID = 1;
-constexpr int RIGHT1_DRIVE_MOTOR_CANID = 2;
-constexpr int RIGHT2_DRIVE_MOTOR_CANID = 3;
-constexpr int SHOOTER_MOTOR_CANID = 4;
-constexpr int LIFT_MOTOR_CANID = 9; //switched this for shooter test, should be 7
-constexpr int PICKUP_MOTOR_CANID = 5;
-constexpr int FEEDER_MOTOR1_CANID = 8;
-constexpr int FEEDER_MOTOR2_CANID = 6;
-constexpr int AGITATOR_MOTOR_CANID = 7;
+constexpr int LEFT1_DRIVE_MOTOR_CANID = 1;
+constexpr int LEFT2_DRIVE_MOTOR_CANID = 3;
+constexpr int RIGHT1_DRIVE_MOTOR_CANID = 0;
+constexpr int RIGHT2_DRIVE_MOTOR_CANID = 8;
+constexpr int SHOOTER_MOTOR_CANID = 2;
+constexpr int LIFT_MOTOR_CANID = 4;
+constexpr int INTAKE_MOTOR_CANID = 7;
+constexpr int FEEDER_MOTOR1_CANID = 5;
+constexpr int FEEDER_MOTOR2_CANID = 9;
 //constexpr int CLIMBER_MOTOR_CANID = 8;
 //constexpr int UNUSED_MOTOR_CANID = 9;
 
@@ -51,6 +50,9 @@ constexpr int SHOOTER_MOTOR_ENC2_DIO = 5;
 // Pneumatic control module outputs
 constexpr int SHIFTER_PCM_ID1 = 0;
 constexpr int SHIFTER_PCM_ID2 = 1;
+
+// Drivetrain values
+constexpr float DRIVETRAIN_DIS_PER_PULSE = 2000.0/7920.0; // TODO - this value is not yet set
 
 //Auto Enc Distances
 constexpr int LOAD_STRAIGHT_DIST = 1886;
@@ -75,18 +77,30 @@ constexpr int LOADER_SHAFT_TO_BOILER_ANGLE = -70;
 constexpr int LOADER_SHAFT_TO_BOILER_DIST = 3000;
 
 //PID Values
-constexpr int DRIVE_TURN_P = 0.045;
-constexpr int DRIVE_TURN_I = 0;
-constexpr int DRIVE_TURN_D = 0.09;
-constexpr int DRIVE_TURN_TOLERANCE = 1;
-constexpr int TURN_TOLERANCE_DURATION_S = 1;
+constexpr float DRIVE_TURN_P = 0.045;
+constexpr float DRIVE_TURN_I = 0;
+constexpr float DRIVE_TURN_D = 0.09;
+constexpr float DRIVE_TURN_TOLERANCE = 1;
+constexpr float TURN_TOLERANCE_DURATION_S = 1;
 
 // Axis Camera
-#define AXIS_ADDRESS "10.49.17.11"
+#define AXIS_ADDRESS "10.49.17.12"
 constexpr int AXIS_VISION_TARGETS_EXPOSURE_VALUE = 16;
 constexpr int AXIS_VISION_RESOLUTION_WIDTH = 320;
 constexpr int AXIS_VISION_RESOLUTION_HEIGHT = 240;
 constexpr int AXIS_STREAM_RESOLUTION_WIDTH = 320;
 constexpr int AXIS_STREAM_RESOLUTION_HEIGHT = 240;
+
+// Robot info required by SilkyMotionManager - all in millimeters, seconds
+constexpr double MAX_ACCEL = 2000; // mm/s^2
+constexpr double MAX_DECEL = 4000; // mm/s^2
+constexpr double MAX_VEL = 3000; // mm/s
+constexpr double STOPPING_DISTANCE_TOLERANCE = 30; // mm
+constexpr double STOPPING_SPEED_TOLERANCE = 10; // mm/s
+constexpr double SILKY_KV = 1.0/MAX_VEL;
+constexpr double SILKY_KA = 0;
+constexpr double SILKY_KP = 0;
+constexpr double SILKY_KD = 0;
+
 
 #endif  // ROBOTMAP_H

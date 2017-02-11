@@ -12,30 +12,38 @@
 
 #include <vector>
 #include <utility>
+#include "spline.h"
 #include "WPILib.h"
+
+struct PathInfo {
+	double dis;
+	double vel;
+	double accel;
+};
 
 class SilkyMotionManager {
 private:
-	std::vector<std::pair<float, float> > history;
-	float targetPos;
-	float timeOfAccel;
-	float timeOfDecel;
-	float accel;
-	float decel;
-	float powerAccel;
-	float powerDecel;
-	float stoppingDistanceTolerance;
-	float stoppingSpeedTolerance;
-	float startTime;
+	double maxAccel, maxDecel, maxVel;
+	double stoppingDistanceTolerance, stoppingSpeedTolerance;
+	double startTime;
+	double Kv, Ka, Kp, Kd;
+	double stoppingLocationLeft, stoppingLocationRight;
+	double lastLeftError;
+	double lastRightError;
+	double lastTime;
+	tk::spline spline;
 
-	float getTimeSinceStart();
+	double getTimeSinceStart();
+	PathInfo getGenerallyFasterSide(double maxDist, double t);
+	PathInfo getGenerallySlowerSide(double maxFasterSideDist, double t);
 
 public:
-	SilkyMotionManager(float targetPos, float accel, float decel,
-			float powerAccel, float powerDecel, float stoppingDistanceTolerance,
-			float stoppingSpeedTolerance);
-	float execute(float currentPos);
-	bool isFinished();
+	SilkyMotionManager(std::vector<double> leftWheel, std::vector<double> rightWheel,
+	double maxAccel, double maxDecel, double maxVel,
+	double stoppingDistanceTolerance, double stoppingSpeedTolerance);
+	void setKvKaKpKd(double v, double a, double p, double d);
+	std::pair<double, double> execute(double currentLeftPos, double currentRightPos); // returns left speed, right speed to set motors
+	bool isFinished(double leftPos, double leftVel, double rightPos, double rightVel);
 };
 
 #endif /* SRC_COMPONENTS_SILKYMOTIONMANAGER_H_ */

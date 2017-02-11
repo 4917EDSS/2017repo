@@ -7,13 +7,14 @@
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
 #include <WPILib.h>
+#include <vector>
 
 #include "Commands/DriveWithJoystickCmd.h"									// TODO: Change this to a valid AUTO command!
 #include "CommandBase.h"
 #include "Commands/AutoDefaultGrp.h"
 #include "Commands/AutoLoadStraightGrp.h"
 #include "Commands/DriveStraightCmd.h"
-#include "Commands/SilkyDriveStraightCmd.h"
+#include "Commands/SilkyDriveCmd.h"
 #include "Commands/AutoNoGearShotGrp.h"
 
 class Robot: public frc::IterativeRobot {
@@ -103,6 +104,8 @@ private:
 		SmartDashboard::PutNumber("Roll", CommandBase::drivetrainSub->getRoll());
 		SmartDashboard::PutNumber("Real Shooter Speed", CommandBase::shooterSub->getSpeed());
 		SmartDashboard::PutNumber("Target Shooter Speed", CommandBase::shooterSub->getTargetSpeed());
+		SmartDashboard::PutNumber("Raw Left Encoder", CommandBase::drivetrainSub->getLeftEncoderRaw());
+		SmartDashboard::PutNumber("Raw Right Encoder", CommandBase::drivetrainSub->getRightEncoderRaw());
 	}
 	void SetSmartDashboardAutoOptions()
 	{
@@ -112,7 +115,7 @@ private:
 
 		autoLocationOptions.reset(new frc::SendableChooser<std::shared_ptr<frc::Command>>());
 		autoLocationOptions->AddDefault("Do Nothing", std::shared_ptr<frc::Command>(new AutoDefaultGrp()));
-		autoLocationOptions->AddObject("Silky straight", std::shared_ptr<frc::Command>(new SilkyDriveStraightCmd(2)));
+		autoLocationOptions->AddObject("Silky drive", std::shared_ptr<frc::Command>(new SilkyDriveCmd(std::vector<double> {0, 500, 1200, 2000}, std::vector<double> {0,500,1000, 1500})));
 		autoLocationOptions->AddObject("Load Straight", std::shared_ptr<frc::Command>(new AutoLoadStraightGrp()));
 		autoLocationOptions->AddObject("Shoot immediately", std::shared_ptr<frc::Command>(new AutoNoGearShotGrp()));
 		/*autoLocationOptions->AddObject("Load Left", new AutoPosition2ShootGrp());
