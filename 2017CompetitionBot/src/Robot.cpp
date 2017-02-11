@@ -21,7 +21,7 @@ class Robot: public frc::IterativeRobot {
 public:
 
 	void RobotInit() override {
-		//cs::UsbCamera usbCamera = frc::CameraServer::GetInstance()->StartAutomaticCapture();
+		cs::UsbCamera usbCamera = frc::CameraServer::GetInstance()->StartAutomaticCapture();
 
 		CommandBase::Init();
 		SetSmartDashboardAutoOptions();

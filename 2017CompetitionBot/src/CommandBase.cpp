@@ -42,8 +42,7 @@ void CommandBase::VisionThread()
 {
 	cs::AxisCamera axisCamera = frc::CameraServer::GetInstance()->AddAxisCamera(AXIS_ADDRESS);
 	grip::GripPipeline gripPipeline;
-	frc::CameraServer::GetInstance()->StartAutomaticCapture(axisCamera);
-	cs::CvSink cvSink = CameraServer::GetInstance()->GetVideo();
+	cs::CvSink cvSink = CameraServer::GetInstance()->GetVideo(axisCamera);
 	cv::Mat source;
 	while(true) {
 		cvSink.GrabFrame(source);
@@ -53,7 +52,9 @@ void CommandBase::VisionThread()
 		{
 			cv::Moments M = cv::moments(i);
 			x = (M.m10 / M.m00) - AXIS_VISION_RESOLUTION_WIDTH/2;
+			std::cout <<"X: "<<  x << std:: endl;
 			y = (M.m01 / M.m00) - AXIS_VISION_RESOLUTION_HEIGHT/2;
+			std:: cout <<"Y: " <<y <<std:: endl;
 		}
 	}
 }
