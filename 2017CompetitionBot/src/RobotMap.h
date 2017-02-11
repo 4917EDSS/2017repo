@@ -27,16 +27,15 @@ enum Alliance {
 
 
 // CAN IDs
-constexpr int LEFT1_DRIVE_MOTOR_CANID = 10;
-constexpr int LEFT2_DRIVE_MOTOR_CANID = 1;
-constexpr int RIGHT1_DRIVE_MOTOR_CANID = 2;
-constexpr int RIGHT2_DRIVE_MOTOR_CANID = 3;
-constexpr int SHOOTER_MOTOR_CANID = 4;
-constexpr int LIFT_MOTOR_CANID = 9; //switched this for shooter test, should be 7
-constexpr int PICKUP_MOTOR_CANID = 5;
-constexpr int FEEDER_MOTOR1_CANID = 8;
-constexpr int FEEDER_MOTOR2_CANID = 6;
-constexpr int AGITATOR_MOTOR_CANID = 7;
+constexpr int LEFT1_DRIVE_MOTOR_CANID = 1;
+constexpr int LEFT2_DRIVE_MOTOR_CANID = 3;
+constexpr int RIGHT1_DRIVE_MOTOR_CANID = 0;
+constexpr int RIGHT2_DRIVE_MOTOR_CANID = 8;
+constexpr int SHOOTER_MOTOR_CANID = 2;
+constexpr int LIFT_MOTOR_CANID = 4;
+constexpr int INTAKE_MOTOR_CANID = 7;
+constexpr int FEEDER_MOTOR1_CANID = 5;
+constexpr int FEEDER_MOTOR2_CANID = 9;
 //constexpr int CLIMBER_MOTOR_CANID = 8;
 //constexpr int UNUSED_MOTOR_CANID = 9;
 

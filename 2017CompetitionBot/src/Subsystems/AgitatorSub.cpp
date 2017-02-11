@@ -2,9 +2,8 @@
 #include "../RobotMap.h"
 
 AgitatorSub::AgitatorSub() : Subsystem("AgitatorSub") {
-	power = 50;
-	motor.reset(new CANTalon(AGITATOR_MOTOR_CANID));
-	motor->Set(0);
+	//motor.reset(new CANTalon(AGITATOR_MOTOR_CANID));
+	//motor->Set(0);
 }
 
 void AgitatorSub::InitDefaultCommand() {
@@ -16,13 +15,13 @@ void AgitatorSub::InitDefaultCommand() {
 // here. Call these from Commands.
 
 void AgitatorSub::startAgitator(){
-	motor->Set(power);
+	//motor->Set(power);
 }
 
 void AgitatorSub::stopAgitator(){
-	motor->Set(0.0);
+	//motor->Set(0.0);
 }
 
 void AgitatorSub::enableSpeedController(){
- 	motor->SetControlMode(frc::CANSpeedController::kPercentVbus);
+ 	//motor->SetControlMode(frc::CANSpeedController::kPercentVbus);
 }

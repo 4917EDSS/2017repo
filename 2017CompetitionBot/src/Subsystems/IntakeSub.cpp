@@ -2,7 +2,7 @@
 #include "../RobotMap.h"
 
 IntakeSub::IntakeSub() : Subsystem("IntakeSub") {
-	pickupMotor.reset(new CANTalon(PICKUP_MOTOR_CANID));
+	pickupMotor.reset(new CANTalon(INTAKE_MOTOR_CANID));
 }
 
 void IntakeSub::InitDefaultCommand() {

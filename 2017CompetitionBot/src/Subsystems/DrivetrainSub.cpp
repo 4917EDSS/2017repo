@@ -37,10 +37,10 @@ void DrivetrainSub::InitDefaultCommand() {
 // here. Call these from Commands.
 void DrivetrainSub::drive(double lSpeed, double rSpeed)
 {
-	leftMotor1->Set(-lSpeed);
-	leftMotor2->Set(-lSpeed);
-	rightMotor1->Set(rSpeed);
-	rightMotor2->Set(rSpeed);
+	leftMotor1->Set(lSpeed);
+	leftMotor2->Set(lSpeed);
+	rightMotor1->Set(-rSpeed);
+	rightMotor2->Set(-rSpeed);
 }
 void DrivetrainSub::setAlliance(Alliance newAlliance)
 {
@@ -100,10 +100,10 @@ void DrivetrainSub::disableTurnPID(){
 void DrivetrainSub::PIDTurn()
 {
 	std::cout << "SP=" << driveTurnPID->GetSetpoint() << std::endl;
-	leftMotor1->Set(-turnBalancer->GetDifference());
-	leftMotor2->Set(-turnBalancer->GetDifference());
-	rightMotor1->Set(-turnBalancer->GetDifference());
-	rightMotor2->Set(-turnBalancer->GetDifference());
+	leftMotor1->Set(turnBalancer->GetDifference());
+	leftMotor2->Set(turnBalancer->GetDifference());
+	rightMotor1->Set(turnBalancer->GetDifference());
+	rightMotor2->Set(turnBalancer->GetDifference());
 }
 bool DrivetrainSub::isTurnFinished(){
 	return driveTurnPID->OnTarget();

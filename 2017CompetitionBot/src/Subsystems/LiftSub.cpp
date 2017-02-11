@@ -15,5 +15,5 @@ void LiftSub::InitDefaultCommand() {
 
 void LiftSub::SetLiftMotor(float speed){
 
-	liftMotor->Set(speed);
+	liftMotor->Set(-speed);
 }
