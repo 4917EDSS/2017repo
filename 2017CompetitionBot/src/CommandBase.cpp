@@ -40,10 +40,13 @@ void CommandBase::Init()
 
 void CommandBase::VisionThread()
 {
-	cs::AxisCamera axisCamera = frc::CameraServer::GetInstance()->AddAxisCamera(AXIS_ADDRESS);
+	cs::HttpCamera hikCamera("HikCam", "http://admin:4917sirlancerbot@10.49.17.11/Streaming/channels/2/httppreview" );//, HttpCamera::HttpCameraKind::kMJPGStreamer);
+
+	frc::CameraServer::GetInstance()->AddCamera(hikCamera);
+	frc::CameraServer::GetInstance()->StartAutomaticCapture(hikCamera);
 	grip::GripPipeline gripPipeline;
-	frc::CameraServer::GetInstance()->StartAutomaticCapture(axisCamera);
-	cs::CvSink cvSink = CameraServer::GetInstance()->GetVideo(axisCamera);
+	cs::CvSink cvSink = CameraServer::GetInstance()->GetVideo(hikCamera);
+
 	cv::Mat source;
 	while(true) {
 		cvSink.GrabFrame(source);
