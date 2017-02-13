@@ -13,6 +13,11 @@
 #include "CommandBase.h"
 #include "Commands/AutoDefaultGrp.h"
 #include "Commands/AutoLoadStraightGrp.h"
+#include "Commands/AutoBoilerSideGearShootGrp.h"
+#include "Commands/AutoCenterShootGrp.h"
+#include "Commands/AutoLoaderSideShootGrp.h"
+#include "Commands/AutoNoGearHopperShotGrp.h"
+#include "Commands/AutoNoGearShotGrp.h"
 #include "Commands/DriveStraightCmd.h"
 #include "Commands/SilkyDriveCmd.h"
 #include "Commands/AutoNoGearShotGrp.h"
@@ -116,8 +121,13 @@ private:
 		autoLocationOptions.reset(new frc::SendableChooser<std::shared_ptr<frc::Command>>());
 		autoLocationOptions->AddDefault("Do Nothing", std::shared_ptr<frc::Command>(new AutoDefaultGrp()));
 		autoLocationOptions->AddObject("Silky drive", std::shared_ptr<frc::Command>(new SilkyDriveCmd(std::vector<double> {0, 500, 1200, 2000}, std::vector<double> {0,500,1000, 1500})));
+		autoLocationOptions->AddObject("Boiler Side Gear Shoot", std::shared_ptr<frc::Command>(new AutoBoilerSideGearShootGrp()));
+		autoLocationOptions->AddObject("Center Shoot", std::shared_ptr<frc::Command>(new AutoCenterShootGrp()));
+		autoLocationOptions->AddObject("Loader Side Shoot", std::shared_ptr<frc::Command>(new AutoLoaderSideShootGrp()));
 		autoLocationOptions->AddObject("Load Straight", std::shared_ptr<frc::Command>(new AutoLoadStraightGrp()));
-		autoLocationOptions->AddObject("Shoot immediately", std::shared_ptr<frc::Command>(new AutoNoGearShotGrp()));
+		autoLocationOptions->AddObject("No Gear Hopper Shot", std::shared_ptr<frc::Command>(new AutoNoGearHopperShotGrp()));
+		autoLocationOptions->AddObject("No Gear Shot", std::shared_ptr<frc::Command>(new AutoNoGearShotGrp()));
+
 		/*autoLocationOptions->AddObject("Load Left", new AutoPosition2ShootGrp());
 		autoLocationOptions->AddObject("Load Right", new AutoPosition2ShootLeftGrp());
 		autoLocationOptions->AddObject("Load Left Shoot", new AutoPosition3ShootGrp());

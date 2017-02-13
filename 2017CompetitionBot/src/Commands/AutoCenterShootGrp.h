@@ -1,11 +1,15 @@
-#ifndef AutoCenterShoot_H
-#define AutoCenterShoot_H
-#include "WPILib.h"
-#include <Commands/CommandGroup.h>
+#ifndef AutoCenterShootGrp_H
+#define AutoCenterShootGrp_H
 
-class AutoCenterShoot : public CommandGroup {
+#include <Commands/CommandGroup.h>
+#include "WPILib.h"
+#include "Commands/DriveStraightCmd.h"
+#include "Commands/DriveTurnCmd.h"
+#include "Commands/ShootCmd.h"
+
+class AutoCenterShootGrp : public CommandGroup {
 public:
-	AutoCenterShoot();
+	AutoCenterShootGrp();
 };
 
-#endif  // AutoCenterShoot_H
+#endif  // AutoCenterShootGrp_H

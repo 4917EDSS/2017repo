@@ -1,10 +1,5 @@
-#include <Commands/AutoCenterShootGrp.h>
-#include <Commands/ShootCmd.h>
-#include "AutoLoadStraightGrp.h"
-#include "DriveStraightCmd.h"
-#include "DriveTurnCmd.h"
-
-AutoCenterShoot::AutoCenterShoot() {
+#include "AutoCenterShootGrp.h"
+AutoCenterShootGrp::AutoCenterShootGrp() {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
@@ -27,7 +22,4 @@ AutoCenterShoot::AutoCenterShoot() {
 	AddSequential(new DriveTurnCmd(TURN_TO_BOILER_DEGREE));
 	AddSequential(new DriveStraightCmd(CENTER_TO_BOILER));
 	AddSequential(new ShootCmd());
-
-
-
 }
