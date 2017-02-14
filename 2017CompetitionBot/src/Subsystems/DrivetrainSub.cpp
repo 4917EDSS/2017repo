@@ -126,3 +126,18 @@ double DrivetrainSub::getRightEncoderRaw()
 {
 	return rightMotorEnc->GetRaw();
 }
+void DrivetrainSub::Update(double speed)
+{
+	int lSpeed = speed;
+	int rSpeed = speed;
+	int xValue = 0;//get x value from camera
+	if(xValue > CENTER_X + CAMERA_CENTER_TOLERANCE){
+		drive(lSpeed - CENTER_CAMERA_SPEED_DIF, rSpeed + CENTER_CAMERA_SPEED_DIF);
+	}
+	else if(xValue < CENTER_X + CAMERA_CENTER_TOLERANCE){
+		drive(lSpeed + CENTER_CAMERA_SPEED_DIF, rSpeed - CENTER_CAMERA_SPEED_DIF);
+	}
+	else{
+		drive(lSpeed, rSpeed);
+	}
+}

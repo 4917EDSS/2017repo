@@ -60,6 +60,7 @@ public:
 	Alliance getAlliance();
 	double getLeftEncoderRaw();
 	double getRightEncoderRaw();
+	void Update(double speed);
 };
 
 #endif  // DrivetrainSub_H

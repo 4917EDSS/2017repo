@@ -21,6 +21,7 @@
 #include "Commands/DriveStraightCmd.h"
 #include "Commands/SilkyDriveCmd.h"
 #include "Commands/AutoNoGearShotGrp.h"
+#include "Commands/ResetDriveEncodersCmd.h"
 
 class Robot: public frc::IterativeRobot {
 public:
@@ -142,6 +143,7 @@ private:
 	void SetSmartDashboardDriverContent()
 	{
 		SmartDashboard::PutData("Drive mostly straight", new DriveStraightCmd(LOAD_STRAIGHT_DIST));
+		SmartDashboard::PutData("reset encoders", new ResetDriveEncodersCmd());
 		//SmartDashboard::PutData("Hopefully Turn", new DriveTurnCmd(LOAD_STRAIGHT_DIST));
 	}
 

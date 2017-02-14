@@ -55,6 +55,8 @@ constexpr int SHIFTER_PCM_ID2 = 1;
 constexpr float DRIVETRAIN_DIS_PER_PULSE = 2000.0/7920.0; // TODO - this value is not yet set
 
 //Auto Enc Distances
+//1 m = 1318 encoder ticks
+//1 encoder tick = 1.32 mm
 constexpr int LOAD_STRAIGHT_DIST = 1886;
 constexpr int CENTER_TO_BOILER = 2224;
 constexpr int TURN_TO_BOILER_DEGREE = -119;
@@ -101,6 +103,11 @@ constexpr double SILKY_KV = 1.0/MAX_VEL;
 constexpr double SILKY_KA = 0;
 constexpr double SILKY_KP = 0;
 constexpr double SILKY_KD = 0;
+
+//camera
+constexpr double CENTER_X = 200;
+constexpr double CAMERA_CENTER_TOLERANCE = 5;
+constexpr double CENTER_CAMERA_SPEED_DIF = 0.2;
 
 
 #endif  // ROBOTMAP_H
