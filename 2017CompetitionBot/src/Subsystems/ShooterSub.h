@@ -22,8 +22,13 @@ private:
 public:
 	ShooterSub();
 	void InitDefaultCommand();
-	void setSpeed();
+
+	// primary interface
+	void update();
+	void enableShooter();
 	void disableShooter();
+
+	// support functions
 	void increaseSpeed();
 	void decreaseSpeed();
 	int getEncoder();

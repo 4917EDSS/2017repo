@@ -9,14 +9,13 @@ ShootCmd::ShootCmd() {
 
 // Called just before this Command runs the first time
 void ShootCmd::Initialize() {
-	shooterSub->enableSpeedController();
-	shooterSub->setFeederSpeed(1.0);
+	shooterSub->enableShooter();
 	//agitatorSub->enableSpeedController();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ShootCmd::Execute() {
-	shooterSub->setSpeed();
+	shooterSub->update();
 	//agitatorSub->startAgitator();
 }
 
@@ -27,9 +26,7 @@ bool ShootCmd::IsFinished() {
 
 // Called once after isFinished returns true
 void ShootCmd::End() {
-	shooterSub->disableSpeedController();
 	shooterSub->disableShooter();
-	shooterSub->setFeederSpeed(0.0);
 	//agitatorSub->stopAgitator();
 }
 
