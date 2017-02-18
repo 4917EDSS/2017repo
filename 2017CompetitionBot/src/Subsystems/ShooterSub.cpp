@@ -17,6 +17,9 @@ ShooterSub::ShooterSub() : Subsystem("ShooterSub") {
 	motor->SetF(0.063);
 	motor->SetP(3);
 	motor->SetD(0.001);
+
+	motor->SetVelocityMeasurementPeriod(CANTalon::Period_1Ms);
+	motor->SetVelocityMeasurementWindow(20);
 }
 
 void ShooterSub::InitDefaultCommand() {
