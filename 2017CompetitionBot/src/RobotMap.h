@@ -50,7 +50,8 @@ constexpr int SHIFTER_PCM_ID1 = 0;
 constexpr int SHIFTER_PCM_ID2 = 1;
 
 // Drivetrain values
-constexpr float DRIVETRAIN_DIS_PER_PULSE = 2000.0/2621.0; // TODO - this value is not yet set
+constexpr float DRIVETRAIN_DIS_PER_PULSE = 2000.0/2621.0;
+constexpr int ENCODER_CONVERSION_FACTOR = 4;
 
 //Auto Enc Distances
 //1 m = 1318 encoder ticks
@@ -94,7 +95,7 @@ constexpr int AXIS_STREAM_RESOLUTION_HEIGHT = 240;
 // Robot info required by SilkyMotionManager - all in millimeters, seconds
 constexpr double MAX_ACCEL = 2000; // mm/s^2
 constexpr double MAX_DECEL = 4000; // mm/s^2
-constexpr double MAX_VEL = 3000; // mm/s
+constexpr double MAX_VEL = 2800; // mm/s
 constexpr double STOPPING_DISTANCE_TOLERANCE = 30; // mm
 constexpr double STOPPING_SPEED_TOLERANCE = 10; // mm/s
 constexpr double SILKY_KV = 1.0/MAX_VEL;
