@@ -15,8 +15,8 @@ ShooterSub::ShooterSub() : Subsystem("ShooterSub") {
 	//lw->AddActuator("Shooter", "Bottom Motor", bottomMotor);
 	// moved up to allow tuning
 	motor->SetF(0.072);
-	motor->SetP(10);
-	motor->SetD(100);
+	motor->SetP(1);
+	motor->SetD(1);
 
 }
 
@@ -51,11 +51,11 @@ void ShooterSub::disableShooter()
 }
 void ShooterSub::increaseSpeed()
 {
-	targetSpeed -= 50.0;
+	targetSpeed -= 25.0;
 }
 void ShooterSub::decreaseSpeed()
 {
-	targetSpeed += 50.0;
+	targetSpeed += 25.0;
 }
 #include <iostream>
 double ShooterSub::getSpeed()
@@ -73,8 +73,8 @@ void ShooterSub::enableSpeedController(){
 	motor->ConfigNominalOutputVoltage(0., 0.);
 	motor->ConfigPeakOutputVoltage(+12., -12.);
 	motor->SelectProfileSlot(0);
-	motor->SetVelocityMeasurementPeriod(CANTalon::Period_1Ms);
-	motor->SetVelocityMeasurementWindow(5);
+	motor->SetVelocityMeasurementPeriod(CANTalon::Period_100Ms);
+	motor->SetVelocityMeasurementWindow(64);
 }
 void ShooterSub::disableSpeedController(){
 	motor->SetControlMode(frc::CANSpeedController::kPercentVbus);
