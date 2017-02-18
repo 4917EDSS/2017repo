@@ -8,14 +8,15 @@
 #include <Components/SilkyMotionManager.h>
 #include <cmath>
 #include <iostream>
+#include <SmartDashboard/SmartDashboard.h>
 
-	SilkyMotionManager::SilkyMotionManager(std::vector<double> leftWheel, std::vector<double> rightWheel,
+SilkyMotionManager::SilkyMotionManager(std::vector<double> leftWheel, std::vector<double> rightWheel,
 			double maxAccel, double maxDecel, double maxVel,
 			double stoppingDistanceTolerance, double stoppingSpeedTolerance) :
 			maxAccel(maxAccel), maxDecel(maxDecel), maxVel(maxVel),
 			stoppingDistanceTolerance(stoppingDistanceTolerance),
 			stoppingSpeedTolerance(stoppingSpeedTolerance), startTime(-1),
-			Kv(1/maxVel), Ka(0), Kp(0), Kd(0), lastLeftError(0), lastRightError(0),
+			Kv(0), Ka(0), Kp(0), Kd(0), lastLeftError(0), lastRightError(0),
 			lastTime(0){
 	stoppingLocationLeft = leftWheel[leftWheel.size()-1];
 	stoppingLocationRight = rightWheel[rightWheel.size()-1];
@@ -57,7 +58,12 @@ PathInfo SilkyMotionManager::getGenerallyFasterSide(double maxDist, double t) {
     return PathInfo{currentDis, adjustedMaxVel, 0};
   }
 
+  double timeToZero = adjustedMaxVel / maxDecel;
   double timeDecelerating = t - timeToMaxVel - timeAtMaxVel;
+
+  if (timeDecelerating >= timeToZero) {
+	  return PathInfo{maxDist, 0, 0};
+  }
 
   // x_f = x_i + vt + 0.5at^2
   double currentDis = disToMaxVel + (timeAtMaxVel * adjustedMaxVel)
@@ -78,6 +84,10 @@ PathInfo SilkyMotionManager::getGenerallySlowerSide(double maxFasterSideDist, do
   double current = spline(currentFast.dis);
   double after = spline(afterFast.dis);
 
+  if (currentFast.dis == maxFasterSideDist && currentFast.accel == 0.0 && currentFast.vel == 0.0) {
+	  return PathInfo{current, 0, 0};
+  }
+
   // After and before are 2 deltaTs apart
   double currentVel = (after - before) / (2*deltaT);
 
@@ -93,6 +103,12 @@ void SilkyMotionManager::setKvKaKpKd(double v, double a, double p, double d) {
   Ka = a;
   Kp = p;
   Kd = d;
+}
+void SilkyMotionManager::reset() {
+	startTime = -1;
+	lastLeftError = 0;
+	lastRightError = 0;
+	lastTime = 0;
 }
 
 double SilkyMotionManager::getTimeSinceStart() {
@@ -119,10 +135,19 @@ std::pair<double, double> SilkyMotionManager::execute(double currentLeftPos, dou
   double leftErrorDeriv = (leftError - lastLeftError) / (timeSinceStart - lastTime);
   double rightError = right.dis - currentRightPos;
   double rightErrorDeriv = (rightError - lastRightError) / (timeSinceStart - lastTime);
+	SmartDashboard::PutNumber("right target dis",right.dis);
+	SmartDashboard::PutNumber("left target dis",left.dis);
+	SmartDashboard::PutNumber("right target vel",right.vel*Kv);
+	SmartDashboard::PutNumber("left target vel",left.vel*Kv);
+	SmartDashboard::PutNumber("right target accel",right.accel*Ka);
+	SmartDashboard::PutNumber("left target accel",left.accel*Ka);
+	SmartDashboard::PutNumber("right error",rightError);
+	SmartDashboard::PutNumber("left error",leftError);
 
   lastLeftError = leftError;
   lastRightError = rightError;
   lastTime = timeSinceStart;
+
 
   double leftMotorValue = Kv * left.vel
     + Ka * left.accel
@@ -136,6 +161,8 @@ std::pair<double, double> SilkyMotionManager::execute(double currentLeftPos, dou
 }
 
 bool SilkyMotionManager::isFinished(double leftPos, double leftVel, double rightPos, double rightVel){
+	SmartDashboard::PutNumber("left velocity",leftVel);
+	SmartDashboard::PutNumber("right velocity",rightVel);
 	if(abs(leftPos - stoppingLocationLeft) < stoppingDistanceTolerance
       && abs(rightPos - stoppingLocationRight) < stoppingDistanceTolerance
       && abs(leftVel) < stoppingSpeedTolerance

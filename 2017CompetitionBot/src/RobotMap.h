@@ -93,13 +93,13 @@ constexpr int AXIS_STREAM_RESOLUTION_WIDTH = 320;
 constexpr int AXIS_STREAM_RESOLUTION_HEIGHT = 240;
 
 // Robot info required by SilkyMotionManager - all in millimeters, seconds
-constexpr double MAX_ACCEL = 2000; // mm/s^2
+constexpr double MAX_ACCEL = 1474; // mm/s^2
 constexpr double MAX_DECEL = 4000; // mm/s^2
 constexpr double MAX_VEL = 2800; // mm/s
 constexpr double STOPPING_DISTANCE_TOLERANCE = 30; // mm
 constexpr double STOPPING_SPEED_TOLERANCE = 10; // mm/s
-constexpr double SILKY_KV = 1.0/MAX_VEL;
-constexpr double SILKY_KA = 0;
+constexpr double SILKY_KV = (1.0/MAX_VEL)*1.0;
+constexpr double SILKY_KA = (1.0/MAX_DECEL)*0.5;
 constexpr double SILKY_KP = 0;
 constexpr double SILKY_KD = 0;
 

@@ -44,6 +44,7 @@ public:
 	void setKvKaKpKd(double v, double a, double p, double d);
 	std::pair<double, double> execute(double currentLeftPos, double currentRightPos); // returns left speed, right speed to set motors
 	bool isFinished(double leftPos, double leftVel, double rightPos, double rightVel);
+	void reset();
 };
 
 #endif /* SRC_COMPONENTS_SILKYMOTIONMANAGER_H_ */

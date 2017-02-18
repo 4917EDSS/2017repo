@@ -9,6 +9,7 @@ SilkyDriveCmd::SilkyDriveCmd(std::vector<double> leftPositions, std::vector<doub
 // Called just before this Command runs the first time
 void SilkyDriveCmd::Initialize() {
 	smm.setKvKaKpKd(SILKY_KV, SILKY_KA, SILKY_KP, SILKY_KD);
+	smm.reset();
 	drivetrainSub->reset();
 }
 
