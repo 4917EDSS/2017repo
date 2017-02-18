@@ -120,7 +120,7 @@ frc::DoubleSolenoid::Value DrivetrainSub::getShifterState(){
 
 double DrivetrainSub::getLeftEncoderRaw()
 {
-	return leftMotorEnc->GetPeriod();
+	return leftMotorEnc->GetRaw();
 }
 double DrivetrainSub::getRightEncoderRaw()
 {
