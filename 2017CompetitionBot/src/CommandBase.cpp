@@ -40,19 +40,26 @@ void CommandBase::Init()
 
 void CommandBase::VisionThread()
 {
-	cs::HttpCamera hikCamera("HikCam", "http://admin:4917sirlancerbot@10.49.17.11/Streaming/channels/102/httppreview" );
+#ifdef AXIS_CAM
+	cs::AxisCamera axisCamera = frc::CameraServer::GetInstance()->AddAxisCamera("AXIS M1013", AXIS_ADDRESS);
+	frc::CameraServer::GetInstance()->AddCamera(axisCamera);
+	frc::CameraServer::GetInstance()->StartAutomaticCapture(axisCamera);
+	cs::CvSink cvSink = CameraServer::GetInstance()->GetVideo(axisCamera);
+#else
+	cs::HttpCamera hikCamera("HikCam", "http://admin:4917sirlancerbot@10.49.17.11/Streaming/channels/102/httppreview" );//, HttpCamera::HttpCameraKind::kMJPGStreamer);
 
 	frc::CameraServer::GetInstance()->AddCamera(hikCamera);
-//	frc::CameraServer::GetInstance()->StartAutomaticCapture(hikCamera);
-	grip::GripPipeline gripPipeline;
+	frc::CameraServer::GetInstance()->StartAutomaticCapture(hikCamera);
 	cs::CvSink cvSink = CameraServer::GetInstance()->GetVideo(hikCamera);
+#endif
 
+	grip::GripPipeline gripPipeline;
 	cv::Mat source;
 	while(true) {
 		cvSink.GrabFrame(source);
 		gripPipeline.Process(source);
-		std::cout << gripPipeline.GetFilterContoursOutput()->size() << std::endl;
-		for(auto i: *(gripPipeline.GetFilterContoursOutput()))
+		std::cout << gripPipeline.GetFindContoursOutput()->size() << std::endl;
+		for(auto i: *(gripPipeline.GetFindContoursOutput()))
 		{
 			cv::Moments M = cv::moments(i);
 			x = (M.m10 / M.m00) - AXIS_VISION_RESOLUTION_WIDTH/2;
