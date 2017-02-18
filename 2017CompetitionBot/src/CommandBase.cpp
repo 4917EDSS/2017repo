@@ -40,10 +40,10 @@ void CommandBase::Init()
 
 void CommandBase::VisionThread()
 {
-	cs::HttpCamera hikCamera("HikCam", "http://admin:4917sirlancerbot@10.49.17.11/Streaming/channels/2/httppreview" );//, HttpCamera::HttpCameraKind::kMJPGStreamer);
+	cs::HttpCamera hikCamera("HikCam", "http://admin:4917sirlancerbot@10.49.17.11/Streaming/channels/102/httppreview" );
 
 	frc::CameraServer::GetInstance()->AddCamera(hikCamera);
-	frc::CameraServer::GetInstance()->StartAutomaticCapture(hikCamera);
+//	frc::CameraServer::GetInstance()->StartAutomaticCapture(hikCamera);
 	grip::GripPipeline gripPipeline;
 	cs::CvSink cvSink = CameraServer::GetInstance()->GetVideo(hikCamera);
 

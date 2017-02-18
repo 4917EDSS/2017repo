@@ -36,8 +36,6 @@ constexpr int LIFT_MOTOR_CANID = 4;
 constexpr int INTAKE_MOTOR_CANID = 7;
 constexpr int FEEDER_MOTOR1_CANID = 5;
 constexpr int FEEDER_MOTOR2_CANID = 9;
-//constexpr int CLIMBER_MOTOR_CANID = 8;
-//constexpr int UNUSED_MOTOR_CANID = 9;
 
 //DIO IDs
 constexpr int LEFT_MOTOR_ENC1_DIO = 0;
