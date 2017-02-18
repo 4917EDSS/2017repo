@@ -52,6 +52,7 @@ private:
 	std::shared_ptr<frc::JoystickButton> decreaseSpeedBtn;
 	std::shared_ptr<frc::JoystickButton> driveTurnBtn;
 	std::shared_ptr<frc::JoystickButton> shiftBtn;
+	std::shared_ptr<frc::JoystickButton> driveForwardsBtn;
 
 public:
 	OI();

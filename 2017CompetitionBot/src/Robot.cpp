@@ -112,6 +112,8 @@ private:
 		SmartDashboard::PutNumber("Target Shooter Speed", CommandBase::shooterSub->getTargetSpeed());
 		SmartDashboard::PutNumber("Raw Left Encoder", CommandBase::drivetrainSub->getLeftEncoderRaw());
 		SmartDashboard::PutNumber("Raw Right Encoder", CommandBase::drivetrainSub->getRightEncoderRaw());
+		SmartDashboard::PutNumber("Right Encoder Speed", CommandBase::drivetrainSub->getRightEncoderSpeed());
+		SmartDashboard::PutNumber("Left Encoder Speed", CommandBase::drivetrainSub->getLeftEncoderSpeed());
 	}
 	void SetSmartDashboardAutoOptions()
 	{

@@ -58,14 +58,14 @@ void CommandBase::VisionThread()
 	while(true) {
 		cvSink.GrabFrame(source);
 		gripPipeline.Process(source);
-		std::cout << gripPipeline.GetFindContoursOutput()->size() << std::endl;
+		//std::cout << gripPipeline.GetFindContoursOutput()->size() << std::endl;
 		for(auto i: *(gripPipeline.GetFindContoursOutput()))
 		{
 			cv::Moments M = cv::moments(i);
 			x = (M.m10 / M.m00) - AXIS_VISION_RESOLUTION_WIDTH/2;
-			std::cout <<"X: "<<  x << std:: endl;
+		//	std::cout <<"X: "<<  x << std:: endl;
 			y = (M.m01 / M.m00) - AXIS_VISION_RESOLUTION_HEIGHT/2;
-			std:: cout <<"Y: " <<y <<std:: endl;
+		//	std:: cout <<"Y: " <<y <<std:: endl;
 		}
 	}
 }

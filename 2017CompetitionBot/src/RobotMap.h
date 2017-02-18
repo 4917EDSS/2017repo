@@ -50,7 +50,7 @@ constexpr int SHIFTER_PCM_ID1 = 0;
 constexpr int SHIFTER_PCM_ID2 = 1;
 
 // Drivetrain values
-constexpr float DRIVETRAIN_DIS_PER_PULSE = 2000.0/7920.0; // TODO - this value is not yet set
+constexpr float DRIVETRAIN_DIS_PER_PULSE = 2000.0/2621.0; // TODO - this value is not yet set
 
 //Auto Enc Distances
 //1 m = 1318 encoder ticks
