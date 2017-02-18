@@ -39,6 +39,7 @@ const int OPERATOR_SHOOT_BTN = 2;
 const int OPERATOR_INCREASE_SPEED_BTN = 6;
 const int OPERATOR_DECREASE_SPEED_BTN = 5;
 const int DRIVER_SHIFT_BTN =8;
+const int DRIVER_FORWARDS_BTN =9;
 
 class OI {
 private:
