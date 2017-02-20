@@ -18,6 +18,15 @@ SilkyMotionManager::SilkyMotionManager(std::vector<double> leftWheel, std::vecto
 			stoppingSpeedTolerance(stoppingSpeedTolerance), startTime(-1),
 			Kv(0), Ka(0), Kp(0), Kd(0), lastLeftError(0), lastRightError(0),
 			lastTime(0){
+	negative = leftWheel[leftWheel.size()-1] < 0;
+	if (negative) {
+		for(unsigned int i = 0; i < leftWheel.size(); i++) {
+			leftWheel[i] = -leftWheel[i];
+		}
+		for(unsigned int i = 0; i < rightWheel.size(); i++) {
+			rightWheel[i] = -rightWheel[i];
+		}
+	}
 	stoppingLocationLeft = leftWheel[leftWheel.size()-1];
 	stoppingLocationRight = rightWheel[rightWheel.size()-1];
 	if (stoppingLocationLeft > stoppingLocationRight) {
@@ -123,12 +132,22 @@ std::pair<double, double> SilkyMotionManager::execute(double currentLeftPos, dou
 	float timeSinceStart = getTimeSinceStart();
   PathInfo left;
   PathInfo right;
+
+	std::cout << "negative" << negative << std::endl;
   if (stoppingLocationLeft > stoppingLocationRight) {
     left = getGenerallyFasterSide(stoppingLocationLeft, timeSinceStart);
     right = getGenerallySlowerSide(stoppingLocationLeft, timeSinceStart);
   } else {
     left = getGenerallySlowerSide(stoppingLocationRight, timeSinceStart);
     right = getGenerallyFasterSide(stoppingLocationRight, timeSinceStart);
+  }
+  if (negative) {
+    left.dis = -left.dis;
+    left.vel = -left.vel;
+    left.accel = -left.accel;
+    right.dis = -right.dis;
+    right.vel = -right.vel;
+    right.accel = -right.accel;
   }
 
   double leftError = left.dis - currentLeftPos;
@@ -163,8 +182,9 @@ std::pair<double, double> SilkyMotionManager::execute(double currentLeftPos, dou
 bool SilkyMotionManager::isFinished(double leftPos, double leftVel, double rightPos, double rightVel){
 	SmartDashboard::PutNumber("left velocity",leftVel);
 	SmartDashboard::PutNumber("right velocity",rightVel);
-	if(abs(leftPos - stoppingLocationLeft) < stoppingDistanceTolerance
-      && abs(rightPos - stoppingLocationRight) < stoppingDistanceTolerance
+	// Taking abs of leftPos and rightPos because stoppingLocations are always positive, but if we are going backwards leftpos might be negative
+	if(abs(abs(leftPos) - stoppingLocationLeft) < stoppingDistanceTolerance
+      && abs(abs(rightPos) - stoppingLocationRight) < stoppingDistanceTolerance
       && abs(leftVel) < stoppingSpeedTolerance
       && abs(rightVel) < stoppingSpeedTolerance) {
 		return true;

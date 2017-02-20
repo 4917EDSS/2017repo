@@ -20,6 +20,7 @@
 #include "Commands/AutoNoGearShotGrp.h"
 #include "Commands/DriveStraightCmd.h"
 #include "Commands/SilkyDriveCmd.h"
+#include "Commands/AutoHopperShotGrp.h"
 #include "Commands/AutoNoGearShotGrp.h"
 #include "Commands/ResetDriveEncodersCmd.h"
 
@@ -101,7 +102,7 @@ private:
 	std::shared_ptr<frc::Command> autonomousCommand;
 	std::unique_ptr<frc::Command> autoLocation;
 	std::unique_ptr<frc::SendableChooser<std::shared_ptr<Alliance> > > autoAllianceOptions;
-	std::unique_ptr<frc::SendableChooser<std::shared_ptr<frc::Command>> > autoLocationOptions;
+	std::unique_ptr<frc::SendableChooser<std::shared_ptr<frc::Command> > > autoLocationOptions;
 	void UpdateSmartDashboard()
 	{
 		SmartDashboard::PutNumber("Left Drive Motor Enc", CommandBase::drivetrainSub->getLeftEncoder());
@@ -122,8 +123,9 @@ private:
 		autoAllianceOptions->AddObject("Red", std::shared_ptr<Alliance>(new Alliance(Alliance::RED)));
 		autoAllianceOptions->AddDefault("Blue", std::shared_ptr<Alliance>(new Alliance(Alliance::BLUE)));
 
-		autoLocationOptions.reset(new frc::SendableChooser<std::shared_ptr<frc::Command>>());
+		autoLocationOptions.reset(new frc::SendableChooser<std::shared_ptr<frc::Command> >());
 		autoLocationOptions->AddDefault("Do Nothing", std::shared_ptr<frc::Command>(new AutoDefaultGrp()));
+		autoLocationOptions->AddObject("Edge of key to hopper shot", std::shared_ptr<frc::Command>(new AutoHopperShotGrp()));
 		autoLocationOptions->AddObject("Silky drive", std::shared_ptr<frc::Command>(new SilkyDriveCmd(std::vector<double> {0, 500, 1200, 2000}, std::vector<double> {0, 500, 1000, 1500})));
 		autoLocationOptions->AddObject("Boiler Side Gear Shoot", std::shared_ptr<frc::Command>(new AutoBoilerSideGearShootGrp()));
 		autoLocationOptions->AddObject("Center Shoot", std::shared_ptr<frc::Command>(new AutoCenterShootGrp()));
@@ -132,16 +134,9 @@ private:
 		autoLocationOptions->AddObject("No Gear Hopper Shot", std::shared_ptr<frc::Command>(new AutoNoGearHopperShotGrp()));
 		autoLocationOptions->AddObject("No Gear Shot", std::shared_ptr<frc::Command>(new AutoNoGearShotGrp()));
 
-		/*autoLocationOptions->AddObject("Load Left", new AutoPosition2ShootGrp());
-		autoLocationOptions->AddObject("Load Right", new AutoPosition2ShootLeftGrp());
-		autoLocationOptions->AddObject("Load Left Shoot", new AutoPosition3ShootGrp());
-		autoLocationOptions->AddObject("Load Right Shoot", new AutoPosition3ShootRightGrp());
-		autoLocationOptions->AddObject("Load Straight Shoot", new AutoPosition4ShootGrp());
-		autoLocationOptions->AddObject("Load Straight Around", new AutoPosition5ShootGrp());
-*/
-		//chooser->AddObject("My Auto", new MyAutoCommand());
+
 		SmartDashboard::PutData("Auto Alliance", autoAllianceOptions.get());
-		SmartDashboard::PutData("Auto Modes ", autoLocationOptions.get());
+		SmartDashboard::PutData("Auto Modes", autoLocationOptions.get());
 	}
 	void SetSmartDashboardDriverContent()
 	{

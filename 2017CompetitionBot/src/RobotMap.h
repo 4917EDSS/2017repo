@@ -22,6 +22,9 @@ enum Alliance {
 	BLUE
 };
 
+// Auto values
+constexpr float HOPPER_WAIT_TIME = 1.0;
+
 //AHRS define
 #define AHRSInterface SPI::kMXP
 
@@ -69,7 +72,6 @@ constexpr int SHOOTING_TURN_ANGLE = 50;
 constexpr int BOILER_HOPPER_DISTANCE = 1994;
 constexpr int ANGLE_AT_HOPPER = -90;
 constexpr int BACK_INTO_HOPPER = 533;
-constexpr int HOPPER_WAIT_TIME = 2;
 constexpr int DRIVE_AWAY_FROM_HOPPER = 100;
 constexpr int TURN_TOWARDS_BOILER = 0;
 constexpr int DRIVE_TOWARDS_BOILER = 0;
@@ -98,10 +100,11 @@ constexpr double MAX_DECEL = 4000; // mm/s^2
 constexpr double MAX_VEL = 2800; // mm/s
 constexpr double STOPPING_DISTANCE_TOLERANCE = 30; // mm
 constexpr double STOPPING_SPEED_TOLERANCE = 10; // mm/s
-constexpr double SILKY_KV = (1.0/MAX_VEL)*1.0;
-constexpr double SILKY_KA = (1.0/MAX_DECEL)*0.5;
-constexpr double SILKY_KP = 0;
-constexpr double SILKY_KD = 0;
+constexpr double SILKY_KV = (1.0/MAX_VEL)*0.86;
+constexpr double SILKY_KA = (1.0/MAX_DECEL)*0.485;
+constexpr double SILKY_KP = 0.027;
+constexpr double SILKY_KI = 0.00001;
+constexpr double SILKY_KD = 0.00001;
 
 //camera
 constexpr double CENTER_X = 200;
