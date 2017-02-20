@@ -49,7 +49,7 @@ void CommandBase::VisionThread()
 	cs::HttpCamera hikCamera("HikCam", "http://admin:4917sirlancerbot@10.49.17.11/Streaming/channels/102/httppreview" );//, HttpCamera::HttpCameraKind::kMJPGStreamer);
 
 	frc::CameraServer::GetInstance()->AddCamera(hikCamera);
-	frc::CameraServer::GetInstance()->StartAutomaticCapture(hikCamera);
+	frc::CameraServer::GetInstance()->StartAutomaticCapture();
 	cs::CvSink cvSink = CameraServer::GetInstance()->GetVideo(hikCamera);
 #endif
 

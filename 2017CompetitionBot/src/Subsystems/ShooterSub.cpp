@@ -51,11 +51,11 @@ void ShooterSub::disableShooter()
 }
 void ShooterSub::increaseSpeed()
 {
-	targetSpeed -= 25.0;
+	targetSpeed -= 10.0;
 }
 void ShooterSub::decreaseSpeed()
 {
-	targetSpeed += 25.0;
+	targetSpeed += 10.0;
 }
 #include <iostream>
 double ShooterSub::getSpeed()
