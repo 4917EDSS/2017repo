@@ -11,6 +11,7 @@ DriveStraightCmd::DriveStraightCmd(int distance) {
 void DriveStraightCmd::Initialize() {
 	leftSpeed=0.5;
 	rightSpeed=0.5;
+
 	drivetrainSub->drive(leftSpeed,rightSpeed);
 	drivetrainSub->resetEncoders();
 }

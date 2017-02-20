@@ -31,6 +31,7 @@ private:
 	double lastLeftError;
 	double lastRightError;
 	double lastTime;
+	bool negative;
 	tk::spline spline;
 
 	double getTimeSinceStart();
