@@ -1,4 +1,5 @@
 #include <Commands/AutoBoilerGearShootGrp.h>
+#include "SilkyDriveCmd.h"
 
 AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 	// Add Commands here:
@@ -21,13 +22,13 @@ AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 	// numbers need to be switched to variables
 
 	//Drive to gaar
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 50, 100}, std::vector<double> {0, 50, 100}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 500, 3800}, std::vector<double> {0, 500, 3000}));
 	//Wait
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 	//Reverse to left
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -150, -300},std::vector<double> {0, -150, -3000}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -150,-300},std::vector<double> {0,-150,-1500}));
 	//Drive to boiler
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 50, 100},std::vector<double> {0, 50, 100}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 50, 3000},std::vector<double> {0, 50, 2500}));
 	//Shooot!!!
 	AddSequential(new ShootCmd());
 }

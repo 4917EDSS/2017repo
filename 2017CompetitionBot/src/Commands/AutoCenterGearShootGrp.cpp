@@ -27,9 +27,9 @@ AutoCenterGearShootGrp::AutoCenterGearShootGrp() {
 	//Wait
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 	//Reverse to right
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -150,-3000},std::vector<double> {0,-150,-300}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -150,-1500},std::vector<double> {0,-150,-300}));
 	//Drive to boiler
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 50, 100}, std::vector<double> {0, 50, 100}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 50, 3500}, std::vector<double> {0, 50, 4300}));
 	//Shoot
 	AddSequential(new ShootCmd());
 }

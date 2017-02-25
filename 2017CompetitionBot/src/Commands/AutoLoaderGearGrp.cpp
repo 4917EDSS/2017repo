@@ -1,4 +1,5 @@
 #include "AutoLoaderGearGrp.h"
+#include "SilkyDriveCmd.h"
 
 AutoLoaderGearGrp::AutoLoaderGearGrp() {
 	// Add Commands here:
@@ -7,7 +8,7 @@ AutoLoaderGearGrp::AutoLoaderGearGrp() {
 	// these will run in order.
 
 	//Drive to gaar
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 50, 100}, std::vector<double> {0, 50, 100}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 2000, 4000}, std::vector<double> {0, 3000, 5000}));
 	//Wait
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 
