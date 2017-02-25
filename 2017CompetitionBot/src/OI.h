@@ -33,7 +33,7 @@ const int DRIVER_RIGHT_TANK_DRIVE_AXIS = 3;
 
 // Joystick Buttons
 const int OPERATOR_LIFT_BTN = 4;
-const int OPERATOR_LOWER_BTN = 3;
+const int OPERATOR_LOWER_BTN = 9;
 const int OPERATOR_INTAKE_BTN = 1;
 const int OPERATOR_SHOOT_BTN = 2;
 const int OPERATOR_INCREASE_SPEED_BTN = 6;
@@ -56,6 +56,7 @@ private:
 	std::shared_ptr<frc::JoystickButton> shiftBtn;
 	std::shared_ptr<frc::JoystickButton> driveForwardsBtn;
 	std::shared_ptr<frc::JoystickButton> openGearFlapsBtn;
+	std::shared_ptr<frc::JoystickButton> shrinkHopperBtn;
 
 public:
 	OI();
