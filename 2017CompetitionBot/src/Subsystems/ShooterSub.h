@@ -43,6 +43,7 @@ public:
 	void expandHopper();
 	void shrinkHopper();
 	void setShooterSpeed(float newSpeed);
+	void setFeeder1(float speed);
 };
 
 #endif  // ShooterSub_H

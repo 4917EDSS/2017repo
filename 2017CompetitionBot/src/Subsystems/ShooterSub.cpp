@@ -18,8 +18,8 @@ ShooterSub::ShooterSub() : Subsystem("ShooterSub") {
 	lw->AddActuator("Shooter", "Motor", shooterMotor1);
 	//lw->AddActuator("Shooter", "Bottom Motor", bottomMotor);
 	// moved up to allow tuning
-	shooterMotor1->SetF(0.4);
-	shooterMotor1->SetP(0);
+	shooterMotor1->SetF(0.067);
+	shooterMotor1->SetP(0.4);
 	shooterMotor1->SetD(5);
 
 }
@@ -102,4 +102,8 @@ void ShooterSub::expandHopper(){
 
 void ShooterSub::shrinkHopper(){
 	hopper->Set(frc::DoubleSolenoid::Value::kReverse);
+}
+
+void ShooterSub::setFeeder1(float speed){
+	feederMotor2->Set(speed);
 }
