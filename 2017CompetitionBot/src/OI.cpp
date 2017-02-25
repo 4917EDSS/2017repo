@@ -9,6 +9,7 @@
 #include "Commands/DriveTurnCmd.h"
 #include "Commands/ToggleShifterCmd.h"
 #include "Commands/DriveForwards.h"
+#include "Commands/OpenGearFlapsCmd.h"
 
 OI::OI() {
 	// Process operator interface input here.
@@ -27,6 +28,8 @@ OI::OI() {
 	increaseSpeedBtn->WhenPressed(new IncreaseSpeedCmd());
 	decreaseSpeedBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_DECREASE_SPEED_BTN));
 	decreaseSpeedBtn->WhenPressed(new DecreaseSpeedCmd());
+	openGearFlapsBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_GEAR_FLAP_BTN));
+	openGearFlapsBtn->WhileHeld(new OpenGearFlapsCmd());
 
 	shiftBtn.reset(new JoystickButton(driverController.get(), DRIVER_SHIFT_BTN));
 	shiftBtn->WhenPressed(new ToggleShifterCmd());
