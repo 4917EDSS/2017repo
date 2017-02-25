@@ -38,6 +38,9 @@ const int OPERATOR_INTAKE_BTN = 1;
 const int OPERATOR_SHOOT_BTN = 2;
 const int OPERATOR_INCREASE_SPEED_BTN = 6;
 const int OPERATOR_DECREASE_SPEED_BTN = 5;
+const int OPERATOR_SET_LOW_SPEED_BTN = 7;
+const int OPERATOR_SET_HIGH_SPEED_BTN = 8;
+const int OPERATOR_REVERSE_SHOOTER_BTN = 9;
 const int DRIVER_SHIFT_BTN =8;
 const int DRIVER_FORWARDS_BTN =9;
 
@@ -54,6 +57,11 @@ private:
 	std::shared_ptr<frc::JoystickButton> driveTurnBtn;
 	std::shared_ptr<frc::JoystickButton> shiftBtn;
 	std::shared_ptr<frc::JoystickButton> driveForwardsBtn;
+	std::shared_ptr<frc::JoystickButton> setLowSpeedBtn;
+	std::shared_ptr<frc::JoystickButton> setHighSpeedBtn;
+	std::shared_ptr<frc::JoystickButton> reverseShooterBtn;
+
+
 
 public:
 	OI();

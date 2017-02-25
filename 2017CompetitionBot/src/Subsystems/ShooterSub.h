@@ -14,7 +14,8 @@ private:
 	// Note:  These are declared as shared_ptr (not unique_ptr) because we share them with the
 	//        LiveWindow for testing purposes.
 
-	std::shared_ptr<CANTalon> motor;
+	std::shared_ptr<CANTalon> shooterMotor1;
+	std::shared_ptr<CANTalon> shooterMotor2;
 	std::shared_ptr<CANTalon> feederMotor1;
 	std::shared_ptr<CANTalon> feederMotor2;
 	double targetSpeed;
@@ -38,6 +39,7 @@ public:
 	void enableSpeedController();
 	void disableSpeedController();
 	void setFeederSpeed(float speed);
+	void setShooterSpeed(float newSpeed);
 };
 
 #endif  // ShooterSub_H
