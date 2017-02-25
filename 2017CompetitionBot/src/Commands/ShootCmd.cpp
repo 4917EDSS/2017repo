@@ -4,12 +4,25 @@ ShootCmd::ShootCmd() {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(shooterSub.get());
+	shouldSetSpeed = false;
+	//Requires(agitatorSub.get());
+}
+
+ShootCmd::ShootCmd(float speed) {
+	// Use Requires() here to declare subsystem dependencies
+	// eg. Requires(Robot::chassis.get());
+	Requires(shooterSub.get());
+	this->speed = speed;
+	shouldSetSpeed = true;
 	//Requires(agitatorSub.get());
 }
 
 // Called just before this Command runs the first time
 void ShootCmd::Initialize() {
 	shooterSub->enableShooter();
+	if(shouldSetSpeed){
+		shooterSub->setShooterSpeed(speed);
+	}
 	//agitatorSub->enableSpeedController();
 }
 

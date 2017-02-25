@@ -12,7 +12,6 @@
 #include "Commands/OpenGearFlapsCmd.h"
 #include "Commands/ShrinkHopperCmd.h"
 #include "Commands/SetShooterSpeedCmd.h"
-#include "Commands/ReverseShooterCmd.h"
 
 OI::OI() {
 	// Process operator interface input here.
@@ -40,7 +39,7 @@ OI::OI() {
 	setHighSpeedBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_SET_HIGH_SPEED_BTN));
 	setHighSpeedBtn->WhenPressed(new SetShooterSpeedCmd(-2100));
 	reverseShooterBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_REVERSE_SHOOTER_BTN));
-	reverseShooterBtn->WhileHeld(new ReverseShooterCmd(300));
+	reverseShooterBtn->WhileHeld(new ShootCmd(300));
 
 	shiftBtn.reset(new JoystickButton(driverController.get(), DRIVER_SHIFT_BTN));
 	shiftBtn->WhenPressed(new ToggleShifterCmd());
