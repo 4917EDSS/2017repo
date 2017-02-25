@@ -22,10 +22,14 @@ AutoCenterGearShootGrp::AutoCenterGearShootGrp() {
 	//   Wait for gear
 	//   R
 
+	//Drive Straight to peg
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1886 / 2, 1886}, std::vector<double> {0, 1886 / 2, 1886}));
+	//Wait
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
-	AddSequential(new SilkyDriveCmd({0, -150,-3000}, {0,-150,-300}));
-	//AddSequential(new SilkyDriveCmd({0, 2000, 3500}, {0, 2500, 3500}));
-
-	//AddSequential(new ShootCmd());
+	//Reverse to right
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -150,-3000},std::vector<double> {0,-150,-300}));
+	//Drive to boiler
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 50, 100}, std::vector<double> {0, 50, 100}));
+	//Shoot
+	AddSequential(new ShootCmd());
 }

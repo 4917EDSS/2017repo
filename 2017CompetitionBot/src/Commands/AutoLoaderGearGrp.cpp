@@ -6,6 +6,11 @@ AutoLoaderGearGrp::AutoLoaderGearGrp() {
 	//      AddSequential(new Command2());
 	// these will run in order.
 
+	//Drive to gaar
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 50, 100}, std::vector<double> {0, 50, 100}));
+	//Wait
+	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
+
 	// To run multiple commands at the same time,
 	// use AddParallel()
 	// e.g. AddParallel(new Command1());

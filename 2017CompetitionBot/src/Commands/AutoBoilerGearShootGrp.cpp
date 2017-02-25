@@ -19,11 +19,15 @@ AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 	// arm.
 
 	// numbers need to be switched to variables
-	AddSequential(new DriveStraightCmd(2369));
-	AddSequential(new DriveTurnCmd(45));
-	AddSequential(new DriveStraightCmd(2369));
+
+	//Drive to gaar
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 50, 100}, std::vector<double> {0, 50, 100}));
+	//Wait
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
-	AddSequential(new DriveTurnCmd(TURN_TOWARDS_BOILER));
-	AddSequential(new DriveStraightCmd(DRIVE_TOWARDS_BOILER));
+	//Reverse to left
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -150, -300},std::vector<double> {0, -150, -3000}));
+	//Drive to boiler
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 50, 100},std::vector<double> {0, 50, 100}));
+	//Shooot!!!
 	AddSequential(new ShootCmd());
 }
