@@ -12,9 +12,9 @@ AutoHopperShootGrp::AutoHopperShootGrp() {
 	//For forwards to hopper
 	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 450, 2650, 2750, 3450}, std::vector<double> {0, 450, 4000, 4100, 4740}));
 	//Backwards to hopper
-	AddSequential(new SilkyDriveCmd({0, -250, -3300, -4100, -4840}, {0, -250, -1950, -2750, -3440}));
+	AddSequential(new SilkyDriveCmd({0, -250, -3000, -4100, -4940}, {0, -250, -1650, -2750, -3540}));
 	AddSequential(new WaitCommand(HOPPER_WAIT_TIME));
-	AddSequential(new SilkyDriveCmd({0, 2000, 2500, 3500}, {0, 400, 800, 1800}));
+	AddSequential(new SilkyDriveCmd({0, 2000, 2500, 3000}, {0, 200, 500, 1000}));
 	// To run multiple commands at the same time,
 	// use AddParallel()
 	// e.g. AddParallel(new Command1());
