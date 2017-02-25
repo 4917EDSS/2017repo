@@ -33,6 +33,7 @@ private:
 	double lastTime;
 	bool negative;
 	bool straight;
+	bool called;
 	tk::spline spline;
 
 	double getTimeSinceStart();

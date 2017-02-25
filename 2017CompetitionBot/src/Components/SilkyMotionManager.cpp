@@ -41,6 +41,7 @@ SilkyMotionManager::SilkyMotionManager(std::vector<double> leftWheel, std::vecto
 	} else {
 		spline.set_points(rightWheel, leftWheel);
 	}
+	called = false;
 }
 
 // Returns the current path info for TRAPEZOIDAL side
@@ -204,10 +205,11 @@ bool SilkyMotionManager::isFinished(double leftPos, double leftVel, double right
 }
 
 void SilkyMotionManager::setAlliance(frc::DriverStation::Alliance alliance) {
-	if(alliance == frc::DriverStation::Alliance::kRed) {
+	if(alliance == frc::DriverStation::Alliance::kRed && !called) {
 		double temp = stoppingLocationLeft;
 		stoppingLocationLeft = stoppingLocationRight;
 		stoppingLocationRight = temp;
+		called = true;
 	}
 }
 
