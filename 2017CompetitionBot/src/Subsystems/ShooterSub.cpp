@@ -3,21 +3,24 @@
 
 ShooterSub::ShooterSub() : Subsystem("ShooterSub") {
 	targetSpeed = -2200;
-	motor.reset(new CANTalon(SHOOTER_MOTOR_CANID));
+	shooterMotor1.reset(new CANTalon(SHOOTER1_MOTOR_CANID));
+	shooterMotor2.reset(new CANTalon(SHOOTER2_MOTOR_CANID));
 	feederMotor1.reset(new CANTalon(FEEDER_MOTOR1_CANID));
 	feederMotor2.reset(new CANTalon(FEEDER_MOTOR2_CANID));
 	hopper.reset(new frc::DoubleSolenoid(HOPPER_PCM_ID1, HOPPER_PCM_ID2));
 	feederMotor1->Set(0);
 	feederMotor2->Set(0);
-	motor->Set(0);
+	shooterMotor1->Set(0);
+	shooterMotor2->SetControlMode(frc::CANSpeedController::kFollower);
+	shooterMotor2->Set(SHOOTER1_MOTOR_CANID);
 	// Make these properly available in Test mode
 	frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
-	lw->AddActuator("Shooter", "Motor", motor);
+	lw->AddActuator("Shooter", "Motor", shooterMotor1);
 	//lw->AddActuator("Shooter", "Bottom Motor", bottomMotor);
 	// moved up to allow tuning
-	motor->SetF(0.072);
-	motor->SetP(1);
-	motor->SetD(1);
+	shooterMotor1->SetF(0.4);
+	shooterMotor1->SetP(0);
+	shooterMotor1->SetD(5);
 
 }
 
@@ -30,15 +33,22 @@ void ShooterSub::InitDefaultCommand() {
 // here. Call these from Commands.
 void ShooterSub::update()
 {
-	motor->Set(targetSpeed);
+	shooterMotor1->Set(targetSpeed);
 	double currentSpeed = getSpeed();
 	double error = fabs((currentSpeed - targetSpeed)/targetSpeed);
-	if (error > 0.1) {
+	if (targetSpeed > 0.0){
+		setFeederSpeed(-1.0);
+	}
+	else if (error > 0.1) {
 		setFeederSpeed(0.0);
 	}
 	else {
 		setFeederSpeed(1.0);
 	}
+}
+void ShooterSub::setShooterSpeed(float newSpeed)
+{
+	targetSpeed = newSpeed;
 }
 void ShooterSub::enableShooter()
 {
@@ -47,7 +57,7 @@ void ShooterSub::enableShooter()
 void ShooterSub::disableShooter()
 {
 	disableSpeedController();
-	motor->Set(0.0);
+	shooterMotor1->Set(0.0);
 	setFeederSpeed(0.0);
 }
 void ShooterSub::increaseSpeed()
@@ -61,24 +71,24 @@ void ShooterSub::decreaseSpeed()
 #include <iostream>
 double ShooterSub::getSpeed()
 {
-	return motor->GetEncVel()*60*10/4096; //Discovered from reading source code and playing with numbers
+	return shooterMotor1->GetEncVel()*60*10/4096; //Discovered from reading source code and playing with numbers
 }
 double ShooterSub::getTargetSpeed()
 {
 	return targetSpeed;
 }
 void ShooterSub::enableSpeedController(){
-	motor->SetControlMode(frc::CANSpeedController::kSpeed);
-	motor->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
-	motor->SetSensorDirection(false);
-	motor->ConfigNominalOutputVoltage(0., 0.);
-	motor->ConfigPeakOutputVoltage(+12., -12.);
-	motor->SelectProfileSlot(0);
-	motor->SetVelocityMeasurementPeriod(CANTalon::Period_100Ms);
-	motor->SetVelocityMeasurementWindow(64);
+	shooterMotor1->SetControlMode(frc::CANSpeedController::kSpeed);
+	shooterMotor1->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
+	shooterMotor1->SetSensorDirection(false);
+	shooterMotor1->ConfigNominalOutputVoltage(0., 0.);
+	shooterMotor1->ConfigPeakOutputVoltage(+12., -12.);
+	shooterMotor1->SelectProfileSlot(0);
+	shooterMotor1->SetVelocityMeasurementPeriod(CANTalon::Period_100Ms);
+	shooterMotor1->SetVelocityMeasurementWindow(64);
 }
 void ShooterSub::disableSpeedController(){
-	motor->SetControlMode(frc::CANSpeedController::kPercentVbus);
+	shooterMotor1->SetControlMode(frc::CANSpeedController::kPercentVbus);
 }
 
 void ShooterSub::setFeederSpeed(float speed){
