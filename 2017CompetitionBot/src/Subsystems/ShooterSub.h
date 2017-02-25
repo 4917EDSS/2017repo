@@ -40,6 +40,7 @@ public:
 	void disableSpeedController();
 	void setFeederSpeed(float speed);
 	void setShooterSpeed(float newSpeed);
+	void setFeeder1(float speed);
 };
 
 #endif  // ShooterSub_H

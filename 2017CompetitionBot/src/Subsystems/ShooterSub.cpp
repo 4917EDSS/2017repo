@@ -17,8 +17,8 @@ ShooterSub::ShooterSub() : Subsystem("ShooterSub") {
 	lw->AddActuator("Shooter", "Motor", shooterMotor1);
 	//lw->AddActuator("Shooter", "Bottom Motor", bottomMotor);
 	// moved up to allow tuning
-	shooterMotor1->SetF(0.4);
-	shooterMotor1->SetP(0);
+	shooterMotor1->SetF(0.067);
+	shooterMotor1->SetP(0.4);
 	shooterMotor1->SetD(5);
 
 }
@@ -92,5 +92,9 @@ void ShooterSub::disableSpeedController(){
 
 void ShooterSub::setFeederSpeed(float speed){
 	feederMotor1->Set(speed);
+	feederMotor2->Set(speed);
+}
+
+void ShooterSub::setFeeder1(float speed){
 	feederMotor2->Set(speed);
 }
