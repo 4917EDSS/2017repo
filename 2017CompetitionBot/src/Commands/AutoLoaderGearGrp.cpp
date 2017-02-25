@@ -1,10 +1,6 @@
-#include <Commands/AutoNoGearShotGrp.h>
-#include "ShootCmd.h"
-#include "DriveStraightCmd.h"
-#include "DriveTurnCmd.h"
-#include "RotateToVisionCmd.h"
+#include "AutoLoaderGearGrp.h"
 
-AutoNoGearShotGrp::AutoNoGearShotGrp() {
+AutoLoaderGearGrp::AutoLoaderGearGrp() {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
@@ -21,8 +17,4 @@ AutoNoGearShotGrp::AutoNoGearShotGrp() {
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
-	//AddSequential(new DriveStraightCmd(SHOOTING_DRIVE_DISTANCE));
-	//AddSequential(new DriveTurnCmd(SHOOTING_TURN_ANGLE));
-	AddSequential(new RotateToVisionCmd());
-	//AddSequential(new ShootCmd());
 }

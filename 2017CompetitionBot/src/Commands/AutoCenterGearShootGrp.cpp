@@ -1,6 +1,6 @@
-#include "AutoBoilerSideGearShootGrp.h"
-
-AutoBoilerSideGearShootGrp::AutoBoilerSideGearShootGrp() {
+#include <Commands/AutoCenterGearShootGrp.h>
+#include "SilkyDriveCmd.h"
+AutoCenterGearShootGrp::AutoCenterGearShootGrp() {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
@@ -18,12 +18,14 @@ AutoBoilerSideGearShootGrp::AutoBoilerSideGearShootGrp() {
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
 
-	// numbers need to be switched to variables
-	AddSequential(new DriveStraightCmd(2369));
-	AddSequential(new DriveTurnCmd(45));
-	AddSequential(new DriveStraightCmd(2369));
+	//   Drive Straight to center peg
+	//   Wait for gear
+	//   R
+
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1886 / 2, 1886}, std::vector<double> {0, 1886 / 2, 1886}));
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
-	AddSequential(new DriveTurnCmd(TURN_TOWARDS_BOILER));
-	AddSequential(new DriveStraightCmd(DRIVE_TOWARDS_BOILER));
-	AddSequential(new ShootCmd());
+	AddSequential(new SilkyDriveCmd({0, -150,-3000}, {0,-150,-300}));
+	//AddSequential(new SilkyDriveCmd({0, 2000, 3500}, {0, 2500, 3500}));
+
+	//AddSequential(new ShootCmd());
 }

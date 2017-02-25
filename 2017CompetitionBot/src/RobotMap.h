@@ -1,6 +1,8 @@
 #ifndef ROBOTMAP_H
 #define ROBOTMAP_H
 
+#include <iostream>
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -60,10 +62,10 @@ constexpr int ENCODER_CONVERSION_FACTOR = 4;
 //1 m = 1318 encoder ticks
 //1 encoder tick = 1.32 mm
 constexpr int LOAD_STRAIGHT_DIST = 1886;
+constexpr int GEAR_WAIT_TIME = 2;
 constexpr int CENTER_TO_BOILER = 2224;
 constexpr int TURN_TO_BOILER_DEGREE = -119;
 constexpr int BACK_OFF_OF_SHAFT_DIST = -301;
-constexpr int GEAR_WAIT_TIME = 2;
 constexpr int LOADER_SIDE_APPROACH_DIST = 1353;
 constexpr int TURN_TO_LOADER_SIDE_SHAFT = -45;
 constexpr int DRIVE_TO_LOADER_SIDE_SHAFT = 2500;

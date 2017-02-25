@@ -19,6 +19,13 @@ SilkyMotionManager::SilkyMotionManager(std::vector<double> leftWheel, std::vecto
 			Kv(0), Ka(0), Kp(0), Kd(0), lastLeftError(0), lastRightError(0),
 			lastTime(0){
 	negative = leftWheel[leftWheel.size()-1] < 0;
+	straight = true;
+	for(unsigned int i = 0; i < leftWheel.size(); i++) {
+		if (leftWheel[i] != rightWheel[i]) {
+			straight = false;
+			break;
+		}
+	}
 	if (negative) {
 		for(unsigned int i = 0; i < leftWheel.size(); i++) {
 			leftWheel[i] = -leftWheel[i];
@@ -134,7 +141,10 @@ std::pair<double, double> SilkyMotionManager::execute(double currentLeftPos, dou
   PathInfo right;
 
 	std::cout << "negative" << negative << std::endl;
-  if (stoppingLocationLeft > stoppingLocationRight) {
+	if (straight) {
+		left = getGenerallyFasterSide(stoppingLocationLeft, timeSinceStart);
+		right = getGenerallyFasterSide(stoppingLocationLeft, timeSinceStart);
+	} else if (stoppingLocationLeft > stoppingLocationRight) {
     left = getGenerallyFasterSide(stoppingLocationLeft, timeSinceStart);
     right = getGenerallySlowerSide(stoppingLocationLeft, timeSinceStart);
   } else {

@@ -1,5 +1,6 @@
-#include "AutoCenterShootGrp.h"
-AutoCenterShootGrp::AutoCenterShootGrp() {
+#include <Commands/AutoBoilerGearShootGrp.h>
+
+AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
@@ -16,10 +17,13 @@ AutoCenterShootGrp::AutoCenterShootGrp() {
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
-	AddSequential(new DriveStraightCmd(LOAD_STRAIGHT_DIST));
+
+	// numbers need to be switched to variables
+	AddSequential(new DriveStraightCmd(2369));
+	AddSequential(new DriveTurnCmd(45));
+	AddSequential(new DriveStraightCmd(2369));
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
-	AddSequential(new DriveStraightCmd(BACK_OFF_OF_SHAFT_DIST));
-	AddSequential(new DriveTurnCmd(TURN_TO_BOILER_DEGREE));
-	AddSequential(new DriveStraightCmd(CENTER_TO_BOILER));
+	AddSequential(new DriveTurnCmd(TURN_TOWARDS_BOILER));
+	AddSequential(new DriveStraightCmd(DRIVE_TOWARDS_BOILER));
 	AddSequential(new ShootCmd());
 }

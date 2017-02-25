@@ -1,3 +1,6 @@
+#include <Commands/AutoBoilerGearShootGrp.h>
+#include <Commands/AutoCenterGearShootGrp.h>
+#include <Commands/AutoHopperShootGrp.h>
 #include <memory>
 
 #include <Commands/Command.h>
@@ -12,16 +15,12 @@
 #include "Commands/DriveWithJoystickCmd.h"									// TODO: Change this to a valid AUTO command!
 #include "CommandBase.h"
 #include "Commands/AutoDefaultGrp.h"
-#include "Commands/AutoLoadStraightGrp.h"
-#include "Commands/AutoBoilerSideGearShootGrp.h"
-#include "Commands/AutoCenterShootGrp.h"
-#include "Commands/AutoLoaderSideShootGrp.h"
-#include "Commands/AutoNoGearHopperShotGrp.h"
-#include "Commands/AutoNoGearShotGrp.h"
+#include "Commands/AutoCenterGearShootGrp.h"
+#include "Commands/AutoBoilerGearShootGrp.h"
+#include "Commands/AutoLoaderGearGrp.h"
+#include "Commands/AutoHopperShootGrp.h"
 #include "Commands/DriveStraightCmd.h"
 #include "Commands/SilkyDriveCmd.h"
-#include "Commands/AutoHopperShotGrp.h"
-#include "Commands/AutoNoGearShotGrp.h"
 #include "Commands/ResetDriveEncodersCmd.h"
 
 class Robot: public frc::IterativeRobot {
@@ -125,15 +124,10 @@ private:
 
 		autoLocationOptions.reset(new frc::SendableChooser<std::shared_ptr<frc::Command> >());
 		autoLocationOptions->AddDefault("Do Nothing", std::shared_ptr<frc::Command>(new AutoDefaultGrp()));
-		autoLocationOptions->AddObject("Edge of key to hopper shot", std::shared_ptr<frc::Command>(new AutoHopperShotGrp()));
-		autoLocationOptions->AddObject("Silky drive", std::shared_ptr<frc::Command>(new SilkyDriveCmd(std::vector<double> {0, 500, 1200, 2000}, std::vector<double> {0, 500, 1000, 1500})));
-		autoLocationOptions->AddObject("Boiler Side Gear Shoot", std::shared_ptr<frc::Command>(new AutoBoilerSideGearShootGrp()));
-		autoLocationOptions->AddObject("Center Shoot", std::shared_ptr<frc::Command>(new AutoCenterShootGrp()));
-		autoLocationOptions->AddObject("Loader Side Shoot", std::shared_ptr<frc::Command>(new AutoLoaderSideShootGrp()));
-		autoLocationOptions->AddObject("Load Straight", std::shared_ptr<frc::Command>(new AutoLoadStraightGrp()));
-		autoLocationOptions->AddObject("No Gear Hopper Shot", std::shared_ptr<frc::Command>(new AutoNoGearHopperShotGrp()));
-		autoLocationOptions->AddObject("No Gear Shot", std::shared_ptr<frc::Command>(new AutoNoGearShotGrp()));
-
+		autoLocationOptions->AddObject("Hopper Shoot", std::shared_ptr<frc::Command>(new AutoHopperShootGrp()));
+		autoLocationOptions->AddObject("BoilerGear Shoot", std::shared_ptr<frc::Command>(new AutoBoilerGearShootGrp()));
+		autoLocationOptions->AddObject("CenterGear Shoot", std::shared_ptr<frc::Command>(new AutoCenterGearShootGrp()));
+		autoLocationOptions->AddObject("LoaderGear", std::shared_ptr<frc::Command>(new AutoLoaderGearGrp()));
 
 		SmartDashboard::PutData("Auto Alliance", autoAllianceOptions.get());
 		SmartDashboard::PutData("Auto Modes", autoLocationOptions.get());
