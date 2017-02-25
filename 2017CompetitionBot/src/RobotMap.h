@@ -36,7 +36,8 @@ constexpr int LEFT1_DRIVE_MOTOR_CANID = 1;
 constexpr int LEFT2_DRIVE_MOTOR_CANID = 3;
 constexpr int RIGHT1_DRIVE_MOTOR_CANID = 0;
 constexpr int RIGHT2_DRIVE_MOTOR_CANID = 8;
-constexpr int SHOOTER_MOTOR_CANID = 2;
+constexpr int SHOOTER1_MOTOR_CANID = 2;
+constexpr int SHOOTER2_MOTOR_CANID = 6;
 constexpr int LIFT_MOTOR_CANID = 4;
 constexpr int INTAKE_MOTOR_CANID = 7;
 constexpr int FEEDER_MOTOR1_CANID = 5;
@@ -53,6 +54,10 @@ constexpr int SHOOTER_MOTOR_ENC2_DIO = 5;
 // Pneumatic control module outputs
 constexpr int SHIFTER_PCM_ID1 = 0;
 constexpr int SHIFTER_PCM_ID2 = 1;
+constexpr int GEARFLAPS_PCM_ID1 = 2;
+constexpr int GEARFLAPS_PCM_ID2 = 3;
+constexpr int HOPPER_PCM_ID1 = 4;
+constexpr int HOPPER_PCM_ID2 = 5;
 
 // Drivetrain values
 constexpr float DRIVETRAIN_DIS_PER_PULSE = 2000.0/2621.0;

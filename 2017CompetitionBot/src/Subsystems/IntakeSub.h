@@ -3,6 +3,7 @@
 
 #include <Commands/Subsystem.h>
 #include <CANTalon.h>
+#include "WPILib.h"
 
 class IntakeSub : public Subsystem {
 private:
@@ -10,11 +11,14 @@ private:
 	// for methods that implement subsystem capabilities
 
 	std::shared_ptr<CANTalon> pickupMotor;
+	std::shared_ptr<frc::DoubleSolenoid> gearFlaps;
 
 public:
 	IntakeSub();
 	void InitDefaultCommand();
 	void setPickupMotor(double speed);
+	void openGearFlaps();
+	void closeGearFlaps();
 };
 
 #endif  // IntakeSub_H

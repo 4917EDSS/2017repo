@@ -9,6 +9,10 @@
 #include "Commands/DriveTurnCmd.h"
 #include "Commands/ToggleShifterCmd.h"
 #include "Commands/DriveForwards.h"
+#include "Commands/OpenGearFlapsCmd.h"
+#include "Commands/ShrinkHopperCmd.h"
+#include "Commands/SetShooterSpeedCmd.h"
+#include "Commands/ReverseShooterCmd.h"
 
 OI::OI() {
 	// Process operator interface input here.
@@ -27,11 +31,22 @@ OI::OI() {
 	increaseSpeedBtn->WhenPressed(new IncreaseSpeedCmd());
 	decreaseSpeedBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_DECREASE_SPEED_BTN));
 	decreaseSpeedBtn->WhenPressed(new DecreaseSpeedCmd());
+	openGearFlapsBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_GEAR_FLAP_BTN));
+	openGearFlapsBtn->WhileHeld(new OpenGearFlapsCmd());
+	shrinkHopperBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_SHRINK_HOPPER_BTN));
+	shrinkHopperBtn->WhileHeld(new ShrinkHopperCmd());
+	setLowSpeedBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_SET_LOW_SPEED_BTN));
+	setLowSpeedBtn->WhenPressed(new SetShooterSpeedCmd(-1770));
+	setHighSpeedBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_SET_HIGH_SPEED_BTN));
+	setHighSpeedBtn->WhenPressed(new SetShooterSpeedCmd(-2100));
+	reverseShooterBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_REVERSE_SHOOTER_BTN));
+	reverseShooterBtn->WhileHeld(new ReverseShooterCmd(300));
 
 	shiftBtn.reset(new JoystickButton(driverController.get(), DRIVER_SHIFT_BTN));
 	shiftBtn->WhenPressed(new ToggleShifterCmd());
 	driveForwardsBtn.reset(new JoystickButton(driverController.get(), DRIVER_FORWARDS_BTN));
 	driveForwardsBtn->WhileHeld(new DriveForwards());
+
 
 }
 std::shared_ptr<frc::Joystick> OI::getDriverController()
