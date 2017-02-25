@@ -17,6 +17,7 @@ private:
 	std::shared_ptr<CANTalon> motor;
 	std::shared_ptr<CANTalon> feederMotor1;
 	std::shared_ptr<CANTalon> feederMotor2;
+	std::shared_ptr<frc::DoubleSolenoid> hopper;
 	double targetSpeed;
 
 public:
@@ -38,6 +39,8 @@ public:
 	void enableSpeedController();
 	void disableSpeedController();
 	void setFeederSpeed(float speed);
+	void expandHopper();
+	void shrinkHopper();
 };
 
 #endif  // ShooterSub_H

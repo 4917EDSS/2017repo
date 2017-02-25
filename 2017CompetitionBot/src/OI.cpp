@@ -10,6 +10,7 @@
 #include "Commands/ToggleShifterCmd.h"
 #include "Commands/DriveForwards.h"
 #include "Commands/OpenGearFlapsCmd.h"
+#include "Commands/ShrinkHopperCmd.h"
 
 OI::OI() {
 	// Process operator interface input here.
@@ -30,6 +31,8 @@ OI::OI() {
 	decreaseSpeedBtn->WhenPressed(new DecreaseSpeedCmd());
 	openGearFlapsBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_GEAR_FLAP_BTN));
 	openGearFlapsBtn->WhileHeld(new OpenGearFlapsCmd());
+	shrinkHopperBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_SHRINK_HOPPER_BTN));
+	shrinkHopperBtn->WhileHeld(new ShrinkHopperCmd());
 
 	shiftBtn.reset(new JoystickButton(driverController.get(), DRIVER_SHIFT_BTN));
 	shiftBtn->WhenPressed(new ToggleShifterCmd());

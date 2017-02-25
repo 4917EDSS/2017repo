@@ -53,6 +53,8 @@ constexpr int SHIFTER_PCM_ID1 = 0;
 constexpr int SHIFTER_PCM_ID2 = 1;
 constexpr int GEARFLAPS_PCM_ID1 = 2;
 constexpr int GEARFLAPS_PCM_ID2 = 3;
+constexpr int HOPPER_PCM_ID1 = 4;
+constexpr int HOPPER_PCM_ID2 = 5;
 
 // Drivetrain values
 constexpr float DRIVETRAIN_DIS_PER_PULSE = 2000.0/2621.0;

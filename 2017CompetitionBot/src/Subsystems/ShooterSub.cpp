@@ -6,6 +6,7 @@ ShooterSub::ShooterSub() : Subsystem("ShooterSub") {
 	motor.reset(new CANTalon(SHOOTER_MOTOR_CANID));
 	feederMotor1.reset(new CANTalon(FEEDER_MOTOR1_CANID));
 	feederMotor2.reset(new CANTalon(FEEDER_MOTOR2_CANID));
+	hopper.reset(new frc::DoubleSolenoid(HOPPER_PCM_ID1, HOPPER_PCM_ID2));
 	feederMotor1->Set(0);
 	feederMotor2->Set(0);
 	motor->Set(0);
@@ -83,4 +84,12 @@ void ShooterSub::disableSpeedController(){
 void ShooterSub::setFeederSpeed(float speed){
 	feederMotor1->Set(speed);
 	feederMotor2->Set(speed);
+}
+
+void ShooterSub::expandHopper(){
+	hopper->Set(frc::DoubleSolenoid::Value::kForward);
+}
+
+void ShooterSub::shrinkHopper(){
+	hopper->Set(frc::DoubleSolenoid::Value::kReverse);
 }
