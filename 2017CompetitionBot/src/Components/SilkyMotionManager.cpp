@@ -18,7 +18,7 @@ SilkyMotionManager::SilkyMotionManager(std::vector<double> leftWheel, std::vecto
 		stoppingSpeedTolerance(stoppingSpeedTolerance), startTime(-1),
 		Kv(0), Ka(0), Kp(0), Kd(0), lastLeftError(0), lastRightError(0),
 		lastTime(0){
-	negative = leftWheel[leftWheel.size()-1] < 0;
+	negative = leftWheel[leftWheel.size()-1] < 0 && rightWheel[rightWheel.size()-1] < 0;
 	straight = true;
 	for(unsigned int i = 0; i < leftWheel.size(); i++) {
 		if (leftWheel[i] != rightWheel[i]) {
