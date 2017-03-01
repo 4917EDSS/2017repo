@@ -20,6 +20,7 @@ private:
 	std::shared_ptr<CANTalon> feederMotor2;
 	std::shared_ptr<frc::DoubleSolenoid> hopper;
 	double targetSpeed;
+	double adjustmentSpeed;
 
 public:
 	ShooterSub();

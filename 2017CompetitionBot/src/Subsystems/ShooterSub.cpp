@@ -3,6 +3,7 @@
 
 ShooterSub::ShooterSub() : Subsystem("ShooterSub") {
 	targetSpeed = -2200;
+	adjustmentSpeed = 0;
 	shooterMotor1.reset(new CANTalon(SHOOTER1_MOTOR_CANID));
 	feederMotor1.reset(new CANTalon(FEEDER_MOTOR1_CANID));
 	feederMotor2.reset(new CANTalon(FEEDER_MOTOR2_CANID));
@@ -36,7 +37,7 @@ void ShooterSub::InitDefaultCommand() {
 // here. Call these from Commands.
 void ShooterSub::update()
 {
-	shooterMotor1->Set(targetSpeed);
+	shooterMotor1->Set(targetSpeed + adjustmentSpeed);
 	double currentSpeed = getSpeed();
 	double error = fabs((currentSpeed - targetSpeed)/targetSpeed);
 	if (targetSpeed > 0.0){
@@ -65,11 +66,11 @@ void ShooterSub::disableShooter()
 }
 void ShooterSub::increaseSpeed()
 {
-	targetSpeed -= 10.0;
+	adjustmentSpeed -= 10.0;
 }
 void ShooterSub::decreaseSpeed()
 {
-	targetSpeed += 10.0;
+	adjustmentSpeed += 10.0;
 }
 #include <iostream>
 double ShooterSub::getSpeed()

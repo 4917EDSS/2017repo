@@ -8,7 +8,10 @@ AutoLoaderGearGrp::AutoLoaderGearGrp() {
 	// these will run in order.
 
 	//Drive to gaar
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 2000, 4000}, std::vector<double> {0, 3000, 5000}));
+	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1050, 1400, 2800}, std::vector<double> {0, 1050, 1850, 3700}));
+
+	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 650, 1500, 2800}, std::vector<double> {0, 650, 2500, 3500}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1750, 2800}, std::vector<double> {0, 2150, 3650}));
 	//Wait
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 
