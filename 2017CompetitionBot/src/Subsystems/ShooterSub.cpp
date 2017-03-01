@@ -4,15 +4,18 @@
 ShooterSub::ShooterSub() : Subsystem("ShooterSub") {
 	targetSpeed = -2200;
 	shooterMotor1.reset(new CANTalon(SHOOTER1_MOTOR_CANID));
-	shooterMotor2.reset(new CANTalon(SHOOTER2_MOTOR_CANID));
 	feederMotor1.reset(new CANTalon(FEEDER_MOTOR1_CANID));
 	feederMotor2.reset(new CANTalon(FEEDER_MOTOR2_CANID));
 	hopper.reset(new frc::DoubleSolenoid(HOPPER_PCM_ID1, HOPPER_PCM_ID2));
 	feederMotor1->Set(0);
 	feederMotor2->Set(0);
 	shooterMotor1->Set(0);
-	shooterMotor2->SetControlMode(frc::CANSpeedController::kFollower);
-	shooterMotor2->Set(SHOOTER1_MOTOR_CANID);
+	// TODO UNDO THIS AS SOON AS DRIVE TALON FIXED
+	//shooterMotor2.reset(new CANTalon(SHOOTER2_MOTOR_CANID));
+	//shooterMotor2->SetControlMode(frc::CANSpeedController::kFollower);
+	//shooterMotor2->Set(SHOOTER1_MOTOR_CANID);
+
+
 	// Make these properly available in Test mode
 	frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
 	lw->AddActuator("Shooter", "Motor", shooterMotor1);

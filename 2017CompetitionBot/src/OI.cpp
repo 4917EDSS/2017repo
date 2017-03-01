@@ -12,6 +12,7 @@
 #include "Commands/OpenGearFlapsCmd.h"
 #include "Commands/ShrinkHopperCmd.h"
 #include "Commands/SetShooterSpeedCmd.h"
+#include "Commands/KillEverythingCmd.h"
 
 OI::OI() {
 	// Process operator interface input here.
@@ -24,8 +25,8 @@ OI::OI() {
 	liftBtn->WhileHeld(new LiftCmd(1.0));
 	lowerBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_LOWER_BTN));
 	lowerBtn->WhileHeld(new LiftCmd(-1.0));
-	shooterEnableBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_SHOOT_BTN));
-	shooterEnableBtn->WhileHeld(new ShootCmd());
+	//shooterEnableBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_SHOOT_BTN));
+	//shooterEnableBtn->WhileHeld(new ShootCmd());
 	increaseSpeedBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_INCREASE_SPEED_BTN));
 	increaseSpeedBtn->WhenPressed(new IncreaseSpeedCmd());
 	decreaseSpeedBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_DECREASE_SPEED_BTN));
@@ -34,13 +35,17 @@ OI::OI() {
 	openGearFlapsBtn->WhileHeld(new OpenGearFlapsCmd());
 	shrinkHopperBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_SHRINK_HOPPER_BTN));
 	shrinkHopperBtn->WhileHeld(new ShrinkHopperCmd());
-	setLowSpeedBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_SET_LOW_SPEED_BTN));
-	setLowSpeedBtn->WhenPressed(new SetShooterSpeedCmd(-1770));
-	setHighSpeedBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_SET_HIGH_SPEED_BTN));
-	setHighSpeedBtn->WhenPressed(new SetShooterSpeedCmd(-2100));
+	keyShotBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_KEY_SHOT_BTN));
+	keyShotBtn->WhileHeld(new ShootCmd(-2100));
+	boilerShotBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_BOILER_SHOT_BTN));
+	boilerShotBtn->WhileHeld(new ShootCmd(-1770));
 	reverseShooterBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_REVERSE_SHOOTER_BTN));
 	reverseShooterBtn->WhileHeld(new ShootCmd(300));
+	operatorKillEverythingBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_KILL_EVERYTHING_BTN));
+	operatorKillEverythingBtn->WhenPressed(new KillEverythingCmd());
 
+	driverKillEverythingBtn.reset(new JoystickButton(driverController.get(), DRIVER_KILL_EVERYTHING_BTN));
+	driverKillEverythingBtn->WhenPressed(new KillEverythingCmd());
 	shiftBtn.reset(new JoystickButton(driverController.get(), DRIVER_SHIFT_BTN));
 	shiftBtn->WhenPressed(new ToggleShifterCmd());
 	driveForwardsBtn.reset(new JoystickButton(driverController.get(), DRIVER_FORWARDS_BTN));

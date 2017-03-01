@@ -1,4 +1,5 @@
 #include "RunPickupCmd.h"
+#include "OI.h"
 
 RunPickupCmd::RunPickupCmd() {
 	// Use Requires() here to declare subsystem dependencies
@@ -15,7 +16,15 @@ void RunPickupCmd::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void RunPickupCmd::Execute() {
-
+	std::shared_ptr<frc::Joystick> dCtrl = oi->getDriverController();
+	if(abs(dCtrl->GetRawAxis(DRIVER_LEFT_TANK_DRIVE_AXIS)) < 0.01 && abs(dCtrl->GetRawAxis(DRIVER_RIGHT_TANK_DRIVE_AXIS)) < 0.01){
+		intakeSub->setPickupMotor(0.0);
+		shooterSub->setFeeder1(0.0);
+	}
+	else{
+		intakeSub->setPickupMotor(1.0);
+		shooterSub->setFeeder1(-1.0);
+	}
 }
 
 // Make this return true when this Command no longer needs to run execute()
