@@ -27,14 +27,6 @@ class Robot: public frc::IterativeRobot {
 public:
 
 	void RobotInit() override {
-		//cs::UsbCamera usbCamera = frc::CameraServer::GetInstance()->StartAutomaticCapture();
-
-		// Possible way to handle multiple USB cameras:
-		//cs::UsbCamera msCam1("MSCam1", "/dev/video0");
-		//frc::CameraServer::GetInstance()->AddCamera(msCam1);
-		//cs::UsbCamera msCam2("MSCam2", "/dev/video1");
-		//frc::CameraServer::GetInstance()->AddCamera(msCam2);
-
 		CommandBase::Init();
 		SetSmartDashboardAutoOptions();
 	}

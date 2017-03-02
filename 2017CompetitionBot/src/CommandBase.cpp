@@ -14,6 +14,7 @@ std::unique_ptr<DrivetrainSub> CommandBase::drivetrainSub;
 std::unique_ptr<ShooterSub> CommandBase::shooterSub;
 std::unique_ptr<LiftSub> CommandBase::liftSub;
 std::unique_ptr<IntakeSub> CommandBase::intakeSub;
+std::unique_ptr<DriveVisionSub> CommandBase::driveVisionSub;
 int CommandBase::x;
 int CommandBase::y;
 //std::unique_ptr<AgitatorSub> CommandBase::agitatorSub;
@@ -32,6 +33,7 @@ void CommandBase::Init()
 	shooterSub.reset(new ShooterSub());
 	liftSub.reset(new LiftSub());
 	intakeSub.reset(new IntakeSub());
+	driveVisionSub.reset(new DriveVisionSub());
 	oi.reset(new OI());
 
 	std::thread visionThread(VisionThread);

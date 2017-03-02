@@ -14,6 +14,7 @@
 #include "Commands/SetShooterSpeedCmd.h"
 #include "Commands/KillEverythingCmd.h"
 #include "Commands/ToggleIntakeCmd.h"
+#include "Commands/SwitchCamerasCmd.h"
 
 OI::OI() {
 	// Process operator interface input here.
@@ -51,13 +52,15 @@ OI::OI() {
 	shiftBtn->WhenPressed(new ToggleShifterCmd());
 	driveForwardsBtn.reset(new JoystickButton(driverController.get(), DRIVER_FORWARDS_BTN));
 	driveForwardsBtn->WhileHeld(new DriveForwards());
-
-
+	driverSwitchCamBtn.reset(new JoystickButton(driverController.get(), DRIVER_SWITCH_CAM_BTN));
+	driverSwitchCamBtn->WhenPressed(new SwitchCamerasCmd());
 }
+
 std::shared_ptr<frc::Joystick> OI::getDriverController()
 {
    return driverController;
 }
+
 std::shared_ptr<frc::Joystick> OI::getOperatorController()
 {
 
