@@ -13,6 +13,7 @@
 #include "Commands/ShrinkHopperCmd.h"
 #include "Commands/SetShooterSpeedCmd.h"
 #include "Commands/KillEverythingCmd.h"
+#include "Commands/ToggleIntakeCmd.h"
 
 OI::OI() {
 	// Process operator interface input here.
@@ -20,7 +21,7 @@ OI::OI() {
 	operatorController.reset(new frc::Joystick(OPERATOR_CONTROLLER_PORT));
 
 	dIntakeBtn.reset(new frc::JoystickButton(operatorController.get(), OPERATOR_INTAKE_BTN));
-	dIntakeBtn->WhileHeld(new RunPickupCmd());
+	dIntakeBtn->WhenPressed(new ToggleIntakeCmd());
 	liftBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_LIFT_BTN));
 	liftBtn->WhileHeld(new LiftCmd(1.0));
 	lowerBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_LOWER_BTN));
