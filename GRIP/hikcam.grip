@@ -1,10 +1,30 @@
 <grip:Pipeline>
   <sources>
     <grip:MultiImageFile>
-      <property name="numImages" value="2"/>
-      <property name="path[0]" value="C:\Users\Gaudets\Desktop\pics\picture5.jpg"/>
-      <property name="path[1]" value="C:\Users\Gaudets\Desktop\pics\picture6.jpg"/>
+      <property name="path[6]" value="C:\Users\Gaudets\Documents\repos\2017repo\GRIP\SampleImages\geartarget\pic3.jpg"/>
+      <property name="path[3]" value="C:\Users\Gaudets\Documents\repos\2017repo\GRIP\SampleImages\geartarget\pic1.jpg"/>
+      <property name="path[0]" value="C:\Users\Gaudets\Documents\repos\2017repo\GRIP\SampleImages\geartarget\peg1.jpg"/>
       <property name="index" value="0"/>
+      <property name="numImages" value="8"/>
+      <property name="path[5]" value="C:\Users\Gaudets\Documents\repos\2017repo\GRIP\SampleImages\geartarget\pic2.jpg"/>
+      <property name="path[2]" value="C:\Users\Gaudets\Documents\repos\2017repo\GRIP\SampleImages\geartarget\pic0.jpg"/>
+      <property name="path[7]" value="C:\Users\Gaudets\Documents\repos\2017repo\GRIP\SampleImages\geartarget\pic4.jpg"/>
+      <property name="path[4]" value="C:\Users\Gaudets\Documents\repos\2017repo\GRIP\SampleImages\geartarget\pic1b.jpg"/>
+      <property name="path[1]" value="C:\Users\Gaudets\Documents\repos\2017repo\GRIP\SampleImages\geartarget\peg2.jpg"/>
+    </grip:MultiImageFile>
+    <grip:MultiImageFile>
+      <property name="path[9]" value="C:\Users\Gaudets\Documents\repos\2017repo\GRIP\SampleImages\boilertarget\pic9.jpg"/>
+      <property name="path[6]" value="C:\Users\Gaudets\Documents\repos\2017repo\GRIP\SampleImages\boilertarget\pic7.jpg"/>
+      <property name="path[3]" value="C:\Users\Gaudets\Documents\repos\2017repo\GRIP\SampleImages\boilertarget\pic4.jpg"/>
+      <property name="path[0]" value="C:\Users\Gaudets\Documents\repos\2017repo\GRIP\SampleImages\boilertarget\pic1.jpg"/>
+      <property name="path[8]" value="C:\Users\Gaudets\Documents\repos\2017repo\GRIP\SampleImages\boilertarget\pic8.jpg"/>
+      <property name="index" value="0"/>
+      <property name="numImages" value="10"/>
+      <property name="path[5]" value="C:\Users\Gaudets\Documents\repos\2017repo\GRIP\SampleImages\boilertarget\pic6.jpg"/>
+      <property name="path[2]" value="C:\Users\Gaudets\Documents\repos\2017repo\GRIP\SampleImages\boilertarget\pic3.jpg"/>
+      <property name="path[7]" value="C:\Users\Gaudets\Documents\repos\2017repo\GRIP\SampleImages\boilertarget\pic7b.jpg"/>
+      <property name="path[4]" value="C:\Users\Gaudets\Documents\repos\2017repo\GRIP\SampleImages\boilertarget\pic5.jpg"/>
+      <property name="path[1]" value="C:\Users\Gaudets\Documents\repos\2017repo\GRIP\SampleImages\boilertarget\pic2.jpg"/>
     </grip:MultiImageFile>
   </sources>
   <steps>
@@ -14,7 +34,7 @@
         <value>MEDIAN</value>
       </grip:Input>
       <grip:Input step="0" socket="2">
-        <value>3.6036036036036037</value>
+        <value>8.198198198198199</value>
       </grip:Input>
       <grip:Output step="0" socket="0" previewed="true"/>
     </grip:Step>
@@ -23,19 +43,19 @@
       <grip:Input step="1" socket="1">
         <value>
           <double>42.60493362428452</double>
-          <double>82.2953630988867</double>
+          <double>80.7802115837352</double>
         </value>
       </grip:Input>
       <grip:Input step="1" socket="2">
         <value>
           <double>132.73966222307718</double>
-          <double>235.21713479047773</double>
+          <double>245.21713479047773</double>
         </value>
       </grip:Input>
       <grip:Input step="1" socket="3">
         <value>
           <double>33.919009664524815</double>
-          <double>110.87826044571807</double>
+          <double>136.63583620329382</double>
         </value>
       </grip:Input>
       <grip:Output step="1" socket="0" previewed="true"/>
@@ -47,36 +67,72 @@
       </grip:Input>
       <grip:Output step="2" socket="0" previewed="true"/>
     </grip:Step>
-    <grip:Step name="NTPublish ContoursReport">
+    <grip:Step name="Filter Contours">
       <grip:Input step="3" socket="0"/>
       <grip:Input step="3" socket="1">
-        <value>targetcenter</value>
+        <value>200.0</value>
       </grip:Input>
       <grip:Input step="3" socket="2">
-        <value>true</value>
+        <value>0.0</value>
       </grip:Input>
       <grip:Input step="3" socket="3">
-        <value>true</value>
+        <value>0.0</value>
       </grip:Input>
       <grip:Input step="3" socket="4">
-        <value>true</value>
+        <value>1000.0</value>
       </grip:Input>
       <grip:Input step="3" socket="5">
-        <value>false</value>
+        <value>0.0</value>
       </grip:Input>
       <grip:Input step="3" socket="6">
-        <value>false</value>
+        <value>1000.0</value>
       </grip:Input>
       <grip:Input step="3" socket="7">
+        <value>
+          <int>0</int>
+          <int>100</int>
+        </value>
+      </grip:Input>
+      <grip:Input step="3" socket="8">
+        <value>1000000.0</value>
+      </grip:Input>
+      <grip:Input step="3" socket="9">
+        <value>0.0</value>
+      </grip:Input>
+      <grip:Input step="3" socket="10">
+        <value>0.0</value>
+      </grip:Input>
+      <grip:Input step="3" socket="11">
+        <value>1000.0</value>
+      </grip:Input>
+      <grip:Output step="3" socket="0" previewed="true"/>
+    </grip:Step>
+    <grip:Step name="NTPublish ContoursReport">
+      <grip:Input step="4" socket="0"/>
+      <grip:Input step="4" socket="1">
+        <value>targetcenter</value>
+      </grip:Input>
+      <grip:Input step="4" socket="2">
+        <value>true</value>
+      </grip:Input>
+      <grip:Input step="4" socket="3">
+        <value>true</value>
+      </grip:Input>
+      <grip:Input step="4" socket="4">
+        <value>true</value>
+      </grip:Input>
+      <grip:Input step="4" socket="5">
+        <value>false</value>
+      </grip:Input>
+      <grip:Input step="4" socket="6">
+        <value>false</value>
+      </grip:Input>
+      <grip:Input step="4" socket="7">
         <value>false</value>
       </grip:Input>
     </grip:Step>
   </steps>
   <connections>
-    <grip:Connection>
-      <grip:Output step="0" socket="0" previewed="true"/>
-      <grip:Input step="1" socket="0"/>
-    </grip:Connection>
     <grip:Connection>
       <grip:Output step="1" socket="0" previewed="true"/>
       <grip:Input step="2" socket="0"/>
@@ -88,6 +144,14 @@
     <grip:Connection>
       <grip:Output source="0" socket="0" previewed="true"/>
       <grip:Input step="0" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output step="3" socket="0" previewed="true"/>
+      <grip:Input step="4" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output step="0" socket="0" previewed="true"/>
+      <grip:Input step="1" socket="0"/>
     </grip:Connection>
   </connections>
   <settings>
