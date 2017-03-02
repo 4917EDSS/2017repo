@@ -12,6 +12,7 @@ private:
 
 	std::shared_ptr<CANTalon> pickupMotor;
 	std::shared_ptr<frc::DoubleSolenoid> gearFlaps;
+	bool intakeWhenMoving;
 
 public:
 	IntakeSub();
@@ -19,6 +20,8 @@ public:
 	void setPickupMotor(double speed);
 	void openGearFlaps();
 	void closeGearFlaps();
+	void toggleIntake();
+	bool getIntakeWhenMoving();
 };
 
 #endif  // IntakeSub_H

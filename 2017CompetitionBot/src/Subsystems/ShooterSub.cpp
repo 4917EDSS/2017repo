@@ -3,16 +3,20 @@
 
 ShooterSub::ShooterSub() : Subsystem("ShooterSub") {
 	targetSpeed = -2200;
+	adjustmentSpeed = 0;
 	shooterMotor1.reset(new CANTalon(SHOOTER1_MOTOR_CANID));
-	shooterMotor2.reset(new CANTalon(SHOOTER2_MOTOR_CANID));
 	feederMotor1.reset(new CANTalon(FEEDER_MOTOR1_CANID));
 	feederMotor2.reset(new CANTalon(FEEDER_MOTOR2_CANID));
 	hopper.reset(new frc::DoubleSolenoid(HOPPER_PCM_ID1, HOPPER_PCM_ID2));
 	feederMotor1->Set(0);
 	feederMotor2->Set(0);
 	shooterMotor1->Set(0);
+	// TODO UNDO THIS AS SOON AS DRIVE TALON FIXED
+	shooterMotor2.reset(new CANTalon(SHOOTER2_MOTOR_CANID));
 	shooterMotor2->SetControlMode(frc::CANSpeedController::kFollower);
 	shooterMotor2->Set(SHOOTER1_MOTOR_CANID);
+
+
 	// Make these properly available in Test mode
 	frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
 	lw->AddActuator("Shooter", "Motor", shooterMotor1);
@@ -33,7 +37,7 @@ void ShooterSub::InitDefaultCommand() {
 // here. Call these from Commands.
 void ShooterSub::update()
 {
-	shooterMotor1->Set(targetSpeed);
+	shooterMotor1->Set(targetSpeed + adjustmentSpeed);
 	double currentSpeed = getSpeed();
 	double error = fabs((currentSpeed - targetSpeed)/targetSpeed);
 	if (targetSpeed > 0.0){
@@ -62,11 +66,11 @@ void ShooterSub::disableShooter()
 }
 void ShooterSub::increaseSpeed()
 {
-	targetSpeed -= 10.0;
+	adjustmentSpeed -= 10.0;
 }
 void ShooterSub::decreaseSpeed()
 {
-	targetSpeed += 10.0;
+	adjustmentSpeed += 10.0;
 }
 #include <iostream>
 double ShooterSub::getSpeed()
@@ -75,7 +79,7 @@ double ShooterSub::getSpeed()
 }
 double ShooterSub::getTargetSpeed()
 {
-	return targetSpeed;
+	return targetSpeed + adjustmentSpeed;
 }
 void ShooterSub::enableSpeedController(){
 	shooterMotor1->SetControlMode(frc::CANSpeedController::kSpeed);
@@ -84,8 +88,8 @@ void ShooterSub::enableSpeedController(){
 	shooterMotor1->ConfigNominalOutputVoltage(0., 0.);
 	shooterMotor1->ConfigPeakOutputVoltage(+12., -12.);
 	shooterMotor1->SelectProfileSlot(0);
-	shooterMotor1->SetVelocityMeasurementPeriod(CANTalon::Period_100Ms);
-	shooterMotor1->SetVelocityMeasurementWindow(64);
+	shooterMotor1->SetVelocityMeasurementPeriod(CANTalon::Period_5Ms);
+	shooterMotor1->SetVelocityMeasurementWindow(50);
 }
 void ShooterSub::disableSpeedController(){
 	shooterMotor1->SetControlMode(frc::CANSpeedController::kPercentVbus);
