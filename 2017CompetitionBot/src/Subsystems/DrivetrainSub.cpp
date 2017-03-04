@@ -165,8 +165,10 @@ void DrivetrainSub::DisableBalancerPID(){
 
 void DrivetrainSub::PIDDrive(float speed)
 {
-	leftMotor1->Set(-speed - motorBalancer->GetDifference());
-	leftMotor1->Set(-speed - motorBalancer->GetDifference());
+	std::cout << "left " << -speed - motorBalancer->GetDifference() << std::endl;
+	std::cout << "right " << speed - motorBalancer->GetDifference() << std::endl;
+	leftMotor1->Set(speed - motorBalancer->GetDifference());
 	leftMotor2->Set(speed - motorBalancer->GetDifference());
-	leftMotor2->Set(speed - motorBalancer->GetDifference());
+	rightMotor1->Set(-speed - motorBalancer->GetDifference());
+	rightMotor2->Set(-speed - motorBalancer->GetDifference());
 }
