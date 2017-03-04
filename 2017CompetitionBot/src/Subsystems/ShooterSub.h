@@ -15,7 +15,7 @@ private:
 	//        LiveWindow for testing purposes.
 
 	std::shared_ptr<CANTalon> shooterMotor1;
-	//std::shared_ptr<CANTalon> shooterMotor2;
+	std::shared_ptr<CANTalon> shooterMotor2;
 	std::shared_ptr<CANTalon> feederMotor1;
 	std::shared_ptr<CANTalon> feederMotor2;
 	std::shared_ptr<frc::DoubleSolenoid> hopper;

@@ -2,7 +2,7 @@
 #include "../RobotMap.h"
 
 ShooterSub::ShooterSub() : Subsystem("ShooterSub") {
-	targetSpeed = -2000;
+	targetSpeed = -2200;
 	adjustmentSpeed = 0;
 	shooterMotor1.reset(new CANTalon(SHOOTER1_MOTOR_CANID));
 	feederMotor1.reset(new CANTalon(FEEDER_MOTOR1_CANID));
@@ -12,9 +12,9 @@ ShooterSub::ShooterSub() : Subsystem("ShooterSub") {
 	feederMotor2->Set(0);
 	shooterMotor1->Set(0);
 	// TODO UNDO THIS AS SOON AS DRIVE TALON FIXED
-	/*shooterMotor2.reset(new CANTalon(SHOOTER2_MOTOR_CANID));
+	shooterMotor2.reset(new CANTalon(SHOOTER2_MOTOR_CANID));
 	shooterMotor2->SetControlMode(frc::CANSpeedController::kFollower);
-	shooterMotor2->Set(SHOOTER1_MOTOR_CANID);*/
+	shooterMotor2->Set(SHOOTER1_MOTOR_CANID);
 
 
 	// Make these properly available in Test mode
@@ -22,9 +22,9 @@ ShooterSub::ShooterSub() : Subsystem("ShooterSub") {
 	lw->AddActuator("Shooter", "Motor", shooterMotor1);
 	//lw->AddActuator("Shooter", "Bottom Motor", bottomMotor);
 	// moved up to allow tuning
-	shooterMotor1->SetF(0.05);
-	shooterMotor1->SetP(0.5);
-	shooterMotor1->SetD(4);
+	shooterMotor1->SetF(0.067);
+	shooterMotor1->SetP(0.4);
+	shooterMotor1->SetD(5);
 
 }
 
@@ -43,7 +43,7 @@ void ShooterSub::update()
 	if (targetSpeed > 0.0){
 		setFeederSpeed(-1.0);
 	}
-	else if (error > 1.0) {
+	else if (error > 0.1) {
 		setFeederSpeed(0.0);
 	}
 	else {
@@ -66,11 +66,11 @@ void ShooterSub::disableShooter()
 }
 void ShooterSub::increaseSpeed()
 {
-	adjustmentSpeed -= 50.0;
+	adjustmentSpeed -= 10.0;
 }
 void ShooterSub::decreaseSpeed()
 {
-	adjustmentSpeed += 50.0;
+	adjustmentSpeed += 10.0;
 }
 #include <iostream>
 double ShooterSub::getSpeed()

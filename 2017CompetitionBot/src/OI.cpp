@@ -38,9 +38,9 @@ OI::OI() {
 	shrinkHopperBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_SHRINK_HOPPER_BTN));
 	shrinkHopperBtn->WhileHeld(new ShrinkHopperCmd());
 	keyShotBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_KEY_SHOT_BTN));
-	keyShotBtn->WhileHeld(new ShootCmd(-2000));
+	keyShotBtn->WhileHeld(new ShootCmd(-2100));
 	boilerShotBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_BOILER_SHOT_BTN));
-	boilerShotBtn->WhileHeld(new ShootCmd(-1850));
+	boilerShotBtn->WhileHeld(new ShootCmd(-1770));
 	reverseShooterBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_REVERSE_SHOOTER_BTN));
 	reverseShooterBtn->WhileHeld(new ShootCmd(300));
 	operatorKillEverythingBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_KILL_EVERYTHING_BTN));
