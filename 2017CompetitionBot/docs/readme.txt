@@ -1,0 +1,1 @@
+This folder is for documents relating to the 2017 competition robot.
