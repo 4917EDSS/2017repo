@@ -1,6 +1,7 @@
 #include "DrivetrainSub.h"
 #include "../RobotMap.h"
 #include "Commands/DriveWithJoystickCmd.h"
+#include "Components/PidAhrs.h"
 #include <iostream>
 
 DrivetrainSub::DrivetrainSub() : Subsystem("DrivetrainSub") {
@@ -14,12 +15,19 @@ DrivetrainSub::DrivetrainSub() : Subsystem("DrivetrainSub") {
 	rightMotorEnc->SetDistancePerPulse(DRIVETRAIN_DIS_PER_PULSE*ENCODER_CONVERSION_FACTOR);
 	shifter.reset(new frc::DoubleSolenoid(SHIFTER_PCM_ID1, SHIFTER_PCM_ID2));
 	turnBalancer.reset(new MotorBalancer());
+	motorBalancer.reset(new MotorBalancer());
 	ahrs.reset(new AHRS(AHRSInterface));
 	Preferences *prefs = Preferences::GetInstance();
 	driveTurnPID.reset(new frc::PIDController(prefs->GetFloat("DriveTurnP", DRIVE_TURN_P),
 			   	   	   	   	   	   	   	   	  prefs->GetFloat("DriveTurnI", DRIVE_TURN_I),
 											  prefs->GetFloat("DriveTurnD", DRIVE_TURN_D), ahrs.get(), turnBalancer.get()));
-
+	driveBalanceController.reset(new PIDController(prefs->GetFloat("DriveBalanceP", DRIVE_BALANCE_P),
+											   prefs->GetFloat("DriveBalanceI", DRIVE_BALANCE_I),
+											   prefs->GetFloat("DriveBalanceD", DRIVE_BALANCE_D),
+											   ahrs.get(), motorBalancer.get()));
+	driveBalanceController->SetAbsoluteTolerance(prefs->GetFloat("DriveBalanceTolerance", DRIVE_BALANCE_TOLERANCE));
+	driveBalanceController->SetOutputRange(-1.0, 1.0);
+	driveBalanceController->Disable();
 	// Make these properly available in Test mode
 	frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
 	lw->AddActuator("Drivetrain", "Left Motor 1", leftMotor1);
@@ -140,4 +148,25 @@ void DrivetrainSub::Update(double speed)
 	else{
 		drive(lSpeed, rSpeed);
 	}
+}
+
+void DrivetrainSub::EnableBalancerPID(float setPoint){
+	Preferences *prefs = Preferences::GetInstance();
+	driveBalanceController->SetPID(prefs->GetFloat("DriveBalanceP", DRIVE_BALANCE_P), prefs->GetFloat("DriveBalanceI", DRIVE_BALANCE_I), prefs->GetFloat("DriveBalanceD", DRIVE_BALANCE_D));
+	driveBalanceController->SetAbsoluteTolerance(prefs->GetFloat("DriveBalanceTolerance", DRIVE_BALANCE_TOLERANCE));
+	driveBalanceController->SetSetpoint(setPoint);
+	motorBalancer->Reset();
+	driveBalanceController->Enable();
+}
+
+void DrivetrainSub::DisableBalancerPID(){
+	driveBalanceController->Disable();
+}
+
+void DrivetrainSub::PIDDrive(float speed)
+{
+	leftMotor1->Set(-speed - motorBalancer->GetDifference());
+	leftMotor1->Set(-speed - motorBalancer->GetDifference());
+	leftMotor2->Set(speed - motorBalancer->GetDifference());
+	leftMotor2->Set(speed - motorBalancer->GetDifference());
 }

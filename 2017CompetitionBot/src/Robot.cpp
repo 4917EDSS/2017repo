@@ -22,6 +22,7 @@
 #include "Commands/DriveStraightCmd.h"
 #include "Commands/SilkyDriveCmd.h"
 #include "Commands/ResetDriveEncodersCmd.h"
+#include "Commands/AHRSDriveStraightCmd.h"
 
 class Robot: public frc::IterativeRobot {
 public:
@@ -128,6 +129,7 @@ private:
 	{
 		SmartDashboard::PutData("Drive mostly straight", new DriveStraightCmd(LOAD_STRAIGHT_DIST));
 		SmartDashboard::PutData("reset encoders", new ResetDriveEncodersCmd());
+		SmartDashboard::PutData("Drive straight with navx", new AHRSDriveStraightCmd(1000, 0.7));
 		//SmartDashboard::PutData("Hopefully Turn", new DriveTurnCmd(LOAD_STRAIGHT_DIST));
 	}
 

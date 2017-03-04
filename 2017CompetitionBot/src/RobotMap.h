@@ -91,6 +91,10 @@ constexpr float DRIVE_TURN_P = 0.045;
 constexpr float DRIVE_TURN_I = 0;
 constexpr float DRIVE_TURN_D = 0.09;
 constexpr float DRIVE_TURN_TOLERANCE = 1;
+constexpr float DRIVE_BALANCE_P = 0.0;
+constexpr float DRIVE_BALANCE_I = 0.0;
+constexpr float DRIVE_BALANCE_D = 0.0;
+constexpr float DRIVE_BALANCE_TOLERANCE = 5;
 constexpr float TURN_TOLERANCE_DURATION_S = 1;
 
 // Axis Camera
