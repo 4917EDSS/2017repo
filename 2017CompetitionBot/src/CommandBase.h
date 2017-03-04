@@ -9,6 +9,7 @@
 #include "OI.h"
 #include "Subsystems/DrivetrainSub.h"
 #include "Subsystems/ShooterSub.h"
+#include "Subsystems/HopperSub.h"
 #include "Subsystems/IntakeSub.h"
 #include "Subsystems/LiftSub.h"
 #include "Subsystems/DriveVisionSub.h"
@@ -16,8 +17,6 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/core/core.hpp>
 #include "Components/GripPipeline.h"
-//#include "Subsystems/AgitatorSub.h"
-
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -39,7 +38,7 @@ public:
 	static std::unique_ptr<IntakeSub> intakeSub;
 	static std::unique_ptr<LiftSub> liftSub;
 	static std::unique_ptr<DriveVisionSub> driveVisionSub;
-//	static std::unique_ptr<AgitatorSub> agitatorSub;
+	static std::unique_ptr<HopperSub> hopperSub;
 	static std::unique_ptr<OI> oi;
 //	static std::unique_ptr<cs::AxisCamera> axisCamera;
 //	static std::unique_ptr<grip::GripPipeline> gripPipeline;

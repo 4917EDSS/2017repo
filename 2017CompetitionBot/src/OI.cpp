@@ -1,3 +1,4 @@
+#include <Commands/ExpandHopperCmd.h>
 #include <Commands/ShootCmd.h>
 #include "OI.h"
 
@@ -10,7 +11,6 @@
 #include "Commands/ToggleShifterCmd.h"
 #include "Commands/DriveForwards.h"
 #include "Commands/OpenGearFlapsCmd.h"
-#include "Commands/ShrinkHopperCmd.h"
 #include "Commands/SetShooterSpeedCmd.h"
 #include "Commands/KillEverythingCmd.h"
 #include "Commands/ToggleIntakeCmd.h"
@@ -36,7 +36,7 @@ OI::OI() {
 	openGearFlapsBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_GEAR_FLAP_BTN));
 	openGearFlapsBtn->WhileHeld(new OpenGearFlapsCmd());
 	shrinkHopperBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_SHRINK_HOPPER_BTN));
-	shrinkHopperBtn->WhileHeld(new ShrinkHopperCmd());
+	shrinkHopperBtn->WhileHeld(new ExpandHopperCmd());
 	keyShotBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_KEY_SHOT_BTN));
 	keyShotBtn->WhileHeld(new ShootCmd(-2100));
 	boilerShotBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_BOILER_SHOT_BTN));

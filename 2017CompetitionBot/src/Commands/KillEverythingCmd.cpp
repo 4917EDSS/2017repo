@@ -1,7 +1,6 @@
 #include "KillEverythingCmd.h"
 
 KillEverythingCmd::KillEverythingCmd() {
-	//Requires(agitatorSub.get());
 	Requires(drivetrainSub.get());
 	Requires(intakeSub.get());
 	Requires(liftSub.get());

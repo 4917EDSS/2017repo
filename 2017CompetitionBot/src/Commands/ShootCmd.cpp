@@ -4,32 +4,31 @@ ShootCmd::ShootCmd() {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(shooterSub.get());
+	Requires(intakeSub.get());
 	shouldSetSpeed = false;
-	//Requires(agitatorSub.get());
 }
 
 ShootCmd::ShootCmd(float speed) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(shooterSub.get());
+	Requires(intakeSub.get());
 	this->speed = speed;
 	shouldSetSpeed = true;
-	//Requires(agitatorSub.get());
 }
 
 // Called just before this Command runs the first time
 void ShootCmd::Initialize() {
 	shooterSub->enableShooter();
+	intakeSub->setPickupMotor(1.0);
 	if(shouldSetSpeed){
 		shooterSub->setShooterSpeed(speed);
 	}
-	//agitatorSub->enableSpeedController();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ShootCmd::Execute() {
 	shooterSub->update();
-	//agitatorSub->startAgitator();
 }
 
 // Make this return true when this Command no longer needs to run execute()
@@ -40,7 +39,7 @@ bool ShootCmd::IsFinished() {
 // Called once after isFinished returns true
 void ShootCmd::End() {
 	shooterSub->disableShooter();
-	//agitatorSub->stopAgitator();
+	intakeSub->setPickupMotor(0.0);
 }
 
 // Called when another command which requires one or more of the same

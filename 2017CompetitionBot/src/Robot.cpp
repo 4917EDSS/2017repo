@@ -63,7 +63,6 @@ public:
 		else {
 			autonomousCommand.reset(new ExampleCommand());
 		}*/
-		CommandBase::drivetrainSub->setAlliance(*(autoAllianceOptions->GetSelected()));
 		autonomousCommand = autoLocationOptions->GetSelected();
 
 		if (autonomousCommand.get() != nullptr) {
@@ -98,7 +97,6 @@ public:
 private:
 	std::shared_ptr<frc::Command> autonomousCommand;
 	std::unique_ptr<frc::Command> autoLocation;
-	std::unique_ptr<frc::SendableChooser<std::shared_ptr<Alliance> > > autoAllianceOptions;
 	std::unique_ptr<frc::SendableChooser<std::shared_ptr<frc::Command> > > autoLocationOptions;
 	void UpdateSmartDashboard()
 	{
@@ -116,9 +114,6 @@ private:
 	}
 	void SetSmartDashboardAutoOptions()
 	{
-		autoAllianceOptions.reset(new frc::SendableChooser<std::shared_ptr<Alliance> >());
-		autoAllianceOptions->AddObject("Red", std::shared_ptr<Alliance>(new Alliance(Alliance::RED)));
-		autoAllianceOptions->AddDefault("Blue", std::shared_ptr<Alliance>(new Alliance(Alliance::BLUE)));
 
 		autoLocationOptions.reset(new frc::SendableChooser<std::shared_ptr<frc::Command> >());
 		autoLocationOptions->AddDefault("Do Nothing", std::shared_ptr<frc::Command>(new AutoDefaultGrp()));
@@ -127,7 +122,6 @@ private:
 		autoLocationOptions->AddObject("CenterGear Shoot", std::shared_ptr<frc::Command>(new AutoCenterGearShootGrp()));
 		autoLocationOptions->AddObject("LoaderGear", std::shared_ptr<frc::Command>(new AutoLoaderGearGrp()));
 
-		SmartDashboard::PutData("Auto Alliance", autoAllianceOptions.get());
 		SmartDashboard::PutData("Auto Modes", autoLocationOptions.get());
 	}
 	void SetSmartDashboardDriverContent()

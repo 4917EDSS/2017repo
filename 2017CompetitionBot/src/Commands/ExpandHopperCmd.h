@@ -1,12 +1,12 @@
-#ifndef ShrinkHopperCmd_H
-#define ShrinkHopperCmd_H
+#ifndef ExpandHopperCmd_H
+#define ExpandHopperCmd_H
 
 #include "../CommandBase.h"
 #include "WPILib.h"
 
-class ShrinkHopperCmd : public CommandBase {
+class ExpandHopperCmd : public CommandBase {
 public:
-	ShrinkHopperCmd();
+	ExpandHopperCmd();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
