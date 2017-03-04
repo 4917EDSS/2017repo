@@ -57,20 +57,33 @@ void CommandBase::VisionThread()
 
 	grip::GripPipeline gripPipeline;
 	cv::Mat source;
+	int j = 0;
 	while(true) {
-		std::cerr << "Before GrabFrame" << std::endl;
+		j++;
+		if(j%50 == 0){
+			std::cerr << "Before GrabFrame" << std::endl;
+		}
 		cvSink.GrabFrame(source);
-		std::cerr << "After GrabFrame" << std::endl;
+		if(j%50 == 0){
+			std::cerr << "After GrabFrame" << std::endl;
+		}
 		gripPipeline.Process(source);
-		std::cerr << "After Process" << std::endl;
+
+		if(j%50 == 0){
+			std::cerr << "After Process" << std::endl;
+		}
 		//std::cout << gripPipeline.GetFindContoursOutput()->size() << std::endl;
-		for(auto i: *(gripPipeline.GetFindContoursOutput()))
+		for(auto i: *(gripPipeline.GetFilterContoursOutput()))
 		{
 			cv::Moments M = cv::moments(i);
 			x = (M.m10 / M.m00) - AXIS_VISION_RESOLUTION_WIDTH/2;
-			std::cout <<"X: "<<  x-120 << std:: endl;
+			if(j%50 == 0){
+				std::cout <<"X: "<<  x;
+			}
 			y = (M.m01 / M.m00) - AXIS_VISION_RESOLUTION_HEIGHT/2;
-			std:: cout <<"Y: " <<y-176 <<std:: endl;
+			if(j%50 == 0){
+				std:: cout <<"Y: " <<y <<std:: endl;
+			}
 		}
 	}
 }
