@@ -11,6 +11,7 @@ private:
 	// for methods that implement subsystem capabilities
 
 	std::shared_ptr<CANTalon> liftMotor;
+	std::shared_ptr<CANTalon> liftMotor2;
 
 
 public:

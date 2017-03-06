@@ -3,6 +3,7 @@
 
 LiftSub::LiftSub() : Subsystem("ExampleSubsystem") {
 	liftMotor.reset(new CANTalon(LIFT_MOTOR_CANID));
+	liftMotor2.reset(new CANTalon(LIFT_MOTOR2_CANID));
 }
 
 void LiftSub::InitDefaultCommand() {
@@ -16,4 +17,5 @@ void LiftSub::InitDefaultCommand() {
 void LiftSub::SetLiftMotor(float speed){
 
 	liftMotor->Set(-speed);
+	liftMotor2->Set(-speed);
 }
