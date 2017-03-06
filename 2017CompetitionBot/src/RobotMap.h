@@ -37,12 +37,12 @@ constexpr int LEFT2_DRIVE_MOTOR_CANID = 3;
 constexpr int RIGHT1_DRIVE_MOTOR_CANID = 0;
 constexpr int RIGHT2_DRIVE_MOTOR_CANID = 8;
 constexpr int SHOOTER1_MOTOR_CANID = 2;
-constexpr int SHOOTER2_MOTOR_CANID = 6;
+//constexpr int SHOOTER2_MOTOR_CANID = 6;
 constexpr int LIFT_MOTOR_CANID = 4;
-constexpr int LIFT_MOTOR2_CANID = 9;
+constexpr int LIFT_MOTOR2_CANID = 6;
 constexpr int INTAKE_MOTOR_CANID = 7;
 constexpr int FEEDER_MOTOR1_CANID = 5;
-constexpr int FEEDER_MOTOR2_CANID = 29;			// Can we remove this one?
+constexpr int FEEDER_MOTOR2_CANID = 9;			// Can we remove this one?
 
 //DIO IDs
 constexpr int LEFT_MOTOR_ENC1_DIO = 0;
