@@ -90,6 +90,7 @@ public:
 	void TeleopPeriodic() override {
 		frc::Scheduler::GetInstance()->Run();
 		UpdateSmartDashboard();
+		//std::cout << "X: " << CommandBase::getCentreX() << std::endl;
 	}
 	void TestPeriodic() override {
 		std::printf("TestPeriodic");

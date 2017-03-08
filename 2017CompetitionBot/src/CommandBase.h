@@ -30,6 +30,7 @@ public:
 	CommandBase() = default;
 	static void Init();
 	static void VisionThread();
+	static int getCentreX();
 	static int x;
 	static int y;
 	// Create a single static instance of all of your subsystems

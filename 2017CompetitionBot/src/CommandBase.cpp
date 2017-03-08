@@ -82,8 +82,12 @@ void CommandBase::VisionThread()
 			}
 			y = (M.m01 / M.m00) - AXIS_VISION_RESOLUTION_HEIGHT/2;
 			if(j%50 == 0){
-				std:: cout <<"Y: " <<y <<std:: endl;
+				//std:: cout <<"Y: " <<y <<std:: endl;
 			}
 		}
 	}
+}
+
+int CommandBase::getCentreX(){
+	return x;
 }
