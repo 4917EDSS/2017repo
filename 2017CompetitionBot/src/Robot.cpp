@@ -1,6 +1,3 @@
-#include <Commands/AutoBoilerGearShootGrp.h>
-#include <Commands/AutoCenterGearShootGrp.h>
-#include <Commands/AutoHopperShootGrp.h>
 #include <memory>
 
 #include <Commands/Command.h>
@@ -23,6 +20,9 @@
 #include "Commands/SilkyDriveCmd.h"
 #include "Commands/ResetDriveEncodersCmd.h"
 #include "Commands/AHRSDriveStraightCmd.h"
+#include "Commands/AutoBoilerGearShootGrp.h"
+#include "Commands/AutoCenterGearShootGrp.h"
+#include "Commands/AutoHopperShootGrp.h"
 
 class Robot: public frc::IterativeRobot {
 public:

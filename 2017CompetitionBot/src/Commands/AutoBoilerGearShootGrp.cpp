@@ -21,12 +21,16 @@ AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 
 	// numbers need to be switched to variables
 
+	//Open Gear Flaps
+	AddParallel(new OpenGearFlapsCmd());
 	//Drive to gaar
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 500, 3800}, std::vector<double> {0, 500, 3000}));
 	//Wait
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 	//Reverse to left
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -150,-300},std::vector<double> {0,-150,-1500}));
+	//Close Gear Flaps
+	AddParallel(new OpenGearFlapsCmd(false));
 	//Drive to boiler
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 50, 3000},std::vector<double> {0, 50, 2500}));
 	//Shooot!!!

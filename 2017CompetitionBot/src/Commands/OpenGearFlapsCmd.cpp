@@ -1,14 +1,19 @@
 #include "OpenGearFlapsCmd.h"
 
-OpenGearFlapsCmd::OpenGearFlapsCmd() {
+OpenGearFlapsCmd::OpenGearFlapsCmd(bool b) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(intakeSub.get());
+	open = b;
 }
 
 // Called just before this Command runs the first time
 void OpenGearFlapsCmd::Initialize() {
-	intakeSub->openGearFlaps();
+	if(open) {
+		intakeSub->openGearFlaps();
+	} else {
+		intakeSub->closeGearFlaps();
+	}
 }
 
 // Called repeatedly when this Command is scheduled to run

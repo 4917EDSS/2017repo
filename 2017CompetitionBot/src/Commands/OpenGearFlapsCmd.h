@@ -5,8 +5,10 @@
 #include "WPILib.h"
 
 class OpenGearFlapsCmd : public CommandBase {
+private:
+	bool open;
 public:
-	OpenGearFlapsCmd();
+	OpenGearFlapsCmd(bool b = true);
 	void Initialize();
 	void Execute();
 	bool IsFinished();

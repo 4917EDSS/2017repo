@@ -22,12 +22,16 @@ AutoCenterGearShootGrp::AutoCenterGearShootGrp() {
 	//   Wait for gear
 	//   R
 
+	//Open Gear Flaps
+	AddParallel(new OpenGearFlapsCmd());
 	//Drive Straight to peg
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1886 / 2, 1886}, std::vector<double> {0, 1886 / 2, 1886}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1886 / 2, 2000}, std::vector<double> {0, 1886 / 2, 2000}));
 	//Wait
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 	//Reverse to right
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -150,-1500},std::vector<double> {0,-150,-300}));
+	//Close Gear Flaps
+	AddParallel(new OpenGearFlapsCmd(false));
 	//Drive to boiler
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 50, 3500}, std::vector<double> {0, 50, 4300}));
 	//Shoot
