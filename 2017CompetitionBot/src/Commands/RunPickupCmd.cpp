@@ -16,7 +16,7 @@ void RunPickupCmd::Initialize() {
 void RunPickupCmd::Execute() {
 	std::shared_ptr<frc::Joystick> dCtrl = oi->getDriverController();
 	//if(fabs(dCtrl->GetRawAxis(DRIVER_LEFT_TANK_DRIVE_AXIS)) < 0.01 && fabs(dCtrl->GetRawAxis(DRIVER_RIGHT_TANK_DRIVE_AXIS)) < 0.01){
-	if ((fabs(drivetrainSub -> getRightEncoderSpeed()) < 10 && fabs(drivetrainSub -> getLeftEncoderSpeed()) < 10) || !intakeSub -> getIntakeWhenMoving()) {
+	if ((drivetrainSub->getRightEncoderSpeed() < 10 && drivetrainSub->getLeftEncoderSpeed() < 10) || !intakeSub -> getIntakeWhenMoving()) {
 		intakeSub->setPickupMotor(0.0);
 	}
 	else{
