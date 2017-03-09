@@ -1,29 +1,24 @@
 #include <Commands/ShootCmd.h>
 
-ShootCmd::ShootCmd() {
+ShootCmd::ShootCmd(float speed) : speed(speed), time(0) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(shooterSub.get());
 	Requires(intakeSub.get());
-	shouldSetSpeed = false;
+	shouldStopAtTime = false;
 }
 
-ShootCmd::ShootCmd(float speed) {
-	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(Robot::chassis.get());
+ShootCmd::ShootCmd(float speed, float time) : speed(speed), time(time) {
 	Requires(shooterSub.get());
 	Requires(intakeSub.get());
-	this->speed = speed;
-	shouldSetSpeed = true;
+	shouldStopAtTime = true;
 }
 
 // Called just before this Command runs the first time
 void ShootCmd::Initialize() {
 	shooterSub->enableShooter();
 	intakeSub->setPickupMotor(1.0);
-	if(shouldSetSpeed){
-		shooterSub->setShooterSpeed(speed);
-	}
+	shooterSub->setShooterSpeed(speed);
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -33,6 +28,9 @@ void ShootCmd::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool ShootCmd::IsFinished() {
+	if (shouldStopAtTime){
+		return TimeSinceInitialized() > time;
+	}
 	return false;
 }
 

@@ -5,16 +5,17 @@
 
 class ShootCmd : public CommandBase {
 public:
-	ShootCmd();
 	ShootCmd(float speed);
+	ShootCmd(float speed, float time);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
 private:
-	bool shouldSetSpeed;
+	bool shouldStopAtTime;
 	float speed;
+	float time;
 };
 
 #endif  // ShootWhileHeldCmd_H

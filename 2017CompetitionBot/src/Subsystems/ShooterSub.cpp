@@ -42,7 +42,7 @@ void ShooterSub::update()
 	if (targetSpeed > 0.0){
 		setFeederSpeed(-1.0);
 	}
-	else if (error > 0.1) {
+	else if (error > 0.05) {
 		setFeederSpeed(0.0);
 	}
 	else {
