@@ -45,7 +45,7 @@ constexpr int LIFT_MOTOR_CANID = 4;
 constexpr int LIFT_MOTOR2_CANID = 6;
 constexpr int INTAKE_MOTOR_CANID = 7;
 constexpr int FEEDER_MOTOR1_CANID = 5;
-constexpr int FEEDER_MOTOR2_CANID = 9;			// Can we remove this one?
+constexpr int FEEDER_MOTOR2_CANID = 9;
 
 //DIO IDs
 constexpr int LEFT_MOTOR_ENC1_DIO = 0;
@@ -109,6 +109,9 @@ constexpr int AXIS_VISION_RESOLUTION_WIDTH = 320;
 constexpr int AXIS_VISION_RESOLUTION_HEIGHT = 240;
 constexpr int AXIS_STREAM_RESOLUTION_WIDTH = 320;
 constexpr int AXIS_STREAM_RESOLUTION_HEIGHT = 240;
+
+// Hik Camera
+#define HIKCAM_ADDRESS "http://admin:4917sirlancerbot@10.49.17.11/Streaming/channels/102/httppreview"
 
 // Robot info required by SilkyMotionManager - all in millimeters, seconds
 constexpr double MAX_ACCEL = 1474; // mm/s^2

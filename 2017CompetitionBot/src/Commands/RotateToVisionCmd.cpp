@@ -1,3 +1,4 @@
+#include "Components/MachineVision.h"
 #include "RotateToVisionCmd.h"
 
 RotateToVisionCmd::RotateToVisionCmd() {
@@ -13,11 +14,16 @@ void RotateToVisionCmd::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void RotateToVisionCmd::Execute() {
-	if(CommandBase::x<0){
-		drivetrainSub->drive(-0.5, 0.5);
-	}
-	else if(CommandBase::x>0){
-		drivetrainSub->drive(0.5, -0.5);
+	struct MachineVisionData mvd = CommandBase::visionResults.getResults();
+
+	if(mvd.numCountoursFound > 1 )
+	{
+		if(mvd.centerX < 0){
+			drivetrainSub->drive(-0.5, 0.5);
+		}
+		else if(mvd.centerX > 0){
+			drivetrainSub->drive(0.5, -0.5);
+		}
 	}
 }
 
