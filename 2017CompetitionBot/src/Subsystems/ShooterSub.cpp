@@ -11,9 +11,9 @@ ShooterSub::ShooterSub() : Subsystem("ShooterSub") {
 	feederMotor2->Set(0);
 	shooterMotor1->Set(0);
 	// TODO UNDO THIS AS SOON AS DRIVE TALON FIXED
-	//shooterMotor2.reset(new CANTalon(SHOOTER2_MOTOR_CANID));
-	//shooterMotor2->SetControlMode(frc::CANSpeedController::kFollower);
-	//shooterMotor2->Set(SHOOTER1_MOTOR_CANID);
+	shooterMotor2.reset(new CANTalon(SHOOTER2_MOTOR_CANID));
+	shooterMotor2->SetControlMode(frc::CANSpeedController::kFollower);
+	shooterMotor2->Set(SHOOTER1_MOTOR_CANID);
 
 
 	// Make these properly available in Test mode
