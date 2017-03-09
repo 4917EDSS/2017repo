@@ -31,8 +31,8 @@ constexpr float HOPPER_WAIT_TIME = 1.0;
 #define AHRSInterface SPI::kMXP
 
 //Shoot Speeds
-constexpr float KEY_SHOT_SHOOTER_SPEED = -1770;
-constexpr float BOILER_SHOT_SHOOTER_SPEED = -2100;
+constexpr float KEY_SHOT_SHOOTER_SPEED = -2100;
+constexpr float BOILER_SHOT_SHOOTER_SPEED = -1770;
 
 // CAN IDs
 constexpr int LEFT1_DRIVE_MOTOR_CANID = 1;
@@ -71,7 +71,7 @@ constexpr int ENCODER_CONVERSION_FACTOR = 4;
 //1 m = 1318 encoder ticks
 //1 encoder tick = 1.32 mm
 constexpr int LOAD_STRAIGHT_DIST = 1886;
-constexpr int GEAR_WAIT_TIME = 0.5;
+constexpr int GEAR_WAIT_TIME = 0.65;
 constexpr int CENTER_TO_BOILER = 2224;
 constexpr int TURN_TO_BOILER_DEGREE = -119;
 constexpr int BACK_OFF_OF_SHAFT_DIST = -301;
@@ -113,8 +113,8 @@ constexpr int AXIS_STREAM_RESOLUTION_HEIGHT = 240;
 constexpr double MAX_ACCEL = 1474; // mm/s^2
 constexpr double MAX_DECEL = 4000; // mm/s^2
 constexpr double MAX_VEL = 2800; // mm/s
-constexpr double STOPPING_DISTANCE_TOLERANCE = 30; // mm
-constexpr double STOPPING_SPEED_TOLERANCE = 10; // mm/s
+constexpr double STOPPING_DISTANCE_TOLERANCE = 60; // mm
+constexpr double STOPPING_SPEED_TOLERANCE = 50; // mm/s
 constexpr double SILKY_KV = (1.0/MAX_VEL)*0.86;
 constexpr double SILKY_KA = (1.0/MAX_DECEL)*0.485;
 constexpr double SILKY_KP = 0.027;

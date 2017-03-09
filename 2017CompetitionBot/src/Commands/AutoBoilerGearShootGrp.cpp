@@ -1,5 +1,6 @@
 #include <Commands/AutoBoilerGearShootGrp.h>
 #include "SilkyDriveCmd.h"
+#include "OpenGearFlapsCmd.h";
 
 AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 	// Add Commands here:
@@ -23,16 +24,11 @@ AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 
 	//Open Gear Flaps
 	AddParallel(new OpenGearFlapsCmd());
-	//Drive to gaar
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 500, 3800}, std::vector<double> {0, 500, 3000}));
+	//Drive to gaar (From Key)
+	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1217, 2519, 3230}, std::vector<double> {0, 1180, 2114, 2415}));
+	//Drive to gear (From Boiler)
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1250, 2577, 3644}, std::vector<double> {0, 1072, 2032, 3008}));
 	//Wait
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
-	//Reverse to left
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -150,-300},std::vector<double> {0,-150,-1500}));
-	//Close Gear Flaps
-	AddParallel(new OpenGearFlapsCmd(false));
-	//Drive to boiler
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 50, 3000},std::vector<double> {0, 50, 2500}));
-	//Shooot!!!
-	AddSequential(new ShootCmd());
+
 }

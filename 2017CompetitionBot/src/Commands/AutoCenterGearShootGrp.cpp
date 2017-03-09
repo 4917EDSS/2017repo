@@ -31,11 +31,11 @@ AutoCenterGearShootGrp::AutoCenterGearShootGrp() {
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 	//Reverse to right
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -150,-1700},std::vector<double> {0,-150,-500}));
-	//Drive to boiler
-	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 100, 3300}, std::vector<double> {0, 150, 4100}));//Straight to Hopper
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 850, 2253, 3475}, std::vector<double> {0, 1025, 2900, 4250}));//More of a Turn
 	//Close Gear Flaps
 	AddParallel(new OpenGearFlapsCmd(false));
+	//Drive to boiler
+	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 100, 3300}, std::vector<double> {0, 150, 4100}));//St1raight to Hopper
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 850, 2253, 3475}, std::vector<double> {0, 1025, 2900, 4250}));//More of a Turn
 	//Shoot
 	AddSequential(new ShootCmd(BOILER_SHOT_SHOOTER_SPEED));
 

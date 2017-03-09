@@ -2,7 +2,7 @@
 #include "../RobotMap.h"
 
 // There are a couple of ways that this may work.  Un-comment ONE label to turn on that method and try it.
-//#define MULTI_CAMERAS
+#define MULTI_CAMERAS
 //#define SWITCHING_CAMERAS
 //#define SHARED_NAME_SWITCHING_CAMERAS
 
