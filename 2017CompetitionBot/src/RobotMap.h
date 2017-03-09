@@ -32,7 +32,7 @@ constexpr float HOPPER_WAIT_TIME = 1.0;
 
 //Shoot Speeds
 constexpr float KEY_SHOT_SHOOTER_SPEED = -2100;
-constexpr float BOILER_SHOT_SHOOTER_SPEED = -1770;
+constexpr float BOILER_SHOT_SHOOTER_SPEED = -1800;
 
 // CAN IDs
 constexpr int LEFT1_DRIVE_MOTOR_CANID = 1;

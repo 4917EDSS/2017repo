@@ -21,9 +21,9 @@ AutoShootGrp::AutoShootGrp() {
 	// arm.
 
 	// shoot
-	AddSequential(new ShootCmd(KEY_SHOT_SHOOTER_SPEED, TEN_BALL_SHOT_TIME));
-	// reverse turn
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -150,-1500},std::vector<double> {0,-150,-300}));
+	AddSequential(new ShootCmd(BOILER_SHOT_SHOOTER_SPEED, TEN_BALL_SHOT_TIME));
+	// reverse turn - check turn
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -1000,-3700},std::vector<double> {0,-300,-1200}));
 	// drive straight
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 2500, 5000},std::vector<double> {0, 2500, 5000}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 200, 2000},std::vector<double> {0, 200, 2000}));
 }
