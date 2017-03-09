@@ -18,7 +18,6 @@ std::unique_ptr<DriveVisionSub> CommandBase::driveVisionSub;
 int CommandBase::x;
 int CommandBase::y;
 
-
 std::unique_ptr<OI> CommandBase::oi;
 
 CommandBase::CommandBase(const std::string &name) :
@@ -36,8 +35,8 @@ void CommandBase::Init()
 	hopperSub.reset(new HopperSub());
 	oi.reset(new OI());
 
-//	std::thread visionThread(VisionThread);
-//	visionThread.detach();
+	std::thread visionThread(VisionThread);
+	visionThread.detach();
 }
 
 void CommandBase::VisionThread()
@@ -73,18 +72,26 @@ void CommandBase::VisionThread()
 			//std::cerr << "After Process" << std::endl;
 		}
 		//std::cout << gripPipeline.GetFindContoursOutput()->size() << std::endl;
+
+		int xsum = 0;
+		int ysum = 0;
+
 		for(auto i: *(gripPipeline.GetFilterContoursOutput()))
 		{
 			cv::Moments M = cv::moments(i);
-			x = (M.m10 / M.m00) - AXIS_VISION_RESOLUTION_WIDTH/2;
+			int local_x = (M.m10 / M.m00) - AXIS_VISION_RESOLUTION_WIDTH/2;
 			if(j%50 == 0){
-				std::cout <<"X: "<<  x;
+				std::cout <<"X: "<< local_x << "\t";
 			}
-			y = (M.m01 / M.m00) - AXIS_VISION_RESOLUTION_HEIGHT/2;
+			int local_y = (M.m01 / M.m00) - AXIS_VISION_RESOLUTION_HEIGHT/2;
 			if(j%50 == 0){
-				//std:: cout <<"Y: " <<y <<std:: endl;
+				std:: cout <<"Y: " << local_y <<std:: endl;
 			}
+			xsum += local_x;
+			ysum += local_y;
 		}
+		x = xsum / 2;
+		y = ysum / 2;
 	}
 }
 
