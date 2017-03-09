@@ -36,8 +36,8 @@ void CommandBase::Init()
 	hopperSub.reset(new HopperSub());
 	oi.reset(new OI());
 
-	std::thread visionThread(VisionThread);
-	visionThread.detach();
+//	std::thread visionThread(VisionThread);
+//	visionThread.detach();
 }
 
 void CommandBase::VisionThread()
@@ -61,16 +61,16 @@ void CommandBase::VisionThread()
 	while(true) {
 		j++;
 		if(j%50 == 0){
-			std::cerr << "Before GrabFrame" << std::endl;
+			//std::cerr << "Before GrabFrame" << std::endl;
 		}
 		cvSink.GrabFrame(source);
 		if(j%50 == 0){
-			std::cerr << "After GrabFrame" << std::endl;
+			//std::cerr << "After GrabFrame" << std::endl;
 		}
 		gripPipeline.Process(source);
 
 		if(j%50 == 0){
-			std::cerr << "After Process" << std::endl;
+			//std::cerr << "After Process" << std::endl;
 		}
 		//std::cout << gripPipeline.GetFindContoursOutput()->size() << std::endl;
 		for(auto i: *(gripPipeline.GetFilterContoursOutput()))

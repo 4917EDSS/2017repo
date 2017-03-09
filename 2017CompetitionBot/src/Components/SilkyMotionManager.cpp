@@ -193,11 +193,16 @@ std::pair<double, double> SilkyMotionManager::execute(double currentLeftPos, dou
 bool SilkyMotionManager::isFinished(double leftPos, double leftVel, double rightPos, double rightVel){
 	SmartDashboard::PutNumber("left velocity",leftVel);
 	SmartDashboard::PutNumber("right velocity",rightVel);
+
+	std::cout << "Stopping Distance Left" << (abs(abs(leftPos) - stoppingLocationLeft)) << std::endl;
+	std::cout << "Stopping Distance Right" << (abs(abs(rightPos) - stoppingLocationRight)) << std::endl;
+
 	// Taking abs of leftPos and rightPos because stoppingLocations are always positive, but if we are going backwards leftpos might be negative
 	if(abs(abs(leftPos) - stoppingLocationLeft) < stoppingDistanceTolerance
 			&& abs(abs(rightPos) - stoppingLocationRight) < stoppingDistanceTolerance
 			&& abs(leftVel) < stoppingSpeedTolerance
 			&& abs(rightVel) < stoppingSpeedTolerance) {
+		std::cout << "FINISHED!" << std::endl;
 		return true;
 	} else {
 		return false;
