@@ -87,8 +87,8 @@ void CommandBase::VisionThread()
 		if( numContoursFound > 1 )
 		{
 			// Find the center between both rectangles
-			mvd.centerX = (largestRect[0].x + largestRect[0].width/2) + (largestRect[1].x + largestRect[1].width/2) / 2;
-			mvd.centerY = (largestRect[0].y + largestRect[0].height/2) + (largestRect[1].y + largestRect[1].height/2) / 2;
+			mvd.centerX = ((largestRect[0].x + largestRect[0].width/2) + (largestRect[1].x + largestRect[1].width/2)) / 2;
+			mvd.centerY = ((largestRect[0].y + largestRect[0].height/2) + (largestRect[1].y + largestRect[1].height/2)) / 2;
 		}
 		else if( numContoursFound == 1 )
 		{
