@@ -9,6 +9,8 @@
 #define SRC_COMPONENTS_MACHINEVISION_H_
 
 struct MachineVisionData {
+	int x;
+	int y;
 	int centerX;
 	int centerY;
 	int numCountoursFound;
@@ -24,6 +26,11 @@ public:
 	void setResults(struct MachineVisionData newMvd);
 };
 
+// Function prototypes
+void MachineVisionThread(void);
+
+// Global variables
+extern struct MachineVisionResults visionResults;
 
 
 #endif /* SRC_COMPONENTS_MACHINEVISION_H_ */
