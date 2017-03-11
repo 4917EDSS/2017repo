@@ -96,6 +96,18 @@ float DrivetrainSub::getPitch(){
 float DrivetrainSub::getRoll(){
 	return ahrs->GetRoll();
 }
+float DrivetrainSub::getLeftAmps1() {
+	return leftMotor1->GetOutputCurrent();
+}
+float DrivetrainSub::getLeftAmps2() {
+	return leftMotor2->GetOutputCurrent();
+}
+float DrivetrainSub::getRightAmps1() {
+	return rightMotor1->GetOutputCurrent();
+}
+float DrivetrainSub::getRightAmps2() {
+	return rightMotor2->GetOutputCurrent();
+}
 void DrivetrainSub::enableTurnPID(double setPoint)
 {
 	Preferences *prefs = Preferences::GetInstance();

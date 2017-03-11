@@ -34,20 +34,25 @@ void ShooterSub::InitDefaultCommand() {
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-void ShooterSub::update()
+void ShooterSub::update(bool shooting)
 {
 	double setSpeed = targetSpeed + adjustmentSpeed;
 	shooterMotor1->Set(setSpeed);
-	double currentSpeed = getSpeed();
-	double error = fabs((currentSpeed - setSpeed)/setSpeed);
-	if (setSpeed > 0.0){
-		setFeederSpeed(-1.0);
+	if(shooting){
+		double currentSpeed = getSpeed();
+		double error = fabs((currentSpeed - setSpeed)/setSpeed);
+		if (setSpeed > 0.0){
+			setFeederSpeed(-1.0);
+		}
+		else if (error > 0.05) {
+			setFeederSpeed(0.0);
+		}
+		else {
+			setFeederSpeed(1.0);
+		}
 	}
-	else if (error > 0.05) {
+	else{
 		setFeederSpeed(0.0);
-	}
-	else {
-		setFeederSpeed(1.0);
 	}
 }
 void ShooterSub::setShooterSpeed(float newSpeed)
