@@ -26,7 +26,7 @@ public:
 	void InitDefaultCommand();
 
 	// primary interface
-	void update();
+	void update(bool shooting);
 	void enableShooter();
 	void disableShooter();
 

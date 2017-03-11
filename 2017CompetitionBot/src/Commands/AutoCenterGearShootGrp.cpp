@@ -33,10 +33,13 @@ AutoCenterGearShootGrp::AutoCenterGearShootGrp() {
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -150,-1700},std::vector<double> {0,-150,-500}));
 	//Close Gear Flaps
 	AddParallel(new OpenGearFlapsCmd(false));
+	//Start shooter motor
+	AddParallel(new SpinUpCmd(AUTO_BOILER_SHOT_SHOOTER_SPEED));
 	//Drive to boiler
 	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 100, 3300}, std::vector<double> {0, 150, 4100}));//St1raight to Hopper
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 850, 2253, 3475}, std::vector<double> {0, 1025, 2900, 4250}));//More of a Turn
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 975, 2253, 3475}, std::vector<double> {0, 1175, 2900, 4300}));//More of a Turn
 	//Shoot
+	AddSequential(new ShootCmd(AUTO_BOILER_SHOT_SHOOTER_SPEED, BOILER_SHOOT_TIME_1));
 	AddSequential(new ShootCmd(BOILER_SHOT_SHOOTER_SPEED));
 
 }

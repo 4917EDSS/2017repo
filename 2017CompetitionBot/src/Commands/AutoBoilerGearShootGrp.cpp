@@ -27,8 +27,8 @@ AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 	//Drive to gaar (From Key)
 	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1217, 2519, 3230}, std::vector<double> {0, 1180, 2114, 2415}));
 	//Drive to gear (From Boiler)
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1250, 2577, 3644}, std::vector<double> {0, 1072, 2032, 3008}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 200, 2160, 3810}, std::vector<double> {0, 200, 1350, 3000}));
 	//Wait
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
-
+	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, -200, -400}, std::vector<double> {0, -200, -2500}));
 }

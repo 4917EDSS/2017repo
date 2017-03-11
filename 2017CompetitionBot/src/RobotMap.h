@@ -26,13 +26,15 @@ enum Alliance {
 
 // Auto values
 constexpr float HOPPER_WAIT_TIME = 1.0;
+constexpr float BOILER_SHOOT_TIME_1 = 1.0;
 
 //AHRS define
 #define AHRSInterface SPI::kMXP
 
 //Shoot Speeds
-constexpr float KEY_SHOT_SHOOTER_SPEED = -2100;
-constexpr float BOILER_SHOT_SHOOTER_SPEED = -1800;
+constexpr float KEY_SHOT_SHOOTER_SPEED = -2400;
+constexpr float BOILER_SHOT_SHOOTER_SPEED = -1900;
+constexpr float AUTO_BOILER_SHOT_SHOOTER_SPEED = -2000;
 
 // CAN IDs
 constexpr int LEFT1_DRIVE_MOTOR_CANID = 1;
@@ -71,7 +73,7 @@ constexpr int ENCODER_CONVERSION_FACTOR = 4;
 //1 m = 1318 encoder ticks
 //1 encoder tick = 1.32 mm
 constexpr int LOAD_STRAIGHT_DIST = 1886;
-constexpr int GEAR_WAIT_TIME = 0.65;
+constexpr int GEAR_WAIT_TIME = 1.25;
 constexpr int CENTER_TO_BOILER = 2224;
 constexpr int TURN_TO_BOILER_DEGREE = -119;
 constexpr int BACK_OFF_OF_SHAFT_DIST = -301;

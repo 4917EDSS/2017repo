@@ -66,6 +66,10 @@ public:
 	void PIDDrive(float speed);
 	void EnableBalancerPID(float setPoint);
 	void DisableBalancerPID();
+	float getLeftAmps1();
+	float getLeftAmps2();
+	float getRightAmps1();
+	float getRightAmps2();
 };
 
 #endif  // DrivetrainSub_H

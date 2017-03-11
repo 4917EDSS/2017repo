@@ -114,6 +114,11 @@ private:
 		SmartDashboard::PutNumber("Raw Right Encoder", CommandBase::drivetrainSub->getRightEncoderRaw());
 		SmartDashboard::PutNumber("Right Encoder Speed", CommandBase::drivetrainSub->getRightEncoderSpeed());
 		SmartDashboard::PutNumber("Left Encoder Speed", CommandBase::drivetrainSub->getLeftEncoderSpeed());
+		SmartDashboard::PutNumber("Left Drive Amps1", CommandBase::drivetrainSub-> getLeftAmps1());
+		SmartDashboard::PutNumber("Left Drive Amps2", CommandBase::drivetrainSub-> getLeftAmps2());
+		SmartDashboard::PutNumber("Right Drive Amps1", CommandBase::drivetrainSub->getRightAmps1());
+		SmartDashboard::PutNumber("Right Drive Amps2", CommandBase::drivetrainSub->getRightAmps2());
+		SmartDashboard::PutBoolean("Intake While Driving", CommandBase::intakeSub->getIntakeWhenMoving());
 	}
 	void SetSmartDashboardAutoOptions()
 	{

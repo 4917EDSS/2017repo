@@ -5,6 +5,7 @@
 //#define MULTI_CAMERAS
 //#define SWITCHING_CAMERAS
 //#define SHARED_NAME_SWITCHING_CAMERAS
+#define SECOND_CAM
 
 DriveVisionSub::DriveVisionSub() : Subsystem("DriveVisionSub") {
 #ifdef MULTI_CAMERAS
@@ -19,6 +20,10 @@ DriveVisionSub::DriveVisionSub() : Subsystem("DriveVisionSub") {
 
 #ifdef SHARED_NAME_SWITCHING_CAMERAS
 	frc::CameraServer::GetInstance()->StartAutomaticCapture("usbCam", "/dev/video0");
+#endif
+
+#ifdef SECOND_CAM
+	frc::CameraServer::GetInstance()->StartAutomaticCapture("usbCam2", "/dev/video1");
 #endif
 }
 
