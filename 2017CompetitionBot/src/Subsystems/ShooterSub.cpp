@@ -21,9 +21,9 @@ ShooterSub::ShooterSub() : Subsystem("ShooterSub") {
 	lw->AddActuator("Shooter", "Motor", shooterMotor1);
 	//lw->AddActuator("Shooter", "Bottom Motor", bottomMotor);
 	// moved up to allow tuning
-	shooterMotor1->SetF(0.05);
-	shooterMotor1->SetP(1);
-	shooterMotor1->SetD(3);
+	shooterMotor1->SetF(0.045);
+	shooterMotor1->SetP(0.4);
+	shooterMotor1->SetD(1);
 
 }
 
@@ -36,10 +36,11 @@ void ShooterSub::InitDefaultCommand() {
 // here. Call these from Commands.
 void ShooterSub::update()
 {
-	shooterMotor1->Set(targetSpeed + adjustmentSpeed);
+	double setSpeed = targetSpeed + adjustmentSpeed;
+	shooterMotor1->Set(setSpeed);
 	double currentSpeed = getSpeed();
-	double error = fabs((currentSpeed - targetSpeed)/targetSpeed);
-	if (targetSpeed > 0.0){
+	double error = fabs((currentSpeed - setSpeed)/setSpeed);
+	if (setSpeed > 0.0){
 		setFeederSpeed(-1.0);
 	}
 	else if (error > 0.05) {
