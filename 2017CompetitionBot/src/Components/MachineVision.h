@@ -9,6 +9,8 @@
 #define SRC_COMPONENTS_MACHINEVISION_H_
 
 struct MachineVisionData {
+	int x;
+	int y;
 	int centerX;
 	int centerY;
 	int numCountoursFound;

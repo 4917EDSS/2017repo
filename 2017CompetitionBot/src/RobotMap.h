@@ -102,16 +102,14 @@ constexpr float DRIVE_BALANCE_D = 0.0;
 constexpr float DRIVE_BALANCE_TOLERANCE = 5;
 constexpr float TURN_TOLERANCE_DURATION_S = 1;
 
-// Axis Camera
-#define AXIS_ADDRESS "10.49.17.11"
-constexpr int AXIS_VISION_TARGETS_EXPOSURE_VALUE = 16;
-constexpr int AXIS_VISION_RESOLUTION_WIDTH = 320;
-constexpr int AXIS_VISION_RESOLUTION_HEIGHT = 240;
-constexpr int AXIS_STREAM_RESOLUTION_WIDTH = 320;
-constexpr int AXIS_STREAM_RESOLUTION_HEIGHT = 240;
-
-// Hik Camera
-#define HIKCAM_ADDRESS "http://admin:4917sirlancerbot@10.49.17.11/Streaming/channels/102/httppreview"
+// Machine Vision Camera
+#ifdef HIKCAM
+#define MACHINE_VISION_CAM_ADDRESS "http://admin:4917sirlancerbot@10.49.17.11/Streaming/channels/102/httppreview"
+#else
+#define MACHINE_VISION_CAM_ADDRESS "10.49.17.11"
+#endif
+constexpr int MACHINE_VISION_RESOLUTION_WIDTH = 480;
+constexpr int MACHINE_VISION_RESOLUTION_HEIGHT = 640;
 
 // Robot info required by SilkyMotionManager - all in millimeters, seconds
 constexpr double MAX_ACCEL = 1474; // mm/s^2

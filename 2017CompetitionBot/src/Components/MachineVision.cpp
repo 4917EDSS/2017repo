@@ -41,9 +41,13 @@ void MachineVisionThread()
 	int numContoursFound = 0;
 
 	// Setup machine vision
-	cs::HttpCamera hikCamera("HikCam", HIKCAM_ADDRESS );
-	frc::CameraServer::GetInstance()->AddCamera(hikCamera);
-	cs::CvSink cvSink = frc::CameraServer::GetInstance()->GetVideo(hikCamera);
+#ifdef HIKCAM
+	cs::HttpCamera visionCamera("HikCam", MACHINE_VISION_CAM_ADDRESS );
+	frc::CameraServer::GetInstance()->AddCamera(visionCamera);
+#else
+	cs::AxisCamera visionCamera = frc::CameraServer::GetInstance()->AddAxisCamera(MACHINE_VISION_CAM_ADDRESS);
+#endif
+	cs::CvSink cvSink = frc::CameraServer::GetInstance()->GetVideo(visionCamera);
 
 	// Need to keep track of the two largest artifacts (constructor initializes to 0s)
 	cv::Rect largestRect[2];
@@ -82,15 +86,21 @@ void MachineVisionThread()
 		if( numContoursFound > 1 )
 		{
 			// Find the center between both rectangles
-			mvd.centerX = ((largestRect[0].x + largestRect[0].width/2) + (largestRect[1].x + largestRect[1].width/2)) / 2;
-			mvd.centerY = ((largestRect[0].y + largestRect[0].height/2) + (largestRect[1].y + largestRect[1].height/2)) / 2;
+			mvd.x = ((largestRect[0].x + largestRect[0].width/2) + (largestRect[1].x + largestRect[1].width/2)) / 2;
+			mvd.y = ((largestRect[0].y + largestRect[0].height/2) + (largestRect[1].y + largestRect[1].height/2)) / 2;
 		}
 		else if( numContoursFound == 1 )
 		{
 			// Only one contour found so use its center
 			// CAUTION:  In some cases 1 isn't enough so make sure to check numContoursFound
-			mvd.centerX = largestRect[0].x + largestRect[0].width/2;
-			mvd.centerY = largestRect[0].y + largestRect[0].height/2;
+			mvd.x = largestRect[0].x + largestRect[0].width/2;
+			mvd.y = largestRect[0].y + largestRect[0].height/2;
+		}
+
+		if( numContoursFound > 0 )
+		{
+			mvd.centerX = mvd.x - source.cols / 2;
+			mvd.centerY = mvd.y - source.rows / 2;
 		}
 
 		visionResults.setResults(mvd);
