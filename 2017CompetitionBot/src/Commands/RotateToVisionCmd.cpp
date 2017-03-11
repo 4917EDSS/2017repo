@@ -14,7 +14,7 @@ void RotateToVisionCmd::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void RotateToVisionCmd::Execute() {
-	struct MachineVisionData mvd = CommandBase::visionResults.getResults();
+	struct MachineVisionData mvd = visionResults.getResults();
 
 	if(mvd.numCountoursFound > 1 )
 	{

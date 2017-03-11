@@ -24,6 +24,11 @@ public:
 	void setResults(struct MachineVisionData newMvd);
 };
 
+// Function prototypes
+void MachineVisionThread(void);
+
+// Global variables
+extern struct MachineVisionResults visionResults;
 
 
 #endif /* SRC_COMPONENTS_MACHINEVISION_H_ */

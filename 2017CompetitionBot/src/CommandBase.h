@@ -13,10 +13,6 @@
 #include "Subsystems/IntakeSub.h"
 #include "Subsystems/LiftSub.h"
 #include "Subsystems/DriveVisionSub.h"
-
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/core/core.hpp>
-#include "Components/GripPipeline.h"
 #include "Components/MachineVision.h"
 
 
@@ -31,8 +27,6 @@ public:
 	CommandBase(const std::string& name);
 	CommandBase() = default;
 	static void Init();
-	static void VisionThread();
-	static struct MachineVisionResults visionResults;
 
 	// Create a single static instance of all of your subsystems
 	static std::unique_ptr<DrivetrainSub> drivetrainSub;

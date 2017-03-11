@@ -1,6 +1,6 @@
 #include <Commands/AutoBoilerGearShootGrp.h>
 #include "SilkyDriveCmd.h"
-#include "OpenGearFlapsCmd.h";
+#include "OpenGearFlapsCmd.h"
 
 AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 	// Add Commands here:
