@@ -1,34 +1,28 @@
 <grip:Pipeline>
   <sources>
-    <grip:MultiImageFile>
-      <property name="numImages" value="5"/>
-      <property name="path[0]" value="C:\Users\4917\Web\CaptureFiles\2017-03-04\10.49.17.11_01_20170304161115578.jpg"/>
-      <property name="path[1]" value="C:\Users\4917\Web\CaptureFiles\2017-03-04\10.49.17.11_01_20170304161211361.jpg"/>
-      <property name="index" value="3"/>
-      <property name="path[2]" value="C:\Users\4917\Web\CaptureFiles\2017-03-04\10.49.17.11_01_20170304161437320.jpg"/>
-      <property name="path[3]" value="C:\Users\4917\Web\CaptureFiles\2017-03-04\10.49.17.11_01_20170304161539684.jpg"/>
-      <property name="path[4]" value="C:\Users\4917\Web\CaptureFiles\2017-03-04\10.49.17.11_01_20170304161606384.jpg"/>
-    </grip:MultiImageFile>
+    <grip:Camera>
+      <property name="address" value="http://10.49.17.11"/>
+    </grip:Camera>
   </sources>
   <steps>
     <grip:Step name="HSL Threshold">
       <grip:Input step="0" socket="0"/>
       <grip:Input step="0" socket="1">
         <value>
-          <double>35.611510791366904</double>
-          <double>67.87878787878788</double>
+          <double>77.6978417266187</double>
+          <double>92.1212121212121</double>
         </value>
       </grip:Input>
       <grip:Input step="0" socket="2">
         <value>
-          <double>127.88961751798641</double>
+          <double>255.0</double>
           <double>255.0</double>
         </value>
       </grip:Input>
       <grip:Input step="0" socket="3">
         <value>
-          <double>4.586330935251798</double>
-          <double>88.62293808410551</double>
+          <double>41.276978417266186</double>
+          <double>255.0</double>
         </value>
       </grip:Input>
       <grip:Output step="0" socket="0" previewed="true"/>
@@ -87,12 +81,12 @@
       <grip:Input step="1" socket="0"/>
     </grip:Connection>
     <grip:Connection>
-      <grip:Output source="0" socket="0" previewed="true"/>
-      <grip:Input step="0" socket="0"/>
-    </grip:Connection>
-    <grip:Connection>
       <grip:Output step="1" socket="0" previewed="false"/>
       <grip:Input step="2" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output source="0" socket="0" previewed="true"/>
+      <grip:Input step="0" socket="0"/>
     </grip:Connection>
   </connections>
   <settings>

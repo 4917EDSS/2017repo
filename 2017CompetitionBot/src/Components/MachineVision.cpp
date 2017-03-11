@@ -31,6 +31,7 @@ void MachineVisionResults::setResults(struct MachineVisionData newMvd)
 	// This is to avoid the situation where date is being read in the middle of when it's being
 	// written which is a problem when threads are used.
 	mvd[firstSlotValid ? 1 : 0] = newMvd;
+	firstSlotValid = !firstSlotValid;
 }
 
 
@@ -56,7 +57,9 @@ void MachineVisionThread()
 	{
 		cvSink.GrabFrame(source);
 		gripPipeline.Process(source);
-
+		numContoursFound = 0;
+		largestRect[0] = cv::Rect ();
+		largestRect[1] = cv::Rect ();
 		for(auto i: *(gripPipeline.GetFilterContoursOutput()))
 		{
 			numContoursFound++;

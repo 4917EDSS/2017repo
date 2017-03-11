@@ -15,7 +15,7 @@ void RotateToVisionCmd::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void RotateToVisionCmd::Execute() {
 	struct MachineVisionData mvd = visionResults.getResults();
-
+	std::cout << mvd.centerX << "|" << mvd.numCountoursFound << std::endl;
 	if(mvd.numCountoursFound > 1 )
 	{
 		if(mvd.centerX < 0){

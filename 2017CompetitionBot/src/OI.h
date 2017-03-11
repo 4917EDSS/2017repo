@@ -49,6 +49,7 @@ const int DRIVER_KILL_EVERYTHING_BTN = 11;
 const int DRIVER_SHIFT_BTN = 8;
 const int DRIVER_FORWARDS_BTN = 9;
 const int DRIVER_SWITCH_CAM_BTN = 1;
+const int DRIVER_ROTATE_TO_VISION_BTN = 2;
 
 class OI {
 private:
@@ -71,6 +72,7 @@ private:
 	std::shared_ptr<frc::JoystickButton> driverKillEverythingBtn;
 	std::shared_ptr<frc::JoystickButton> operatorKillEverythingBtn;
 	std::shared_ptr<frc::JoystickButton> driverSwitchCamBtn;
+	std::shared_ptr<frc::JoystickButton> driverRotateToVisionBtn;
 
 public:
 	OI();
