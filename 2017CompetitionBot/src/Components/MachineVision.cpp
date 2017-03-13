@@ -107,7 +107,7 @@ void MachineVisionThread()
 			mvd.centerX = mvd.x - source.cols / 2;
 			mvd.centerY = mvd.y - source.rows / 2;
 		}
-
+		std::cout << "cX " << mvd.centerX << std::endl;
 		visionResults.setResults(mvd);
 	}
 }

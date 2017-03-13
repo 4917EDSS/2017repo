@@ -20,11 +20,15 @@ void IntakeSub::setPickupMotor(double speed) {
 }
 
 void IntakeSub::openGearFlaps() {
-	gearFlaps->Set(frc::DoubleSolenoid::Value::kForward);
+	if(flapsEnabled) {
+		gearFlaps->Set(frc::DoubleSolenoid::Value::kForward);
+	}
 }
 
 void IntakeSub::closeGearFlaps() {
-	gearFlaps->Set(frc::DoubleSolenoid::Value::kReverse);
+	if(flapsEnabled) {
+		gearFlaps->Set(frc::DoubleSolenoid::Value::kReverse);
+	}
 }
 
 void IntakeSub::toggleIntake() {

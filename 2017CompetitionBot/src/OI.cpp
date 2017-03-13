@@ -56,7 +56,7 @@ OI::OI() {
 	driverSwitchCamBtn.reset(new JoystickButton(driverController.get(), DRIVER_SWITCH_CAM_BTN));
 	driverSwitchCamBtn->WhenPressed(new SwitchCamerasCmd());
 	driverRotateToVisionBtn.reset(new JoystickButton(driverController.get(), DRIVER_ROTATE_TO_VISION_BTN));
-	driverRotateToVisionBtn->WhileHeld(new DriveTurnCmd(-10000000));
+	driverRotateToVisionBtn->WhenPressed(new DriveTurnCmd(-10000000));
 }
 
 std::shared_ptr<frc::Joystick> OI::getDriverController()

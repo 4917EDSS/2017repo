@@ -70,6 +70,8 @@ public:
 		if (autonomousCommand.get() != nullptr) {
 			autonomousCommand->Start();
 		}
+		CommandBase::drivetrainSub->setShifter(frc::DoubleSolenoid::Value::kForward);
+
 	}
 
 	void AutonomousPeriodic() override {
