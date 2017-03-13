@@ -122,7 +122,7 @@ void DrivetrainSub::disableTurnPID(){
 }
 void DrivetrainSub::PIDTurn()
 {
-	std::cout << "SP=" << driveTurnPID->GetSetpoint() << std::endl;
+//	std::cout << "SP=" << driveTurnPID->GetSetpoint() << std::endl;
 	leftMotor1->Set(turnBalancer->GetDifference());
 	leftMotor2->Set(turnBalancer->GetDifference());
 	rightMotor1->Set(turnBalancer->GetDifference());

@@ -1,15 +1,25 @@
 #include "DriveTurnCmd.h"
 #include <math.h>
+#include <iostream>
 
 DriveTurnCmd::DriveTurnCmd(double angle) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(drivetrainSub.get());
 	turnDegrees = angle;
+	lastCheckpoint = drivetrainSub->getYaw();
+	lastCheckpointTime = TimeSinceInitialized();
 }
 // Called just before this Command runs the first time
 void DriveTurnCmd::Initialize() {
-	if (drivetrainSub->getAlliance() == RED) {
+	// Hack for turn-to-vision command
+	if( turnDegrees < -999999.0 ) {
+		struct MachineVisionData mvd = visionResults.getResults();
+		turnDegrees = mvd.centerX / mvd.imageWidth * MACHINE_VISION_CAMERA_HORIZONTAL_VIEW_ANGLE;
+		std::cout << "Turning " << turnDegrees << std::endl;
+	}
+
+	else if (drivetrainSub->getAlliance() == RED) {
 		turnDegrees = -turnDegrees;
 	}
 	printf( "Enabling turn %f\n", turnDegrees );
@@ -18,7 +28,7 @@ void DriveTurnCmd::Initialize() {
 	lastCheckpoint = drivetrainSub->getYaw();
 	lastCheckpointTime = TimeSinceInitialized();
 }
-#include <iostream>
+
 // Called repeatedly when this Command is scheduled to run
 void DriveTurnCmd::Execute() {
 	drivetrainSub->PIDTurn();
@@ -26,7 +36,7 @@ void DriveTurnCmd::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool DriveTurnCmd::IsFinished() {
-	std::cout << "AHRS: Yaw=" << drivetrainSub->getYaw() << " Chk=" << lastCheckpoint << std::endl;
+//	std::cout << "AHRS: Yaw=" << drivetrainSub->getYaw() << " Chk=" << lastCheckpoint << std::endl;
 	if (fabs(lastCheckpoint - drivetrainSub->getYaw()) > DRIVE_TURN_TOLERANCE){
 		lastCheckpoint = drivetrainSub->getYaw();
 		lastCheckpointTime = TimeSinceInitialized();

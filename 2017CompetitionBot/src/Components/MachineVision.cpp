@@ -86,6 +86,8 @@ void MachineVisionThread()
 		struct MachineVisionData mvd;
 
 		mvd.numCountoursFound = numContoursFound;
+		mvd.imageWidth = source.cols;
+		mvd.imageHeight = source.rows;
 		if( numContoursFound > 1 )
 		{
 			// Find the center between both rectangles

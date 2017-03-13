@@ -109,9 +109,10 @@ constexpr float TURN_TOLERANCE_DURATION_S = 1;
 #define MACHINE_VISION_CAM_ADDRESS "http://admin:4917sirlancerbot@10.49.17.11/Streaming/channels/102/httppreview"
 #else
 #define MACHINE_VISION_CAM_ADDRESS "10.49.17.11"
+constexpr double MACHINE_VISION_CAMERA_VERTICAL_VIEW_ANGLE = 67.0;
+constexpr double MACHINE_VISION_CAMERA_ASPECT_RATIO = 10.0 / 16.0;	// Camera mounted sideways (16:10 normally)
+constexpr double MACHINE_VISION_CAMERA_HORIZONTAL_VIEW_ANGLE = MACHINE_VISION_CAMERA_VERTICAL_VIEW_ANGLE * MACHINE_VISION_CAMERA_ASPECT_RATIO;
 #endif
-constexpr int MACHINE_VISION_RESOLUTION_WIDTH = 480;
-constexpr int MACHINE_VISION_RESOLUTION_HEIGHT = 640;
 
 // Robot info required by SilkyMotionManager - all in millimeters, seconds
 constexpr double MAX_ACCEL = 1474; // mm/s^2
