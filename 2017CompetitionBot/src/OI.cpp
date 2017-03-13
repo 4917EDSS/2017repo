@@ -16,6 +16,7 @@
 #include "Commands/ToggleIntakeCmd.h"
 #include "Commands/SwitchCamerasCmd.h"
 #include "Commands/RotateToVisionCmd.h"
+#include "Commands/DriveTurnCmd.h"
 
 OI::OI() {
 	// Process operator interface input here.
@@ -57,6 +58,8 @@ OI::OI() {
 	driverSwitchCamBtn->WhenPressed(new SwitchCamerasCmd());
 	driverRotateToVisionBtn.reset(new JoystickButton(driverController.get(), DRIVER_ROTATE_TO_VISION_BTN));
 	driverRotateToVisionBtn->WhileHeld(new RotateToVisionCmd());
+	driveTurnBtn.reset(new JoystickButton(driverController.get(), DRIVER_DRIVE_TURN_BTN));
+	driveTurnBtn->WhenPressed(new DriveTurnCmd(15));
 }
 
 std::shared_ptr<frc::Joystick> OI::getDriverController()

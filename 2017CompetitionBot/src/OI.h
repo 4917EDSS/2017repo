@@ -50,6 +50,7 @@ const int DRIVER_SHIFT_BTN = 8;
 const int DRIVER_FORWARDS_BTN = 9;
 const int DRIVER_SWITCH_CAM_BTN = 1;
 const int DRIVER_ROTATE_TO_VISION_BTN = 2;
+const int DRIVER_DRIVE_TURN_BTN = 3;
 
 class OI {
 private:
