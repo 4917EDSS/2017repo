@@ -14,8 +14,6 @@ public:
 	void Interrupted();
 private:
 	double turnDegrees;
-	double lastCheckpoint;
-	double lastCheckpointTime;
 };
 
 #endif  // DriveTurnCmd_H

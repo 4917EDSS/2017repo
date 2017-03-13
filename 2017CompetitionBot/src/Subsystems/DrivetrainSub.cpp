@@ -96,6 +96,12 @@ float DrivetrainSub::getPitch(){
 float DrivetrainSub::getRoll(){
 	return ahrs->GetRoll();
 }
+double DrivetrainSub::getAngle(){
+	return ahrs->GetAngle();
+}
+double DrivetrainSub::getRate(){
+	return ahrs->GetRate();
+}
 float DrivetrainSub::getLeftAmps1() {
 	return leftMotor1->GetOutputCurrent();
 }

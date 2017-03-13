@@ -94,12 +94,13 @@ constexpr int LOADER_SHAFT_TO_BOILER_DIST = 3000;
 constexpr int TEN_BALL_SHOT_TIME = 7;
 
 //PID Values
-constexpr float DRIVE_TURN_P = 0.045;
-constexpr float DRIVE_TURN_I = 0;
-constexpr float DRIVE_TURN_D = 0.09;
-constexpr float DRIVE_TURN_TOLERANCE = 1;
+constexpr float DRIVE_TURN_P = 0.1;
+constexpr float DRIVE_TURN_I = 0.001;
+constexpr float DRIVE_TURN_D = 0.0;
+constexpr float DRIVE_TURN_TOLERANCE = 0.5;
+constexpr float DRIVE_RATE_TOLERANCE = 1;
 constexpr float DRIVE_BALANCE_P = 0.0;
-constexpr float DRIVE_BALANCE_I = 0.0;
+constexpr float DRIVE_BALANCE_I = 0.01;
 constexpr float DRIVE_BALANCE_D = 0.0;
 constexpr float DRIVE_BALANCE_TOLERANCE = 5;
 constexpr float TURN_TOLERANCE_DURATION_S = 1;

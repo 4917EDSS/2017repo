@@ -50,6 +50,8 @@ public:
 	float getYaw();
 	float getPitch();
 	float getRoll();
+	double getAngle();
+	double getRate();
 	void resetAHRS();
 	void reset();
 	void enableTurnPID(double setSpeed);

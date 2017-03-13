@@ -15,8 +15,6 @@ void DriveTurnCmd::Initialize() {
 	printf( "Enabling turn %f\n", turnDegrees );
 	drivetrainSub->resetAHRS();
 	drivetrainSub->enableTurnPID(turnDegrees);
-	lastCheckpoint = drivetrainSub->getYaw();
-	lastCheckpointTime = TimeSinceInitialized();
 }
 #include <iostream>
 // Called repeatedly when this Command is scheduled to run
@@ -26,13 +24,7 @@ void DriveTurnCmd::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool DriveTurnCmd::IsFinished() {
-	std::cout << "AHRS: Yaw=" << drivetrainSub->getYaw() << " Chk=" << lastCheckpoint << std::endl;
-	if (fabs(lastCheckpoint - drivetrainSub->getYaw()) > DRIVE_TURN_TOLERANCE){
-		lastCheckpoint = drivetrainSub->getYaw();
-		lastCheckpointTime = TimeSinceInitialized();
-		return false;
-	}
-	else if ((TimeSinceInitialized() - lastCheckpointTime) > TURN_TOLERANCE_DURATION_S){
+	if (fabs(drivetrainSub->getRate()) < DRIVE_RATE_TOLERANCE && fabs(drivetrainSub->getAngle() - turnDegrees) < DRIVE_TURN_TOLERANCE){
 		return true;
 	}
 	else {
