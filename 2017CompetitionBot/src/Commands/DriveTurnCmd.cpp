@@ -12,10 +12,10 @@ DriveTurnCmd::DriveTurnCmd(double angle) {
 void DriveTurnCmd::Initialize() {
 	// Hack for turn-to-vision command
 	std::cout << "DriveTurnCmd" << std::endl;
-	if( turnDegrees < -999999.0 ) {
+	if( 1) {//turnDegrees < -999999.0 ) {
 		struct MachineVisionData mvd = visionResults.getResults();
 		std::cout << "X,W=" << mvd.centerX << "," << mvd.imageWidth << " " << MACHINE_VISION_CAMERA_HORIZONTAL_VIEW_ANGLE << std::endl;
-		turnDegrees = (double)mvd.centerX / mvd.imageWidth * MACHINE_VISION_CAMERA_HORIZONTAL_VIEW_ANGLE;
+		turnDegrees = (double)mvd.centerX / mvd.imageWidth * MACHINE_VISION_CAMERA_HORIZONTAL_VIEW_ANGLE/2;
 		std::cout << "Turning " << turnDegrees << std::endl;
 	}
 
