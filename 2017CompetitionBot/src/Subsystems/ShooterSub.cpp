@@ -71,11 +71,11 @@ void ShooterSub::disableShooter()
 }
 void ShooterSub::increaseSpeed()
 {
-	adjustmentSpeed -= 10.0;
+	adjustmentSpeed -= 50.0;
 }
 void ShooterSub::decreaseSpeed()
 {
-	adjustmentSpeed += 10.0;
+	adjustmentSpeed += 50.0;
 }
 #include <iostream>
 double ShooterSub::getSpeed()
