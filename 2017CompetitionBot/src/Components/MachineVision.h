@@ -14,6 +14,8 @@ struct MachineVisionData {
 	int centerX;
 	int centerY;
 	int numCountoursFound;
+	int imageWidth;
+	int imageHeight;
 };
 
 class MachineVisionResults {

@@ -86,6 +86,8 @@ void MachineVisionThread()
 		struct MachineVisionData mvd;
 
 		mvd.numCountoursFound = numContoursFound;
+		mvd.imageWidth = source.cols;
+		mvd.imageHeight = source.rows;
 		if( numContoursFound > 1 )
 		{
 			// Find the center between both rectangles
@@ -105,7 +107,7 @@ void MachineVisionThread()
 			mvd.centerX = mvd.x - source.cols / 2;
 			mvd.centerY = mvd.y - source.rows / 2;
 		}
-
+		std::cout << "cX " << mvd.centerX << std::endl;
 		visionResults.setResults(mvd);
 	}
 }

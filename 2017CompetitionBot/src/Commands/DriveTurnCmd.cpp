@@ -1,5 +1,6 @@
 #include "DriveTurnCmd.h"
 #include <math.h>
+#include <iostream>
 
 DriveTurnCmd::DriveTurnCmd(double angle) {
 	// Use Requires() here to declare subsystem dependencies
@@ -9,14 +10,23 @@ DriveTurnCmd::DriveTurnCmd(double angle) {
 }
 // Called just before this Command runs the first time
 void DriveTurnCmd::Initialize() {
-	if (drivetrainSub->getAlliance() == RED) {
+	// Hack for turn-to-vision command
+	std::cout << "DriveTurnCmd" << std::endl;
+	if( turnDegrees < -999999.0 ) {
+		struct MachineVisionData mvd = visionResults.getResults();
+		std::cout << "X,W=" << mvd.centerX << "," << mvd.imageWidth << " " << MACHINE_VISION_CAMERA_HORIZONTAL_VIEW_ANGLE << std::endl;
+		turnDegrees = (double)mvd.centerX / mvd.imageWidth * MACHINE_VISION_CAMERA_HORIZONTAL_VIEW_ANGLE;
+		std::cout << "Turning " << turnDegrees << std::endl;
+	}
+
+	else if (drivetrainSub->getAlliance() == RED) {
 		turnDegrees = -turnDegrees;
 	}
 	printf( "Enabling turn %f\n", turnDegrees );
 	drivetrainSub->resetAHRS();
 	drivetrainSub->enableTurnPID(turnDegrees);
 }
-#include <iostream>
+
 // Called repeatedly when this Command is scheduled to run
 void DriveTurnCmd::Execute() {
 	drivetrainSub->PIDTurn();
