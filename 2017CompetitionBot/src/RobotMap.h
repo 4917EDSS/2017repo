@@ -35,9 +35,9 @@ constexpr float BOILER_SHOOT_TIME_1 = 1.0;
 #define AHRSInterface SPI::kMXP
 
 //Shoot Speeds
-constexpr float KEY_SHOT_SHOOTER_SPEED = -2400;
-constexpr float BOILER_SHOT_SHOOTER_SPEED = -1900;
-constexpr float AUTO_BOILER_SHOT_SHOOTER_SPEED = -2000;
+constexpr float KEY_SHOT_SHOOTER_SPEED = -2500;
+constexpr float BOILER_SHOT_SHOOTER_SPEED = -2000;
+constexpr float AUTO_BOILER_SHOT_SHOOTER_SPEED = -2100;
 
 // CAN IDs
 constexpr int LEFT1_DRIVE_MOTOR_CANID = 1;
