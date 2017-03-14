@@ -60,7 +60,7 @@ OI::OI() {
 	//driverRotateToVisionBtn->WhileHeld(new RotateToVisionCmd());
 	driverRotateToVisionBtn->WhenPressed(new DriveTurnCmd(-10000000));
 	driveTurnBtn.reset(new JoystickButton(driverController.get(), DRIVER_DRIVE_TURN_BTN));
-	driveTurnBtn->WhenPressed(new DriveTurnCmd(15));
+	driveTurnBtn->WhenPressed(new DriveTurnCmd(5));
 }
 
 std::shared_ptr<frc::Joystick> OI::getDriverController()
