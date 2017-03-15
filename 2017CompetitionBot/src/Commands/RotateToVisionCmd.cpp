@@ -16,7 +16,7 @@ void RotateToVisionCmd::Initialize() {
 	// Determine number of degrees needed to get the robot centered on the vision target
 	struct MachineVisionData mvd = visionResults.getResults();
 
-	if( mvd.numCountoursFound > minTargets )
+	if( mvd.numCountoursFound >= minTargets )
 	{
 		turnDegrees = (double)mvd.centerX / mvd.imageWidth * MACHINE_VISION_CAMERA_HORIZONTAL_VIEW_ANGLE/2;
 		std::cout << "RotateToVision: #deg=" << turnDegrees << " (cX=" << mvd.centerX << " imgW=" << mvd.imageWidth <<

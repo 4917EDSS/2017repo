@@ -3,6 +3,7 @@
 #include "RobotMap.h"
 #include "OpenGearFlapsCmd.h"
 #include "RotateToVisionCmd.h"
+#include "ToggleShifterCmd.h"
 
 AutoCenterGearGrp::AutoCenterGearGrp() {
 	// Add Commands here:
@@ -26,8 +27,12 @@ AutoCenterGearGrp::AutoCenterGearGrp() {
 	AddParallel(new OpenGearFlapsCmd());
 	//Drive halfway
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 500, 1000}, std::vector<double> {0, 500, 1000}));
+	//Shift Down
+	AddSequential(new ToggleShifterCmd());
 	//Auto Correct
 	AddSequential(new RotateToVisionCmd(2));
+	//Shift Up
+	AddSequential(new ToggleShifterCmd());
 	//Finish Driving
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 500, 1000}, std::vector<double> {0, 500, 1000}));
 }
