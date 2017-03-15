@@ -24,6 +24,7 @@
 #include "Commands/AutoCenterGearShootGrp.h"
 #include "Commands/AutoHopperShootGrp.h"
 #include "Commands/AutoShootGrp.h"
+#include "Commands/AutoCenterGearGrp.h"
 
 class Robot: public frc::IterativeRobot {
 public:
@@ -131,6 +132,7 @@ private:
 		autoLocationOptions->AddObject("BoilerGear Shoot", std::shared_ptr<frc::Command>(new AutoBoilerGearShootGrp()));
 		autoLocationOptions->AddObject("CenterGear Shoot", std::shared_ptr<frc::Command>(new AutoCenterGearShootGrp()));
 		autoLocationOptions->AddObject("LoaderGear", std::shared_ptr<frc::Command>(new AutoLoaderGearGrp()));
+		autoLocationOptions->AddObject("CenterGear", std::shared_ptr<frc::Command>(new AutoCenterGearGrp()));
 		autoLocationOptions->AddObject("Immediately Shoot, No Gear", std::shared_ptr<frc::Command>(new AutoShootGrp()));
 
 		SmartDashboard::PutData("Auto Modes", autoLocationOptions.get());
