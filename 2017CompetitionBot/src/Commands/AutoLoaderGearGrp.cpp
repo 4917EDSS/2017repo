@@ -15,11 +15,15 @@ AutoLoaderGearGrp::AutoLoaderGearGrp() {
 	AddParallel(new OpenGearFlapsCmd());
 	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 650, 1500, 2800}, std::vector<double> {0, 650, 2500, 3500}));
 	//Drive Towards Gear
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1350, 2400}, std::vector<double> {0, 1750, 3250}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1050, 1900}, std::vector<double> {0, 1050, 2800}));
+	//Shifting
+	AddSequential(new ToggleShifterCmd());
 	//Auto Correct
 	AddSequential(new RotateToVisionCmd(2));
+	//Shifting111
+	AddSequential(new ToggleShifterCmd());
 	//Keep Driving Straight
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 500, 1500}, std::vector<double> {0, 500, 1500}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 500, 1300}, std::vector<double> {0, 500, 1300}));
 	//Wait
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 
