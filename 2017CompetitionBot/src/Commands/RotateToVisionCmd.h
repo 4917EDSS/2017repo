@@ -4,8 +4,11 @@
 #include "../CommandBase.h"
 
 class RotateToVisionCmd : public CommandBase {
+private:
+	double turnDegrees;		// How many degrees the robot has to rotate to be centered on the object of interest
+	int minTargets;			// Minimum number of vision targets needed to properly calculate the center of the object of interest
 public:
-	RotateToVisionCmd();
+	RotateToVisionCmd(int minVisionTargets);
 	void Initialize();
 	void Execute();
 	bool IsFinished();

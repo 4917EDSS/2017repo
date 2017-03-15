@@ -117,6 +117,8 @@ constexpr double MACHINE_VISION_CAMERA_VERTICAL_VIEW_ANGLE = 67.0;
 constexpr double MACHINE_VISION_CAMERA_ASPECT_RATIO = 10.0 / 16.0;	// Camera mounted sideways (16:10 normally)
 constexpr double MACHINE_VISION_CAMERA_HORIZONTAL_VIEW_ANGLE = MACHINE_VISION_CAMERA_VERTICAL_VIEW_ANGLE * MACHINE_VISION_CAMERA_ASPECT_RATIO;
 #endif
+constexpr int MIN_GEAR_VISION_TARGETS = 2;
+constexpr int MIN_BOILER_VISION_TARGETS = 1;
 
 // Robot info required by SilkyMotionManager - all in millimeters, seconds
 constexpr double MAX_ACCEL = 1474; // mm/s^2

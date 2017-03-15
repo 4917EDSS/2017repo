@@ -57,8 +57,7 @@ OI::OI() {
 	driverSwitchCamBtn.reset(new JoystickButton(driverController.get(), DRIVER_SWITCH_CAM_BTN));
 	driverSwitchCamBtn->WhenPressed(new SwitchCamerasCmd());
 	driverRotateToVisionBtn.reset(new JoystickButton(driverController.get(), DRIVER_ROTATE_TO_VISION_BTN));
-	//driverRotateToVisionBtn->WhileHeld(new RotateToVisionCmd());
-	driverRotateToVisionBtn->WhenPressed(new DriveTurnCmd(-10000000));
+	driverRotateToVisionBtn->WhenPressed(new RotateToVisionCmd(MIN_GEAR_VISION_TARGETS));
 	driveTurnBtn.reset(new JoystickButton(driverController.get(), DRIVER_DRIVE_TURN_BTN));
 	driveTurnBtn->WhenPressed(new DriveTurnCmd(5));
 }
