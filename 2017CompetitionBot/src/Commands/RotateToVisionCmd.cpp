@@ -1,40 +1,56 @@
+#include <math.h>
 #include "Components/MachineVision.h"
 #include "RotateToVisionCmd.h"
 
-RotateToVisionCmd::RotateToVisionCmd() {
+RotateToVisionCmd::RotateToVisionCmd(int minVisionTargets) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(drivetrainSub.get());
+
+	turnDegrees = 0;
+	minTargets = minVisionTargets;
 }
 
 // Called just before this Command runs the first time
 void RotateToVisionCmd::Initialize() {
+	// Determine number of degrees needed to get the robot centered on the vision target
+	struct MachineVisionData mvd = visionResults.getResults();
 
+	if( mvd.numCountoursFound > minTargets )
+	{
+		turnDegrees = (double)mvd.centerX / mvd.imageWidth * MACHINE_VISION_CAMERA_HORIZONTAL_VIEW_ANGLE/2;
+		std::cout << "RotateToVision: #deg=" << turnDegrees << " (cX=" << mvd.centerX << " imgW=" << mvd.imageWidth <<
+				" camAngle=" <<	MACHINE_VISION_CAMERA_HORIZONTAL_VIEW_ANGLE << ")" << std::endl;
+	}
+	else
+	{
+		// Can't see enough vision targets to determine correct turn angle
+		// Command should terminate after first execute
+		turnDegrees = 0.0;
+	}
+	drivetrainSub->resetAHRS();
+	drivetrainSub->enableTurnPID(turnDegrees);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void RotateToVisionCmd::Execute() {
-	struct MachineVisionData mvd = visionResults.getResults();
-	std::cout << mvd.centerX << "|" << mvd.numCountoursFound << std::endl;
-	if(mvd.numCountoursFound > 1 )
-	{
-		if(mvd.centerX < 0){
-			drivetrainSub->drive(-0.5, 0.5);
-		}
-		else if(mvd.centerX > 0){
-			drivetrainSub->drive(0.5, -0.5);
-		}
-	}
+	drivetrainSub->PIDTurn();
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool RotateToVisionCmd::IsFinished() {
-	return false;
+	if (fabs(drivetrainSub->getRate()) < DRIVE_RATE_TOLERANCE && fabs(drivetrainSub->getAngle() - turnDegrees) < DRIVE_TURN_TOLERANCE){
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
 // Called once after isFinished returns true
 void RotateToVisionCmd::End() {
-	drivetrainSub->drive(0, 0);
+	drivetrainSub->disableTurnPID();
+	drivetrainSub->drive(0.0, 0.0);
 }
 
 // Called when another command which requires one or more of the same
