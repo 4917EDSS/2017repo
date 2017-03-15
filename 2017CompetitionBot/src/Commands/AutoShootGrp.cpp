@@ -1,6 +1,10 @@
 #include "AutoShootGrp.h"
 #include "SilkyDriveCmd.h"
 #include <vector>
+#include "Commands/DriveStraightCmd.h"
+#include "Commands/DriveTurnCmd.h"
+#include "Commands/ShootCmd.h"
+#include "Commands/HopperPulseCmd.h"
 
 AutoShootGrp::AutoShootGrp() {
 	// Add Commands here:
@@ -21,6 +25,7 @@ AutoShootGrp::AutoShootGrp() {
 	// arm.
 
 	// shoot
+	AddParallel(new HopperPulseCmd(TEN_BALL_SHOT_TIME));
 	AddSequential(new ShootCmd(AUTO_BOILER_SHOT_SHOOTER_SPEED, TEN_BALL_SHOT_TIME));
 	// reverse turn - check turn
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -1000,-3700},std::vector<double> {0,-300,-1200}));
