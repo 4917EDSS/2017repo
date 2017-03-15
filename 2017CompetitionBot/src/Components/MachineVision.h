@@ -13,6 +13,9 @@ struct MachineVisionData {
 	int y;
 	int centerX;
 	int centerY;
+	int horizontalSeparation;	// Num pixels between bounding box horizontally
+	int averageHeight;			// Average height of the bounding boxes
+	int heightDifference;  		// Left Height - Right Height
 	int numCountoursFound;
 	int imageWidth;
 	int imageHeight;

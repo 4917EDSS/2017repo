@@ -21,8 +21,8 @@ private:
 	// Note2: Instead of explicitly defining two motors per side, we could just configure the
 	//        second Talon to slave to the first.  This would allow us to add/remove motors without
 	//        changing code.  The down side is that we'd need to configure the Talons to act this
-	//        way throught the web interface and this might get forgotten if we ever have to swap
-	//        Talons.  For now, do it explicitely.
+	//        way through the web interface and this might get forgotten if we ever have to swap
+	//        Talons.  For now, do it explicitly.
 
 	std::shared_ptr<CANTalon> leftMotor1;
 	std::shared_ptr<CANTalon> leftMotor2;

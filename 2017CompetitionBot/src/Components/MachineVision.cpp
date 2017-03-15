@@ -83,16 +83,31 @@ void MachineVisionThread()
 		}
 
 		// Report Center X/Y
-		struct MachineVisionData mvd;
+		struct MachineVisionData mvd = {0};
 
 		mvd.numCountoursFound = numContoursFound;
 		mvd.imageWidth = source.cols;
 		mvd.imageHeight = source.rows;
 		if( numContoursFound > 1 )
 		{
+			int leftIndex, rightIndex;
 			// Find the center between both rectangles
 			mvd.x = ((largestRect[0].x + largestRect[0].width/2) + (largestRect[1].x + largestRect[1].width/2)) / 2;
 			mvd.y = ((largestRect[0].y + largestRect[0].height/2) + (largestRect[1].y + largestRect[1].height/2)) / 2;
+			if(largestRect[0].x < largestRect[1].x) {
+				leftIndex = 0;
+				rightIndex = 1;
+			}
+			else {
+				leftIndex = 1;
+				rightIndex = 0;
+			}
+			mvd.horizontalSeparation = largestRect[rightIndex].x - (largestRect[leftIndex].x + largestRect[leftIndex].width);
+			if(mvd.horizontalSeparation < 0) {
+				mvd.horizontalSeparation = 0;
+			}
+			mvd.averageHeight = (largestRect[leftIndex].height + largestRect[rightIndex].height ) / 2;
+			mvd.heightDifference = largestRect[leftIndex].height - largestRect[rightIndex].height;
 		}
 		else if( numContoursFound == 1 )
 		{
@@ -100,6 +115,7 @@ void MachineVisionThread()
 			// CAUTION:  In some cases 1 isn't enough so make sure to check numContoursFound
 			mvd.x = largestRect[0].x + largestRect[0].width/2;
 			mvd.y = largestRect[0].y + largestRect[0].height/2;
+			mvd.averageHeight = largestRect[0].height;
 		}
 
 		if( numContoursFound > 0 )

@@ -14,8 +14,27 @@ void DriveTurnCmd::Initialize() {
 	std::cout << "DriveTurnCmd" << std::endl;
 	if( 1) {//turnDegrees < -999999.0 ) {
 		struct MachineVisionData mvd = visionResults.getResults();
-		std::cout << "X,W=" << mvd.centerX << "," << mvd.imageWidth << " " << MACHINE_VISION_CAMERA_HORIZONTAL_VIEW_ANGLE << std::endl;
-		turnDegrees = (double)mvd.centerX / mvd.imageWidth * MACHINE_VISION_CAMERA_HORIZONTAL_VIEW_ANGLE/2;
+		double targetRatio = (10.25 - 4.0) / 5.0;		// from vision targets dimensions if camera is aligned with target want separation / height
+		double ratio = mvd.averageHeight == 0 ? 1.0 : (double) mvd.horizontalSeparation / mvd.averageHeight;
+		double cappedRatio = ratio / targetRatio;
+		if(cappedRatio > 1.0) {
+			cappedRatio = 1.0;
+		}
+		// angle is an approximation of how far off the normal we are from the target plane
+		// when we are aligned with target then ratio should be target ratio, if 90 degrees off ratio will be zero.
+		// determine which way to turn by relative size of the two targets, turn towards the smaller of the two.
+		double angle = acos(cappedRatio) * ((mvd.heightDifference > 0) ? -1 : 1);
+
+		std::cout << "X,W,VA,H,HS,HS/H,HD,D=" << mvd.centerX << ","
+				<< mvd.imageWidth << ","
+				<< MACHINE_VISION_CAMERA_HORIZONTAL_VIEW_ANGLE << ","
+				<< mvd.averageHeight << ","
+				<< mvd.horizontalSeparation << ","
+				<< ratio << ","
+				<< mvd.heightDifference << ","
+				<< angle << ","
+				<< std::endl;
+		turnDegrees = (double)mvd.centerX / mvd.imageWidth * MACHINE_VISION_CAMERA_HORIZONTAL_VIEW_ANGLE/2 + angle;
 		std::cout << "Turning " << turnDegrees << std::endl;
 	}
 
