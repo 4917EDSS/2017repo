@@ -1,7 +1,6 @@
 #include <Commands/AutoHopperShootGrp.h>
 #include "SilkyDriveCmd.h"
-#include "RobotMap.h"
-#include <vector>
+
 
 AutoHopperShootGrp::AutoHopperShootGrp() {
 	// Add Commands here:
@@ -12,9 +11,15 @@ AutoHopperShootGrp::AutoHopperShootGrp() {
 	//For forwards to hopper
 	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 450, 2650, 2750, 3450}, std::vector<double> {0, 450, 4000, 4100, 4740}));
 	//Backwards to hopper
-	AddSequential(new SilkyDriveCmd({0, -250, -3300, -4100, -4940}, {0, -250, -1950, -2750, -3540}));
+	//AddSequential(new SilkyDriveCmd({0, -3000, -3300, -4100, -4940}, {0, -250, -1950, -2750, -3540}));
+
+	AddSequential(new SilkyDriveCmd({0, -1000, -2000, -2300, -3300, -3500}, {0, -1000, -2000, -2300, -2500, -2700}));
+	AddParallel(new ShootCmd(-KEY_SHOT_SHOOTER_SPEED, HOPPER_RECEIVE_TIME));
 	AddSequential(new WaitCommand(HOPPER_WAIT_TIME));
+	AddParallel(new SpinUpCmd(AUTO_BOILER_SHOT_SHOOTER_SPEED));
 	AddSequential(new SilkyDriveCmd({0, 1000, 2000, 3200}, {0, 200, 500, 1200}));
+	AddSequential(new ShootCmd(BOILER_SHOT_SHOOTER_SPEED));
+
 	// To run multiple commands at the same time,
 	// use AddParallel()
 	// e.g. AddParallel(new Command1());
