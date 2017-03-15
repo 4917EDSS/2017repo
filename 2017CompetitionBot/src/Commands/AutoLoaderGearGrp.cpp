@@ -1,6 +1,7 @@
 #include "AutoLoaderGearGrp.h"
 #include "SilkyDriveCmd.h"
 #include "RotateToVisionCmd.h"
+#include "ToggleShifterCmd.h"
 
 AutoLoaderGearGrp::AutoLoaderGearGrp() {
 	// Add Commands here:
