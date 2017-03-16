@@ -1,0 +1,156 @@
+X,W,VA,H,HS,HS/H,HD,D=-62,400,41.875,83,94,1.13253,1,-0.437003, 
+ RotateToVision: #deg=-3.24531 (cX=-62 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=-0.437003(sep=94, height=83, ratio=1.13253, deviation=-0.437003) 
+ RotateToVisionCmd::angle :-0.437003 
+ X,W,VA,H,HS,HS/H,HD,D=-62,400,41.875,83,94,1.13253,1,-0.437003, 
+ RotateToVision: #deg=-3.24531 (cX=-62 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=-0.437003(sep=94, height=83, ratio=1.13253, deviation=-0.437003) 
+ RotateToVisionCmd::angle :-0.437003 
+ X,W,VA,H,HS,HS/H,HD,D=-62,400,41.875,83,94,1.13253,1,-0.437003, 
+ RotateToVision: #deg=-3.24531 (cX=-62 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=-0.437003(sep=94, height=83, ratio=1.13253, deviation=-0.437003) 
+ RotateToVisionCmd::angle :-0.437003 
+ X,W,VA,H,HS,HS/H,HD,D=-62,400,41.875,83,94,1.13253,1,-0.437003, 
+ RotateToVision: #deg=-3.24531 (cX=-62 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=-0.437003(sep=94, height=83, ratio=1.13253, deviation=-0.437003) 
+ RotateToVisionCmd::angle :-0.437003 
+ X,W,VA,H,HS,HS/H,HD,D=-62,400,41.875,83,94,1.13253,1,-0.437003, 
+ RotateToVision: #deg=-3.24531 (cX=-62 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=-0.437003(sep=94, height=83, ratio=1.13253, deviation=-0.437003) 
+ RotateToVisionCmd::angle :-0.437003 
+ X,W,VA,H,HS,HS/H,HD,D=-62,400,41.875,83,94,1.13253,1,-0.437003, 
+ RotateToVision: #deg=-3.24531 (cX=-62 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=-0.437003(sep=94, height=83, ratio=1.13253, deviation=-0.437003) 
+ RotateToVisionCmd::angle :-0.437003 
+ X,W,VA,H,HS,HS/H,HD,D=-62,400,41.875,83,94,1.13253,1,-0.437003, 
+ RotateToVision: #deg=-3.24531 (cX=-62 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=-0.437003(sep=94, height=83, ratio=1.13253, deviation=-0.437003) 
+ RotateToVisionCmd::angle :-0.437003 
+ X,W,VA,H,HS,HS/H,HD,D=-62,400,41.875,83,94,1.13253,1,-0.437003, 
+ RotateToVision: #deg=-3.24531 (cX=-62 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=-0.437003(sep=94, height=83, ratio=1.13253, deviation=-0.437003) 
+ RotateToVisionCmd::angle :-0.437003 
+ X,W,VA,H,HS,HS/H,HD,D=-27,400,41.875,83,92,1.10843,1,-0.480537, 
+ RotateToVision: #deg=-1.41328 (cX=-27 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=-0.480537(sep=92, height=83, ratio=1.10843, deviation=-0.480537) 
+ RotateToVisionCmd::angle :-0.480537 
+ X,W,VA,H,HS,HS/H,HD,D=-27,400,41.875,83,92,1.10843,1,-0.480537, 
+ RotateToVision: #deg=-1.41328 (cX=-27 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=-0.480537(sep=92, height=83, ratio=1.10843, deviation=-0.480537) 
+ RotateToVisionCmd::angle :-0.480537 
+ X,W,VA,H,HS,HS/H,HD,D=-27,400,41.875,83,92,1.10843,1,-0.480537, 
+ RotateToVision: #deg=-1.41328 (cX=-27 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=-0.480537(sep=92, height=83, ratio=1.10843, deviation=-0.480537) 
+ RotateToVisionCmd::angle :-0.480537 
+ X,W,VA,H,HS,HS/H,HD,D=-27,400,41.875,83,92,1.10843,1,-0.480537, 
+ RotateToVision: #deg=-1.41328 (cX=-27 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=-0.480537(sep=92, height=83, ratio=1.10843, deviation=-0.480537) 
+ RotateToVisionCmd::angle :-0.480537 
+ X,W,VA,H,HS,HS/H,HD,D=-27,400,41.875,83,92,1.10843,1,-0.480537, 
+ RotateToVision: #deg=-1.41328 (cX=-27 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=-0.480537(sep=92, height=83, ratio=1.10843, deviation=-0.480537) 
+ RotateToVisionCmd::angle :-0.480537 
+ X,W,VA,H,HS,HS/H,HD,D=-27,400,41.875,83,92,1.10843,1,-0.480537, 
+ RotateToVision: #deg=-1.41328 (cX=-27 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=-0.480537(sep=92, height=83, ratio=1.10843, deviation=-0.480537) 
+ RotateToVisionCmd::angle :-0.480537 
+ X,W,VA,H,HS,HS/H,HD,D=-27,400,41.875,83,92,1.10843,1,-0.480537, 
+ RotateToVision: #deg=-1.41328 (cX=-27 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=-0.480537(sep=92, height=83, ratio=1.10843, deviation=-0.480537) 
+ RotateToVisionCmd::angle :-0.480537 
+ X,W,VA,H,HS,HS/H,HD,D=-27,400,41.875,83,92,1.10843,1,-0.480537, 
+ RotateToVision: #deg=-1.41328 (cX=-27 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=-0.480537(sep=92, height=83, ratio=1.10843, deviation=-0.480537) 
+ RotateToVisionCmd::angle :-0.480537 
+ X,W,VA,H,HS,HS/H,HD,D=-27,400,41.875,83,92,1.10843,1,-0.480537, 
+ RotateToVision: #deg=-1.41328 (cX=-27 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=-0.480537(sep=92, height=83, ratio=1.10843, deviation=-0.480537) 
+ RotateToVisionCmd::angle :-0.480537 
+ X,W,VA,H,HS,HS/H,HD,D=-27,400,41.875,83,92,1.10843,1,-0.480537, 
+ RotateToVision: #deg=-1.41328 (cX=-27 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=-0.480537(sep=92, height=83, ratio=1.10843, deviation=-0.480537) 
+ RotateToVisionCmd::angle :-0.480537 
+ X,W,VA,H,HS,HS/H,HD,D=-27,400,41.875,83,92,1.10843,1,-0.480537, 
+ RotateToVision: #deg=-1.41328 (cX=-27 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=-0.480537(sep=92, height=83, ratio=1.10843, deviation=-0.480537) 
+ RotateToVisionCmd::angle :-0.480537 
+ X,W,VA,H,HS,HS/H,HD,D=-27,400,41.875,83,92,1.10843,1,-0.480537, 
+ RotateToVision: #deg=-1.41328 (cX=-27 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=-0.480537(sep=92, height=83, ratio=1.10843, deviation=-0.480537) 
+ RotateToVisionCmd::angle :-0.480537 
+ X,W,VA,H,HS,HS/H,HD,D=-27,400,41.875,83,92,1.10843,1,-0.480537, 
+ RotateToVision: #deg=-1.41328 (cX=-27 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=-0.480537(sep=92, height=83, ratio=1.10843, deviation=-0.480537) 
+ RotateToVisionCmd::angle :-0.480537 
+ X,W,VA,H,HS,HS/H,HD,D=-27,400,41.875,83,92,1.10843,1,-0.480537, 
+ RotateToVision: #deg=-1.41328 (cX=-27 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=-0.480537(sep=92, height=83, ratio=1.10843, deviation=-0.480537) 
+ RotateToVisionCmd::angle :-0.480537 
+ X,W,VA,H,HS,HS/H,HD,D=-27,400,41.875,83,92,1.10843,1,-0.480537, 
+ RotateToVision: #deg=-1.41328 (cX=-27 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=-0.480537(sep=92, height=83, ratio=1.10843, deviation=-0.480537) 
+ RotateToVisionCmd::angle :-0.480537 
+ X,W,VA,H,HS,HS/H,HD,D=-27,400,41.875,83,92,1.10843,1,-0.480537, 
+ RotateToVision: #deg=-1.41328 (cX=-27 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=-0.480537(sep=92, height=83, ratio=1.10843, deviation=-0.480537) 
+ RotateToVisionCmd::angle :-0.480537 
+ X,W,VA,H,HS,HS/H,HD,D=-16,400,41.875,83,93,1.12048,0,0.459249, 
+ RotateToVision: #deg=-0.8375 (cX=-16 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=0.459249(sep=93, height=83, ratio=1.12048, deviation=0.459249) 
+ RotateToVisionCmd::angle :0.459249 
+ X,W,VA,H,HS,HS/H,HD,D=-16,400,41.875,83,93,1.12048,0,0.459249, 
+ RotateToVision: #deg=-0.8375 (cX=-16 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=0.459249(sep=93, height=83, ratio=1.12048, deviation=0.459249) 
+ RotateToVisionCmd::angle :0.459249 
+ X,W,VA,H,HS,HS/H,HD,D=-16,400,41.875,83,93,1.12048,0,0.459249, 
+ RotateToVision: #deg=-0.8375 (cX=-16 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=0.459249(sep=93, height=83, ratio=1.12048, deviation=0.459249) 
+ RotateToVisionCmd::angle :0.459249 
+ X,W,VA,H,HS,HS/H,HD,D=-16,400,41.875,83,93,1.12048,0,0.459249, 
+ RotateToVision: #deg=-0.8375 (cX=-16 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=0.459249(sep=93, height=83, ratio=1.12048, deviation=0.459249) 
+ RotateToVisionCmd::angle :0.459249 
+ X,W,VA,H,HS,HS/H,HD,D=-16,400,41.875,83,93,1.12048,0,0.459249, 
+ RotateToVision: #deg=-0.8375 (cX=-16 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=0.459249(sep=93, height=83, ratio=1.12048, deviation=0.459249) 
+ RotateToVisionCmd::angle :0.459249 
+ X,W,VA,H,HS,HS/H,HD,D=-16,400,41.875,83,93,1.12048,0,0.459249, 
+ RotateToVision: #deg=-0.8375 (cX=-16 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=0.459249(sep=93, height=83, ratio=1.12048, deviation=0.459249) 
+ RotateToVisionCmd::angle :0.459249 
+ X,W,VA,H,HS,HS/H,HD,D=-16,400,41.875,83,93,1.12048,0,0.459249, 
+ RotateToVision: #deg=-0.8375 (cX=-16 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=0.459249(sep=93, height=83, ratio=1.12048, deviation=0.459249) 
+ RotateToVisionCmd::angle :0.459249 
+ X,W,VA,H,HS,HS/H,HD,D=-16,400,41.875,83,93,1.12048,0,0.459249, 
+ RotateToVision: #deg=-0.8375 (cX=-16 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=0.459249(sep=93, height=83, ratio=1.12048, deviation=0.459249) 
+ RotateToVisionCmd::angle :0.459249 
+ X,W,VA,H,HS,HS/H,HD,D=-16,400,41.875,83,93,1.12048,0,0.459249, 
+ RotateToVision: #deg=-0.8375 (cX=-16 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=0.459249(sep=93, height=83, ratio=1.12048, deviation=0.459249) 
+ RotateToVisionCmd::angle :0.459249 
+ X,W,VA,H,HS,HS/H,HD,D=-16,400,41.875,83,93,1.12048,0,0.459249, 
+ RotateToVision: #deg=-0.8375 (cX=-16 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=0.459249(sep=93, height=83, ratio=1.12048, deviation=0.459249) 
+ RotateToVisionCmd::angle :0.459249 
+ X,W,VA,H,HS,HS/H,HD,D=-16,400,41.875,83,93,1.12048,0,0.459249, 
+ RotateToVision: #deg=-0.8375 (cX=-16 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=0.459249(sep=93, height=83, ratio=1.12048, deviation=0.459249) 
+ RotateToVisionCmd::angle :0.459249 
+ X,W,VA,H,HS,HS/H,HD,D=-16,400,41.875,83,93,1.12048,0,0.459249, 
+ RotateToVision: #deg=-0.8375 (cX=-16 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=0.459249(sep=93, height=83, ratio=1.12048, deviation=0.459249) 
+ RotateToVisionCmd::angle :0.459249 
+ X,W,VA,H,HS,HS/H,HD,D=-16,400,41.875,83,93,1.12048,0,0.459249, 
+ RotateToVision: #deg=-0.8375 (cX=-16 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=0.459249(sep=93, height=83, ratio=1.12048, deviation=0.459249) 
+ RotateToVisionCmd::angle :0.459249 
+ X,W,VA,H,HS,HS/H,HD,D=-16,400,41.875,83,93,1.12048,0,0.459249, 
+ RotateToVision: #deg=-0.8375 (cX=-16 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=0.459249(sep=93, height=83, ratio=1.12048, deviation=0.459249) 
+ RotateToVisionCmd::angle :0.459249 
+ X,W,VA,H,HS,HS/H,HD,D=9,400,41.875,83,95,1.14458,1,-0.413643, 
+ RotateToVision: #deg=0.471094 (cX=9 imgW=400 camAngle=41.875) 
+ Normal Estimation: #deg=-0.413643(sep=95, height=83, ratio=1.14458, deviation=-0.413643) 
+ RotateToVisionCmd::angle :-0.413643 
