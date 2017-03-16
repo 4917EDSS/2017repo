@@ -5,7 +5,7 @@
 IntakeSub::IntakeSub() : Subsystem("IntakeSub") {
 	pickupMotor.reset(new CANTalon(INTAKE_MOTOR_CANID));
 	gearFlaps.reset(new frc::DoubleSolenoid(GEARFLAPS_PCM_ID1, GEARFLAPS_PCM_ID2));
-	intakeWhenMoving = true;
+	intakeWhenMoving = false;
 }
 
 void IntakeSub::InitDefaultCommand() {
