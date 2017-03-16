@@ -4,6 +4,7 @@
 #include "SpinUpCmd.h"
 #include <vector>
 #include "SetHopperOpenCmd.h"
+#include "HopperPulseCmd.h"
 
 
 AutoHopperShootGrp::AutoHopperShootGrp() {
@@ -19,13 +20,14 @@ AutoHopperShootGrp::AutoHopperShootGrp() {
 
 	//Open Hopper
 	AddParallel(new SetHopperOpenCmd());
-	AddSequential(new SilkyDriveCmd({0, -1000, -2000, -2300, -3300, -3500}, {0, -1000, -2000, -2300, -2500, -2700}));
+	AddSequential(new SilkyDriveCmd({0, -950, -1850, -2100, -3250, -3400}, {0, -950, -1850, -2100, -2450, -2600}));
 	//Close Hopper
 	AddParallel(new SetHopperOpenCmd(false));
 	AddParallel(new ShootCmd(-KEY_SHOT_SHOOTER_SPEED, HOPPER_RECEIVE_TIME));
 	AddSequential(new WaitCommand(HOPPER_WAIT_TIME));
 	AddParallel(new SpinUpCmd(AUTO_BOILER_SHOT_SHOOTER_SPEED));
-	AddSequential(new SilkyDriveCmd({0, 1000, 2000, 3200, 3700}, {0, 200, 500, 1200, 1700}));
+	AddSequential(new SilkyDriveCmd({0, 931, 2000, 2900, 3400}, {0, 131, 500, 800, 1550}));
+	AddParallel(new HopperPulseCmd(10.0));
 	AddSequential(new ShootCmd(BOILER_SHOT_SHOOTER_SPEED));
 
 	// To run multiple commands at the same time,
