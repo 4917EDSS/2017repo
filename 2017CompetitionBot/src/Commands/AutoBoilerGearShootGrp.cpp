@@ -1,6 +1,11 @@
 #include <Commands/AutoBoilerGearShootGrp.h>
+#include <vector>
 #include "SilkyDriveCmd.h"
 #include "OpenGearFlapsCmd.h"
+#include "DriveStraightCmd.h"
+#include "DriveTurnCmd.h"
+#include "ShootCmd.h"
+#include "ToggleShifterCmd.h"
 
 AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 	// Add Commands here:

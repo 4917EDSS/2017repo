@@ -1,4 +1,5 @@
 #include <Commands/AutoCenterGearShootGrp.h>
+#include <vector>
 #include "SilkyDriveCmd.h"
 #include "RobotMap.h"
 #include "Commands/DriveStraightCmd.h"
