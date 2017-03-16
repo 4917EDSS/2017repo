@@ -28,7 +28,8 @@ enum Alliance {
 constexpr bool flapsEnabled = true;
 
 // Auto values
-constexpr float HOPPER_WAIT_TIME = 1.0;
+constexpr float HOPPER_RECEIVE_TIME = 1.7;
+constexpr float HOPPER_WAIT_TIME = 2.0;
 constexpr float BOILER_SHOOT_TIME_1 = 1.0;
 
 //AHRS define
@@ -95,6 +96,8 @@ constexpr int ANGLE_OF_BOILER = 0;
 constexpr int LOADER_SHAFT_TO_BOILER_ANGLE = -70;
 constexpr int LOADER_SHAFT_TO_BOILER_DIST = 3000;
 constexpr int TEN_BALL_SHOT_TIME = 7;
+constexpr float HOPPER_OPEN_TIME = 1;
+constexpr float HOPPER_CLOSE_TIME = 1;
 
 //PID Values
 constexpr float DRIVE_TURN_P = 0.1;

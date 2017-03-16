@@ -16,7 +16,7 @@ void RotateToVisionCmd::Initialize() {
 	// Determine number of degrees needed to get the robot centered on the vision target
 	struct MachineVisionData mvd = visionResults.getResults();
 
-	if( mvd.numCountoursFound > minTargets )
+	if( mvd.numCountoursFound >= minTargets )
 	{
 		struct MachineVisionData mvd = visionResults.getResults();
 		double targetRatio = (10.25 - 4.0) / 5.0;		// from vision targets dimensions if camera is aligned with target want separation / height

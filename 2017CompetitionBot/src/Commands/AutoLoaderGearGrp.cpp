@@ -1,5 +1,9 @@
 #include "AutoLoaderGearGrp.h"
 #include "SilkyDriveCmd.h"
+#include "RotateToVisionCmd.h"
+#include "OpenGearFlapsCmd.h"
+#include "ToggleShifterCmd.h"
+#include <vector>
 
 AutoLoaderGearGrp::AutoLoaderGearGrp() {
 	// Add Commands here:
@@ -13,7 +17,16 @@ AutoLoaderGearGrp::AutoLoaderGearGrp() {
 	//Open Gear Flaps
 	AddParallel(new OpenGearFlapsCmd());
 	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 650, 1500, 2800}, std::vector<double> {0, 650, 2500, 3500}));
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1750, 2800}, std::vector<double> {0, 2150, 3650}));
+	//Drive Towards Gear
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1050, 1900}, std::vector<double> {0, 1050, 2800}));
+	//Shifting
+	AddSequential(new ToggleShifterCmd());
+	//Auto Correct
+	AddSequential(new RotateToVisionCmd(2));
+	//Shifting111
+	AddSequential(new ToggleShifterCmd());
+	//Keep Driving Straight
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 500, 1300}, std::vector<double> {0, 500, 1300}));
 	//Wait
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 

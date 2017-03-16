@@ -1,6 +1,12 @@
 #include <Commands/AutoCenterGearShootGrp.h>
 #include "SilkyDriveCmd.h"
 #include "RobotMap.h"
+#include "Commands/DriveStraightCmd.h"
+#include "Commands/DriveTurnCmd.h"
+#include "Commands/ShootCmd.h"
+#include "Commands/OpenGearFlapsCmd.h"
+#include "Commands/SpinUpCmd.h"
+#include "Commands/HopperPulseCmd.h"
 AutoCenterGearShootGrp::AutoCenterGearShootGrp() {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
@@ -39,6 +45,7 @@ AutoCenterGearShootGrp::AutoCenterGearShootGrp() {
 	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 100, 3300}, std::vector<double> {0, 150, 4100}));//St1raight to Hopper
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 975, 2253, 3475}, std::vector<double> {0, 1175, 2900, 4300}));//More of a Turn
 	//Shoot
+	AddParallel(new HopperPulseCmd(15.0));
 	AddSequential(new ShootCmd(AUTO_BOILER_SHOT_SHOOTER_SPEED, BOILER_SHOOT_TIME_1));
 	AddSequential(new ShootCmd(BOILER_SHOT_SHOOTER_SPEED));
 
