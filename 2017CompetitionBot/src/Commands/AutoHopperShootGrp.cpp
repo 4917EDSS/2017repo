@@ -1,5 +1,6 @@
 #include <Commands/AutoHopperShootGrp.h>
 #include "SilkyDriveCmd.h"
+#include "SetHopperOpenCmd.h"
 
 
 AutoHopperShootGrp::AutoHopperShootGrp() {
@@ -13,7 +14,11 @@ AutoHopperShootGrp::AutoHopperShootGrp() {
 	//Backwards to hopper
 	//AddSequential(new SilkyDriveCmd({0, -3000, -3300, -4100, -4940}, {0, -250, -1950, -2750, -3540}));
 
+	//Open Hopper
+	AddParallel(new SetHopperOpenCmd());
 	AddSequential(new SilkyDriveCmd({0, -1000, -2000, -2300, -3300, -3500}, {0, -1000, -2000, -2300, -2500, -2700}));
+	//Close Hopper
+	AddParallel(new SetHopperOpenCmd(false));
 	AddParallel(new ShootCmd(-KEY_SHOT_SHOOTER_SPEED, HOPPER_RECEIVE_TIME));
 	AddSequential(new WaitCommand(HOPPER_WAIT_TIME));
 	AddParallel(new SpinUpCmd(AUTO_BOILER_SHOT_SHOOTER_SPEED));
