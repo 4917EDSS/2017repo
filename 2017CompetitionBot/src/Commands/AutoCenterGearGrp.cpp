@@ -4,6 +4,7 @@
 #include "OpenGearFlapsCmd.h"
 #include "RotateToVisionCmd.h"
 #include "ToggleShifterCmd.h"
+#include <vector>
 
 AutoCenterGearGrp::AutoCenterGearGrp() {
 	// Add Commands here:
