@@ -5,7 +5,7 @@
 
 class HopperPulseCmd : public CommandBase {
 public:
-	HopperPulseCmd(float time=10.0);
+	HopperPulseCmd(float time);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
