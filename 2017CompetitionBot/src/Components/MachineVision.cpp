@@ -37,6 +37,9 @@ void MachineVisionResults::setResults(struct MachineVisionData newMvd)
 
 void MachineVisionThread()
 {
+	Timer referenceTimer;
+	Timer processingTimer;
+
 	grip::GripPipeline gripPipeline;
 	cv::Mat source;
 	int numContoursFound = 0;
@@ -52,11 +55,15 @@ void MachineVisionThread()
 
 	// Need to keep track of the two largest artifacts (constructor initializes to 0s)
 	cv::Rect largestRect[2];
+	referenceTimer.Start();
 
 	while(true)
 	{
-		cvSink.GrabFrame(source);
+		uint64_t frameTime = cvSink.GrabFrame(source);
+		double frameTimeSeconds = referenceTimer.Get();
+		processingTimer.Start();
 		gripPipeline.Process(source);
+		double gripProcessingTime = processingTimer.Get();
 		numContoursFound = 0;
 		largestRect[0] = cv::Rect ();
 		largestRect[1] = cv::Rect ();
@@ -123,7 +130,12 @@ void MachineVisionThread()
 			mvd.centerX = mvd.x - source.cols / 2;
 			mvd.centerY = mvd.y - source.rows / 2;
 		}
+		processingTimer.Stop();
 		//std::cout << "cX " << mvd.centerX << std::endl;
+		mvd.frameTimeSeconds = frameTimeSeconds;
+		mvd.frameTime = frameTime;
+		mvd.gripProcessingTime = gripProcessingTime;
+		mvd.processingTime = processingTimer.Get();
 		visionResults.setResults(mvd);
 	}
 }

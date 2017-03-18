@@ -74,22 +74,27 @@ double RotateToVisionCmd::ComputeDeviation() {
 	// angle is an approximation of how far off the normal we are from the target plane
 	// when we are aligned with target then ratio should be target ratio, if 90 degrees off ratio will be zero.
 	// determine which way to turn by relative size of the two targets, turn towards the smaller of the two.
-	double angle = acos(cappedRatio) * ((mvd.heightDifference > 0) ? -1 : 1) * PI / 180.0;
+	double deviationAngle = acos(cappedRatio) * ((mvd.heightDifference > 0) ? -1 : 1) * PI / 180.0;
+	double bearingAngle = mvd.centerX * MACHINE_VISION_CAMERA_HORIZONTAL_VIEW_ANGLE / mvd.imageWidth;
 
-	std::cout << "X,H,HS,HS/H,CR,HD,D="
-			<< mvd.centerX << ","
-			<< mvd.averageHeight << ","
-			<< mvd.horizontalSeparation << ","
-			<< ratio << ","
-			<< cappedRatio << ","
-			<< mvd.heightDifference << ","
-			<< angle << ","
-			<< std::endl;
-	turnDegrees = (double)mvd.centerX / mvd.imageWidth * MACHINE_VISION_CAMERA_HORIZONTAL_VIEW_ANGLE/2;
-	std::cout << "RotateToVision: #deg=" << turnDegrees << " (cX=" << mvd.centerX << " imgW=" << mvd.imageWidth <<
+	printf("          FT,    FT(s),     PT,    D,    A, cX, AH, DH, HS,    R,   CR\r\n"
+			"%012lld,%8.3f,%7.5f,%5.2f,%5.2f,%3d,%3d,%3d,%3d,%5.3f,%5.3f\r\n",
+			mvd.frameTime,
+			mvd.frameTimeSeconds,
+			mvd.processingTime,
+			deviationAngle,
+			bearingAngle,
+			mvd.centerX,
+			mvd.averageHeight,
+			mvd.heightDifference,
+			mvd.horizontalSeparation,
+			ratio,
+			cappedRatio
+			);
+	std::cout << "RotateToVision: #deg=" << bearingAngle << " (cX=" << mvd.centerX << " imgW=" << mvd.imageWidth <<
 			" camAngle=" <<	MACHINE_VISION_CAMERA_HORIZONTAL_VIEW_ANGLE << ")" << std::endl;
-	std::cout << "Normal Estimation: #deg=" << angle << "(sep=" << mvd.horizontalSeparation
-			<< ", height=" << mvd.averageHeight<< ", ratio=" << ratio << ", deviation=" << angle << ")"
+	std::cout << "Normal Estimation: #deg=" << deviationAngle << "(sep=" << mvd.horizontalSeparation
+			<< ", height=" << mvd.averageHeight<< ", ratio=" << ratio << ")"
 			<< std::endl;
-	return angle;
+	return bearingAngle;
 }

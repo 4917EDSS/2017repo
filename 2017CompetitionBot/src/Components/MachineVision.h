@@ -7,6 +7,9 @@
 
 #ifndef SRC_COMPONENTS_MACHINEVISION_H_
 #define SRC_COMPONENTS_MACHINEVISION_H_
+#include <stdint.h>
+
+const double PI  =3.141592653589793238463;
 
 struct MachineVisionData {
 	int x;
@@ -19,6 +22,10 @@ struct MachineVisionData {
 	int numCountoursFound;
 	int imageWidth;
 	int imageHeight;
+	uint64_t frameTime;
+	double frameTimeSeconds;
+	double gripProcessingTime;
+	double processingTime;
 };
 
 class MachineVisionResults {
