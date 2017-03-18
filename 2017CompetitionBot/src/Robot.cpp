@@ -106,6 +106,7 @@ private:
 	std::unique_ptr<frc::SendableChooser<std::shared_ptr<frc::Command> > > autoLocationOptions;
 	void UpdateSmartDashboard()
 	{
+#ifdef PRACTICE_BOT
 		SmartDashboard::PutNumber("Left Drive Motor Enc", CommandBase::drivetrainSub->getLeftEncoder());
 		SmartDashboard::PutNumber("Right Drive Motor Enc", CommandBase::drivetrainSub->getRightEncoder());
 		SmartDashboard::PutNumber("Yaw", CommandBase::drivetrainSub->getYaw());
@@ -122,6 +123,7 @@ private:
 		SmartDashboard::PutNumber("Right Drive Amps1", CommandBase::drivetrainSub->getRightAmps1());
 		SmartDashboard::PutNumber("Right Drive Amps2", CommandBase::drivetrainSub->getRightAmps2());
 		SmartDashboard::PutBoolean("Intake While Driving", CommandBase::intakeSub->getIntakeWhenMoving());
+#endif
 	}
 	void SetSmartDashboardAutoOptions()
 	{
@@ -136,13 +138,16 @@ private:
 		autoLocationOptions->AddObject("Immediately Shoot, No Gear", std::shared_ptr<frc::Command>(new AutoShootGrp()));
 
 		SmartDashboard::PutData("Auto Modes", autoLocationOptions.get());
+
 	}
 	void SetSmartDashboardDriverContent()
 	{
+#ifdef PRACTICE_BOT
 		SmartDashboard::PutData("Drive mostly straight", new DriveStraightCmd(LOAD_STRAIGHT_DIST));
 		SmartDashboard::PutData("reset encoders", new ResetDriveEncodersCmd());
 		SmartDashboard::PutData("Drive straight with navx", new AHRSDriveStraightCmd(1000, 0.7));
 		//SmartDashboard::PutData("Hopefully Turn", new DriveTurnCmd(LOAD_STRAIGHT_DIST));
+#endif
 	}
 
 };
