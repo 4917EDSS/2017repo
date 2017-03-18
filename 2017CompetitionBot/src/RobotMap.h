@@ -30,7 +30,7 @@ enum Alliance {
 constexpr bool flapsEnabled = true;
 
 // Auto values
-constexpr float HOPPER_RECEIVE_TIME = 1.7;
+constexpr float HOPPER_RECEIVE_TIME = 2.0;
 constexpr float HOPPER_WAIT_TIME = 2.0;
 constexpr float BOILER_SHOOT_TIME_1 = 1.0;
 

@@ -19,7 +19,7 @@ AutoHopperShootGrp::AutoHopperShootGrp() {
 	//AddSequential(new SilkyDriveCmd({0, -3000, -3300, -4100, -4940}, {0, -250, -1950, -2750, -3540}));
 
 	//Open Hopper
-	AddParallel(new SetHopperOpenCmd());
+	AddParallel(new SetHopperOpenCmd(true));
 	AddSequential(new SilkyDriveCmd({0, -950, -1850, -2100, -3250, -3400}, {0, -950, -1850, -2100, -2450, -2600}));
 	//Close Hopper
 	AddParallel(new SetHopperOpenCmd(false));
