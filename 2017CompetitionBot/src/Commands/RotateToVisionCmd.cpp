@@ -74,14 +74,14 @@ double RotateToVisionCmd::ComputeDeviation() {
 	// angle is an approximation of how far off the normal we are from the target plane
 	// when we are aligned with target then ratio should be target ratio, if 90 degrees off ratio will be zero.
 	// determine which way to turn by relative size of the two targets, turn towards the smaller of the two.
-	double angle = acos(cappedRatio) * ((mvd.heightDifference > 0) ? -1 : 1);
+	double angle = acos(cappedRatio) * ((mvd.heightDifference > 0) ? -1 : 1) * PI / 180.0;
 
-	std::cout << "X,W,VA,H,HS,HS/H,HD,D=" << mvd.centerX << ","
-			<< mvd.imageWidth << ","
-			<< MACHINE_VISION_CAMERA_HORIZONTAL_VIEW_ANGLE << ","
+	std::cout << "X,H,HS,HS/H,CR,HD,D="
+			<< mvd.centerX << ","
 			<< mvd.averageHeight << ","
 			<< mvd.horizontalSeparation << ","
 			<< ratio << ","
+			<< cappedRatio << ","
 			<< mvd.heightDifference << ","
 			<< angle << ","
 			<< std::endl;
