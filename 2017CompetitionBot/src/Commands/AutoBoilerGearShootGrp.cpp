@@ -3,9 +3,11 @@
 #include "SilkyDriveCmd.h"
 #include "OpenGearFlapsCmd.h"
 #include "DriveStraightCmd.h"
-#include "DriveTurnCmd.h"
+#include "RotateToVisionCmd.h"
 #include "ShootCmd.h"
 #include "ToggleShifterCmd.h"
+#include "SpinupCmd.h"
+#include "HopperPulseCmd.h"
 
 AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 	// Add Commands here:
@@ -33,16 +35,23 @@ AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1217, 2519, 3230}, std::vector<double> {0, 1180, 2114, 2415}));
 	//Drive to gear (From Boiler)
 //	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 200, 2160, 3810}, std::vector<double> {0, 200, 1350, 3000}));
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 700, 2460, 3110}, std::vector<double> {0, 700, 1650, 2300}));
+	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 700, 2460, 3110}, std::vector<double> {0, 700, 1650, 2300}));
 	//Go to low gear
-	AddSequential(new ToggleShifterCmd());
+	//full silky to gear
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 400, 3110, 3760}, std::vector<double> {0, 400, 2300, 2950}));
+	/*AddSequential(new ToggleShifterCmd());
 	//Align with Vision
-	AddSequential(new DriveTurnCmd(-10000000));
+	AddSequential(new RotateToVisionCmd(2));
 	//Go to high gear
 	AddSequential(new ToggleShifterCmd());
 	//Drive Straight
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 700, 1100}, std::vector<double> {0, 700, 1100}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 300, 750}, std::vector<double> {0, 300, 750}));
+	*/
 	//Wait
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
-	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, -200, -400}, std::vector<double> {0, -200, -2500}));
+	AddParallel(new SpinUpCmd(AUTO_BOILER_SHOT_SHOOTER_SPEED));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -200, -400}, std::vector<double> {0, -200, -2500}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 700, 2000, 2300}, std::vector<double> {0, 700, 1300, 1600}));
+	AddParallel(new HopperPulseCmd(10.0));
+	AddSequential(new ShootCmd(BOILER_SHOT_SHOOTER_SPEED));
 }
