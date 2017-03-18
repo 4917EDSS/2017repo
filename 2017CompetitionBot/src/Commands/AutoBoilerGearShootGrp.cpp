@@ -38,7 +38,8 @@ AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 700, 2460, 3110}, std::vector<double> {0, 700, 1650, 2300}));
 	//Go to low gear
 	//full silky to gear
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 400, 3110, 3760}, std::vector<double> {0, 400, 2300, 2950}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 600, 2340}, std::vector<double> {0, 600, 1500}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 600, 1450}, std::vector<double> {0, 600, 1450}));
 	/*AddSequential(new ToggleShifterCmd());
 	//Align with Vision
 	AddSequential(new RotateToVisionCmd(2));
@@ -51,7 +52,7 @@ AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 	AddParallel(new SpinUpCmd(AUTO_BOILER_SHOT_SHOOTER_SPEED));
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -200, -400}, std::vector<double> {0, -200, -2500}));
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 700, 2000, 2300}, std::vector<double> {0, 700, 1300, 1600}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 2300, 2800}, std::vector<double> {0, 1000, 1800, 2200}));
 	AddParallel(new HopperPulseCmd(10.0));
 	AddSequential(new ShootCmd(BOILER_SHOT_SHOOTER_SPEED));
 }

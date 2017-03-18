@@ -106,6 +106,7 @@ private:
 	std::unique_ptr<frc::SendableChooser<std::shared_ptr<frc::Command> > > autoLocationOptions;
 	void UpdateSmartDashboard()
 	{
+		SmartDashboard::PutBoolean("Intake While Driving", CommandBase::intakeSub->getIntakeWhenMoving());
 #ifdef PRACTICE_BOT
 		SmartDashboard::PutNumber("Left Drive Motor Enc", CommandBase::drivetrainSub->getLeftEncoder());
 		SmartDashboard::PutNumber("Right Drive Motor Enc", CommandBase::drivetrainSub->getRightEncoder());
@@ -122,7 +123,6 @@ private:
 		SmartDashboard::PutNumber("Left Drive Amps2", CommandBase::drivetrainSub-> getLeftAmps2());
 		SmartDashboard::PutNumber("Right Drive Amps1", CommandBase::drivetrainSub->getRightAmps1());
 		SmartDashboard::PutNumber("Right Drive Amps2", CommandBase::drivetrainSub->getRightAmps2());
-		SmartDashboard::PutBoolean("Intake While Driving", CommandBase::intakeSub->getIntakeWhenMoving());
 #endif
 	}
 	void SetSmartDashboardAutoOptions()
