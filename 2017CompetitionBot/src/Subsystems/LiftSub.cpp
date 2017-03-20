@@ -4,6 +4,10 @@
 LiftSub::LiftSub() : Subsystem("ExampleSubsystem") {
 	liftMotor.reset(new CANTalon(LIFT_MOTOR_CANID));
 	liftMotor2.reset(new CANTalon(LIFT_MOTOR2_CANID));
+
+	frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
+	lw->AddActuator("Lift", "Lift Motor 1", liftMotor);
+	lw->AddActuator("Lift", "Lift Motor 2", liftMotor2);
 }
 
 void LiftSub::InitDefaultCommand() {

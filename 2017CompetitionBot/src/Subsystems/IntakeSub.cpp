@@ -6,6 +6,10 @@ IntakeSub::IntakeSub() : Subsystem("IntakeSub") {
 	pickupMotor.reset(new CANTalon(INTAKE_MOTOR_CANID));
 	gearFlaps.reset(new frc::DoubleSolenoid(GEARFLAPS_PCM_ID1, GEARFLAPS_PCM_ID2));
 	intakeWhenMoving = false;
+
+	frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
+	lw->AddActuator("Intake", "Pickup(beater)", pickupMotor);
+	lw->AddActuator("Intake", "Gear Flaps Solenoid", gearFlaps);
 }
 
 void IntakeSub::InitDefaultCommand() {

@@ -35,7 +35,7 @@ void CommandBase::Init()
 	oi.reset(new OI());
 
 	// Start the vision thread
-	std::thread visionThread(MachineVisionThread);
-	visionThread.detach();
+//	std::thread visionThread(MachineVisionThread);
+//	visionThread.detach();
 }
 

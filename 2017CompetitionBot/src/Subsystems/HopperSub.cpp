@@ -3,6 +3,9 @@
 
 HopperSub::HopperSub() : Subsystem("ExampleSubsystem") {
 	hopper.reset(new frc::DoubleSolenoid(HOPPER_PCM_ID1, HOPPER_PCM_ID2));
+
+	frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
+	lw->AddActuator("Hopper", "Hopper Solenoid", hopper);
 }
 
 void HopperSub::InitDefaultCommand() {

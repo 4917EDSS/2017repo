@@ -18,7 +18,11 @@ ShooterSub::ShooterSub() : Subsystem("ShooterSub") {
 
 	// Make these properly available in Test mode
 	frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
-	lw->AddActuator("Shooter", "Motor", shooterMotor1);
+	lw->AddActuator("Shooter", "Shooter Motor", shooterMotor1);
+	lw->AddActuator("Shooter", "Shooter Motor 2", shooterMotor2);
+	lw->AddActuator("Shooter", "Feeder Motor 1", feederMotor1);
+	lw->AddActuator("Shooter", "Feeder Motor 2", feederMotor2);
+
 	//lw->AddActuator("Shooter", "Bottom Motor", bottomMotor);
 	// moved up to allow tuning
 	shooterMotor1->SetF(0.045);
