@@ -27,8 +27,8 @@ AutoShootGrp::AutoShootGrp() {
 	// shoot
 	AddParallel(new HopperPulseCmd(TEN_BALL_SHOT_TIME));
 	AddSequential(new ShootCmd(AUTO_BOILER_SHOT_SHOOTER_SPEED, TEN_BALL_SHOT_TIME));
-	// reverse turn - check turn
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -1000,-3700},std::vector<double> {0,-300,-1200}));
+	// reverse turn
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -1000,-3900},std::vector<double> {0,-300,-1200}));
 	// drive straight
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 200, 2000},std::vector<double> {0, 200, 2000}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 200, 1700},std::vector<double> {0, 200, 1700}));
 }

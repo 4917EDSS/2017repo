@@ -11,22 +11,16 @@ AutoLoaderGearGrp::AutoLoaderGearGrp() {
 	//      AddSequential(new Command2());
 	// these will run in order.
 
-	//Drive to gaar
-	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1050, 1400, 2800}, std::vector<double> {0, 1050, 1850, 3700}));
+	//Drive to gaar;
 
 	//Open Gear Flaps
 	AddParallel(new OpenGearFlapsCmd());
-	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 650, 1500, 2800}, std::vector<double> {0, 650, 2500, 3500}));
 	//Drive Towards Gear
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1050, 1900}, std::vector<double> {0, 1050, 2800}));
-	//Shifting
-	AddSequential(new ToggleShifterCmd());
-	//Auto Correct
-	AddSequential(new RotateToVisionCmd(2));
-	//Shifting111
-	AddSequential(new ToggleShifterCmd());
+	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1050, 1900}, std::vector<double> {0, 1050, 2800}));
 	//Keep Driving Straight
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 500, 1300}, std::vector<double> {0, 500, 1300}));
+	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 500, 1300}, std::vector<double> {0, 500, 1300}));
+
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1150, 1500, 3200}, std::vector<double> {0, 1150, 2300, 4000}));
 	//Wait
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 
