@@ -21,6 +21,7 @@
 #include "Commands/ResetDriveEncodersCmd.h"
 #include "Commands/AHRSDriveStraightCmd.h"
 #include "Commands/AutoBoilerGearShootGrp.h"
+#include "Commands/AutoBoilerGearGrp.h"
 #include "Commands/AutoCenterGearShootGrp.h"
 #include "Commands/AutoHopperShootGrp.h"
 #include "Commands/AutoShootGrp.h"
@@ -60,12 +61,6 @@ public:
 	 */
 	void AutonomousInit() override {
 		std::string autoSelected = frc::SmartDashboard::GetString("Auto Selector", "Default");
-		/*if (autoSelected == "My Auto") {
-			autonomousCommand.reset(new MyAutoCommand());
-		}
-		else {
-			autonomousCommand.reset(new ExampleCommand());
-		}*/
 		autonomousCommand = autoLocationOptions->GetSelected();
 
 		if (autonomousCommand.get() != nullptr) {
@@ -132,6 +127,7 @@ private:
 		autoLocationOptions->AddDefault("Do Nothing", std::shared_ptr<frc::Command>(new AutoDefaultGrp()));
 		autoLocationOptions->AddObject("Hopper Shoot", std::shared_ptr<frc::Command>(new AutoHopperShootGrp()));
 		autoLocationOptions->AddObject("Boiler Gear Shoot", std::shared_ptr<frc::Command>(new AutoBoilerGearShootGrp()));
+		autoLocationOptions->AddObject("Boiler Gear", std::shared_ptr<frc::Command>(new AutoBoilerGearGrp()));
 		autoLocationOptions->AddObject("Center Gear Shoot", std::shared_ptr<frc::Command>(new AutoCenterGearShootGrp()));
 		autoLocationOptions->AddObject("Loader Gear", std::shared_ptr<frc::Command>(new AutoLoaderGearGrp()));
 		autoLocationOptions->AddObject("Center Gear", std::shared_ptr<frc::Command>(new AutoCenterGearGrp()));

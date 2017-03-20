@@ -1,4 +1,4 @@
-#include <Commands/AutoBoilerGearShootGrp.h>
+#include <Commands/AutoBoilerGearGrp.h>
 #include <vector>
 #include "SilkyDriveCmd.h"
 #include "OpenGearFlapsCmd.h"
@@ -9,7 +9,7 @@
 #include "SpinupCmd.h"
 #include "HopperPulseCmd.h"
 
-AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
+AutoBoilerGearGrp::AutoBoilerGearGrp() {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
@@ -50,9 +50,4 @@ AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 	*/
 	//Wait
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
-	AddParallel(new SpinUpCmd(AUTO_BOILER_SHOT_SHOOTER_SPEED));
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -200, -400}, std::vector<double> {0, -200, -2500}));
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 2300, 2800}, std::vector<double> {0, 1000, 1800, 2200}));
-	AddParallel(new HopperPulseCmd(10.0));
-	AddSequential(new ShootCmd(BOILER_SHOT_SHOOTER_SPEED));
 }
