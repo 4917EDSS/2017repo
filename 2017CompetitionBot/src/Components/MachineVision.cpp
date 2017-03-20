@@ -37,7 +37,6 @@ void MachineVisionResults::setResults(struct MachineVisionData newMvd)
 
 void MachineVisionThread()
 {
-	Timer referenceTimer;
 	Timer processingTimer;
 
 	grip::GripPipeline gripPipeline;
@@ -55,12 +54,11 @@ void MachineVisionThread()
 
 	// Need to keep track of the two largest artifacts (constructor initializes to 0s)
 	cv::Rect largestRect[2];
-	referenceTimer.Start();
 
 	while(true)
 	{
 		uint64_t frameTime = cvSink.GrabFrame(source);
-		double frameTimeSeconds = referenceTimer.Get();
+		double frameTimeSeconds = Timer::GetFPGATimestamp();
 		processingTimer.Start();
 		gripPipeline.Process(source);
 		double gripProcessingTime = processingTimer.Get();
