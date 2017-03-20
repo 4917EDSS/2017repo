@@ -1,10 +1,13 @@
-#include "AutoLoaderGearGrp.h"
+#include "AutoLoaderGearHopperLoadGrp.h"
 #include "SilkyDriveCmd.h"
 #include "RotateToVisionCmd.h"
 #include "OpenGearFlapsCmd.h"
+#include "SetHopperOpenCmd.h"
+#include "ToggleShifterCmd.h"
+#include "ShootCmd.h"
 #include <vector>
 
-AutoLoaderGearGrp::AutoLoaderGearGrp() {
+AutoLoaderGearHopperLoadGrp::AutoLoaderGearHopperLoadGrp() {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
@@ -22,8 +25,12 @@ AutoLoaderGearGrp::AutoLoaderGearGrp() {
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1150, 1500, 3200}, std::vector<double> {0, 1150, 2300, 4000}));
 	//Wait
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -1000, -1500}, std::vector<double> {0, -1000, -2450}));
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 7000}, std::vector<double> {0, 1000, 7000}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -1000, -2700, -2900, -3800}, std::vector<double> {0, -200, -2000, -2500, -3100}));
+	AddParallel(new OpenGearFlapsCmd());
+	AddParallel(new SetHopperOpenCmd(true));
+	AddParallel(new ShootCmd(-KEY_SHOT_SHOOTER_SPEED));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -75, -550}, std::vector<double> {0, -75, -400}));
+	AddParallel(new SetHopperOpenCmd(false));
 	// To run multiple commands at the same time,
 	// use AddParallel()
 	// e.g. AddParallel(new Command1());

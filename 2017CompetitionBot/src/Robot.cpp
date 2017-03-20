@@ -15,6 +15,7 @@
 #include "Commands/AutoCenterGearShootGrp.h"
 #include "Commands/AutoBoilerGearShootGrp.h"
 #include "Commands/AutoLoaderGearGrp.h"
+#include "Commands/AutoLoaderGearHopperLoadGrp.h"
 #include "Commands/AutoHopperShootGrp.h"
 #include "Commands/DriveStraightCmd.h"
 #include "Commands/SilkyDriveCmd.h"
@@ -129,7 +130,8 @@ private:
 		autoLocationOptions->AddObject("Boiler Gear Shoot", std::shared_ptr<frc::Command>(new AutoBoilerGearShootGrp()));
 		autoLocationOptions->AddObject("Boiler Gear", std::shared_ptr<frc::Command>(new AutoBoilerGearGrp()));
 		autoLocationOptions->AddObject("Center Gear Shoot", std::shared_ptr<frc::Command>(new AutoCenterGearShootGrp()));
-		autoLocationOptions->AddObject("Loader Gear", std::shared_ptr<frc::Command>(new AutoLoaderGearGrp()));
+		autoLocationOptions->AddObject("Loader Gear Then Goes Down Field", std::shared_ptr<frc::Command>(new AutoLoaderGearGrp()));
+		autoLocationOptions->AddObject("Loader Gear Hopper Load", std::shared_ptr<frc::Command>(new AutoLoaderGearHopperLoadGrp()));
 		autoLocationOptions->AddObject("Center Gear", std::shared_ptr<frc::Command>(new AutoCenterGearGrp()));
 		autoLocationOptions->AddObject("Immediately Shoot, No Gear", std::shared_ptr<frc::Command>(new AutoShootGrp()));
 
