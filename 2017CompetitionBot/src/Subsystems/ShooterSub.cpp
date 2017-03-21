@@ -29,6 +29,12 @@ ShooterSub::ShooterSub() : Subsystem("ShooterSub") {
 	shooterMotor1->SetP(0.4);
 	shooterMotor1->SetD(1);
 
+	feederMotor1->SetF(0.128);
+	feederMotor1->SetP(0.26);
+	feederMotor1->SetI(0.0002);
+	feederMotor1->SetD(6.6);
+
+
 }
 
 void ShooterSub::InitDefaultCommand() {
@@ -48,10 +54,7 @@ void ShooterSub::update(bool shooting)
 		if (setSpeed > 0.0){
 			setFeederSpeed(-1.0);
 		}
-		else if (error > 0.05) {
-			setFeederSpeed(0.0);
-		}
-		else {
+		else if (error < 0.05) {
 			setFeederSpeed(1.0);
 		}
 	}
@@ -90,6 +93,9 @@ double ShooterSub::getTargetSpeed()
 {
 	return targetSpeed + adjustmentSpeed;
 }
+double ShooterSub::getFeederSpeed() {
+	return feederMotor1->GetSpeed();
+}
 void ShooterSub::enableSpeedController(){
 	shooterMotor1->SetControlMode(frc::CANSpeedController::kSpeed);
 	shooterMotor1->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
@@ -99,13 +105,21 @@ void ShooterSub::enableSpeedController(){
 	shooterMotor1->SelectProfileSlot(0);
 	shooterMotor1->SetVelocityMeasurementPeriod(CANTalon::Period_5Ms);
 	shooterMotor1->SetVelocityMeasurementWindow(50);
+
+	feederMotor1->SetControlMode(frc::CANSpeedController::kSpeed);
+	feederMotor1->SetFeedbackDevice(CANTalon::FeedbackDevice::QuadEncoder);
+	feederMotor1->SetSensorDirection(false);
+	feederMotor1->ConfigNominalOutputVoltage(0, 0);
+	feederMotor1->ConfigPeakOutputVoltage(+12., -12.);
+	feederMotor1->SelectProfileSlot(0);
 }
 void ShooterSub::disableSpeedController(){
 	shooterMotor1->SetControlMode(frc::CANSpeedController::kPercentVbus);
+	feederMotor1->SetControlMode(frc::CANSpeedController::kPercentVbus);
 }
 
 void ShooterSub::setFeederSpeed(float speed){
-	feederMotor1->Set(speed);
+	feederMotor1->Set(speed * 5500);
 	feederMotor2->Set(speed);
 }
 

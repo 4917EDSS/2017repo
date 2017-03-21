@@ -111,6 +111,7 @@ private:
 		SmartDashboard::PutNumber("Roll", CommandBase::drivetrainSub->getRoll());
 		SmartDashboard::PutNumber("Real Shooter Speed", CommandBase::shooterSub->getSpeed());
 		SmartDashboard::PutNumber("Target Shooter Speed", CommandBase::shooterSub->getTargetSpeed());
+		SmartDashboard::PutNumber("Real Feeder Speed", CommandBase::shooterSub->getFeederSpeed());
 		SmartDashboard::PutNumber("Raw Left Encoder", CommandBase::drivetrainSub->getLeftEncoderRaw());
 		SmartDashboard::PutNumber("Raw Right Encoder", CommandBase::drivetrainSub->getRightEncoderRaw());
 		SmartDashboard::PutNumber("Right Encoder Speed", CommandBase::drivetrainSub->getRightEncoderSpeed());

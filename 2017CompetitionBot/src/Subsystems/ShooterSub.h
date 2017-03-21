@@ -37,6 +37,7 @@ public:
 	void resetEncoder();
 	double getSpeed();
 	double getTargetSpeed();
+	double getFeederSpeed();
 	void enableSpeedController();
 	void disableSpeedController();
 	void setFeederSpeed(float speed);
