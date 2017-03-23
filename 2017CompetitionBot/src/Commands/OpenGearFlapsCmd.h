@@ -8,7 +8,8 @@ class OpenGearFlapsCmd : public CommandBase {
 private:
 	bool open;
 public:
-	OpenGearFlapsCmd(bool b = true);
+	OpenGearFlapsCmd();
+	OpenGearFlapsCmd(bool b);
 	void Initialize();
 	void Execute();
 	bool IsFinished();

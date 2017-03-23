@@ -1,5 +1,12 @@
 #include "OpenGearFlapsCmd.h"
 
+OpenGearFlapsCmd::OpenGearFlapsCmd() {
+	// Use Requires() here to declare subsystem dependencies
+	// eg. Requires(Robot::chassis.get());
+	Requires(intakeSub.get());
+	open = true;
+}
+
 OpenGearFlapsCmd::OpenGearFlapsCmd(bool b) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
