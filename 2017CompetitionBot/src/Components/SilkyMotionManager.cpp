@@ -165,7 +165,7 @@ std::pair<double, double> SilkyMotionManager::execute(double currentLeftPos, dou
 	double leftErrorDeriv = (leftError - lastLeftError) / (timeSinceStart - lastTime);
 	double rightError = right.dis - currentRightPos;
 	double rightErrorDeriv = (rightError - lastRightError) / (timeSinceStart - lastTime);
-#ifdef PRACTICE_ROBOT
+//#ifdef PRACTICE_BOT
 	SmartDashboard::PutNumber("right target dis",right.dis);
 	SmartDashboard::PutNumber("left target dis",left.dis);
 	SmartDashboard::PutNumber("right target vel",right.vel*Kv);
@@ -174,7 +174,7 @@ std::pair<double, double> SilkyMotionManager::execute(double currentLeftPos, dou
 	SmartDashboard::PutNumber("left target accel",left.accel*Ka);
 	SmartDashboard::PutNumber("right error",rightError);
 	SmartDashboard::PutNumber("left error",leftError);
-#endif
+//#endif
 	lastLeftError = leftError;
 	lastRightError = rightError;
 	lastTime = timeSinceStart;
