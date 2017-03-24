@@ -38,8 +38,8 @@ AutoBoilerGearGrp::AutoBoilerGearGrp() {
 	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 700, 2460, 3110}, std::vector<double> {0, 700, 1650, 2300}));
 	//Go to low gear
 	//full silky to gear
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 700, 2275}, std::vector<double> {0, 700, 1500}));
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 600, 1300}, std::vector<double> {0, 600, 1300}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 700, 2275}, std::vector<double> {0, 700, 1530}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 600, 1400}, std::vector<double> {0, 600, 1400}));
 	/*AddSequential(new ToggleShifterCmd());
 	//Align with Vision
 	AddSequential(new RotateToVisionCmd(2));
