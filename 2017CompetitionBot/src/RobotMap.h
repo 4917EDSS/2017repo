@@ -19,7 +19,7 @@
 // constexpr int RANGE_FINDER_PORT = 1;
 // constexpr int RANGE_FINDER_MODULE = 1;
 
-#define PRACTICE_BOT
+//#define PRACTICE_BOT
 
 enum Alliance {
 	RED,

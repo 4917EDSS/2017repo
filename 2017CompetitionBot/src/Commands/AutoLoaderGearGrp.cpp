@@ -19,10 +19,10 @@ AutoLoaderGearGrp::AutoLoaderGearGrp() {
 	//Keep Driving Straight
 	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 500, 1300}, std::vector<double> {0, 500, 1300}));
 
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1150, 1500, 3200}, std::vector<double> {0, 1150, 2300, 4000}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1200, 1500, 3100}, std::vector<double> {0, 1200, 2300, 3900}));
 	//Wait
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -1000, -1500}, std::vector<double> {0, -1000, -2450}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -1000, -1500}, std::vector<double> {0, -1000, -2420}));
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 7000}, std::vector<double> {0, 1000, 7000}));
 	// To run multiple commands at the same time,
 	// use AddParallel()
