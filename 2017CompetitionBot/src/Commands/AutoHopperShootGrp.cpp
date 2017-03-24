@@ -22,7 +22,7 @@ AutoHopperShootGrp::AutoHopperShootGrp() {
 	//Open Hopper
 	AddParallel(new OpenGearFlapsCmd(false));
 	AddParallel(new SetHopperOpenCmd(true));
-	AddSequential(new SilkyDriveCmd({0, -900, -1500, -3250, -3400}, {0, -900, -1500, -2600, -2750}));
+	AddSequential(new SilkyDriveCmd({0, -900, -1650, -3400, -3625}, {0, -900, -1650, -2750, -2975}));
 	//Close Hopper
 	AddParallel(new SetHopperOpenCmd(false));
 	AddParallel(new ShootCmd(-KEY_SHOT_SHOOTER_SPEED, HOPPER_RECEIVE_TIME));
