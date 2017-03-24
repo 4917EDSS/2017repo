@@ -27,6 +27,6 @@ AutoCenterGearGrp::AutoCenterGearGrp() {
 	//Open Gear Flaps
 	AddParallel(new OpenGearFlapsCmd());
 	//Drive halfway
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 1852}, std::vector<double> {0, 1000, 1852}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 1882}, std::vector<double> {0, 1000, 1882}));
 	//Finish Driving
 }
