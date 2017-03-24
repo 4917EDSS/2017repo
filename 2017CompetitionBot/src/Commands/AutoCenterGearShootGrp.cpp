@@ -33,7 +33,7 @@ AutoCenterGearShootGrp::AutoCenterGearShootGrp() {
 	//Open Gear Flaps
 	AddParallel(new OpenGearFlapsCmd());
 	//Drive Straight to peg
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1100, 1850}, std::vector<double> {0, 1100, 1850}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1100, 1852}, std::vector<double> {0, 1100, 1852}));
 	//Wait
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 	//Reverse to right
