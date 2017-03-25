@@ -44,7 +44,7 @@ AutoCenterGearShootGrp::AutoCenterGearShootGrp() {
 	AddParallel(new SpinUpCmd(AUTO_BOILER_SHOT_SHOOTER_SPEED));
 	//Drive to boiler
 	// Decent AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1875, 2703, 3525}, std::vector<double> {0, 1875, 3150, 4150}));
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1725, 2703, 3525}, std::vector<double> {0, 1725, 3150, 4150}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1725, 2703, 3528}, std::vector<double> {0, 1725, 3150, 4100}));
 	//Shoot
 	AddParallel(new HopperPulseCmd(15.0));
 	AddSequential(new ShootCmd(AUTO_BOILER_SHOT_SHOOTER_SPEED, BOILER_SHOOT_TIME_1));

@@ -196,8 +196,6 @@ bool SilkyMotionManager::isFinished(double leftPos, double leftVel, double right
 	SmartDashboard::PutNumber("left velocity",leftVel);
 	SmartDashboard::PutNumber("right velocity",rightVel);
 #endif
-	std::cout << "Stopping Distance Left" << (abs(abs(leftPos) - stoppingLocationLeft)) << std::endl;
-	std::cout << "Stopping Distance Right" << (abs(abs(rightPos) - stoppingLocationRight)) << std::endl;
 
 	// Taking abs of leftPos and rightPos because stoppingLocations are always positive, but if we are going backwards leftpos might be negative
 	if(abs(abs(leftPos) - stoppingLocationLeft) < stoppingDistanceTolerance

@@ -22,11 +22,22 @@ AutoLoaderGearHopperLoadGrp::AutoLoaderGearHopperLoadGrp() {
 	//Keep Driving Straight
 	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 500, 1300}, std::vector<double> {0, 500, 1300}));
 
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1300, 1600, 3200}, std::vector<double> {0, 1300, 2400, 3850}));
+	// RED SIDE AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1300, 1600, 3200}, std::vector<double> {0, 1300, 2400, 3850}));
+
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1200, 1712}, std::vector<double> {0, 1200, 2600}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 600, 1418}, std::vector<double> {0, 600, 1418}));
 	//Wait
-	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -1000, -2700, -2900, -3800}, std::vector<double> {0, -200, -2000, -2500, -3100}));
+	AddSequential(new WaitCommand(GEAR_WAIT_TIME * 3));
+
+	/* RED SIDE AddSequential(new SilkyDriveCmd(std::vector<double> {0, -1000, -2700, -2900, -3800}, std::vector<double> {0, -200, -2000, -2500, -3100}));
 	AddParallel(new OpenGearFlapsCmd());
+	AddParallel(new SetHopperOpenCmd(true));
+	AddParallel(new ShootCmd(-KEY_SHOT_SHOOTER_SPEED));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -75, -550}, std::vector<double> {0, -75, -400}));
+	AddParallel(new SetHopperOpenCmd(false)); */
+
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -1000, -2700, -2900, -3800}, std::vector<double> {0, -200, -2000, -2500, -3100}));
+	AddParallel(new OpenGearFlapsCmd(false));
 	AddParallel(new SetHopperOpenCmd(true));
 	AddParallel(new ShootCmd(-KEY_SHOT_SHOOTER_SPEED));
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -75, -550}, std::vector<double> {0, -75, -400}));
