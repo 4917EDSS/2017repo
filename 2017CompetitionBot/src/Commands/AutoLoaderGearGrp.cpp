@@ -21,8 +21,8 @@ AutoLoaderGearGrp::AutoLoaderGearGrp() {
 
 	// RED SIDE AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1300, 1600, 3200}, std::vector<double> {0, 1300, 2400, 3850}));
 
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1200, 1712}, std::vector<double> {0, 1200, 2600}));
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 600, 1418}, std::vector<double> {0, 600, 1418}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1125, 1637}, std::vector<double> {0, 1125, 2525}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 600, 1421}, std::vector<double> {0, 600, 1421}));
 	//Wait
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -1000, -1500}, std::vector<double> {0, -1000, -2420}));
