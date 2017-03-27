@@ -19,7 +19,7 @@
 // constexpr int RANGE_FINDER_PORT = 1;
 // constexpr int RANGE_FINDER_MODULE = 1;
 
-//#define PRACTICE_BOT
+#define PRACTICE_BOT
 
 enum Alliance {
 	RED,
@@ -72,7 +72,9 @@ constexpr int HOPPER_PCM_ID1 = 2;
 constexpr int HOPPER_PCM_ID2 = 3;
 
 // Drivetrain values
-constexpr float DRIVETRAIN_DIS_PER_PULSE = 2000.0/2621.0;
+constexpr float DRIVETRAIN_DIS_PER_PULSE_LEFT = 5000.0/6611.0;
+		//2000.0/2621.0;
+constexpr float DRIVETRAIN_DIS_PER_PULSE_RIGHT = 5000.0/6693.0;
 constexpr int ENCODER_CONVERSION_FACTOR = 4;
 
 //Auto Enc Distances
