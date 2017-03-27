@@ -27,9 +27,7 @@ AutoBoilerGearGrp::AutoBoilerGearGrp() {
 	// numbers need to be switched to variables
 	//Open Gear Flaps
 
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 5000}, std::vector<double> {0, 1000, 5000}));
-
-	//AddParallel(new OpenGearFlapsCmd());
+	AddParallel(new OpenGearFlapsCmd());
 
 	//Drive to gaar (From Key)
 	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1217, 2519, 3230}, std::vector<double> {0, 1180, 2114, 2415}));
@@ -39,8 +37,8 @@ AutoBoilerGearGrp::AutoBoilerGearGrp() {
 	//Go to low gear
 	//full silky to gear
 
-	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 700, 2275}, std::vector<double> {0, 700, 1530}));
-	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 600, 1400}, std::vector<double> {0, 600, 1400}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 700, 2275}, std::vector<double> {0, 700, 1530}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 600, 1400}, std::vector<double> {0, 600, 1400}));
 
 	/*AddSequential(new ToggleShifterCmd());
 	//Align with Vision
@@ -52,6 +50,6 @@ AutoBoilerGearGrp::AutoBoilerGearGrp() {
 	*/
 	//Wait
 
-	//AddSequential(new WaitCommand(GEAR_WAIT_TIME));
+	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 
 }
