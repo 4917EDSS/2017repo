@@ -24,8 +24,8 @@ AutoLoaderGearHopperLoadGrp::AutoLoaderGearHopperLoadGrp() {
 
 	// RED SIDE AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1300, 1600, 3200}, std::vector<double> {0, 1300, 2400, 3850}));
 
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1125, 1637}, std::vector<double> {0, 1125, 2525}));
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 600, 1421}, std::vector<double> {0, 600, 1421}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 930, 1442}, std::vector<double> {0, 930, 2230}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 600, 1475}, std::vector<double> {0, 600, 1475}));
 	//Wait
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME * 3));
 
