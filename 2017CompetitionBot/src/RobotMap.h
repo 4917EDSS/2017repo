@@ -101,7 +101,7 @@ constexpr int LOADER_SHAFT_TO_BOILER_ANGLE = -70;
 constexpr int LOADER_SHAFT_TO_BOILER_DIST = 3000;
 constexpr int TEN_BALL_SHOT_TIME = 7;
 constexpr float HOPPER_OPEN_TIME = 0.5;
-constexpr float HOPPER_CLOSE_TIME = 1;
+constexpr float HOPPER_CLOSE_TIME = 0.5;
 
 //PID Values
 constexpr float DRIVE_TURN_P = 0.1;
