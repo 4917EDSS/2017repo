@@ -10,6 +10,7 @@ SilkyDriveCmd::SilkyDriveCmd(std::vector<double> leftPositions, std::vector<doub
 SilkyDriveCmd::SilkyDriveCmd(std::vector<double> leftPositionsBlue, std::vector<double> rightPositionsBlue, std::vector<double> leftPositionsRed, std::vector<double> rightPositionsRed) :
 		smmBlue(leftPositionsBlue, rightPositionsBlue, MAX_ACCEL, MAX_DECEL, MAX_VEL, STOPPING_DISTANCE_TOLERANCE, STOPPING_SPEED_TOLERANCE),
 		smmRed(leftPositionsRed, rightPositionsRed, MAX_ACCEL, MAX_DECEL, MAX_VEL, STOPPING_DISTANCE_TOLERANCE, STOPPING_SPEED_TOLERANCE){
+	Requires(drivetrainSub.get());
 }
 
 // Called just before this Command runs the first time

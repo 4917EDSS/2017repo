@@ -17,7 +17,7 @@ AutoHopperShootGrp::AutoHopperShootGrp() {
 
 	//Drive to hopper
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -850, -1600, -3350, -3450}, std::vector<double> {0, -850, -1600, -2700, -2800},
-									std::vector<double> {0, -850, -1600, -2700, -2800}, std::vector<double> {0, -850, -1600, -3350, -3450}));
+									std::vector<double> {0, -950, -1700, -2800, -2900}, std::vector<double> {0, -950, -1700, -3450, -3550}));
 
 	//Open robot hopper
 	AddParallel(new SetHopperOpenCmd(false));
@@ -32,8 +32,8 @@ AutoHopperShootGrp::AutoHopperShootGrp() {
 	AddParallel(new RunPickupCmd());
 
 	//Drive to shooter
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1010, 2080, 2680, 3160}, std::vector<double> {0, 330, 605, 880, 1380},
-									std::vector<double> {0, 330, 605, 880, 1380}, std::vector<double> {0, 1010, 2080, 2680, 3160}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1010, 2080, 2680, 3175}, std::vector<double> {0, 330, 605, 880, 1380},
+									std::vector<double> {0, 290, 605, 880, 1380}, std::vector<double> {0, 1010, 2080, 2680, 3160}));
 
 	//Pulse hopper
 	AddParallel(new HopperPulseCmd(10.0));
