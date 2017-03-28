@@ -6,6 +6,10 @@ SilkyDriveCmd::SilkyDriveCmd(std::vector<double> leftPositions, std::vector<doub
 	Requires(drivetrainSub.get());
 }
 
+SilkyDriveCmd::SilkyDriveCmd(std::vector<double> leftPostionsBlue, std::vector<double> rightPostitionsBlue, std::vector<double> leftPositionsRed, std::vector<double> rightPositionsRed) {
+
+}
+
 // Called just before this Command runs the first time
 void SilkyDriveCmd::Initialize() {
 	smm.setKvKaKpKd(SILKY_KV, SILKY_KA, SILKY_KP, SILKY_KD);

@@ -19,21 +19,34 @@ AutoHopperShootGrp::AutoHopperShootGrp() {
 	AddParallel(new OpenGearFlapsCmd(false));
 	AddParallel(new SetHopperOpenCmd(true));
 
-	if(blueside){
-		AddSequential(new SilkyDriveCmd({0, -850, -1600, -3350, -3450}, {0, -850, -1600, -2700, -2800}));
-		//Close Hopper
-		AddParallel(new SetHopperOpenCmd(false));
-		AddParallel(new ShootCmd(-KEY_SHOT_SHOOTER_SPEED, HOPPER_RECEIVE_TIME));
-		AddSequential(new WaitCommand(HOPPER_WAIT_TIME));
-		AddParallel(new SpinUpCmd(AUTO_BOILER_SHOT_SHOOTER_SPEED));
-		AddParallel(new SetIntakeCmd(true));
-		AddParallel(new RunPickupCmd());
-		AddSequential(new SilkyDriveCmd({0, 1010, 2080, 2680, 3160}, {0, 330, 605, 880, 1380}));
-		AddParallel(new HopperPulseCmd(10.0));
-		AddSequential(new ShootCmd(BOILER_SHOT_SHOOTER_SPEED));
-
+	//Drive to hopper
+	if(blueSide){
+		AddSequential(new SilkyDriveCmd(std::vector<double> {0, -850, -1600, -3350, -3450}, std::vector<double> {0, -850, -1600, -2700, -2800}));
 	} else{
-
+		AddSequential(new SilkyDriveCmd(std::vector<double> {0, -850, -1600, -2700, -2800}, std::vector<double> {0, -850, -1600, -3350, -3450}));
 	}
 
+	//Open robot hopper
+	AddParallel(new SetHopperOpenCmd(false));
+	//Reverse shooter for intake
+	AddParallel(new ShootCmd(-KEY_SHOT_SHOOTER_SPEED, HOPPER_RECEIVE_TIME));
+	//Wait
+	AddSequential(new WaitCommand(HOPPER_WAIT_TIME));
+	//Spin up shooter
+	AddParallel(new SpinUpCmd(AUTO_BOILER_SHOT_SHOOTER_SPEED));
+	//Turn intake bar on
+	AddParallel(new SetIntakeCmd(true));
+	AddParallel(new RunPickupCmd());
+
+	//Drive to shooter
+	if(blueSide) {
+		AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1010, 2080, 2680, 3160}, std::vector<double> {0, 330, 605, 880, 1380}));
+	} else {
+		AddSequential(new SilkyDriveCmd(std::vector<double> {0, 330, 605, 880, 1380}, std::vector<double> {0, 1010, 2080, 2680, 3160}));
+	}
+
+	//Pulse hopper
+	AddParallel(new HopperPulseCmd(10.0));
+	//Shoot
+	AddSequential(new ShootCmd(BOILER_SHOT_SHOOTER_SPEED));
 }

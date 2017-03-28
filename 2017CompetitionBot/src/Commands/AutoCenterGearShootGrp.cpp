@@ -51,5 +51,4 @@ AutoCenterGearShootGrp::AutoCenterGearShootGrp() {
 	//Shoot
 	AddSequential(new ShootCmd(AUTO_BOILER_SHOT_SHOOTER_SPEED, BOILER_SHOOT_TIME_1));
 	AddSequential(new ShootCmd(BOILER_SHOT_SHOOTER_SPEED));
-
 }
