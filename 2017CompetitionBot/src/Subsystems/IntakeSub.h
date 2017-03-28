@@ -22,6 +22,7 @@ public:
 	void closeGearFlaps();
 	void toggleIntake();
 	bool getIntakeWhenMoving();
+	void setIntakeWhenMoving(bool newVal);
 };
 
 #endif  // IntakeSub_H

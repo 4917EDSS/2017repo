@@ -7,6 +7,7 @@
 #include "OpenGearFlapsCmd.h"
 #include "HopperPulseCmd.h"
 #include "RunPickupCmd.h"
+#include "SetIntakeCmd.h"
 
 
 AutoHopperShootGrp::AutoHopperShootGrp() {
@@ -29,6 +30,7 @@ AutoHopperShootGrp::AutoHopperShootGrp() {
 	AddParallel(new ShootCmd(-KEY_SHOT_SHOOTER_SPEED, HOPPER_RECEIVE_TIME));
 	AddSequential(new WaitCommand(HOPPER_WAIT_TIME));
 	AddParallel(new SpinUpCmd(AUTO_BOILER_SHOT_SHOOTER_SPEED));
+	AddParallel(new SetIntakeCmd(true));
 	AddParallel(new RunPickupCmd());
 	AddSequential(new SilkyDriveCmd({0, 1010, 2080, 2680, 3160}, {0, 330, 605, 880, 1380}));
 	AddParallel(new HopperPulseCmd(10.0));

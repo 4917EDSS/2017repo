@@ -42,3 +42,7 @@ void IntakeSub::toggleIntake() {
 bool IntakeSub::getIntakeWhenMoving() {
 	return intakeWhenMoving;
 }
+
+void IntakeSub::setIntakeWhenMoving(bool newVal) {
+	intakeWhenMoving = newVal;
+}
