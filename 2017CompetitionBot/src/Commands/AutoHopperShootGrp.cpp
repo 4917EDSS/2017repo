@@ -23,14 +23,14 @@ AutoHopperShootGrp::AutoHopperShootGrp() {
 	//Open Hopper
 	AddParallel(new OpenGearFlapsCmd(false));
 	AddParallel(new SetHopperOpenCmd(true));
-	AddSequential(new SilkyDriveCmd({0, -900, -1650, -3400, -3625}, {0, -900, -1650, -2750, -2975}));
+	AddSequential(new SilkyDriveCmd({0, -850, -1600, -3350, -3450}, {0, -850, -1600, -2700, -2800}));
 	//Close Hopper
 	AddParallel(new SetHopperOpenCmd(false));
 	AddParallel(new ShootCmd(-KEY_SHOT_SHOOTER_SPEED, HOPPER_RECEIVE_TIME));
 	AddSequential(new WaitCommand(HOPPER_WAIT_TIME));
 	AddParallel(new SpinUpCmd(AUTO_BOILER_SHOT_SHOOTER_SPEED));
 	AddParallel(new RunPickupCmd());
-	AddSequential(new SilkyDriveCmd({0, 1031, 2100, 2700, 3250}, {0, 500, 700, 900, 1500}));
+	AddSequential(new SilkyDriveCmd({0, 1010, 2080, 2680, 3160}, {0, 330, 605, 880, 1380}));
 	AddParallel(new HopperPulseCmd(10.0));
 	AddSequential(new ShootCmd(BOILER_SHOT_SHOOTER_SPEED));
 

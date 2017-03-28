@@ -10,7 +10,7 @@ SilkyDriveCmd::SilkyDriveCmd(std::vector<double> leftPositions, std::vector<doub
 void SilkyDriveCmd::Initialize() {
 	smm.setKvKaKpKd(SILKY_KV, SILKY_KA, SILKY_KP, SILKY_KD);
 	smm.reset();
-	//smm.setAlliance(frc::DriverStation::Alliance::kBlue);
+	//smm.setAlliance(frc::DriverStation::Alliance::kRed);
 	smm.setAlliance(frc::DriverStation::GetInstance().GetAlliance());
 	drivetrainSub->reset();
 }
