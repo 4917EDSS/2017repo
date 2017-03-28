@@ -19,7 +19,8 @@ AutoLoaderGearGrp::AutoLoaderGearGrp() {
 		AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 		AddSequential(new SilkyDriveCmd(std::vector<double> {0, -1000, -1500}, std::vector<double> {0, -1000, -2420}));
 		AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 7000}, std::vector<double> {0, 1000, 7000}));
-	}else{
+
+	} else{
 
 	}
 }

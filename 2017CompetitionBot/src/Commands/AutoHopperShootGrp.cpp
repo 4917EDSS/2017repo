@@ -31,7 +31,8 @@ AutoHopperShootGrp::AutoHopperShootGrp() {
 		AddSequential(new SilkyDriveCmd({0, 1010, 2080, 2680, 3160}, {0, 330, 605, 880, 1380}));
 		AddParallel(new HopperPulseCmd(10.0));
 		AddSequential(new ShootCmd(BOILER_SHOT_SHOOTER_SPEED));
-	}else{
+
+	} else{
 
 	}
 

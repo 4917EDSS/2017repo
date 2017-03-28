@@ -26,7 +26,8 @@ AutoLoaderGearHopperLoadGrp::AutoLoaderGearHopperLoadGrp() {
 		AddParallel(new ShootCmd(-KEY_SHOT_SHOOTER_SPEED));
 		AddSequential(new SilkyDriveCmd(std::vector<double> {0, -75, -550}, std::vector<double> {0, -75, -400}));
 		AddParallel(new SetHopperOpenCmd(false));
-	}else{
+
+	} else{
 
 	}
 }
