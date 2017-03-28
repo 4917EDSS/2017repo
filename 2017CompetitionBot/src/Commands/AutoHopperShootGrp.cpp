@@ -11,6 +11,16 @@
 
 
 AutoHopperShootGrp::AutoHopperShootGrp() {
+
+	if(frc::DriverStation::GetInstance().GetAlliance() == frc::DriverStation::Alliance::kBlue) {
+
+
+
+	} else if(frc::DriverStation::GetInstance().GetAlliance() == frc::DriverStation::Alliance::kRed) {
+
+
+
+	}
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
