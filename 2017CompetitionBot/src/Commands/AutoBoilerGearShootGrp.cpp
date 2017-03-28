@@ -22,7 +22,8 @@ AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 		AddSequential(new SilkyDriveCmd(std::vector<double> {0, 700, 2275}, std::vector<double> {0, 700, 1530}));
 		AddSequential(new SilkyDriveCmd(std::vector<double> {0, 600, 1400}, std::vector<double> {0, 600, 1400}));
 	} else {
-
+		AddSequential(new SilkyDriveCmd(std::vector<double> {0, 700, 1530}, std::vector<double> {0, 700, 2275}));
+		AddSequential(new SilkyDriveCmd(std::vector<double> {0, 600, 1400}, std::vector<double> {0, 600, 1400}));
 	}
 
 	//Wait at gear
@@ -35,7 +36,8 @@ AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 		AddSequential(new SilkyDriveCmd(std::vector<double> {0, -200, -400}, std::vector<double> {0, -200, -2500}));
 		AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 2300, 2800}, std::vector<double> {0, 1000, 1800, 2200}));
 	} else {
-
+		AddSequential(new SilkyDriveCmd(std::vector<double> {0, -200, -2500}, std::vector<double> {0, -200, -400}));
+		AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 1800, 2200}, std::vector<double> {0, -200, -2500}));
 	}
 
 	//Pulse hopper

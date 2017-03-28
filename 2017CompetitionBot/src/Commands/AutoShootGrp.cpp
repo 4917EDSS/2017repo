@@ -8,34 +8,9 @@
 
 AutoShootGrp::AutoShootGrp() {
 
-	if(frc::DriverStation::GetInstance().GetAlliance() == frc::DriverStation::Alliance::kBlue) {
 
 
-
-	} else if(frc::DriverStation::GetInstance().GetAlliance() == frc::DriverStation::Alliance::kRed) {
-
-
-
-	}
-
-	// Add Commands here:
-	// e.g. AddSequential(new Command1());
-	//      AddSequential(new Command2());
-	// these will run in order.
-
-	// To run multiple commands at the same time,
-	// use AddParallel()
-	// e.g. AddParallel(new Command1());
-	//      AddSequential(new Command2());
-	// Command1 and Command2 will run in parallel.
-
-	// A command group will require all of the subsystems that each member
-	// would require.
-	// e.g. if Command1 requires chassis, and Command2 requires arm,
-	// a CommandGroup containing them would require both the chassis and the
-	// arm.
-
-	// shoot
+	//Pulse Hopper
 	AddParallel(new HopperPulseCmd(TEN_BALL_SHOT_TIME));
 	AddSequential(new ShootCmd(AUTO_BOILER_SHOT_SHOOTER_SPEED, TEN_BALL_SHOT_TIME));
 	// reverse turn

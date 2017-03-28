@@ -8,36 +8,17 @@
 
 AutoCenterGearGrp::AutoCenterGearGrp() {
 
-	if(frc::DriverStation::GetInstance().GetAlliance() == frc::DriverStation::Alliance::kBlue) {
+	//Get alliance
+	bool blueSide = frc::DriverStation::GetInstance().GetAlliance() == frc::DriverStation::Alliance::kBlue;
 
+	//Open gear flaps
+	AddParallel(new OpenGearFlapsCmd());
 
-
-	} else if(frc::DriverStation::GetInstance().GetAlliance() == frc::DriverStation::Alliance::kRed) {
-
-
-
+	//Drive to gear
+	if(blueSide) {
+		AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 1882}, std::vector<double> {0, 1000, 1882}));
+	} else {
+		AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 1882}, std::vector<double> {0, 1000, 1882}));
 	}
 
-	// Add Commands here:
-	// e.g. AddSequential(new Command1());
-	//      AddSequential(new Command2());
-	// these will run in order.
-
-	// To run multiple commands at the same time,
-	// use AddParallel()
-	// e.g. AddParallel(new Command1());
-	//      AddSequential(new Command2());
-	// Command1 and Command2 will run in parallel.
-
-	// A command group will require all of the subsystems that each member
-	// would require.
-	// e.g. if Command1 requires chassis, and Command2 requires arm,
-	// a CommandGroup containing them would require both the chassis and the
-	// arm.
-
-	//Open Gear Flaps
-	AddParallel(new OpenGearFlapsCmd());
-	//Drive halfway
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 1882}, std::vector<double> {0, 1000, 1882}));
-	//Finish Driving
 }
