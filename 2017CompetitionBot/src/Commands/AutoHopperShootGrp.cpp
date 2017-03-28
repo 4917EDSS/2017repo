@@ -11,20 +11,13 @@
 
 
 AutoHopperShootGrp::AutoHopperShootGrp() {
-
-	//Get alliance
-	bool blueSide = frc::DriverStation::GetInstance().GetAlliance() == frc::DriverStation::Alliance::kBlue;
-
 	//Open hopper and gear flaps
 	AddParallel(new OpenGearFlapsCmd(false));
 	AddParallel(new SetHopperOpenCmd(true));
 
 	//Drive to hopper
-	if(blueSide){
-		AddSequential(new SilkyDriveCmd(std::vector<double> {0, -850, -1600, -3350, -3450}, std::vector<double> {0, -850, -1600, -2700, -2800}));
-	} else{
-		AddSequential(new SilkyDriveCmd(std::vector<double> {0, -850, -1600, -2700, -2800}, std::vector<double> {0, -850, -1600, -3350, -3450}));
-	}
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -850, -1600, -3350, -3450}, std::vector<double> {0, -850, -1600, -2700, -2800},
+									std::vector<double> {0, -850, -1600, -2700, -2800}, std::vector<double> {0, -850, -1600, -3350, -3450}));
 
 	//Open robot hopper
 	AddParallel(new SetHopperOpenCmd(false));
@@ -39,11 +32,8 @@ AutoHopperShootGrp::AutoHopperShootGrp() {
 	AddParallel(new RunPickupCmd());
 
 	//Drive to shooter
-	if(blueSide) {
-		AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1010, 2080, 2680, 3160}, std::vector<double> {0, 330, 605, 880, 1380}));
-	} else {
-		AddSequential(new SilkyDriveCmd(std::vector<double> {0, 330, 605, 880, 1380}, std::vector<double> {0, 1010, 2080, 2680, 3160}));
-	}
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1010, 2080, 2680, 3160}, std::vector<double> {0, 330, 605, 880, 1380},
+									std::vector<double> {0, 330, 605, 880, 1380}, std::vector<double> {0, 1010, 2080, 2680, 3160}));
 
 	//Pulse hopper
 	AddParallel(new HopperPulseCmd(10.0));

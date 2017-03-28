@@ -2,6 +2,7 @@
 #define AutoLoaderGearHopperLoadGrp_H
 
 #include <Commands/CommandGroup.h>
+#include "WPILib.h"
 
 class AutoLoaderGearHopperLoadGrp : public CommandGroup {
 public:

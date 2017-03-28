@@ -10,21 +10,13 @@
 #include "HopperPulseCmd.h"
 
 AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
-
-	//Get alliance
-	bool blueSide = frc::DriverStation::GetInstance().GetAlliance() == frc::DriverStation::Alliance::kBlue;
-
 	//Open gear flaps
 	AddParallel(new OpenGearFlapsCmd());
 
 	//Drive to boiler gear
-	if(blueSide) {
-		AddSequential(new SilkyDriveCmd(std::vector<double> {0, 700, 2275}, std::vector<double> {0, 700, 1530}));
-		AddSequential(new SilkyDriveCmd(std::vector<double> {0, 600, 1400}, std::vector<double> {0, 600, 1400}));
-	} else {
-		AddSequential(new SilkyDriveCmd(std::vector<double> {0, 700, 1530}, std::vector<double> {0, 700, 2275}));
-		AddSequential(new SilkyDriveCmd(std::vector<double> {0, 600, 1400}, std::vector<double> {0, 600, 1400}));
-	}
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 700, 2275}, std::vector<double> {0, 700, 1530},
+									std::vector<double> {0, 700, 1530}, std::vector<double> {0, 700, 2275}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 600, 1400}, std::vector<double> {0, 600, 1400}));
 
 	//Wait at gear
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
@@ -32,13 +24,10 @@ AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 	AddParallel(new SpinUpCmd(AUTO_BOILER_SHOT_SHOOTER_SPEED));
 
 	//Drive to boiler
-	if(blueSide) {
-		AddSequential(new SilkyDriveCmd(std::vector<double> {0, -200, -400}, std::vector<double> {0, -200, -2500}));
-		AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 2300, 2800}, std::vector<double> {0, 1000, 1800, 2200}));
-	} else {
-		AddSequential(new SilkyDriveCmd(std::vector<double> {0, -200, -2500}, std::vector<double> {0, -200, -400}));
-		AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 1800, 2200}, std::vector<double> {0, -200, -2500}));
-	}
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -200, -400}, std::vector<double> {0, -200, -2500},
+									std::vector<double> {0, -200, -2500}, std::vector<double> {0, -200, -400}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 2300, 2800}, std::vector<double> {0, 1000, 1800, 2200},
+									std::vector<double> {0, 1000, 1800, 2200}, std::vector<double> {0, -200, -2500}));
 
 	//Pulse hopper
 	AddParallel(new HopperPulseCmd(10.0));
