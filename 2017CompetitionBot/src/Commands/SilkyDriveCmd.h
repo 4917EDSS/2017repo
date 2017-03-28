@@ -7,8 +7,8 @@
 
 class SilkyDriveCmd : public CommandBase {
 private:
-	SilkyMotionManager smmRed;
 	SilkyMotionManager smmBlue;
+	SilkyMotionManager smmRed;
 	SilkyMotionManager* smm;
 public:
 	SilkyDriveCmd(std::vector<double> leftPositions, std::vector<double> rightPositions);
