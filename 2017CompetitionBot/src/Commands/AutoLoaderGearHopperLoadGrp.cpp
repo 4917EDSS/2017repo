@@ -19,6 +19,7 @@ AutoLoaderGearHopperLoadGrp::AutoLoaderGearHopperLoadGrp() {
 
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME * 3));
 
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -950, -2650, -2850, -3700}, std::vector<double> {0, -150, -1950, -2450, -3000},
 									std::vector<double> {0, -200, -2000, -2500, -3100}, std::vector<double> {0, -1000, -2700, -2900, -3800}));
 
 	AddParallel(new OpenGearFlapsCmd(false));
