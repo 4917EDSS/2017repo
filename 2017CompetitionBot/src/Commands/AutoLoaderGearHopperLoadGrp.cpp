@@ -12,14 +12,13 @@ AutoLoaderGearHopperLoadGrp::AutoLoaderGearHopperLoadGrp() {
 	AddParallel(new OpenGearFlapsCmd());
 
 	//Drive to loader gear
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 930, 1442}, std::vector<double> {0, 930, 2230},
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 930, 1451}, std::vector<double> {0, 930, 2230},
 									std::vector<double> {0, 700, 2360}, std::vector<double> {0, 700, 1550}));
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 600, 1475}, std::vector<double> {0, 600, 1475},
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 600, 1480}, std::vector<double> {0, 600, 1480},
 									std::vector<double> {0, 600, 1450}, std::vector<double> {0, 600, 1450}));
 
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME * 3));
 
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -1000, -2700, -2900, -3800}, std::vector<double> {0, -200, -2000, -2500, -3100},
 									std::vector<double> {0, -200, -2000, -2500, -3100}, std::vector<double> {0, -1000, -2700, -2900, -3800}));
 
 	AddParallel(new OpenGearFlapsCmd(false));
