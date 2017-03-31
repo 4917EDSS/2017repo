@@ -115,7 +115,7 @@ double ShooterSub::getSpeed()
 }
 double ShooterSub::getTargetSpeed()
 {
-	return targetSpeed + adjustmentSpeed;
+	return targetSpeed + adjustmentSpeed + preShotSpeedBoost;
 }
 double ShooterSub::getFeederSpeed() {
 	return feederMotor1->GetSpeed();

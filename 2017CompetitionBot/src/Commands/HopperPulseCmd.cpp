@@ -3,6 +3,7 @@
 HopperPulseCmd::HopperPulseCmd(float time) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
+	Requires(hopperSub.get());
 	totalTime = time;
 	openHopperNext = true;
 }

@@ -27,7 +27,7 @@ enum Alliance {
 };
 
 //PreShotSpeedBoost amount to speed up before hand at beginning of shot
-constexpr double PRE_SHOT_SPEED_BOOST = 100;
+constexpr double PRE_SHOT_SPEED_BOOST = -100;
 
 //Flaps Enabled
 constexpr bool flapsEnabled = true;
@@ -41,8 +41,8 @@ constexpr float BOILER_SHOOT_TIME_1 = 1.0;
 #define AHRSInterface SPI::kMXP
 
 //Shoot Speeds
-constexpr float KEY_SHOT_SHOOTER_SPEED = -2500;
-constexpr float BOILER_SHOT_SHOOTER_SPEED = -1900;
+constexpr float KEY_SHOT_SHOOTER_SPEED = -1905;
+constexpr float BOILER_SHOT_SHOOTER_SPEED = -1905;
 constexpr float AUTO_BOILER_SHOT_SHOOTER_SPEED = -2000;
 
 // CAN IDs
