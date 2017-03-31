@@ -26,6 +26,9 @@ enum Alliance {
 	BLUE
 };
 
+//PreShotSpeedBoost amount to speed up before hand at beginning of shot
+constexpr double PRE_SHOT_SPEED_BOOST = 100;
+
 //Flaps Enabled
 constexpr bool flapsEnabled = true;
 

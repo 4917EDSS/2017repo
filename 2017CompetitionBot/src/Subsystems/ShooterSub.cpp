@@ -2,6 +2,10 @@
 #include "../RobotMap.h"
 
 ShooterSub::ShooterSub() : Subsystem("ShooterSub") {
+	preShotSpeedBoost = 0;
+	preShotPrimed = false;
+	preShotTimerRunning = false;
+
 	targetSpeed = -2100;
 	adjustmentSpeed = 0;
 	shooterMotor1.reset(new CANTalon(SHOOTER1_MOTOR_CANID));
@@ -37,6 +41,12 @@ ShooterSub::ShooterSub() : Subsystem("ShooterSub") {
 
 }
 
+void ShooterSub::resetPreShot() {
+	preShotSpeedBoost = PRE_SHOT_SPEED_BOOST;
+	preShotPrimed = true;
+	preShotTimerRunning = false;
+}
+
 void ShooterSub::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	// SetDefaultCommand(new MySpecialCommand());
@@ -46,7 +56,7 @@ void ShooterSub::InitDefaultCommand() {
 // here. Call these from Commands.
 void ShooterSub::update(bool shooting)
 {
-	double setSpeed = targetSpeed + adjustmentSpeed;
+	double setSpeed = targetSpeed + adjustmentSpeed + preShotSpeedBoost;
 	shooterMotor1->Set(setSpeed);
 	if(shooting){
 		double currentSpeed = getSpeed();
@@ -56,10 +66,23 @@ void ShooterSub::update(bool shooting)
 		}
 		else if (error < 0.05) {
 			setFeederSpeed(1.0);
+			if(preShotPrimed) {
+				//Set end time 1 second later
+				preShotEndTime = frc::Timer::GetFPGATimestamp() + 1e6;
+				preShotPrimed = false;
+				preShotTimerRunning = true;
+			}
 		}
 	}
 	else{
 		setFeederSpeed(0.0);
+	}
+
+	if(preShotTimerRunning) {
+		if(frc::Timer::GetFPGATimestamp() > preShotEndTime) {
+			preShotTimerRunning = false;
+			preShotSpeedBoost = 0;
+		}
 	}
 }
 void ShooterSub::setShooterSpeed(float newSpeed)
@@ -69,6 +92,7 @@ void ShooterSub::setShooterSpeed(float newSpeed)
 void ShooterSub::enableShooter()
 {
 	enableSpeedController();
+	resetPreShot();
 }
 void ShooterSub::disableShooter()
 {

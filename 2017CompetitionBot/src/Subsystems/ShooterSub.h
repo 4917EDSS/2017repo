@@ -20,6 +20,10 @@ private:
 	std::shared_ptr<CANTalon> feederMotor2;
 	double targetSpeed;
 	double adjustmentSpeed;
+	double preShotSpeedBoost;
+	double preShotEndTime;
+	bool preShotPrimed;
+	bool preShotTimerRunning;
 
 public:
 	ShooterSub();
@@ -43,6 +47,7 @@ public:
 	void setFeederSpeed(float speed);
 	void setShooterSpeed(float newSpeed);
 	void setFeeder1(float speed);
+	void resetPreShot();
 };
 
 #endif  // ShooterSub_H
