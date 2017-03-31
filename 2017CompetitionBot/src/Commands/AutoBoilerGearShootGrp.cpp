@@ -14,11 +14,11 @@ AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 	AddParallel(new OpenGearFlapsCmd());
 
 	//Drive to boiler gear
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 700, 2360}, std::vector<double> {0, 700, 1550},
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 875, 2535}, std::vector<double> {0, 875, 1725},
 									//std::vector<double> {0, 930, 1442}, std::vector<double> {0, 930, 2230}));
 									std::vector<double> {0, 930, 1492}, std::vector<double> {0, 930, 2230}));
 									//std::vector<double> {0, 930, 1457}, std::vector<double> {0, 930, 2230}));
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 600, 1450}, std::vector<double> {0, 600, 1450},
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 450, 1300}, std::vector<double> {0, 450, 1300},
 									std::vector<double> {0, 600, 1475}, std::vector<double> {0, 600, 1475}));
 
 	//Wait at gear
@@ -26,9 +26,10 @@ AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 	//Start up shooter
 	AddParallel(new SpinUpCmd(AUTO_BOILER_SHOT_SHOOTER_SPEED));
 
-	//Drive to boiler
+	//Reverse
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -200, -300}, std::vector<double> {0, -200, -2300},
-									std::vector<double> {0, -200, -2300}, std::vector<double> {0, -200, -400}));
+									std::vector<double> {0, -350, -3800}, std::vector<double> {0, -350, -550}));
+
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 2300, 2800}, std::vector<double> {0, 1000, 1800, 2200},
 									//std::vector<double> {0, 1000, 1800, 2200}, std::vector<double> {0, 1000, 2300, 2800}));
 									std::vector<double> {0, 800, 1600, 2000}, std::vector<double> {0, 800, 2100, 2600}));

@@ -138,7 +138,7 @@ constexpr double STOPPING_DISTANCE_TOLERANCE = 60; // mm
 constexpr double STOPPING_SPEED_TOLERANCE = 50; // mm/s
 constexpr double SILKY_KV = (1.0/MAX_VEL)*0.87;
 constexpr double SILKY_KA = (1.0/MAX_DECEL)*0.485;
-constexpr double SILKY_KP = 0.015;
+constexpr double SILKY_KP = 0.010;
 constexpr double SILKY_KI = 0.00001;//not used
 constexpr double SILKY_KD = 0.00002;
 
