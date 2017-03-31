@@ -17,6 +17,8 @@
 #include "Commands/SwitchCamerasCmd.h"
 #include "Commands/RotateToVisionCmd.h"
 #include "Commands/DriveTurnCmd.h"
+#include "Commands/ReverseShooterCmdGrp.h"
+#include "Commands/ShootCmdGrp.h"
 
 OI::OI() {
 	// Process operator interface input here.
@@ -44,7 +46,7 @@ OI::OI() {
 	boilerShotBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_BOILER_SHOT_BTN));
 	boilerShotBtn->WhileHeld(new ShootCmdGrp());
 	reverseShooterBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_REVERSE_SHOOTER_BTN));
-	reverseShooterBtn->WhileHeld(new ShootCmd(-KEY_SHOT_SHOOTER_SPEED));
+	reverseShooterBtn->WhileHeld(new ReverseShooterCmdGrp());
 	operatorKillEverythingBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_KILL_EVERYTHING_BTN));
 	operatorKillEverythingBtn->WhenPressed(new KillEverythingCmd());
 
