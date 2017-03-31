@@ -15,9 +15,9 @@ AutoBoilerGearGrp::AutoBoilerGearGrp() {
 
 	//Drive to boiler gear
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 875, 2535}, std::vector<double> {0, 875, 1725},
-									//std::vector<double> {0, 930, 1442}, std::vector<double> {0, 930, 2230}));
-									std::vector<double> {0, 930, 1492}, std::vector<double> {0, 930, 2230}));
-									//std::vector<double> {0, 930, 1457}, std::vector<double> {0, 930, 2230}));
+									std::vector<double> {0, 930, 1477}, std::vector<double> {0, 930, 2233}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 450, 1300}, std::vector<double> {0, 450, 1300},
+									std::vector<double> {0, 600, 1475}, std::vector<double> {0, 600, 1475}));
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 450, 1300}, std::vector<double> {0, 450, 1300},
 									std::vector<double> {0, 600, 1475}, std::vector<double> {0, 600, 1475}));
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 600, 1450}, std::vector<double> {0, 600, 1450},
