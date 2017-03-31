@@ -42,7 +42,7 @@ OI::OI() {
 	keyShotBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_KEY_SHOT_BTN));
 	keyShotBtn->WhileHeld(new ShootCmd(KEY_SHOT_SHOOTER_SPEED));
 	boilerShotBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_BOILER_SHOT_BTN));
-	boilerShotBtn->WhileHeld(new ShootCmd(BOILER_SHOT_SHOOTER_SPEED));
+	boilerShotBtn->WhileHeld(new ShootCmdGrp());
 	reverseShooterBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_REVERSE_SHOOTER_BTN));
 	reverseShooterBtn->WhileHeld(new ShootCmd(-KEY_SHOT_SHOOTER_SPEED));
 	operatorKillEverythingBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_KILL_EVERYTHING_BTN));
