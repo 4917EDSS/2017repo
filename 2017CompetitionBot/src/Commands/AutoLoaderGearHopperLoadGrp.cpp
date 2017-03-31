@@ -13,9 +13,9 @@ AutoLoaderGearHopperLoadGrp::AutoLoaderGearHopperLoadGrp() {
 
 	//Drive to loader gear
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 930, 1451}, std::vector<double> {0, 930, 2230},
-									std::vector<double> {0, 700, 2360}, std::vector<double> {0, 700, 1550}));
+									std::vector<double> {0, 850, 2510}, std::vector<double> {0, 850, 1700}));
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 600, 1480}, std::vector<double> {0, 600, 1480},
-									std::vector<double> {0, 600, 1450}, std::vector<double> {0, 600, 1450}));
+									std::vector<double> {0, 600, 1435}, std::vector<double> {0, 600, 1435}));
 
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME * 3));
 
