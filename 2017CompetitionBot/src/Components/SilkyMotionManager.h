@@ -27,6 +27,8 @@ private:
 	double stoppingDistanceTolerance, stoppingSpeedTolerance;
 	double startTime;
 	double Kv, Ka, Kp, Kd;
+	//Debug
+	double KvL, KvR, KaL, KaR, KpL, KpR, KdL, KdR;
 	double stoppingLocationLeft, stoppingLocationRight;
 	double lastLeftError;
 	double lastRightError;

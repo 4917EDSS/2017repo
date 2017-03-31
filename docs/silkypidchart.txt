@@ -1,0 +1,11 @@
+KV:
+Kv * (direction).vel
+
+KA:
+Ka * (direction).accel
+
+KP:
+Kp * (direction)Error
+
+KD:
+Kd * (direction)ErrorDeriv

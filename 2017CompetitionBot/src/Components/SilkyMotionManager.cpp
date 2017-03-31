@@ -121,6 +121,7 @@ void SilkyMotionManager::setKvKaKpKd(double v, double a, double p, double d) {
 	Kp = p;
 	Kd = d;
 }
+
 void SilkyMotionManager::reset() {
 	startTime = -1;
 	lastLeftError = 0;
@@ -179,6 +180,27 @@ std::pair<double, double> SilkyMotionManager::execute(double currentLeftPos, dou
 	lastRightError = rightError;
 	lastTime = timeSinceStart;
 
+
+	KvL = Kv * left.vel;
+	KvR = Kv * right.vel;
+	KaL = Ka * left.accel;
+	KaR = Ka * right.accel;
+	KpL = Kp * leftError;
+	KpR = Kp * rightError;
+	KdL = Kd * leftErrorDeriv;
+	KdR = Kd * rightErrorDeriv;
+
+	//Left
+	SmartDashboard::PutNumber("PID (KV Left)", KvL);
+	SmartDashboard::PutNumber("PID (KA Left)", KaL);
+	SmartDashboard::PutNumber("PID (KP Left)", KpL);
+	SmartDashboard::PutNumber("PID (KD Left)", KdL);
+
+	//Right
+	SmartDashboard::PutNumber("PID (KV Right)", KvL);
+	SmartDashboard::PutNumber("PID (KA Right)", KaL);
+	SmartDashboard::PutNumber("PID (KP Right)", KpL);
+	SmartDashboard::PutNumber("PID (KD Right)", KdL);
 
 	double leftMotorValue = Kv * left.vel
 			+ Ka * left.accel
