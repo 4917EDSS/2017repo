@@ -30,7 +30,7 @@ AutoCenterGearShootGrp::AutoCenterGearShootGrp() {
 
 	//Drive to boiler
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1425, 2400, 3450}, std::vector<double> {0, 1425, 2800, 4050},
-									std::vector<double> {0, 900 + 900, 2100 + 900, 3900 + 325}, std::vector<double> {0, 900 + 900, 1650 + 900, 3400 + 279}));
+									std::vector<double> {0, 1800, 3000, 4225}, std::vector<double> {0, 1800, 2550, 3679}));
 
 	//Pulse hopper
 	AddParallel(new HopperPulseCmd(15.0));
