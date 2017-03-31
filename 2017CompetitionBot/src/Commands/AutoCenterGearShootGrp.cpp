@@ -19,7 +19,7 @@ AutoCenterGearShootGrp::AutoCenterGearShootGrp() {
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 
 	//Reverse to right
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -150,-1700},std::vector<double> {0,-150,-500},
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -150,-1850},std::vector<double> {0,-150,-500},
 									std::vector<double> {0,-150,-500},std::vector<double> {0, -150,-1775}));
 
 	//Close Gear Flaps
@@ -29,8 +29,8 @@ AutoCenterGearShootGrp::AutoCenterGearShootGrp() {
 	AddParallel(new SpinUpCmd(AUTO_BOILER_SHOT_SHOOTER_SPEED));
 
 	//Drive to boiler
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1625, 2600, 3650}, std::vector<double> {0, 1625, 3000, 4250},
-									std::vector<double> {0, 900 + 810, 2100 + 810, 3900 + 235}, std::vector<double> {0, 900 + 810, 1650 + 810, 3400 + 235}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1425, 2400, 3450}, std::vector<double> {0, 1425, 2800, 4050},
+									std::vector<double> {0, 900 + 900, 2100 + 900, 3900 + 325}, std::vector<double> {0, 900 + 900, 1650 + 900, 3400 + 279}));
 
 	//Pulse hopper
 	AddParallel(new HopperPulseCmd(15.0));
