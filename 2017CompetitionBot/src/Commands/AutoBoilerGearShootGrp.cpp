@@ -28,6 +28,7 @@ AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -200, -300}, std::vector<double> {0, -200, -2300},
 									std::vector<double> {0, -350, -2550}, std::vector<double> {0, -350, -550}));
 	//Drive to boiler
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1250, 2550, 2555}, std::vector<double> {0, 1250, 2050, 2225},
 	/* John Example For Future Use:
 	int delta1L = 0;
 	int delta2L = 0;
