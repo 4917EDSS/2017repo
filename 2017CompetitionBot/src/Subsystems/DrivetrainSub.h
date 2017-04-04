@@ -72,6 +72,7 @@ public:
 	float getLeftAmps2();
 	float getRightAmps1();
 	float getRightAmps2();
+	void CharaterizeRobotRotation(void);
 };
 
 #endif  // DrivetrainSub_H
