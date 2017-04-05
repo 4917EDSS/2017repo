@@ -131,14 +131,14 @@ constexpr int MIN_GEAR_VISION_TARGETS = 2;
 constexpr int MIN_BOILER_VISION_TARGETS = 1;
 
 // Robot info required by SilkyMotionManager - all in millimeters, seconds
-constexpr double MAX_ACCEL = 1500; // mm/s^2
+constexpr double MAX_ACCEL = 1475; // mm/s^2
 constexpr double MAX_DECEL = 4000; // mm/s^2
 constexpr double MAX_VEL = 3000; // mm/s
 constexpr double STOPPING_DISTANCE_TOLERANCE = 60; // mm
 constexpr double STOPPING_SPEED_TOLERANCE = 50; // mm/s
 constexpr double SILKY_KV = (1.0/MAX_VEL)*0.87;
 constexpr double SILKY_KA = (1.0/MAX_DECEL)*0.485;
-constexpr double SILKY_KP = 0.010;
+constexpr double SILKY_KP = 0.0076;
 constexpr double SILKY_KI = 0.00001;//not used
 constexpr double SILKY_KD = 0.00002;
 
