@@ -27,6 +27,7 @@
 #include "Commands/AutoHopperShootGrp.h"
 #include "Commands/AutoShootGrp.h"
 #include "Commands/AutoCenterGearGrp.h"
+#include "Commands/TestRotationCmd.h"
 
 class Robot: public frc::IterativeRobot {
 public:

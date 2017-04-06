@@ -205,10 +205,10 @@ struct turnTestData {
 void DrivetrainSub::CharaterizeRobotRotation( void )
 {
 	// Test range parameters			// TODO:  Set these test parameters
-	double startPower = 0.3;			// Change this and the next line to run through a wider range of power settings
-	double endPower = 0.3;				// (currently set to run test only at 30% power)
+	double startPower = 1.0;			// Change this and the next line to run through a wider range of power settings
+	double endPower = 1.0;				// (currently set to run test only at 30% power)
 	double stepSize = 0.1;				// Set step size from start to end power
-	double motorRunTimeUs = 2000000;	// Run time in microseconds (us).  Set to make sure robot has time to get to top speed
+	double motorRunTimeUs = 2000000;	// Run time in microseconds.  Set to make sure robot has time to get to top speed
 
 	std::cout << "Running robot rotation calibration\n";
 
@@ -227,7 +227,7 @@ void DrivetrainSub::CharaterizeRobotRotation( void )
 	// Run the test at all power settings
 	for( double curPower = startPower; curPower <= endPower; curPower += stepSize )
 	{
-		double curTimeUs = frc::Timer::GetFPGATimestamp();	// current time in microseconds (us)
+		double curTimeUs = frc::GetFPGATime();				// current time in microseconds (us)
 		double endTimeUs = curTimeUs + motorRunTimeUs;		// current time plus time that motors should run
 		struct turnTestData curData;
 
@@ -237,12 +237,12 @@ void DrivetrainSub::CharaterizeRobotRotation( void )
 		std::cout << "... Accelerating\n";
 		leftMotor1->Set(curPower);
 		leftMotor2->Set(curPower);
-		rightMotor1->Set(-curPower);
-		rightMotor1->Set(-curPower);
+		rightMotor1->Set(curPower);
+		rightMotor2->Set(curPower);
 		while( curTimeUs < endTimeUs )
 		{
 			// Get all of the data
-			curTimeUs = frc::Timer::GetFPGATimestamp();
+			curTimeUs = frc::GetFPGATime();
 
 			curData.timestampUs = curTimeUs;
 			curData.angle = ahrs->GetYaw();
@@ -255,17 +255,18 @@ void DrivetrainSub::CharaterizeRobotRotation( void )
 
 			// Store this data point
 			data.push_back(curData);
+			while(frc::GetFPGATime() < (curTimeUs + 1000));
 		}
 
 		std::cout << "... Decelerating\n";
 		leftMotor1->Set(0);
 		leftMotor2->Set(0);
 		rightMotor1->Set(0);
-		rightMotor1->Set(0);
+		rightMotor2->Set(0);
 		while( (curData.rightEncRate > 0) || (curData.leftEncRate > 0) )
 		{
 			// Get all of the data
-			curTimeUs = frc::Timer::GetFPGATimestamp();
+			curTimeUs = frc::GetFPGATime();
 
 			curData.timestampUs = curTimeUs;
 			curData.angle = ahrs->GetYaw();
@@ -278,6 +279,7 @@ void DrivetrainSub::CharaterizeRobotRotation( void )
 
 			// Store this data point
 			data.push_back(curData);
+			while(frc::GetFPGATime() < (curTimeUs + 1000));
 		}
 
 		std::cout << "... Stopped.  Saving to file.\n";
