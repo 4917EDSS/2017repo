@@ -1,4 +1,5 @@
 #include "AutoDefaultGrp.h"
+#include "AutoFromFile.h"
 
 AutoDefaultGrp::AutoDefaultGrp() {
 	// Add Commands here:
@@ -17,4 +18,5 @@ AutoDefaultGrp::AutoDefaultGrp() {
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
+	AddSequential(new AutoFromFile());
 }
