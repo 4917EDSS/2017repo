@@ -3,6 +3,7 @@
 #include "Commands/DriveWithJoystickCmd.h"
 #include "Components/PidAhrs.h"
 #include <iostream>
+#include <fstream>
 
 DrivetrainSub::DrivetrainSub() : Subsystem("DrivetrainSub") {
 	leftMotor1.reset(new CANTalon(LEFT1_DRIVE_MOTOR_CANID));
@@ -209,4 +210,121 @@ void DrivetrainSub::EnableDistancePID(float speed, float setPoint){
 
 void DrivetrainSub::DisableDistancePID(){
 	driveDistancePID->Disable();
+}
+
+struct turnTestData {
+	double timestampUs;
+	double angle;
+	int leftEncRaw;
+	int rightEncRaw;
+	double leftEncDist;
+	double rightEncDist;
+	double leftEncRate;
+	double rightEncRate;
+};
+void DrivetrainSub::CharaterizeRobotRotation( void )
+{
+	// Test range parameters			// TODO:  Set these test parameters
+	double startPower = 1.0;			// Change this and the next line to run through a wider range of power settings
+	double endPower = 1.0;				// (currently set to run test only at 30% power)
+	double stepSize = 0.1;				// Set step size from start to end power
+	double motorRunTimeUs = 2000000;	// Run time in microseconds.  Set to make sure robot has time to get to top speed
+
+	std::cout << "Running robot rotation calibration\n";
+
+	// Reset drivetrain
+	driveTurnPID->Disable();
+	driveBalanceController->Disable();
+	ahrs->ZeroYaw();
+	leftMotorEnc->Reset();
+	rightMotorEnc->Reset();
+
+	// Setup data collection
+	std::vector<struct turnTestData> data;
+	data.reserve(1000);
+	int testNum = 1;
+
+	// Run the test at all power settings
+	for( double curPower = startPower; curPower <= endPower; curPower += stepSize )
+	{
+		double curTimeUs = frc::GetFPGATime();				// current time in microseconds (us)
+		double endTimeUs = curTimeUs + motorRunTimeUs;		// current time plus time that motors should run
+		struct turnTestData curData;
+
+		printf( "Test #%d.  Collecting data at power %1.1f of %1.1f (step %1.1f, time %1.1f) ...\n",
+				testNum, curPower, endPower, stepSize, motorRunTimeUs / 1000000 );
+
+		std::cout << "... Accelerating\n";
+		leftMotor1->Set(curPower);
+		leftMotor2->Set(curPower);
+		rightMotor1->Set(curPower);
+		rightMotor2->Set(curPower);
+		while( curTimeUs < endTimeUs )
+		{
+			// Get all of the data
+			curTimeUs = frc::GetFPGATime();
+
+			curData.timestampUs = curTimeUs;
+			curData.angle = ahrs->GetYaw();
+			curData.leftEncRaw = leftMotorEnc->GetRaw();
+			curData.leftEncDist = leftMotorEnc->GetDistance();
+			curData.leftEncRate = leftMotorEnc->GetRate();
+			curData.rightEncRaw = rightMotorEnc->GetRaw();
+			curData.rightEncDist = rightMotorEnc->GetDistance();
+			curData.rightEncRate = rightMotorEnc->GetRate();
+
+			// Store this data point
+			data.push_back(curData);
+			while(frc::GetFPGATime() < (curTimeUs + 1000));
+		}
+
+		std::cout << "... Decelerating\n";
+		leftMotor1->Set(0);
+		leftMotor2->Set(0);
+		rightMotor1->Set(0);
+		rightMotor2->Set(0);
+		while( (curData.rightEncRate > 0) || (curData.leftEncRate > 0) )
+		{
+			// Get all of the data
+			curTimeUs = frc::GetFPGATime();
+
+			curData.timestampUs = curTimeUs;
+			curData.angle = ahrs->GetYaw();
+			curData.leftEncRaw = leftMotorEnc->GetRaw();
+			curData.leftEncDist = leftMotorEnc->GetDistance();
+			curData.leftEncRate = leftMotorEnc->GetRate();
+			curData.rightEncRaw = rightMotorEnc->GetRaw();
+			curData.rightEncDist = rightMotorEnc->GetDistance();
+			curData.rightEncRate = rightMotorEnc->GetRate();
+
+			// Store this data point
+			data.push_back(curData);
+			while(frc::GetFPGATime() < (curTimeUs + 1000));
+		}
+
+		std::cout << "... Stopped.  Saving to file.\n";
+
+		// Write data to file
+		std::string filename = "/home/lvuser/test" + std::to_string(testNum++) + ".csv";
+		std::ofstream outfile;
+		outfile.open( filename );
+		if( outfile.is_open() )
+		{
+			outfile << "Power = " << curPower << std::endl;
+			outfile << "Timestamp(us),Angle,LEncRaw,LEncDist,LEncRate,REncRaw,REncDist,REncRate\n";
+			for( int i = 0; i < (int)data.size(); i++ )
+			{
+				outfile << data[i].timestampUs << "," << data[i].angle << ","
+						<< data[i].leftEncRaw << "," << data[i].leftEncDist << "," << data[i].leftEncRate << ","
+						<< data[i].rightEncRaw << "," << data[i].rightEncDist << "," << data[i].rightEncRate << std::endl;
+			}
+			outfile.close();
+		}
+		else
+		{
+			std::cout << "... Unable to open file `" << filename << "` for writing.\n";
+		}
+
+	}
+
 }

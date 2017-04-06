@@ -76,6 +76,7 @@ public:
 	float getRightAmps2();
 	void EnableDistancePID(float speed, float setPoint);
 	void DisableDistancePID();
+	void CharaterizeRobotRotation(void);
 };
 
 #endif  // DrivetrainSub_H
