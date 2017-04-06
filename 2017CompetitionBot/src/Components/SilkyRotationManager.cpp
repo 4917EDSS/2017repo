@@ -16,9 +16,9 @@
 // Robot-specific constants - all in degrees, seconds
 // To make this component more generic, these values should be passed-in (via constructor) but
 // to make implementation and compiles faster, define them here.
-constexpr double MAX_ANGULAR_ACCEL = 150; 					// deg/s^2		// TODO: Set correct value
-constexpr double MAX_ANGULAR_DECEL = 100;					// deg/s^2		// TODO: Set correct value
-constexpr double MAX_ANGULAR_VEL = 360; 					// deg/s		// TODO: Set correct value
+constexpr double MAX_ANGULAR_ACCEL = 333; 					// deg/s^2
+constexpr double MAX_ANGULAR_DECEL = 665;					// deg/s^2
+constexpr double MAX_ANGULAR_VEL = 166; 					// deg/s
 constexpr double STOPPING_ANGULAR_DISTANCE_TOLERANCE = 2;	// deg			// TODO: Set correct value
 constexpr double STOPPING_ANGULAR_SPEED_TOLERANCE = 1;		// deg/s		// TODO: Set correct value
 constexpr double SILKY_ROT_KV = (1.0/MAX_ANGULAR_ACCEL)*0.87;				// TODO: Set correct value
