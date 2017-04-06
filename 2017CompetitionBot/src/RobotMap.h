@@ -19,7 +19,7 @@
 // constexpr int RANGE_FINDER_PORT = 1;
 // constexpr int RANGE_FINDER_MODULE = 1;
 
-//#define PRACTICE_BOT
+#define PRACTICE_BOT
 
 enum Alliance {
 	RED,
@@ -42,8 +42,10 @@ constexpr float BOILER_SHOOT_TIME_1 = 1.0;
 
 //Shoot Speeds
 constexpr float KEY_SHOT_SHOOTER_SPEED = -1905;
-constexpr float BOILER_SHOT_SHOOTER_SPEED = -1905;
-constexpr float AUTO_BOILER_SHOT_SHOOTER_SPEED = -2000;
+//constexpr float BOILER_SHOT_SHOOTER_SPEED = -1905;
+constexpr float BOILER_SHOT_SHOOTER_SPEED = -1965;
+//constexpr float AUTO_BOILER_SHOT_SHOOTER_SPEED = -2000;
+constexpr float AUTO_BOILER_SHOT_SHOOTER_SPEED = -2285;
 
 // CAN IDs
 constexpr int LEFT1_DRIVE_MOTOR_CANID = 1;
@@ -112,11 +114,16 @@ constexpr float DRIVE_TURN_I = 0.001;
 constexpr float DRIVE_TURN_D = 0.0;
 constexpr float DRIVE_TURN_TOLERANCE = 0.5;
 constexpr float DRIVE_RATE_TOLERANCE = 1;
-constexpr float DRIVE_BALANCE_P = 0.0;
-constexpr float DRIVE_BALANCE_I = 0.01;
-constexpr float DRIVE_BALANCE_D = 0.0;
+constexpr float DRIVE_BALANCE_P = 0.1;
+constexpr float DRIVE_BALANCE_I = 0.0;
+constexpr float DRIVE_BALANCE_D = 0.2;
 constexpr float DRIVE_BALANCE_TOLERANCE = 5;
 constexpr float TURN_TOLERANCE_DURATION_S = 1;
+constexpr float DRIVE_DISTANCE_P = 1.0;
+constexpr float DRIVE_DISTANCE_I = 0.0;
+constexpr float DRIVE_DISTANCE_D = 0.0;
+constexpr float DRIVE_DISTANCE_TOLERANCE = 50;
+constexpr float DISTANCE_SPEED_TOLERANCE = 40;
 
 // Machine Vision Camera
 #ifdef HIKCAM

@@ -16,6 +16,7 @@ DrivetrainSub::DrivetrainSub() : Subsystem("DrivetrainSub") {
 	shifter.reset(new frc::DoubleSolenoid(SHIFTER_PCM_ID1, SHIFTER_PCM_ID2));
 	turnBalancer.reset(new MotorBalancer());
 	motorBalancer.reset(new MotorBalancer());
+	distanceBalancer.reset(new MotorBalancer());
 	ahrs.reset(new AHRS(AHRSInterface));
 	Preferences *prefs = Preferences::GetInstance();
 	driveTurnPID.reset(new frc::PIDController(prefs->GetFloat("DriveTurnP", DRIVE_TURN_P),
@@ -28,6 +29,13 @@ DrivetrainSub::DrivetrainSub() : Subsystem("DrivetrainSub") {
 	driveBalanceController->SetAbsoluteTolerance(prefs->GetFloat("DriveBalanceTolerance", DRIVE_BALANCE_TOLERANCE));
 	driveBalanceController->SetOutputRange(-1.0, 1.0);
 	driveBalanceController->Disable();
+	driveDistancePID.reset(new PIDController(prefs->GetFloat("DriveDistanceP", DRIVE_DISTANCE_P),
+											   prefs->GetFloat("DriveDistanceI", DRIVE_DISTANCE_I),
+											   prefs->GetFloat("DriveDistanceD", DRIVE_DISTANCE_D),
+											   leftMotorEnc.get(), distanceBalancer.get()));
+	driveDistancePID->SetAbsoluteTolerance(prefs->GetFloat("DriveBalanceTolerance", DRIVE_DISTANCE_TOLERANCE));
+	driveDistancePID->SetOutputRange(-0.8, 0.8);
+	driveDistancePID->Disable();
 	// Make these properly available in Test mode
 	frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
 	lw->AddActuator("Drivetrain", "Left Motor 1", leftMotor1);
@@ -181,12 +189,24 @@ void DrivetrainSub::DisableBalancerPID(){
 	driveBalanceController->Disable();
 }
 
-void DrivetrainSub::PIDDrive(float speed)
+void DrivetrainSub::PIDDrive()
 {
-	std::cout << "left " << -speed - motorBalancer->GetDifference() << std::endl;
-	std::cout << "right " << speed - motorBalancer->GetDifference() << std::endl;
-	leftMotor1->Set(speed - motorBalancer->GetDifference());
-	leftMotor2->Set(speed - motorBalancer->GetDifference());
-	rightMotor1->Set(-speed - motorBalancer->GetDifference());
-	rightMotor2->Set(-speed - motorBalancer->GetDifference());
+	std::cout << "distance " << distanceBalancer->GetDifference() << "turn" << motorBalancer->GetDifference()<< std::endl;
+	SmartDashboard::PutNumber("left error",ahrs.get()->GetAngle());
+	drive(0.7/*distanceBalancer->GetDifference()*/ - motorBalancer->GetDifference(), 0.7/*-distanceBalancer->GetDifference()*/ + motorBalancer->GetDifference());
+}
+
+
+void DrivetrainSub::EnableDistancePID(float speed, float setPoint){
+	Preferences *prefs = Preferences::GetInstance();
+	driveDistancePID->SetPID(prefs->GetFloat("DriveDistanceP", DRIVE_DISTANCE_P), prefs->GetFloat("DriveDistanceI", DRIVE_DISTANCE_I), prefs->GetFloat("DriveDistanceD", DRIVE_DISTANCE_D));
+	driveDistancePID->SetAbsoluteTolerance(prefs->GetFloat("DriveDistanceTolerance", DRIVE_DISTANCE_TOLERANCE));
+	driveDistancePID->SetSetpoint(setPoint);
+	driveDistancePID->SetOutputRange(-speed, speed);
+	distanceBalancer->Reset();
+	driveDistancePID->Enable();
+}
+
+void DrivetrainSub::DisableDistancePID(){
+	driveDistancePID->Disable();
 }
