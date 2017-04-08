@@ -58,13 +58,10 @@ private:
 	std::ifstream &inStream;
 	//std::map<int, Operation> operationMap;
 	void trim(std::string &); // remove white space from front and back, handles empty strings
-	int readVector(std::vector<double> &v);
-	int readCommand(char &cmd);
-	int readCummulativeSilky(void);
-	int readDifferentialSilky(void);
 public:
 	AutoFileParser(std::ifstream &stream);
-	int parseFile(void);
+	int readVector(std::vector<double> &v);
+	int readCommand(char &cmd);
 };
 
 #endif /* SRC_COMPONENTS_FIO_PARSER_H_ */
