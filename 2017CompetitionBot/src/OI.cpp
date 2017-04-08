@@ -54,14 +54,6 @@ OI::OI() {
 	driverKillEverythingBtn->WhenPressed(new KillEverythingCmd());
 	shiftBtn.reset(new JoystickButton(driverController.get(), DRIVER_SHIFT_BTN));
 	shiftBtn->WhenPressed(new ToggleShifterCmd());
-	driveForwardsBtn.reset(new JoystickButton(driverController.get(), DRIVER_FORWARDS_BTN));
-	driveForwardsBtn->WhileHeld(new DriveForwards());
-	driverSwitchCamBtn.reset(new JoystickButton(driverController.get(), DRIVER_SWITCH_CAM_BTN));
-	driverSwitchCamBtn->WhenPressed(new SwitchCamerasCmd());
-	driverRotateBtn.reset(new JoystickButton(driverController.get(), DRIVER_ROTATE_BTN));
-	driverRotateBtn->WhenPressed(new SilkyRotateCmd(15));
-	driveTurnBtn.reset(new JoystickButton(driverController.get(), DRIVER_DRIVE_TURN_BTN));
-	driveTurnBtn->WhenPressed(new DriveTurnCmd(5));
 }
 
 std::shared_ptr<frc::Joystick> OI::getDriverController()
