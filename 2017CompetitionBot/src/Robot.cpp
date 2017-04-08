@@ -151,7 +151,6 @@ private:
 	void SetSmartDashboardDriverContent()
 	{
 #ifdef PRACTICE_BOT
-		SmartDashboard::PutData("Drive mostly straight", new DriveStraightCmd(LOAD_STRAIGHT_DIST));
 		SmartDashboard::PutData("reset encoders", new ResetDriveEncodersCmd());
 		SmartDashboard::PutData("2m Drive straight with navx", new AHRSDriveStraightCmd(2000));
 		//SmartDashboard::PutData("Hopefully Turn", new DriveTurnCmd(LOAD_STRAIGHT_DIST));

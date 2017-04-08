@@ -21,54 +21,71 @@ AutoFile::AutoFile(const char* file)
 	}
 }
 
-Command* AutoFile::readCummulativeSilky()
+Command* AutoFile::readCummulativeSilky(bool redIncluded)
 {
-	//operationMap[count] = new SilkyOperation();
-	std::vector<double> left;
-	std::vector<double> right;
-	int leftCount = parser.readVector(left);
-	int rightCount = parser.readVector(right);
-		std::cout << "Left: ";
-		for(int i = 0; i < leftCount; i++) {
-			std::cout << left[i] << " ";
+	std::vector<double> leftBlue;
+	std::vector<double> rightBlue;
+	std::vector<double> leftRed;
+	std::vector<double> rightRed;
+
+	int leftBlueCount = parser.readVector(leftBlue);
+	int rightBlueCount = parser.readVector(rightBlue);
+	int leftRedCount = 0;
+	int rightRedCount = 0;
+
+
+	if(leftBlueCount != 0 && leftBlueCount == rightBlueCount) {
+		if(redIncluded) {
+			leftRedCount = parser.readVector(leftRed);
+			rightRedCount = parser.readVector(rightRed);
+
+			if(leftRedCount != 0 && leftRedCount == rightRedCount) {
+				return new SilkyDriveCmd(leftBlue, rightBlue, leftRed, rightRed);
+			} else {
+				std::cout << "*** FAILED *** Not the same number of segments cummulative" << std::endl;
+				return NULL;
+			}
+		} else {
+				return new SilkyDriveCmd(leftBlue, rightBlue);
 		}
-		std::cout << std::endl << "Right: ";
-		for(int i = 0; i < rightCount; i++) {
-			std::cout << right[i] << " ";
-		}
-		std::cout << std::endl;
-	if(leftCount != 0 && leftCount == rightCount) {
-		std::cout << "successful num segments:" << leftCount << std::endl;
-		return new SilkyDriveCmd(left, right);
 	} else {
 		std::cout << "*** FAILED *** Not the same number of segments cummulative" << std::endl;
 		return NULL;
 	}
 }
 
-Command* AutoFile::readDifferentialSilky(void)
+Command* AutoFile::readDifferentialSilky(bool redIncluded)
 {
-	//operationMap[count] = new SilkyOperation();
-	std::vector<double> left;
-	std::vector<double> right;
-	int leftCount = parser.readVector(left);
-	int rightCount = parser.readVector(right);
-		std::cout << "Left: ";
-		for(int i = 0; i < leftCount; i++) {
-			std::cout << left[i] << " ";
+	std::vector<double> leftBlue;
+	std::vector<double> rightBlue;
+	std::vector<double> leftRed;
+	std::vector<double> rightRed;
+	int leftCountBlue = parser.readVector(leftBlue);
+	int rightCountBlue = parser.readVector(rightBlue);
+	int leftCountRed = 0;
+	int rightCountRed = 0;
+
+	if(leftCountBlue != 0 && leftCountBlue == rightCountBlue) {
+		for(int i = 1; i < leftCountBlue; i++) {
+			leftBlue[i] += leftBlue[i-1];
+			rightBlue[i] += rightBlue[i-1];
 		}
-		std::cout << std::endl << "Right: ";
-		for(int i = 0; i < rightCount; i++) {
-			std::cout << right[i] << " ";
+		if(redIncluded) {
+			leftCountRed = parser.readVector(leftRed);
+			rightCountRed = parser.readVector(rightRed);
+			if(leftCountRed != 0 && leftCountRed == rightCountRed) {
+				for(int i = 1; i < leftCountRed; i++) {
+					leftRed[i] += leftRed[i-1];
+					rightRed[i] += rightRed[i-1];
+				}
+				return new SilkyDriveCmd(leftBlue, rightBlue, leftRed, rightRed);
+			} else {
+				std::cout << "*** FAILED *** Not the same number of segments differential" << std::endl;
+				return NULL;
+			}
+		} else {
+			return new SilkyDriveCmd(leftBlue, rightBlue);
 		}
-		std::cout << std::endl;
-	if(leftCount != 0 && leftCount == rightCount) {
-		std::cout << "successful num differential segments:" << leftCount << std::endl;
-		for(int i = 1; i < leftCount; i++) {
-			left[i] += left[i-1];
-			right[i] += right[i-1];
-		}
-		return new SilkyDriveCmd(left, right);
 	} else {
 		std::cout << "*** FAILED *** Not the same number of segments differential" << std::endl;
 		return NULL;
@@ -114,13 +131,17 @@ std::vector<AutoFile::Operation>& AutoFile::readFile(void)
 		switch(cmd) {
 			//Normal silky
 			case 's':
-			case 'S':
 				cb = readCummulativeSilky();
+				break;
+			case 'S':
+				cb = readCummulativeSilky(true);
 				break;
 			//Differential Silky
 			case 'd':
-			case 'D':
 				cb = readDifferentialSilky();
+				break;
+			case 'D':
+				cb = readDifferentialSilky(true);
 				break;
 			//Wait
 			case 'w':

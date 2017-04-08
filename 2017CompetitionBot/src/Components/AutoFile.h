@@ -67,8 +67,8 @@ private:
 	std::ifstream inStream;
 	AutoFileParser parser;
 	std::vector<Operation> commands;
-	Command* readCummulativeSilky(void);
-	Command* readDifferentialSilky(void);
+	Command* readCummulativeSilky(bool redIncluded = false);
+	Command* readDifferentialSilky(bool redIncluded = false);
 	Command* readWait();
 	Command* readDriveStraight();
 	Command* readShoot();
