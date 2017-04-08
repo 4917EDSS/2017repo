@@ -1,6 +1,7 @@
 #include "AutoFromFileCmdGrp.h"
 #include "Commands/CommandGroup.h"
 #include "Components/AutoFile.h"
+#include "RobotMap.h"
 
 AutoFromFileCmdGrp::AutoFromFileCmdGrp() {
 	// Add Commands here:
@@ -30,10 +31,13 @@ CommandGroup* AutoFromFileCmdGrp::prepareDelegate() {
 
 	delegate = new CommandGroup();
 	AutoFile af(AUTO_FILENAME);
-	std::vector<CommandBase*>& commands = af.readFile();
-	for(int i = 0; i < commands.size(); i++) {
-		delegate->AddSequential(commands[i]);
+	std::vector<AutoFile::Operation>& commands = af.readFile();
+	for(unsigned int i = 0; i < commands.size(); i++) {
+		if(commands[i].second) {
+			delegate->AddParallel(commands[i].first);
+		} else {
+			delegate->AddSequential(commands[i].first);
+		}
 	}
-
 	return delegate;
 }

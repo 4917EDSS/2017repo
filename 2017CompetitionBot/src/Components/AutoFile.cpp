@@ -7,6 +7,10 @@
 #include "AutoFile.h"
 #include "fio/parser.h"
 #include "../Commands/SilkyDriveCmd.h"
+#include "Commands/WaitCommand.h"
+#include "Commands/AHRSDriveStraightCmd.h"
+#include "Commands/ShootCmdGrp.h"
+#include "Commands/SpinUpCmd.h"
 
 AutoFile::AutoFile(const char* file)
 : parser(inStream)
@@ -17,7 +21,7 @@ AutoFile::AutoFile(const char* file)
 	}
 }
 
-CommandBase* AutoFile::readCummulativeSilky()
+Command* AutoFile::readCummulativeSilky()
 {
 	//operationMap[count] = new SilkyOperation();
 	std::vector<double> left;
@@ -42,7 +46,7 @@ CommandBase* AutoFile::readCummulativeSilky()
 	}
 }
 
-CommandBase* AutoFile::readDifferentialSilky(void)
+Command* AutoFile::readDifferentialSilky(void)
 {
 	//operationMap[count] = new SilkyOperation();
 	std::vector<double> left;
@@ -71,34 +75,79 @@ CommandBase* AutoFile::readDifferentialSilky(void)
 	}
 }
 
-std::vector<CommandBase*>& AutoFile::readFile(void)
+Command* AutoFile::readWait() {
+	std::vector<double> parameters;
+	if(parser.readVector(parameters) != 0) {
+		double time = parameters[0];
+		return new WaitCommand(time);
+	} else {
+		return NULL;
+	}
+}
+
+Command* AutoFile::readDriveStraight() {
+	std::vector<double> parameters;
+	if(parser.readVector(parameters) != 0) {
+		double distance = parameters[0];
+		return new AHRSDriveStraightCmd(distance);
+	} else {
+		return NULL;
+	}
+}
+
+Command* AutoFile::readShoot() {
+	return new ShootCmdGrp();
+}
+
+Command* AutoFile::readSpinUp() {
+	return new SpinUpCmd(BOILER_SHOT_SHOOTER_SPEED);
+}
+
+std::vector<AutoFile::Operation>& AutoFile::readFile(void)
 {
 	char cmd;
-	while(!parser.readCommand(cmd)) {
+	bool parallel;
+	while(!parser.readCommand(cmd, parallel)) {
 
-		CommandBase* cb;
+		Command* cb = nullptr;
 
 		switch(cmd) {
+			//Normal silky
 			case 's':
 			case 'S':
 				cb = readCummulativeSilky();
-				if(cb) {
-					commands.push_back(cb);
-				}
 				break;
+			//Differential Silky
 			case 'd':
 			case 'D':
 				cb = readDifferentialSilky();
-				if(cb) {
-					commands.push_back(cb);
-				}
 				break;
+			//Wait
+			case 'w':
+			case 'W':
+				cb = readWait();
+				break;
+			//Linear ie. drive straight
 			case 'l':
 			case 'L':
-
+				cb = readDriveStraight();
+				break;
+			//FIRE!!!
+			case 'f':
+			case 'F':
+				cb = readShoot();
+				break;
+			//SpinUP
+			case 'u':
+			case 'U':
+				cb = readSpinUp();
+				break;
 			default:
 				std::cout << "unexpected command:" << cmd << std::endl;
 				break;
+		}
+		if(cb) {
+			commands.push_back(Operation(cb, parallel));
 		}
 	}
 	return commands;

@@ -10,7 +10,7 @@ private:
 	int targetDistance;
 	float targetSpeed;
 public:
-	AHRSDriveStraightCmd(int distance, float speed);
+	AHRSDriveStraightCmd(int distance, float speed = 0.7);
 	void Initialize();
 	void Execute();
 	bool IsFinished();

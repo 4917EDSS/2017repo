@@ -1,7 +1,6 @@
 #include "AutoShootGrp.h"
 #include "SilkyDriveCmd.h"
 #include <vector>
-#include "Commands/DriveStraightCmd.h"
 #include "Commands/DriveTurnCmd.h"
 #include "Commands/ShootCmd.h"
 #include "Commands/HopperPulseCmd.h"

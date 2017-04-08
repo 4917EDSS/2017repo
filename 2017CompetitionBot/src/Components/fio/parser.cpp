@@ -71,7 +71,7 @@ int AutoFileParser::readVector(std::vector<double> &v)
 	return count;
 }
 
-int AutoFileParser::readCommand(char &cmd)
+int AutoFileParser::readCommand(char &cmd, bool &parallel)
 {
 	std::string line;
 	cmd = '\0';
@@ -86,6 +86,7 @@ int AutoFileParser::readCommand(char &cmd)
 			}
 			if(std::isalpha(line[0])) {
 				cmd = line[0];
+				parallel = line.length() > 1;
 				return 0;
 			}
 		}

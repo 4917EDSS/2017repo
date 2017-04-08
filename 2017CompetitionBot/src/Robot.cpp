@@ -17,7 +17,6 @@
 #include "Commands/AutoLoaderGearGrp.h"
 #include "Commands/AutoLoaderGearHopperLoadGrp.h"
 #include "Commands/AutoHopperShootGrp.h"
-#include "Commands/DriveStraightCmd.h"
 #include "Commands/SilkyDriveCmd.h"
 #include "Commands/ResetDriveEncodersCmd.h"
 #include "Commands/AHRSDriveStraightCmd.h"
