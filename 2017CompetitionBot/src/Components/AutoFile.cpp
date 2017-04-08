@@ -97,4 +97,9 @@ int AutoFile::resetFile(const char *fileName)
 	inStream.close();
 	inStream.open(fileName);
 	inStream.seekg(0);  // go back to beginning of the file.
+	if(inStream.fail()) {
+		std::cout << "File loading failed! : " << fileName << std::endl;
+		return -1;
+	}
+	return 0;
 }
