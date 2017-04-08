@@ -16,7 +16,8 @@ struct RotationInfo {
 
 class SilkyRotationManager {
 private:
-	double targetRotationAngle;
+	double originalAngle;		// Passed-in angle
+	double targetRotationAngle;	// Alliance-side and negative compensated angle
 	bool negative;
 
 	double maxAccel, maxDecel, maxVel;

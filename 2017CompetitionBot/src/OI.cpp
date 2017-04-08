@@ -15,7 +15,7 @@
 #include "Commands/KillEverythingCmd.h"
 #include "Commands/ToggleIntakeCmd.h"
 #include "Commands/SwitchCamerasCmd.h"
-#include "Commands/RotateToVisionCmd.h"
+#include "Commands/SilkyRotateCmd.h"
 #include "Commands/DriveTurnCmd.h"
 #include "Commands/ReverseShooterCmdGrp.h"
 #include "Commands/ShootCmdGrp.h"
@@ -58,8 +58,8 @@ OI::OI() {
 	driveForwardsBtn->WhileHeld(new DriveForwards());
 	driverSwitchCamBtn.reset(new JoystickButton(driverController.get(), DRIVER_SWITCH_CAM_BTN));
 	driverSwitchCamBtn->WhenPressed(new SwitchCamerasCmd());
-	driverRotateToVisionBtn.reset(new JoystickButton(driverController.get(), DRIVER_ROTATE_TO_VISION_BTN));
-	driverRotateToVisionBtn->WhenPressed(new RotateToVisionCmd(MIN_GEAR_VISION_TARGETS));
+	driverRotateBtn.reset(new JoystickButton(driverController.get(), DRIVER_ROTATE_BTN));
+	driverRotateBtn->WhenPressed(new SilkyRotateCmd(15));
 	driveTurnBtn.reset(new JoystickButton(driverController.get(), DRIVER_DRIVE_TURN_BTN));
 	driveTurnBtn->WhenPressed(new DriveTurnCmd(5));
 }

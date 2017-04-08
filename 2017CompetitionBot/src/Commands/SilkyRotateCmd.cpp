@@ -28,11 +28,11 @@ bool SilkyRotateCmd::IsFinished() {
 
 // Called once after isFinished returns true
 void SilkyRotateCmd::End() {
-
+	drivetrainSub->resetAHRS();
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void SilkyRotateCmd::Interrupted() {
-
+	End();
 }

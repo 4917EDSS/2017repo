@@ -4,6 +4,11 @@
  * A simplified version of SilkyMotionManager for rotating the robot along its center of rotation
  * using an AHRS device for feedback (e.g. NAVX) rather than wheel encoders.
  *
+ * Notes:
+ * - Values are from the red-alliance perspective
+ * - It does mirror the motion when on the blue-alliance side
+ * - Does not compensate for the 179,180,-179 flip-over so limit turns to well under 180 deg
+ *
  *  Created on: Apr 5, 2017
  *      Author: egaudet
  */
@@ -19,25 +24,20 @@
 constexpr double MAX_ANGULAR_ACCEL = 333; 					// deg/s^2
 constexpr double MAX_ANGULAR_DECEL = 665;					// deg/s^2
 constexpr double MAX_ANGULAR_VEL = 166; 					// deg/s
-constexpr double STOPPING_ANGULAR_DISTANCE_TOLERANCE = 2;	// deg			// TODO: Set correct value
+constexpr double STOPPING_ANGULAR_DISTANCE_TOLERANCE = 1;	// deg			// TODO: Set correct value
 constexpr double STOPPING_ANGULAR_SPEED_TOLERANCE = 1;		// deg/s		// TODO: Set correct value
-constexpr double SILKY_ROT_KV = (1.0/MAX_ANGULAR_ACCEL)*0.87;				// TODO: Set correct value
-constexpr double SILKY_ROT_KA = (1.0/MAX_ANGULAR_DECEL)*0.485;				// TODO: Set correct value
-constexpr double SILKY_ROT_KP = 0.010;										// TODO: Set correct value
-constexpr double SILKY_ROT_KI = 0.00001;	//not used
-constexpr double SILKY_ROT_KD = 0.00002;									// TODO: Set correct value
+constexpr double SILKY_ROT_KV = 1/MAX_ANGULAR_VEL*1.5;				// TODO: Set correct value
+constexpr double SILKY_ROT_KA = 1/MAX_ANGULAR_DECEL*1.5;				// TODO: Set correct value
+constexpr double SILKY_ROT_KP = 0.4;//.010;										// TODO: Set correct value
+constexpr double SILKY_ROT_KI = 0;//.00001;	//not used
+constexpr double SILKY_ROT_KD = 0.025;//.00002;									// TODO: Set correct value
 
 
 SilkyRotationManager::SilkyRotationManager(double angle)
 {
-	if( angle < 0 )	{
-		negative = true;
-		targetRotationAngle = -angle;
-	}
-	else {
-		negative = false;
-		targetRotationAngle = angle;
-	}
+	originalAngle = angle;
+	targetRotationAngle = 0;
+	negative = true;
 
 	maxAccel = MAX_ANGULAR_ACCEL;
 	maxDecel = MAX_ANGULAR_DECEL;
@@ -58,7 +58,23 @@ SilkyRotationManager::SilkyRotationManager(double angle)
 
 // Setup for a new run
 void SilkyRotationManager::reset(){
-	targetRotationAngle = 0;
+	// If we're on the blue side, reverse the motion
+	if( frc::DriverStation::GetInstance().GetAlliance() == frc::DriverStation::Alliance::kBlue ) {
+		targetRotationAngle = originalAngle * (-1.0);
+	}
+	else
+	{
+		targetRotationAngle = originalAngle;
+	}
+
+	// If we're negative, flag that but use the absolute value for the math
+	if( targetRotationAngle < 0 ) {
+		negative = true;
+		targetRotationAngle = -targetRotationAngle;
+	}
+	else {
+		negative = false;
+	}
 
 	startTime = -1;
 	lastTime = 0;
