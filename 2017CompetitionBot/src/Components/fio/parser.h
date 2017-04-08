@@ -54,13 +54,16 @@
 
 class AutoFileParser{
 private:
+	int lineNum;
 	std::ifstream &inStream;
 	//std::map<int, Operation> operationMap;
 	void trim(std::string &); // remove white space from front and back, handles empty strings
-public:
-	AutoFileParser(std::ifstream &stream);
 	int readVector(std::vector<double> &v);
 	int readCommand(char &cmd);
+	int readCummulativeSilky(void);
+	int readDifferentialSilky(void);
+public:
+	AutoFileParser(std::ifstream &stream);
 	int parseFile(void);
 };
 

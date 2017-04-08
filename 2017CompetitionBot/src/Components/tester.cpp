@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 {
 	if(argc > 1) {
 		AutoFile autoFile(argv[1]);
-		std::cout << "numCmds:" << autoFile.readFile() << std::endl;
+		std::cout << "numCmds successfully read:" << autoFile.readFile() << std::endl;
 	}
 	else {
 		std::cout << "Usage: " << argv[0] << " <autoFile>" << std::endl;
