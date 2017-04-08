@@ -7,13 +7,15 @@
 #include "Commands/ShootCmd.h"
 #include "Commands/OpenGearFlapsCmd.h"
 #include "Commands/SpinUpCmd.h"
+#include "AHRSDriveStraightCmd.h"
 #include "Commands/HopperPulseCmd.h"
 AutoCenterGearShootGrp::AutoCenterGearShootGrp() {
 	//Open gear flaps
 	AddParallel(new OpenGearFlapsCmd());
 
 	//Drive straight to peg
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 1882}, std::vector<double> {0, 1000, 1882}));
+	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 1882}, std::vector<double> {0, 1000, 1882}));
+	AddSequential(new AHRSDriveStraightCmd(LOAD_STRAIGHT_DIST, 0.7));
 
 	//Wait
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));

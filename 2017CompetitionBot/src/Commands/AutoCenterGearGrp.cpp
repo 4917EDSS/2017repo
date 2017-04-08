@@ -4,13 +4,16 @@
 #include "OpenGearFlapsCmd.h"
 #include "RotateToVisionCmd.h"
 #include "ToggleShifterCmd.h"
+#include "AHRSDriveStraightCmd.h"
 #include <vector>
 
 AutoCenterGearGrp::AutoCenterGearGrp() {
 	//Open gear flaps
 	AddParallel(new OpenGearFlapsCmd());
 
+	AddSequential(new AHRSDriveStraightCmd(LOAD_STRAIGHT_DIST, 0.7));
+
 	//Drive to gear
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 1882}, std::vector<double> {0, 1000, 1882}));
+	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 1882}, std::vector<double> {0, 1000, 1882}));
 
 }

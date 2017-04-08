@@ -91,7 +91,6 @@ constexpr int CENTER_TO_BOILER = 2224;
 constexpr int TURN_TO_BOILER_DEGREE = -119;
 constexpr int BACK_OFF_OF_SHAFT_DIST = -301;
 constexpr int LOADER_SIDE_APPROACH_DIST = 1353;
-constexpr int TURN_TO_LOADER_SIDE_SHAFT = -45;
 constexpr int DRIVE_TO_LOADER_SIDE_SHAFT = 2500;
 constexpr int SHOOTING_DRIVE_DISTANCE = -269;
 constexpr int SHOOTING_TURN_ANGLE = 50;
