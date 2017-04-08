@@ -194,7 +194,7 @@ void DrivetrainSub::PIDDrive()
 {
 	std::cout << "distance " << distanceBalancer->GetDifference() << "turn" << motorBalancer->GetDifference()<< std::endl;
 	SmartDashboard::PutNumber("left error",ahrs.get()->GetAngle());
-	drive(0.7/*distanceBalancer->GetDifference()*/ - motorBalancer->GetDifference(), 0.7/*-distanceBalancer->GetDifference()*/ + motorBalancer->GetDifference());
+	drive(distanceBalancer->GetDifference() + motorBalancer->GetDifference(), distanceBalancer->GetDifference() - motorBalancer->GetDifference());
 }
 
 
