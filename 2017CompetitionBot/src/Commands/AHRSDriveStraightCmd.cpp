@@ -18,6 +18,7 @@ void AHRSDriveStraightCmd::Initialize()
 	drivetrainSub->EnableBalancerPID(0);
 	drivetrainSub->EnableDistancePID(0.7, targetDistance);
 	timeFromLastMove = 0;
+	lastMoveTime = 0;
 }
 
 // Called repeatedly when this Command is scheduled to run
