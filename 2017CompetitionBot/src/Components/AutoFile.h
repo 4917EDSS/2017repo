@@ -14,6 +14,7 @@
 #include <vector>
 #include <iostream>
 #include <sstream>
+#include "fio/parser.h"
 
 class AutoFile {
 private:
@@ -21,7 +22,7 @@ private:
 	//std::map<int, Operation> operationMap;
 public:
 	AutoFile(const char* file);
-	int readVector(std::string &line, std::vector<double> &v);
+	int readFile(void);
 };
 
 #endif /* SRC_COMPONENTS_AUTOFILE_H_ */
