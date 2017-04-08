@@ -38,16 +38,16 @@ int AutoFileParser::readVector(std::vector<double> &v)
 					std::cout << line << std::endl;
 					continue;
 				}
-				if(!std::isalnum(line[0]) || std::isalpha(line[0])) {
-					std::cout << "unexpected data line:"<<lineNum<<": should be double:" << line[0] << std::endl;
-					break;
-				}
+//				if(!(std::isalnum(line[0]) && !std::isalpha(line[0])) || '-' == line[0])) {
+//					std::cout << "unexpected data line:"<<lineNum<<": should be double:" << line[0] << std::endl;
+//					break;
+//				}
 				// there are non white space characters, start reading the doubles out of it
 				std::stringstream thelinestream(line);
 				while(!thelinestream.eof()) {
 					double d;
 					char ch = thelinestream.peek();
-					if(!std::isalnum(ch) || std::isalpha(ch)) {
+					if(!(std::isdigit(ch) || '-' == ch)) {
 						std::cout << "unexpected data line"<<lineNum<<":" << ch << ": expected double" << std::endl;
 						break;
 					}

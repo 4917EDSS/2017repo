@@ -140,6 +140,7 @@ private:
 		autoLocationOptions->AddObject("Loader Gear Hopper Load", std::shared_ptr<frc::Command>(new AutoLoaderGearHopperLoadGrp()));
 		autoLocationOptions->AddObject("Center Gear", std::shared_ptr<frc::Command>(new AutoCenterGearGrp()));
 		autoLocationOptions->AddObject("Immediately Shoot, No Gear", std::shared_ptr<frc::Command>(new AutoShootGrp()));
+		autoLocationOptions->AddObject("Auto from file", std::shared_ptr<frc::Command>(new AutoFromFileCmdGrp()));
 
 		SmartDashboard::PutData("Auto Modes", autoLocationOptions.get());
 

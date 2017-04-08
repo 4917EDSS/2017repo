@@ -24,7 +24,7 @@ AutoFromFileCmdGrp::AutoFromFileCmdGrp() {
 
 CommandGroup* AutoFromFileCmdGrp::prepareDelegate() {
 	if(delegate) {
-		delete(delegate);
+		//delete(delegate);
 		delegate = nullptr;
 	}
 
