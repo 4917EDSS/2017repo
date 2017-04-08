@@ -59,7 +59,7 @@ SilkyRotationManager::SilkyRotationManager(double angle)
 // Setup for a new run
 void SilkyRotationManager::reset(){
 	// If we're on the blue side, reverse the motion
-	if( frc::DriverStation::GetInstance().GetAlliance() == frc::DriverStation::Alliance::kBlue ) {
+	if( frc::DriverStation::GetInstance().GetAlliance() == frc::DriverStation::Alliance::kRed ) {
 		targetRotationAngle = originalAngle * (-1.0);
 	}
 	else

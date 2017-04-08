@@ -22,11 +22,11 @@ DesperateCenterGearGrp::DesperateCenterGearGrp() {
 	// arm.
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 	AddSequential(new AHRSDriveStraightCmd(-500, 0.7));
-	AddSequential(new SilkyRotateCmd(15));
+	AddSequential(new SilkyRotateCmd(5));
 	AddSequential(new AHRSDriveStraightCmd(500, 0.7));
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 	AddSequential(new AHRSDriveStraightCmd(-500, 0.7));
-	AddSequential(new SilkyRotateCmd(-30));
+	AddSequential(new SilkyRotateCmd(-10));
 	AddSequential(new AHRSDriveStraightCmd(500, 0.7));
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 

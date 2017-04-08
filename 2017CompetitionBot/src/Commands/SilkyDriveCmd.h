@@ -10,6 +10,8 @@ private:
 	SilkyMotionManager smmBlue;
 	SilkyMotionManager smmRed;
 	SilkyMotionManager* smm;
+	float timeFromLastMove;
+	float lastMoveTime;
 public:
 	SilkyDriveCmd(std::vector<double> leftPositions, std::vector<double> rightPositions);
 	SilkyDriveCmd(std::vector<double> leftPostionsBlue, std::vector<double> rightPostitionsBlue, std::vector<double> leftPositionsRed, std::vector<double> rightPositionsRed);

@@ -24,6 +24,7 @@
 #include "Commands/AutoBoilerGearShootGrp.h"
 #include "Commands/AutoBoilerGearGrp.h"
 #include "Commands/AutoCenterGearShootGrp.h"
+#include "Commands/AutoDesperateLoaderGearGrp.h"
 #include "Commands/AutoHopperShootGrp.h"
 #include "Commands/AutoShootGrp.h"
 #include "Commands/AutoCenterGearGrp.h"
@@ -136,6 +137,8 @@ private:
 		autoLocationOptions->AddObject("Loader Gear Hopper Load", std::shared_ptr<frc::Command>(new AutoLoaderGearHopperLoadGrp()));
 		autoLocationOptions->AddObject("Center Gear", std::shared_ptr<frc::Command>(new AutoCenterGearGrp()));
 		autoLocationOptions->AddObject("Immediately Shoot, No Gear", std::shared_ptr<frc::Command>(new AutoShootGrp()));
+		autoLocationOptions->AddObject("Desperate Loader Gear", std::shared_ptr<frc::Command>(new AutoDesperateLoaderGearGrp()));
+
 
 		SmartDashboard::PutData("Auto Modes", autoLocationOptions.get());
 
