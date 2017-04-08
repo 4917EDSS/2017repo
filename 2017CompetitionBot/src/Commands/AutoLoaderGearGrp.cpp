@@ -4,6 +4,7 @@
 #include "OpenGearFlapsCmd.h"
 #include "AHRSDriveStraightCmd.h"
 #include "DriveTurnCmd.h"
+#include "SilkyRotateCmd.h"
 #include <vector>
 
 AutoLoaderGearGrp::AutoLoaderGearGrp() {
@@ -17,7 +18,7 @@ AutoLoaderGearGrp::AutoLoaderGearGrp() {
 									std::vector<double> {0, 600, 1435}, std::vector<double> {0, 600, 1435}));
 									*/
 	AddSequential(new AHRSDriveStraightCmd(LOADER_SIDE_APPROACH_DIST, 0.7));
-	AddSequential(new DriveTurnCmd(-60));
+	AddSequential(new SilkyRotateCmd(-60));
 	AddSequential(new AHRSDriveStraightCmd(DRIVE_TO_LOADER_SIDE_SHAFT, 0.7));
 
 
