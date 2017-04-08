@@ -17,7 +17,6 @@
 #include "Commands/AutoLoaderGearGrp.h"
 #include "Commands/AutoLoaderGearHopperLoadGrp.h"
 #include "Commands/AutoHopperShootGrp.h"
-#include "Commands/DriveStraightCmd.h"
 #include "Commands/SilkyDriveCmd.h"
 #include "Commands/ResetDriveEncodersCmd.h"
 #include "Commands/AHRSDriveStraightCmd.h"
@@ -28,6 +27,7 @@
 #include "Commands/AutoHopperShootGrp.h"
 #include "Commands/AutoShootGrp.h"
 #include "Commands/AutoCenterGearGrp.h"
+#include "Commands/AutoFromFileCmdGrp.h"
 #include "Commands/TestRotationCmd.h"
 
 class Robot: public frc::IterativeRobot {
@@ -67,6 +67,10 @@ public:
 		autonomousCommand = autoLocationOptions->GetSelected();
 
 		if (autonomousCommand.get() != nullptr) {
+			AutoFromFileCmdGrp* aFromFile = dynamic_cast<AutoFromFileCmdGrp*> (autonomousCommand.get());
+			if(aFromFile) {
+				autonomousCommand = std::shared_ptr<frc::Command> (aFromFile->prepareDelegate());
+			}
 			autonomousCommand->Start();
 		}
 		CommandBase::drivetrainSub->setShifter(frc::DoubleSolenoid::Value::kForward);
@@ -137,6 +141,7 @@ private:
 		autoLocationOptions->AddObject("Loader Gear Hopper Load", std::shared_ptr<frc::Command>(new AutoLoaderGearHopperLoadGrp()));
 		autoLocationOptions->AddObject("Center Gear", std::shared_ptr<frc::Command>(new AutoCenterGearGrp()));
 		autoLocationOptions->AddObject("Immediately Shoot, No Gear", std::shared_ptr<frc::Command>(new AutoShootGrp()));
+		autoLocationOptions->AddObject("Auto from file", std::shared_ptr<frc::Command>(new AutoFromFileCmdGrp()));
 		autoLocationOptions->AddObject("Desperate Loader Gear", std::shared_ptr<frc::Command>(new AutoDesperateLoaderGearGrp()));
 
 

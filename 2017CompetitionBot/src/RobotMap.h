@@ -26,6 +26,9 @@ enum Alliance {
 	BLUE
 };
 
+//Auto File
+#define AUTO_FILENAME "/home/lvuser/autofile.txt"
+
 //PreShotSpeedBoost amount to speed up before hand at beginning of shot
 constexpr double PRE_SHOT_SPEED_BOOST = -100;
 

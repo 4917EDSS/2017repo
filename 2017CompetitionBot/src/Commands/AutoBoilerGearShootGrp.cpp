@@ -2,7 +2,6 @@
 #include <vector>
 #include "SilkyDriveCmd.h"
 #include "OpenGearFlapsCmd.h"
-#include "DriveStraightCmd.h"
 #include "RotateToVisionCmd.h"
 #include "ShootCmd.h"
 #include "ToggleShifterCmd.h"
