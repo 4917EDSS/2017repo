@@ -23,6 +23,8 @@ void SilkyDriveCmd::Initialize() {
 	smm->setKvKaKpKd(SILKY_KV, SILKY_KA, SILKY_KP, SILKY_KD);
 	smm->reset();
 	drivetrainSub->reset();
+	timeFromLastMove = 0;
+	lastMoveTime = 0;
 }
 
 // Called repeatedly when this Command is scheduled to run

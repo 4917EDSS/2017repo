@@ -12,6 +12,7 @@ void SilkyRotateCmd::Initialize() {
 	drivetrainSub->reset();
 	drivetrainSub->resetAHRS();
 	timeFromLastMove = 0;
+	lastMoveTime = 0;
 }
 
 // Called repeatedly when this Command is scheduled to run
