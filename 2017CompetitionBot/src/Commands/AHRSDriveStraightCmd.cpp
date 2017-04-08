@@ -3,9 +3,8 @@
 #include <iostream>
 #include <cmath>
 
-AHRSDriveStraightCmd::AHRSDriveStraightCmd(int distance, float speed)
+AHRSDriveStraightCmd::AHRSDriveStraightCmd(int distance)
 {
-	targetSpeed = speed;
 	targetDistance = distance;
 	Requires(drivetrainSub.get());
 	// Use Requires() here to declare subsystem dependencies
@@ -17,7 +16,7 @@ void AHRSDriveStraightCmd::Initialize()
 {
 	drivetrainSub->reset();
 	drivetrainSub->EnableBalancerPID(0);
-	drivetrainSub->EnableDistancePID(targetSpeed, targetDistance);
+	drivetrainSub->EnableDistancePID(0.7, targetDistance);
 }
 
 // Called repeatedly when this Command is scheduled to run

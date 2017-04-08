@@ -21,13 +21,13 @@ DesperateCenterGearGrp::DesperateCenterGearGrp() {
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
-	AddSequential(new AHRSDriveStraightCmd(-500, 0.7));
+	AddSequential(new AHRSDriveStraightCmd(-500));
 	AddSequential(new SilkyRotateCmd(15));
-	AddSequential(new AHRSDriveStraightCmd(500, 0.7));
+	AddSequential(new AHRSDriveStraightCmd(500));
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
-	AddSequential(new AHRSDriveStraightCmd(-500, 0.7));
+	AddSequential(new AHRSDriveStraightCmd(-500));
 	AddSequential(new SilkyRotateCmd(-30));
-	AddSequential(new AHRSDriveStraightCmd(500, 0.7));
+	AddSequential(new AHRSDriveStraightCmd(500));
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 
 

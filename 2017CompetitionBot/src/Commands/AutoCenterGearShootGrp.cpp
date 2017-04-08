@@ -15,7 +15,7 @@ AutoCenterGearShootGrp::AutoCenterGearShootGrp() {
 
 	//Drive straight to peg
 	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 1882}, std::vector<double> {0, 1000, 1882}));
-	AddSequential(new AHRSDriveStraightCmd(LOAD_STRAIGHT_DIST, 0.7));
+	AddSequential(new AHRSDriveStraightCmd(LOAD_STRAIGHT_DIST));
 
 	//Wait
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
