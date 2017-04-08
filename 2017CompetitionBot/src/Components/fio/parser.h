@@ -49,6 +49,8 @@
  * double double ... double
  * D Parameter 1 Right Vector (Deltas from previous point), (number of points must match left)
  * double double ... double
+ * L - Linear: straight line.
+ * L Parameter 1 distance to travel
  */
 
 

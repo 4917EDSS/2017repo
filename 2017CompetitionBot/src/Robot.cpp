@@ -27,6 +27,7 @@
 #include "Commands/AutoHopperShootGrp.h"
 #include "Commands/AutoShootGrp.h"
 #include "Commands/AutoCenterGearGrp.h"
+#include "Commands/AutoFromFileCmdGrp.h"
 
 class Robot: public frc::IterativeRobot {
 public:
@@ -65,6 +66,10 @@ public:
 		autonomousCommand = autoLocationOptions->GetSelected();
 
 		if (autonomousCommand.get() != nullptr) {
+			AutoFromFileCmdGrp* aFromFile = dynamic_cast<AutoFromFileCmdGrp*> (autonomousCommand.get());
+			if(aFromFile) {
+				autonomousCommand = std::shared_ptr<frc::Command> (aFromFile->prepareDelegate());
+			}
 			autonomousCommand->Start();
 		}
 		CommandBase::drivetrainSub->setShifter(frc::DoubleSolenoid::Value::kForward);

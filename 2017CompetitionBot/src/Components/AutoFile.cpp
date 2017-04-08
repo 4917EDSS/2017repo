@@ -6,6 +6,7 @@
  */
 #include "AutoFile.h"
 #include "fio/parser.h"
+#include "../Commands/SilkyDriveCmd.h"
 
 AutoFile::AutoFile(const char* file)
 : parser(inStream)
@@ -16,7 +17,7 @@ AutoFile::AutoFile(const char* file)
 	}
 }
 
-int AutoFile::readCummulativeSilky()
+CommandBase* AutoFile::readCummulativeSilky()
 {
 	//operationMap[count] = new SilkyOperation();
 	std::vector<double> left;
@@ -34,14 +35,14 @@ int AutoFile::readCummulativeSilky()
 		std::cout << std::endl;
 	if(leftCount != 0 && leftCount == rightCount) {
 		std::cout << "successful num segments:" << leftCount << std::endl;
-		return 1;
+		return new SilkyDriveCmd(left, right);
 	} else {
 		std::cout << "*** FAILED *** Not the same number of segments cummulative" << std::endl;
-		return 0;
+		return NULL;
 	}
 }
 
-int AutoFile::readDifferentialSilky(void)
+CommandBase* AutoFile::readDifferentialSilky(void)
 {
 	//operationMap[count] = new SilkyOperation();
 	std::vector<double> left;
@@ -59,37 +60,48 @@ int AutoFile::readDifferentialSilky(void)
 		std::cout << std::endl;
 	if(leftCount != 0 && leftCount == rightCount) {
 		std::cout << "successful num differential segments:" << leftCount << std::endl;
-		return 1;
+		for(int i = 1; i < leftCount; i++) {
+			left[i] += left[i-1];
+			right[i] += right[i-1];
+		}
+		return new SilkyDriveCmd(left, right);
 	} else {
 		std::cout << "*** FAILED *** Not the same number of segments differential" << std::endl;
-		return 0;
+		return NULL;
 	}
 }
 
-int AutoFile::readFile(void)
+std::vector<CommandBase*>& AutoFile::readFile(void)
 {
-	int operationCount = 0;
 	char cmd;
 	while(!parser.readCommand(cmd)) {
+
+		CommandBase* cb;
+
 		switch(cmd) {
 			case 's':
 			case 'S':
-				if(readCummulativeSilky()) {
-					operationCount++;
+				cb = readCummulativeSilky();
+				if(cb) {
+					commands.push_back(cb);
 				}
 				break;
 			case 'd':
 			case 'D':
-				if(readDifferentialSilky()) {
-					operationCount++;
+				cb = readDifferentialSilky();
+				if(cb) {
+					commands.push_back(cb);
 				}
 				break;
+			case 'l':
+			case 'L':
+
 			default:
 				std::cout << "unexpected command:" << cmd << std::endl;
 				break;
 		}
 	}
-	return operationCount;
+	return commands;
 }
 
 int AutoFile::resetFile(const char *fileName)

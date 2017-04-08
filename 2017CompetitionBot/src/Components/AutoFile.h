@@ -15,17 +15,18 @@
 #include <iostream>
 #include <sstream>
 #include "fio/parser.h"
+#include "../CommandBase.h"
 
 class AutoFile {
 private:
 	std::ifstream inStream;
 	AutoFileParser parser;
-	//std::map<int, Operation> operationMap;
-	int readCummulativeSilky(void);
-	int readDifferentialSilky(void);
+	std::vector<CommandBase*> commands;
+	CommandBase* readCummulativeSilky(void);
+	CommandBase* readDifferentialSilky(void);
 public:
 	AutoFile(const char* file);
-	int readFile(void);
+	std::vector<CommandBase*>& readFile(void);
 	int resetFile(const char *fileName);
 };
 

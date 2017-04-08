@@ -1,6 +1,8 @@
-#include "AutoDefaultGrp.h"
+#include "AutoFromFileCmdGrp.h"
+#include "Commands/CommandGroup.h"
+#include "Components/AutoFile.h"
 
-AutoDefaultGrp::AutoDefaultGrp() {
+AutoFromFileCmdGrp::AutoFromFileCmdGrp() {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
@@ -17,4 +19,21 @@ AutoDefaultGrp::AutoDefaultGrp() {
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
+	delegate = nullptr;
+}
+
+CommandGroup* AutoFromFileCmdGrp::prepareDelegate() {
+	if(delegate) {
+		delete(delegate);
+		delegate = nullptr;
+	}
+
+	delegate = new CommandGroup();
+	AutoFile af(AUTO_FILENAME);
+	std::vector<CommandBase*>& commands = af.readFile();
+	for(int i = 0; i < commands.size(); i++) {
+		delegate->AddSequential(commands[i]);
+	}
+
+	return delegate;
 }
