@@ -68,7 +68,7 @@ void ShooterSub::update(bool shooting)
 			setFeederSpeed(1.0);
 			if(preShotPrimed) {
 				//Set end time 1 second later
-				preShotEndTime = frc::Timer::GetFPGATimestamp() + 1e6;
+				preShotEndTime = frc::GetFPGATime() + 500000;
 				preShotPrimed = false;
 				preShotTimerRunning = true;
 			}
@@ -79,7 +79,7 @@ void ShooterSub::update(bool shooting)
 	}
 
 	if(preShotTimerRunning) {
-		if(frc::Timer::GetFPGATimestamp() > preShotEndTime) {
+		if(frc::GetFPGATime() > preShotEndTime) {
 			preShotTimerRunning = false;
 			preShotSpeedBoost = 0;
 		}
