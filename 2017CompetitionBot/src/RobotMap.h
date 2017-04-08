@@ -43,7 +43,7 @@ constexpr float BOILER_SHOOT_TIME_1 = 1.0;
 //Shoot Speeds
 constexpr float KEY_SHOT_SHOOTER_SPEED = -1905;
 //constexpr float BOILER_SHOT_SHOOTER_SPEED = -1905;
-constexpr float BOILER_SHOT_SHOOTER_SPEED = -1965;
+constexpr float BOILER_SHOT_SHOOTER_SPEED = -2075;
 //constexpr float AUTO_BOILER_SHOT_SHOOTER_SPEED = -2000;
 constexpr float AUTO_BOILER_SHOT_SHOOTER_SPEED = -2285;
 
