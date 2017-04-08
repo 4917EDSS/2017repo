@@ -12,7 +12,7 @@ private:
 	float timeFromLastMove;
 	float lastMoveTime;
 public:
-	AHRSDriveStraightCmd(int distance, float speed);
+	AHRSDriveStraightCmd(int distance);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
