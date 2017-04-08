@@ -15,7 +15,7 @@
 #include "Commands/KillEverythingCmd.h"
 #include "Commands/ToggleIntakeCmd.h"
 #include "Commands/SwitchCamerasCmd.h"
-#include "Commands/RotateToVisionCmd.h"
+#include "Commands/SilkyRotateCmd.h"
 #include "Commands/DriveTurnCmd.h"
 #include "Commands/ReverseShooterCmdGrp.h"
 #include "Commands/ShootCmdGrp.h"
@@ -54,14 +54,6 @@ OI::OI() {
 	driverKillEverythingBtn->WhenPressed(new KillEverythingCmd());
 	shiftBtn.reset(new JoystickButton(driverController.get(), DRIVER_SHIFT_BTN));
 	shiftBtn->WhenPressed(new ToggleShifterCmd());
-	driveForwardsBtn.reset(new JoystickButton(driverController.get(), DRIVER_FORWARDS_BTN));
-	driveForwardsBtn->WhileHeld(new DriveForwards());
-	driverSwitchCamBtn.reset(new JoystickButton(driverController.get(), DRIVER_SWITCH_CAM_BTN));
-	driverSwitchCamBtn->WhenPressed(new SwitchCamerasCmd());
-	driverRotateToVisionBtn.reset(new JoystickButton(driverController.get(), DRIVER_ROTATE_TO_VISION_BTN));
-	driverRotateToVisionBtn->WhenPressed(new RotateToVisionCmd(MIN_GEAR_VISION_TARGETS));
-	driveTurnBtn.reset(new JoystickButton(driverController.get(), DRIVER_DRIVE_TURN_BTN));
-	driveTurnBtn->WhenPressed(new DriveTurnCmd(5));
 }
 
 std::shared_ptr<frc::Joystick> OI::getDriverController()

@@ -1,13 +1,14 @@
-#include "AutoLoaderGearGrp.h"
+#include "AutoDesperateLoaderGearGrp.h"
 #include "SilkyDriveCmd.h"
 #include "RotateToVisionCmd.h"
 #include "OpenGearFlapsCmd.h"
 #include "AHRSDriveStraightCmd.h"
 #include "DriveTurnCmd.h"
 #include "SilkyRotateCmd.h"
+#include "DesperateCenterGearGrp.h"
 #include <vector>
 
-AutoLoaderGearGrp::AutoLoaderGearGrp() {
+AutoDesperateLoaderGearGrp::AutoDesperateLoaderGearGrp() {
 	//Open gear flaps
 	AddParallel(new OpenGearFlapsCmd());
 
@@ -20,11 +21,5 @@ AutoLoaderGearGrp::AutoLoaderGearGrp() {
 	AddSequential(new AHRSDriveStraightCmd(LOADER_SIDE_APPROACH_DIST));
 	AddSequential(new SilkyRotateCmd(-60));
 	AddSequential(new AHRSDriveStraightCmd(DRIVE_TO_LOADER_SIDE_SHAFT));
-
-
-	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
-
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -1000, -1500}, std::vector<double> {0, -1000, -2420},
-									std::vector<double> {0, -1000, -2420}, std::vector<double> {0, -1000, -1500}));
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 7000}, std::vector<double> {0, 1000, 7000}));
+	AddSequential(new DesperateCenterGearGrp());
 }

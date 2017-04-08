@@ -7,6 +7,8 @@
 class SilkyRotateCmd : public CommandBase {
 private:
 	SilkyRotationManager srm;
+	float timeFromLastMove;
+	float lastMoveTime;
 public:
 	SilkyRotateCmd(double angle);
 	void Initialize();

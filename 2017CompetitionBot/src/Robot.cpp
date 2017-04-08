@@ -23,6 +23,7 @@
 #include "Commands/AutoBoilerGearShootGrp.h"
 #include "Commands/AutoBoilerGearGrp.h"
 #include "Commands/AutoCenterGearShootGrp.h"
+#include "Commands/AutoDesperateLoaderGearGrp.h"
 #include "Commands/AutoHopperShootGrp.h"
 #include "Commands/AutoShootGrp.h"
 #include "Commands/AutoCenterGearGrp.h"
@@ -141,6 +142,8 @@ private:
 		autoLocationOptions->AddObject("Center Gear", std::shared_ptr<frc::Command>(new AutoCenterGearGrp()));
 		autoLocationOptions->AddObject("Immediately Shoot, No Gear", std::shared_ptr<frc::Command>(new AutoShootGrp()));
 		autoLocationOptions->AddObject("Auto from file", std::shared_ptr<frc::Command>(new AutoFromFileCmdGrp()));
+		autoLocationOptions->AddObject("Desperate Loader Gear", std::shared_ptr<frc::Command>(new AutoDesperateLoaderGearGrp()));
+
 
 		SmartDashboard::PutData("Auto Modes", autoLocationOptions.get());
 
@@ -150,7 +153,7 @@ private:
 #ifdef PRACTICE_BOT
 		SmartDashboard::PutData("Drive mostly straight", new DriveStraightCmd(LOAD_STRAIGHT_DIST));
 		SmartDashboard::PutData("reset encoders", new ResetDriveEncodersCmd());
-		SmartDashboard::PutData("2m Drive straight with navx", new AHRSDriveStraightCmd(2000, 0.7));
+		SmartDashboard::PutData("2m Drive straight with navx", new AHRSDriveStraightCmd(2000));
 		//SmartDashboard::PutData("Hopefully Turn", new DriveTurnCmd(LOAD_STRAIGHT_DIST));
 		//SmartDashboard::PutData("Calibrate robot rotation", new TestRotationCmd());
 #endif

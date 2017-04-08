@@ -33,7 +33,13 @@ void SilkyDriveCmd::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool SilkyDriveCmd::IsFinished() {
-	return smm->isFinished(drivetrainSub->getLeftEncoder(), drivetrainSub->getLeftEncoderSpeed(), drivetrainSub->getRightEncoder(), drivetrainSub->getRightEncoderSpeed());
+	if(fabs(drivetrainSub->getLeftEncoderSpeed()) < 40 and fabs(drivetrainSub->getRightEncoderSpeed()) < 40){
+		timeFromLastMove = TimeSinceInitialized() - lastMoveTime;
+	}
+	else{
+		lastMoveTime = TimeSinceInitialized();
+	}
+	return ((smm->isFinished(drivetrainSub->getLeftEncoder(), drivetrainSub->getLeftEncoderSpeed(), drivetrainSub->getRightEncoder(), drivetrainSub->getRightEncoderSpeed())) or (timeFromLastMove > 1));
 }
 
 // Called once after isFinished returns true

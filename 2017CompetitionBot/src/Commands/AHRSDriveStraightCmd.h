@@ -9,8 +9,10 @@ class AHRSDriveStraightCmd: public CommandBase
 private:
 	int targetDistance;
 	float targetSpeed;
+	float timeFromLastMove;
+	float lastMoveTime;
 public:
-	AHRSDriveStraightCmd(int distance, float speed = 0.7);
+	AHRSDriveStraightCmd(int distance);
 	void Initialize();
 	void Execute();
 	bool IsFinished();

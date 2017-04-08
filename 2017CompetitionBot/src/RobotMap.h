@@ -46,7 +46,7 @@ constexpr float BOILER_SHOOT_TIME_1 = 1.0;
 //Shoot Speeds
 constexpr float KEY_SHOT_SHOOTER_SPEED = -1905;
 //constexpr float BOILER_SHOT_SHOOTER_SPEED = -1905;
-constexpr float BOILER_SHOT_SHOOTER_SPEED = -1965;
+constexpr float BOILER_SHOT_SHOOTER_SPEED = -2075;
 //constexpr float AUTO_BOILER_SHOT_SHOOTER_SPEED = -2000;
 constexpr float AUTO_BOILER_SHOT_SHOOTER_SPEED = -2285;
 
@@ -93,8 +93,8 @@ constexpr int GEAR_WAIT_TIME = 1.25;
 constexpr int CENTER_TO_BOILER = 2224;
 constexpr int TURN_TO_BOILER_DEGREE = -119;
 constexpr int BACK_OFF_OF_SHAFT_DIST = -301;
-constexpr int LOADER_SIDE_APPROACH_DIST = 1353;
-constexpr int DRIVE_TO_LOADER_SIDE_SHAFT = 2500;
+constexpr int LOADER_SIDE_APPROACH_DIST = 1853;
+constexpr int DRIVE_TO_LOADER_SIDE_SHAFT = 1750;
 constexpr int SHOOTING_DRIVE_DISTANCE = -269;
 constexpr int SHOOTING_TURN_ANGLE = 50;
 constexpr int BOILER_HOPPER_DISTANCE = 1994;

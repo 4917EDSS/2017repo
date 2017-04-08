@@ -11,6 +11,7 @@ void SilkyRotateCmd::Initialize() {
 	srm.reset();
 	drivetrainSub->reset();
 	drivetrainSub->resetAHRS();
+	timeFromLastMove = 0;
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -23,16 +24,22 @@ void SilkyRotateCmd::Execute() {
 // Make this return true when this Command no longer needs to run execute()
 bool SilkyRotateCmd::IsFinished() {
 	// TODO:  Compensate for Yaw going negative at the 179/-180 point
-	return srm.isFinished(drivetrainSub->getYaw());
+	if(fabs(drivetrainSub->getLeftEncoderSpeed()) < 40 and fabs(drivetrainSub->getRightEncoderSpeed()) < 40){
+		timeFromLastMove = TimeSinceInitialized() - lastMoveTime;
+	}
+	else{
+		lastMoveTime = TimeSinceInitialized();
+	}
+	return ((srm.isFinished(drivetrainSub->getYaw())) or (timeFromLastMove > 1));
 }
 
 // Called once after isFinished returns true
 void SilkyRotateCmd::End() {
-
+	drivetrainSub->resetAHRS();
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void SilkyRotateCmd::Interrupted() {
-
+	End();
 }
