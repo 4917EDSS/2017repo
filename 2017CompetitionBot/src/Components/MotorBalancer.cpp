@@ -14,7 +14,7 @@ MotorBalancer::MotorBalancer() {
 #include <iostream>
 void MotorBalancer::PIDWrite(double output) {
 	difference = output;
-	//printf( "Motor Power = %f\n", difference );
+	//printf( "Motor Balancer = %f\n", difference );
 }
 double MotorBalancer::GetDifference() {
 	return difference; //always equal to 0

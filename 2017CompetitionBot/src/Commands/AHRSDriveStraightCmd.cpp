@@ -17,25 +17,23 @@ void AHRSDriveStraightCmd::Initialize()
 {
 	drivetrainSub->reset();
 	drivetrainSub->EnableBalancerPID(0);
+	drivetrainSub->EnableDistancePID(targetSpeed, targetDistance);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void AHRSDriveStraightCmd::Execute()
 {
-	if (targetDistance > 0) {
-		drivetrainSub->PIDDrive(targetSpeed);
-	} else if (targetDistance < 0) {
-		drivetrainSub->PIDDrive(-targetSpeed);
-	}
+	drivetrainSub->PIDDrive();
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool AHRSDriveStraightCmd::IsFinished()
 {
-	if (fabs(drivetrainSub->getLeftEncoder()) >= abs(targetDistance)){
+	//if distance and speed are in tolerance
+	if(fabs(drivetrainSub->getLeftEncoder()-targetDistance)<=DRIVE_DISTANCE_TOLERANCE and fabs(drivetrainSub->getLeftEncoderSpeed()) < DISTANCE_SPEED_TOLERANCE){
 		return true;
 	}
-	else {
+	else{
 		return false;
 	}
 }
@@ -44,6 +42,7 @@ bool AHRSDriveStraightCmd::IsFinished()
 void AHRSDriveStraightCmd::End()
 {
 	drivetrainSub->DisableBalancerPID();
+	drivetrainSub->DisableDistancePID();
 	drivetrainSub->drive(0.0, 0.0);
 }
 

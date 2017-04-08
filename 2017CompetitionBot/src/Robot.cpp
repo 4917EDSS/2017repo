@@ -27,6 +27,7 @@
 #include "Commands/AutoShootGrp.h"
 #include "Commands/AutoCenterGearGrp.h"
 #include "Commands/AutoFromFileCmdGrp.h"
+#include "Commands/TestRotationCmd.h"
 
 class Robot: public frc::IterativeRobot {
 public:
@@ -149,8 +150,9 @@ private:
 #ifdef PRACTICE_BOT
 		SmartDashboard::PutData("Drive mostly straight", new DriveStraightCmd(LOAD_STRAIGHT_DIST));
 		SmartDashboard::PutData("reset encoders", new ResetDriveEncodersCmd());
-		SmartDashboard::PutData("Drive straight with navx", new AHRSDriveStraightCmd(1000, 0.7));
+		SmartDashboard::PutData("2m Drive straight with navx", new AHRSDriveStraightCmd(2000, 0.7));
 		//SmartDashboard::PutData("Hopefully Turn", new DriveTurnCmd(LOAD_STRAIGHT_DIST));
+		//SmartDashboard::PutData("Calibrate robot rotation", new TestRotationCmd());
 #endif
 	}
 

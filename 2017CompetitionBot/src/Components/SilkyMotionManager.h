@@ -15,6 +15,12 @@
 #include "spline.h"
 #include "WPILib.h"
 
+// Use these macros to specify silky motion in increments rather than a running total
+// e.g. std::vector<double> {0, 1425, 2400, 3450} would be SILKY4(0, 1425, 975, 1050)
+#define SILKY3(a, b, c)			std::vector<double> {(a), ((a)+(b)), ((a)+(b)+(c))}
+#define SILKY4(a, b, c, d)		std::vector<double> {(a), ((a)+(b)), ((a)+(b)+(c)), ((a)+(b)+(c)+(d))}
+#define SILKY5(a, b, c, d, e)	std::vector<double> {(a), ((a)+(b)), ((a)+(b)+(c)), ((a)+(b)+(c)+(d)), ((a)+(b)+(c)+(d)+(e))}
+
 struct PathInfo {
 	double dis;
 	double vel;

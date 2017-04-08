@@ -33,8 +33,10 @@ private:
 	std::shared_ptr<AHRS> ahrs;
 	std::shared_ptr<MotorBalancer> turnBalancer;
 	std::shared_ptr<MotorBalancer> motorBalancer;
+	std::shared_ptr<MotorBalancer> distanceBalancer;
 	std::shared_ptr<frc::PIDController> driveTurnPID;
 	std::shared_ptr<frc::PIDController> driveBalanceController;
+	std::shared_ptr<frc::PIDController> driveDistancePID;
 	std::shared_ptr<frc::DoubleSolenoid> shifter;
 	Alliance alliance;
 
@@ -65,13 +67,16 @@ public:
 	double getLeftEncoderRaw();
 	double getRightEncoderRaw();
 	void Update(double speed);
-	void PIDDrive(float speed);
+	void PIDDrive();
 	void EnableBalancerPID(float setPoint);
 	void DisableBalancerPID();
 	float getLeftAmps1();
 	float getLeftAmps2();
 	float getRightAmps1();
 	float getRightAmps2();
+	void EnableDistancePID(float speed, float setPoint);
+	void DisableDistancePID();
+	void CharaterizeRobotRotation(void);
 };
 
 #endif  // DrivetrainSub_H
