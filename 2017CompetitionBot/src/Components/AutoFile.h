@@ -40,6 +40,10 @@
  * [Command N - 1 Parameter 1]
  * <EOF>
  *
+ * Note on commands:
+ *  - Lowercase commands involving silky tune for blue and mirror for red.
+ *  - Uppercase commands involving silky take 4 parameters and tune for blue and red.
+ *
  * Commands:
  *
  * S - Silky Cumulative
@@ -58,6 +62,8 @@
  * L Parameter 1 distance to travel mm
  * F - Fire aka shoot
  * U - Spinup
+ * G - Gearflaps
+ * G lowercase is close / uppercase is open
  */
 
 class AutoFile {
@@ -73,6 +79,7 @@ private:
 	Command* readDriveStraight();
 	Command* readShoot();
 	Command* readSpinUp();
+	Command* readGearFlaps(bool open);
 public:
 	AutoFile(const char* file);
 	std::vector<Operation>& readFile(void);

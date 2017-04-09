@@ -11,6 +11,7 @@
 #include "Commands/AHRSDriveStraightCmd.h"
 #include "Commands/ShootCmdGrp.h"
 #include "Commands/SpinUpCmd.h"
+#include "Commands/OpenGearFlapsCmd.h"
 
 AutoFile::AutoFile(const char* file)
 : parser(inStream)
@@ -120,6 +121,10 @@ Command* AutoFile::readSpinUp() {
 	return new SpinUpCmd(BOILER_SHOT_SHOOTER_SPEED);
 }
 
+Command* AutoFile::readGearFlaps(bool open) {
+	return new OpenGearFlapsCmd(open);
+}
+
 std::vector<AutoFile::Operation>& AutoFile::readFile(void)
 {
 	char cmd;
@@ -158,10 +163,15 @@ std::vector<AutoFile::Operation>& AutoFile::readFile(void)
 			case 'F':
 				cb = readShoot();
 				break;
-			//SpinUP
+			//Spin UP
 			case 'u':
 			case 'U':
 				cb = readSpinUp();
+				break;
+			case 'g':
+				cb = readGearFlaps(false);
+			case 'G':
+				cb = readGearFlaps(true);
 				break;
 			default:
 				std::cout << "unexpected command:" << cmd << std::endl;
