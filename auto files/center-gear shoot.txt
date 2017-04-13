@@ -1,9 +1,9 @@
-G
 # drive to peg
 l
 1950
+G
 W
-1.5
+2
 # reverse
 S
 0 -150 -1850

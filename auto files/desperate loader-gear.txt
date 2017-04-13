@@ -1,0 +1,37 @@
+# --- approach ---
+L
+1853
+2056
+R
+-60
+# --- first attempt ---
+L
+1750
+1610
+G
+W
+2
+# --- backup ---
+l
+-500
+# --- second attempt ---
+g
+R
+5
+l
+550
+G
+W
+2
+# --- backup ---
+l
+-550
+# --- third attempt ---
+g
+R
+-10
+l
+550
+G
+W
+2
