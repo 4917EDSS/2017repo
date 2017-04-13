@@ -143,8 +143,7 @@ void ShooterSub::disableSpeedController(){
 }
 
 void ShooterSub::setFeederSpeed(float speed){
-	//feederMotor1->Set(speed * 5500);
-	feederMotor1->Set(speed * 999999);
+	feederMotor1->Set(speed * 5500);
 	feederMotor2->Set(speed);
 }
 

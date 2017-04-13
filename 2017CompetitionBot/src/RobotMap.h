@@ -19,7 +19,7 @@
 // constexpr int RANGE_FINDER_PORT = 1;
 // constexpr int RANGE_FINDER_MODULE = 1;
 
-#define PRACTICE_BOT
+//#define PRACTICE_BOT
 
 enum Alliance {
 	RED,
@@ -44,9 +44,9 @@ constexpr float BOILER_SHOOT_TIME_1 = 1.0;
 #define AHRSInterface SPI::kMXP
 
 //Shoot Speeds
-constexpr float KEY_SHOT_SHOOTER_SPEED = -2195;
+constexpr float KEY_SHOT_SHOOTER_SPEED = -2135;
 //constexpr float BOILER_SHOT_SHOOTER_SPEED = -1905;
-constexpr float BOILER_SHOT_SHOOTER_SPEED = -2195;
+constexpr float BOILER_SHOT_SHOOTER_SPEED = -2135;
 //constexpr float AUTO_BOILER_SHOT_SHOOTER_SPEED = -2000;
 constexpr float AUTO_BOILER_SHOT_SHOOTER_SPEED = -2285;
 
@@ -108,12 +108,12 @@ constexpr int LOADER_SHAFT_TO_BOILER_ANGLE = -70;
 constexpr int LOADER_SHAFT_TO_BOILER_DIST = 3000;
 constexpr int TEN_BALL_SHOT_TIME = 7;
 constexpr float HOPPER_OPEN_TIME = 0.5;
-constexpr float HOPPER_CLOSE_TIME = 0.5;
+constexpr float HOPPER_CLOSE_TIME = 0.7;
 
 //PID Values
 constexpr float DRIVE_TURN_P = 0.1;
-constexpr float DRIVE_TURN_I = 0.001;
-constexpr float DRIVE_TURN_D = 0.0;
+constexpr float DRIVE_TURN_I = 0.015;
+constexpr float DRIVE_TURN_D = 0.04;
 constexpr float DRIVE_TURN_TOLERANCE = 0.5;
 constexpr float DRIVE_RATE_TOLERANCE = 1;
 constexpr float DRIVE_BALANCE_P = 0.07;
