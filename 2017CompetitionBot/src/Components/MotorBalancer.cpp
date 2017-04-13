@@ -21,6 +21,5 @@ double MotorBalancer::GetDifference() {
 }
 
 void MotorBalancer::Reset() {
-	printf( "resetting" );
 	difference = 0;
 }

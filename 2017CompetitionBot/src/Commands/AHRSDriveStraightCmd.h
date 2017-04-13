@@ -7,6 +7,8 @@
 class AHRSDriveStraightCmd: public CommandBase
 {
 private:
+	int distanceBlue;
+	int distanceRed;
 	int targetDistance;
 	float targetSpeed;
 	float timeFromLastMove;

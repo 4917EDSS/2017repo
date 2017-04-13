@@ -19,7 +19,6 @@ AutoLoaderGearHopperLoadGrp::AutoLoaderGearHopperLoadGrp() {
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 600, 1520}, std::vector<double> {0, 600, 1520},
 									std::vector<double> {0, 600, 1435}, std::vector<double> {0, 600, 1435}));
 									*/
-	AddSequential(new AHRSDriveStraightCmd(LOADER_SIDE_APPROACH_DIST));
 	AddSequential(new SilkyRotateCmd(-60));
 	AddSequential(new AHRSDriveStraightCmd(DRIVE_TO_LOADER_SIDE_SHAFT));
 

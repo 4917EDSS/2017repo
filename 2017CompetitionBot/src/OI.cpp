@@ -19,18 +19,18 @@
 #include "Commands/DriveTurnCmd.h"
 #include "Commands/ReverseShooterCmdGrp.h"
 #include "Commands/ShootCmdGrp.h"
+#include "Commands/UnJamCmdGrp.h"
 
 OI::OI() {
 	// Process operator interface input here.
 	driverController.reset(new frc::Joystick(DRIVER_CONTROLLER_PORT));
 	operatorController.reset(new frc::Joystick(OPERATOR_CONTROLLER_PORT));
-
 	dIntakeBtn.reset(new frc::JoystickButton(operatorController.get(), OPERATOR_INTAKE_BTN));
 	dIntakeBtn->WhenPressed(new ToggleIntakeCmd());
 	liftBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_LIFT_BTN));
 	liftBtn->WhileHeld(new LiftCmd(1.0));
 	lowerBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_LOWER_BTN));
-	lowerBtn->WhileHeld(new LiftCmd(-1.0));
+	lowerBtn->WhileHeld(new UnJamCmdGrp());
 	//shooterEnableBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_SHOOT_BTN));
 	//shooterEnableBtn->WhileHeld(new ShootCmd());
 	increaseSpeedBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_INCREASE_SPEED_BTN));
@@ -49,7 +49,6 @@ OI::OI() {
 	reverseShooterBtn->WhileHeld(new ReverseShooterCmdGrp());
 	operatorKillEverythingBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_KILL_EVERYTHING_BTN));
 	operatorKillEverythingBtn->WhenPressed(new KillEverythingCmd());
-
 	driverKillEverythingBtn.reset(new JoystickButton(driverController.get(), DRIVER_KILL_EVERYTHING_BTN));
 	driverKillEverythingBtn->WhenPressed(new KillEverythingCmd());
 	shiftBtn.reset(new JoystickButton(driverController.get(), DRIVER_SHIFT_BTN));

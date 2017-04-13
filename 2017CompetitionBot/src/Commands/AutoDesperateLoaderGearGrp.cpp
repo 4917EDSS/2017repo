@@ -18,7 +18,7 @@ AutoDesperateLoaderGearGrp::AutoDesperateLoaderGearGrp() {
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 600, 1480}, std::vector<double> {0, 600, 1480},
 									std::vector<double> {0, 600, 1435}, std::vector<double> {0, 600, 1435}));
 									*/
-	AddSequential(new AHRSDriveStraightCmd(LOADER_SIDE_APPROACH_DIST));
+	AddSequential(new AHRSDriveStraightCmd(LOADER_SIDE_APPROACH_DIST_BLUE, LOADER_SIDE_APPROACH_DIST_RED));
 	AddSequential(new SilkyRotateCmd(-60));
 	AddSequential(new AHRSDriveStraightCmd(DRIVE_TO_LOADER_SIDE_SHAFT));
 	//Open gear flaps

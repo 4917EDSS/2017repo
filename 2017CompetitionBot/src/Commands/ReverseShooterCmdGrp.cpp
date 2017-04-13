@@ -2,6 +2,7 @@
 
 #include "ShootCmd.h"
 #include "LiftCmd.h"
+#include "RunIntakeCmd.h"
 
 ReverseShooterCmdGrp::ReverseShooterCmdGrp() {
 	AddParallel(new LiftCmd(-1.0));

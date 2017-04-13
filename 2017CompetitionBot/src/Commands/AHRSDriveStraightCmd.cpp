@@ -5,24 +5,29 @@
 
 AHRSDriveStraightCmd::AHRSDriveStraightCmd(int distance)
 {
-	targetDistance = distance;
+	this->distanceBlue = distance;
+	this->distanceRed = distance;
+	this->targetDistance = distance;
 	Requires(drivetrainSub.get());
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
 }
 
 AHRSDriveStraightCmd::AHRSDriveStraightCmd(int distanceBlue, int distanceRed) {
-	if(frc::DriverStation::GetInstance().GetAlliance() == frc::DriverStation::Alliance::kBlue) {
-		targetDistance = distanceBlue;
-	} else {
-		targetDistance = distanceRed;
-	}
 	Requires(drivetrainSub.get());
+	this->distanceRed = distanceRed;
+	this->distanceBlue = distanceBlue;
+	this->targetDistance = distanceBlue;
 }
 
 // Called just before this Command runs the first time
 void AHRSDriveStraightCmd::Initialize()
 {
+	if(frc::DriverStation::GetInstance().GetAlliance() == frc::DriverStation::Alliance::kBlue) {
+		targetDistance = distanceBlue;
+	} else {
+		targetDistance = distanceRed;
+	}
 	drivetrainSub->reset();
 	drivetrainSub->EnableBalancerPID(0);
 	drivetrainSub->EnableDistancePID(0.7, targetDistance);
