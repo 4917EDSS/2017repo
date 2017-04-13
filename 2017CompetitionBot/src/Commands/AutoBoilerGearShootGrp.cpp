@@ -10,7 +10,7 @@
 
 AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 	//Open gear flaps
-	AddParallel(new OpenGearFlapsCmd());
+//	AddParallel(new OpenGearFlapsCmd());
 
 	//Drive to boiler gear
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 775 + 50, 2450 + 8}, std::vector<double> {0, 775 + 50, 1625 + 15},
@@ -18,6 +18,8 @@ AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 450, 1400}, std::vector<double> {0, 450, 1400},
 									std::vector<double> {0, 600, 1475}, std::vector<double> {0, 600, 1475}));
 
+	//Open gear flaps
+	AddParallel(new OpenGearFlapsCmd());
 	//Wait at gear
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 	//Start up shooter

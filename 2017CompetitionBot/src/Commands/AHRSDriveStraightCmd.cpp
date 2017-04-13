@@ -11,6 +11,15 @@ AHRSDriveStraightCmd::AHRSDriveStraightCmd(int distance)
 	// eg. Requires(chassis);
 }
 
+AHRSDriveStraightCmd::AHRSDriveStraightCmd(int distanceBlue, int distanceRed) {
+	if(frc::DriverStation::GetInstance().GetAlliance() == frc::DriverStation::Alliance::kBlue) {
+		targetDistance = distanceBlue;
+	} else {
+		targetDistance = distanceRed;
+	}
+	Requires(drivetrainSub.get());
+}
+
 // Called just before this Command runs the first time
 void AHRSDriveStraightCmd::Initialize()
 {

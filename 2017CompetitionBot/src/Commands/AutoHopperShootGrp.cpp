@@ -32,7 +32,7 @@ AutoHopperShootGrp::AutoHopperShootGrp() {
 	AddParallel(new RunPickupCmd());
 
 	//Drive to shooter
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1010, 2080, 2680, 3200}, std::vector<double> {0, 330, 605, 880, 1380},
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1010, 2080, 2680, 3200}, std::vector<double> {0, 250, 575, 850, 1350},
 									std::vector<double> {0, 200, 525, 830, 1330}, std::vector<double> {0, 960, 2030, 2630, 3110}));
 
 	//Pulse hopper

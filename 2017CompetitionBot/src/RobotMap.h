@@ -36,8 +36,8 @@ constexpr double PRE_SHOT_SPEED_BOOST = -100;
 constexpr bool flapsEnabled = true;
 
 // Auto values
-constexpr float HOPPER_RECEIVE_TIME = 2.0;
-constexpr float HOPPER_WAIT_TIME = 2.0;
+constexpr float HOPPER_RECEIVE_TIME = 1.0;
+constexpr float HOPPER_WAIT_TIME = 1.0;
 constexpr float BOILER_SHOOT_TIME_1 = 1.0;
 
 //AHRS define
@@ -89,7 +89,7 @@ constexpr int ENCODER_CONVERSION_FACTOR = 4;
 //1 m = 1318 encoder ticks
 //1 encoder tick = 1.32 mm
 constexpr int LOAD_STRAIGHT_DIST = 1950;
-constexpr int GEAR_WAIT_TIME = 1.5;
+constexpr int GEAR_WAIT_TIME = 1.65;
 constexpr int CENTER_TO_BOILER = 2224;
 constexpr int TURN_TO_BOILER_DEGREE = -119;
 constexpr int BACK_OFF_OF_SHAFT_DIST = -301;

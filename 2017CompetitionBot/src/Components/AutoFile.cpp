@@ -12,6 +12,7 @@
 #include "Commands/ShootCmdGrp.h"
 #include "Commands/SpinUpCmd.h"
 #include "Commands/OpenGearFlapsCmd.h"
+#include "Commands/SilkyRotateCmd.h"
 
 AutoFile::AutoFile(const char* file)
 : parser(inStream)
@@ -103,13 +104,25 @@ Command* AutoFile::readWait() {
 	}
 }
 
-Command* AutoFile::readDriveStraight() {
-	std::vector<double> parameters;
-	if(parser.readVector(parameters) != 0) {
-		double distance = parameters[0];
-		return new AHRSDriveStraightCmd(distance);
+Command* AutoFile::readDriveStraight(bool redIncluded) {
+	std::vector<double> parametersBlue;
+	std::vector<double> parametersRed;
+	double blueDistance;
+	double redDistance;
+	if(parser.readVector(parametersBlue) != 0) {
+		blueDistance = parametersBlue[0];
 	} else {
 		return NULL;
+	}
+	if(redIncluded) {
+		if(parser.readVector(parametersRed) != 0) {
+			redDistance = parametersRed[0];
+		} else {
+			return NULL;
+		}
+		return new AHRSDriveStraightCmd(blueDistance, redDistance);
+	} else {
+		return new AHRSDriveStraightCmd(blueDistance);
 	}
 }
 
@@ -123,6 +136,15 @@ Command* AutoFile::readSpinUp() {
 
 Command* AutoFile::readGearFlaps(bool open) {
 	return new OpenGearFlapsCmd(open);
+}
+
+Command* AutoFile::readSilkyRotate() {
+	std::vector<double> params;
+	if(parser.readVector(params) != 0) {
+		return new SilkyRotateCmd(params[0]);
+	} else {
+		return NULL;
+	}
 }
 
 std::vector<AutoFile::Operation>& AutoFile::readFile(void)
@@ -155,8 +177,9 @@ std::vector<AutoFile::Operation>& AutoFile::readFile(void)
 				break;
 			//Linear ie. drive straight
 			case 'l':
-			case 'L':
 				cb = readDriveStraight();
+			case 'L':
+				cb = readDriveStraight(true);
 				break;
 			//FIRE!!!
 			case 'f':
@@ -172,6 +195,12 @@ std::vector<AutoFile::Operation>& AutoFile::readFile(void)
 				cb = readGearFlaps(false);
 			case 'G':
 				cb = readGearFlaps(true);
+				break;
+			case 'r':
+			case 'R':
+				cb = readSilkyRotate();
+				break;
+			case '#':
 				break;
 			default:
 				std::cout << "unexpected command:" << cmd << std::endl;

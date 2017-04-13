@@ -11,7 +11,7 @@
 
 AutoLoaderGearHopperLoadGrp::AutoLoaderGearHopperLoadGrp() {
 	//Open gear flaps
-	AddParallel(new OpenGearFlapsCmd());
+//	AddParallel(new OpenGearFlapsCmd());
 
 	//Drive to loader gear
 	/*AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1230, 1551}, std::vector<double> {0, 1230, 2330},
@@ -23,6 +23,8 @@ AutoLoaderGearHopperLoadGrp::AutoLoaderGearHopperLoadGrp() {
 	AddSequential(new SilkyRotateCmd(-60));
 	AddSequential(new AHRSDriveStraightCmd(DRIVE_TO_LOADER_SIDE_SHAFT));
 
+	//Open gear flaps
+	AddParallel(new OpenGearFlapsCmd());
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME * 3));
 
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -950, -2650, -2850, -3700}, std::vector<double> {0, -150, -1950, -2450, -3000},

@@ -10,7 +10,7 @@
 
 AutoBoilerGearGrp::AutoBoilerGearGrp() {
 	//Open gear flaps
-	AddParallel(new OpenGearFlapsCmd());
+//	AddParallel(new OpenGearFlapsCmd());
 
 	//Drive to boiler gear
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 875, 2535}, std::vector<double> {0, 875, 1725},
@@ -21,5 +21,8 @@ AutoBoilerGearGrp::AutoBoilerGearGrp() {
 									std::vector<double> {0, 600, 1475}, std::vector<double> {0, 600, 1475}));
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 600, 1450}, std::vector<double> {0, 600, 1450},
 									std::vector<double> {0, 600, 1475}, std::vector<double> {0, 600, 1475}));
+
+	//Open gear flaps
+	AddParallel(new OpenGearFlapsCmd());
 
 }

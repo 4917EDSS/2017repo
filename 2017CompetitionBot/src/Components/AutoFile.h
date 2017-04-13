@@ -64,6 +64,10 @@
  * U - Spinup
  * G - Gearflaps
  * G lowercase is close / uppercase is open
+ * R - Silky Rotate
+ * R Parameter 1 angle to rotate
+ * H Open hopper
+ * h Close hopper
  */
 
 class AutoFile {
@@ -76,10 +80,11 @@ private:
 	Command* readCummulativeSilky(bool redIncluded = false);
 	Command* readDifferentialSilky(bool redIncluded = false);
 	Command* readWait();
-	Command* readDriveStraight();
+	Command* readDriveStraight(bool redIncluded = false);
 	Command* readShoot();
 	Command* readSpinUp();
 	Command* readGearFlaps(bool open);
+	Command* readSilkyRotate();
 public:
 	AutoFile(const char* file);
 	std::vector<Operation>& readFile(void);

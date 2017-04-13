@@ -10,12 +10,14 @@
 #include "Commands/HopperPulseCmd.h"
 AutoCenterGearShootGrp::AutoCenterGearShootGrp() {
 	//Open gear flaps
-	AddParallel(new OpenGearFlapsCmd());
+	//AddParallel(new OpenGearFlapsCmd());
 
 	//Drive straight to peg
 	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 1882}, std::vector<double> {0, 1000, 1882}));
 	AddSequential(new AHRSDriveStraightCmd(LOAD_STRAIGHT_DIST));
 
+	//Open gear flaps
+	AddParallel(new OpenGearFlapsCmd());
 	//Wait
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 
@@ -30,7 +32,7 @@ AutoCenterGearShootGrp::AutoCenterGearShootGrp() {
 	AddParallel(new SpinUpCmd(AUTO_BOILER_SHOT_SHOOTER_SPEED));
 
 	//Drive to boiler
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1200, 2175, 3210}, std::vector<double> {0, 1200, 2575, 3875},
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1200 + 400, 2175 + 400, 3210 + 400}, std::vector<double> {0, 1200 + 400, 2575 + 400, 3875 + 400},
 									std::vector<double> {0, 1800, 3000, 4225}, std::vector<double> {0, 1800, 2550, 3679}));
 
 	//Pulse hopper
