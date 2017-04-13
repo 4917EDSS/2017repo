@@ -1,4 +1,4 @@
-Gp
+G
 # drive to boiler gear
 S
 0 825 2458 2908 3858

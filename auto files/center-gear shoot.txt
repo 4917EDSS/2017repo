@@ -1,4 +1,4 @@
-Gp
+G
 # drive to peg
 l
 1950
@@ -10,7 +10,7 @@ S
 0 -150 -500
 0 -150 -500
 0 -150 -1775
-gp
+g
 Up
 # drive to boiler
 S

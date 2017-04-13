@@ -21,7 +21,7 @@ AutoLoaderGearHopperLoadGrp::AutoLoaderGearHopperLoadGrp() {
 									*/
 	AddSequential(new AHRSDriveStraightCmd(LOADER_SIDE_APPROACH_DIST_BLUE, LOADER_SIDE_APPROACH_DIST_RED));
 	AddSequential(new SilkyRotateCmd(-60));
-	AddSequential(new AHRSDriveStraightCmd(DRIVE_TO_LOADER_SIDE_SHAFT));
+	AddSequential(new AHRSDriveStraightCmd(DRIVE_TO_LOADER_SIDE_SHAFT_BLUE, DRIVE_TO_LOADER_SIDE_SHAFT_RED));
 
 	//Open gear flaps
 	AddSequential(new OpenGearFlapsCmd());
