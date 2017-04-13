@@ -20,6 +20,7 @@
 #include "Commands/ReverseShooterCmdGrp.h"
 #include "Commands/ShootCmdGrp.h"
 #include "Commands/UnJamCmdGrp.h"
+#include "Commands/OpenGearFlapsHeldCmd.h"
 
 OI::OI() {
 	// Process operator interface input here.
@@ -38,7 +39,7 @@ OI::OI() {
 	decreaseSpeedBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_DECREASE_SPEED_BTN));
 	decreaseSpeedBtn->WhenPressed(new DecreaseSpeedCmd());
 	openGearFlapsBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_GEAR_FLAP_BTN));
-	openGearFlapsBtn->WhileHeld(new OpenGearFlapsCmd());
+	openGearFlapsBtn->WhileHeld(new OpenGearFlapsHeldCmd());
 	shrinkHopperBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_SHRINK_HOPPER_BTN));
 	shrinkHopperBtn->WhileHeld(new ExpandHopperCmd());
 	keyShotBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_KEY_SHOT_BTN));

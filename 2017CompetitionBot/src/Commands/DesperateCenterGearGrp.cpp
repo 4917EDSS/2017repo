@@ -23,16 +23,16 @@ DesperateCenterGearGrp::DesperateCenterGearGrp() {
 	// arm.
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 	AddSequential(new AHRSDriveStraightCmd(-500));
-	AddParallel(new OpenGearFlapsCmd(false));
+	AddSequential(new OpenGearFlapsCmd(false));
 	AddSequential(new SilkyRotateCmd(5));
 	AddSequential(new AHRSDriveStraightCmd(500));
-	AddParallel(new OpenGearFlapsCmd());
+	AddSequential(new OpenGearFlapsCmd());
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 	AddSequential(new AHRSDriveStraightCmd(-500));
-	AddParallel(new OpenGearFlapsCmd(false));
+	AddSequential(new OpenGearFlapsCmd(false));
 	AddSequential(new SilkyRotateCmd(-10));
 	AddSequential(new AHRSDriveStraightCmd(500));
-	AddParallel(new OpenGearFlapsCmd());
+	AddSequential(new OpenGearFlapsCmd());
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 
 

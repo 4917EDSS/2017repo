@@ -23,6 +23,6 @@ AutoBoilerGearGrp::AutoBoilerGearGrp() {
 									std::vector<double> {0, 600, 1475}, std::vector<double> {0, 600, 1475}));
 
 	//Open gear flaps
-	AddParallel(new OpenGearFlapsCmd());
+	AddSequential(new OpenGearFlapsCmd());
 
 }

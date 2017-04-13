@@ -14,7 +14,7 @@ AutoCenterGearGrp::AutoCenterGearGrp() {
 
 	AddSequential(new AHRSDriveStraightCmd(LOAD_STRAIGHT_DIST));
 	//Open gear flaps
-	AddParallel(new OpenGearFlapsCmd());
+	AddSequential(new OpenGearFlapsCmd());
 	AddSequential(new DesperateCenterGearGrp());
 	//Drive to gear
 	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 1882}, std::vector<double> {0, 1000, 1882}));

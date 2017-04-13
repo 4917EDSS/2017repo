@@ -22,7 +22,7 @@ AutoLoaderGearGrp::AutoLoaderGearGrp() {
 	AddSequential(new AHRSDriveStraightCmd(DRIVE_TO_LOADER_SIDE_SHAFT));
 
 	//Open gear flaps
-	AddParallel(new OpenGearFlapsCmd());
+	AddSequential(new OpenGearFlapsCmd());
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, -1000, -1500}, std::vector<double> {0, -1000, -2420},

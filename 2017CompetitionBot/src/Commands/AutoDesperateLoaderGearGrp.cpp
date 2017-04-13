@@ -22,6 +22,6 @@ AutoDesperateLoaderGearGrp::AutoDesperateLoaderGearGrp() {
 	AddSequential(new SilkyRotateCmd(-60));
 	AddSequential(new AHRSDriveStraightCmd(DRIVE_TO_LOADER_SIDE_SHAFT));
 	//Open gear flaps
-	AddParallel(new OpenGearFlapsCmd());
+	AddSequential(new OpenGearFlapsCmd());
 	AddSequential(new DesperateCenterGearGrp());
 }

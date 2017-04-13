@@ -19,7 +19,7 @@ AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 									std::vector<double> {0, 600, 1475}, std::vector<double> {0, 600, 1475}));
 
 	//Open gear flaps
-	AddParallel(new OpenGearFlapsCmd());
+	AddSequential(new OpenGearFlapsCmd());
 	//Wait at gear
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 	//Start up shooter

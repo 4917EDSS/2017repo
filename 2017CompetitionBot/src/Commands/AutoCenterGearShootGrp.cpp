@@ -17,7 +17,7 @@ AutoCenterGearShootGrp::AutoCenterGearShootGrp() {
 	AddSequential(new AHRSDriveStraightCmd(LOAD_STRAIGHT_DIST));
 
 	//Open gear flaps
-	AddParallel(new OpenGearFlapsCmd());
+	AddSequential(new OpenGearFlapsCmd());
 	//Wait
 	AddSequential(new WaitCommand(GEAR_WAIT_TIME));
 
@@ -26,7 +26,7 @@ AutoCenterGearShootGrp::AutoCenterGearShootGrp() {
 									std::vector<double> {0,-150,-500},std::vector<double> {0, -150,-1775}));
 
 	//Close Gear Flaps
-	AddParallel(new OpenGearFlapsCmd(false));
+	AddSequential(new OpenGearFlapsCmd(false));
 
 	//Start shooter motor
 	AddParallel(new SpinUpCmd(AUTO_BOILER_SHOT_SHOOTER_SPEED));

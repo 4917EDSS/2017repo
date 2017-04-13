@@ -12,7 +12,7 @@
 
 AutoHopperShootGrp::AutoHopperShootGrp() {
 	//Open hopper and gear flaps
-	AddParallel(new OpenGearFlapsCmd(false));
+	AddSequential(new OpenGearFlapsCmd(false));
 	AddParallel(new SetHopperOpenCmd(true));
 
 	//Drive to hopper
