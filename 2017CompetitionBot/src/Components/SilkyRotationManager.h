@@ -35,7 +35,7 @@ public:
 	SilkyRotationManager(double angle);
 	void reset();
 	double execute(double currentAngle);
-	bool isFinished(double currentAngle);
+	bool isFinished(double currentAngle, double velocity);
 };
 
 

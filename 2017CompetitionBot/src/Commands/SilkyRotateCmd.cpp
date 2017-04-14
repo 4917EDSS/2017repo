@@ -31,12 +31,12 @@ bool SilkyRotateCmd::IsFinished() {
 	else{
 		lastMoveTime = TimeSinceInitialized();
 	}
-	return ((srm.isFinished(drivetrainSub->getYaw())) or (timeFromLastMove > 1));
+	return ((srm.isFinished(drivetrainSub->getYaw(), drivetrainSub->getRightEncoderSpeed())) or (timeFromLastMove > 1));
 }
 
 // Called once after isFinished returns true
 void SilkyRotateCmd::End() {
-	drivetrainSub->resetAHRS();
+	//drivetrainSub->resetAHRS();
 }
 
 // Called when another command which requires one or more of the same

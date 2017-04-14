@@ -17,6 +17,7 @@
 #include <cmath>
 #include "WPILib.h"
 #include "SilkyRotationManager.h"
+#include "RobotMap.h"
 
 // Robot-specific constants - all in degrees, seconds
 // To make this component more generic, these values should be passed-in (via constructor) but
@@ -25,12 +26,12 @@ constexpr double MAX_ANGULAR_ACCEL = 333; 					// deg/s^2
 constexpr double MAX_ANGULAR_DECEL = 665;					// deg/s^2
 constexpr double MAX_ANGULAR_VEL = 166; 					// deg/s
 constexpr double STOPPING_ANGULAR_DISTANCE_TOLERANCE = 1;	// deg			// TODO: Set correct value
-constexpr double STOPPING_ANGULAR_SPEED_TOLERANCE = 1;		// deg/s		// TODO: Set correct value
+//constexpr double STOPPING_ANGULAR_SPEED_TOLERANCE = 1;		// deg/s		// TODO: Set correct value
 constexpr double SILKY_ROT_KV = 1/MAX_ANGULAR_VEL*1.5;				// TODO: Set correct value
 constexpr double SILKY_ROT_KA = 1/MAX_ANGULAR_DECEL*1.5;				// TODO: Set correct value
-constexpr double SILKY_ROT_KP = 0.4;//.010;										// TODO: Set correct value
+constexpr double SILKY_ROT_KP = 0.282;//.010;										// TODO: Set correct value
 constexpr double SILKY_ROT_KI = 0;//.00001;	//not used
-constexpr double SILKY_ROT_KD = 0.025;//.00002;									// TODO: Set correct value
+constexpr double SILKY_ROT_KD = 0.02;//.00002;									// TODO: Set correct value
 
 
 SilkyRotationManager::SilkyRotationManager(double angle)
@@ -44,7 +45,7 @@ SilkyRotationManager::SilkyRotationManager(double angle)
 	maxVel = MAX_ANGULAR_VEL;
 
 	stoppingDistanceTolerance = STOPPING_ANGULAR_DISTANCE_TOLERANCE;
-	stoppingSpeedTolerance = STOPPING_ANGULAR_SPEED_TOLERANCE;
+	stoppingSpeedTolerance = STOPPING_SPEED_TOLERANCE;
 
 	Kv = SILKY_ROT_KV;
 	Ka = SILKY_ROT_KA;
@@ -182,13 +183,13 @@ double SilkyRotationManager::execute(double currentAngle) {
 	return power;
 }
 
-bool SilkyRotationManager::isFinished(double currentAngle) {
+bool SilkyRotationManager::isFinished(double currentAngle, double velocity) {
 
 	// Get the correct target angle
 	double actualTargetAngle = negative ? -targetRotationAngle : targetRotationAngle;
 
 	// TODO:  Check if angular speed is below threshold (meaning we've mostly stopped so should quit)
-	if( fabs(actualTargetAngle - currentAngle) < stoppingDistanceTolerance ) {
+	if( fabs(actualTargetAngle - currentAngle) < stoppingDistanceTolerance && fabs(velocity) < stoppingSpeedTolerance) {
 		return true;
 	} else {
 		return false;
