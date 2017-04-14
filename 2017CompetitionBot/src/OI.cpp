@@ -32,6 +32,9 @@ OI::OI() {
 	liftBtn->WhileHeld(new LiftCmd(1.0));
 	lowerBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_LOWER_BTN));
 	lowerBtn->WhileHeld(new UnJamCmdGrp());
+
+
+
 	//shooterEnableBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_SHOOT_BTN));
 	//shooterEnableBtn->WhileHeld(new ShootCmd());
 	increaseSpeedBtn.reset(new JoystickButton(operatorController.get(), OPERATOR_INCREASE_SPEED_BTN));
