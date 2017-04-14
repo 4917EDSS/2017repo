@@ -14,7 +14,7 @@ AutoCenterGearShootGrp::AutoCenterGearShootGrp() {
 
 	//Drive straight to peg
 	//AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 1882}, std::vector<double> {0, 1000, 1882}));
-	AddSequential(new AHRSDriveStraightCmd(LOAD_STRAIGHT_DIST));
+	AddSequential(new AHRSDriveStraightCmd(LOAD_STRAIGHT_DIST_BLUE, LOAD_STRAIGHT_DIST_RED));
 
 	//Open gear flaps
 	AddSequential(new OpenGearFlapsCmd());

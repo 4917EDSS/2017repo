@@ -11,8 +11,7 @@
 AutoCenterGearGrp::AutoCenterGearGrp() {
 	//Open gear flaps
 //	AddParallel(new OpenGearFlapsCmd());
-
-	AddSequential(new AHRSDriveStraightCmd(LOAD_STRAIGHT_DIST));
+	AddSequential(new AHRSDriveStraightCmd(LOAD_STRAIGHT_DIST_BLUE, LOAD_STRAIGHT_DIST_RED));
 	//Open gear flaps
 	AddSequential(new OpenGearFlapsCmd());
 	AddSequential(new DesperateCenterGearGrp());
