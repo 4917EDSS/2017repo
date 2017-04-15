@@ -7,13 +7,16 @@
 #include "ToggleShifterCmd.h"
 #include "SpinupCmd.h"
 #include "HopperPulseCmd.h"
+#include "AHRSDriveStraightCmd.h"
+#include "SilkyRotateCmd.h"
+#include "DesperateCenterGearGrp.h"
 
 AutoBoilerGearGrp::AutoBoilerGearGrp() {
 	//Open gear flaps
 //	AddParallel(new OpenGearFlapsCmd());
 
 	//Drive to boiler gear
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 875, 2535}, std::vector<double> {0, 875, 1725},
+	/*AddSequential(new SilkyDriveCmd(std::vector<double> {0, 875, 2535}, std::vector<double> {0, 875, 1725},
 									std::vector<double> {0, 930, 1477}, std::vector<double> {0, 930, 2233}));
 	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 450, 1300}, std::vector<double> {0, 450, 1300},
 									std::vector<double> {0, 600, 1475}, std::vector<double> {0, 600, 1475}));
@@ -24,5 +27,17 @@ AutoBoilerGearGrp::AutoBoilerGearGrp() {
 
 	//Open gear flaps
 	AddSequential(new OpenGearFlapsCmd());
+	*/
 
+	int BOILER_SIDE_APPROACH_DIST_BLUE = LOADER_SIDE_APPROACH_DIST_BLUE;
+	int BOILER_SIDE_APPROACH_DIST_RED = LOADER_SIDE_APPROACH_DIST_RED;
+	int DRIVE_TO_BOILER_SIDE_SHAFT_BLUE = DRIVE_TO_LOADER_SIDE_SHAFT_BLUE;
+	int DRIVE_TO_BOILER_SIDE_SHAFT_RED = DRIVE_TO_LOADER_SIDE_SHAFT_RED;
+
+	AddSequential(new AHRSDriveStraightCmd(BOILER_SIDE_APPROACH_DIST_BLUE, BOILER_SIDE_APPROACH_DIST_RED));
+	AddSequential(new SilkyRotateCmd(60));
+	AddSequential(new AHRSDriveStraightCmd(DRIVE_TO_BOILER_SIDE_SHAFT_BLUE, DRIVE_TO_BOILER_SIDE_SHAFT_RED));
+	//Open gear flaps
+	AddSequential(new OpenGearFlapsCmd());
+	AddSequential(new DesperateCenterGearGrp());
 }

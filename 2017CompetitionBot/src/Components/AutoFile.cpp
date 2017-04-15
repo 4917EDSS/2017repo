@@ -158,14 +158,14 @@ std::vector<AutoFile::Operation>& AutoFile::readFile(void)
 		switch(cmd) {
 			//Normal silky
 			case 's':
-				cb = readCummulativeSilky();
+				cb = readCummulativeSilky(false);
 				break;
 			case 'S':
 				cb = readCummulativeSilky(true);
 				break;
 			//Differential Silky
 			case 'd':
-				cb = readDifferentialSilky();
+				cb = readDifferentialSilky(false);
 				break;
 			case 'D':
 				cb = readDifferentialSilky(true);
@@ -177,7 +177,8 @@ std::vector<AutoFile::Operation>& AutoFile::readFile(void)
 				break;
 			//Linear ie. drive straight
 			case 'l':
-				cb = readDriveStraight();
+				cb = readDriveStraight(false);
+				break;
 			case 'L':
 				cb = readDriveStraight(true);
 				break;

@@ -7,17 +7,17 @@
 #include "ToggleShifterCmd.h"
 #include "SpinupCmd.h"
 #include "HopperPulseCmd.h"
+#include "AHRSDriveStraightCmd.h"
+#include "SilkyRotateCmd.h"
 
 AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 	//Open gear flaps
 //	AddParallel(new OpenGearFlapsCmd());
 
-	//Drive to boiler gear
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 775 + 50, 2450 + 8}, std::vector<double> {0, 775 + 50, 1625 + 15},
-									std::vector<double> {0, 930 + 44, 1477 + 44}, std::vector<double> {0, 930 + 44, 2233 + 44}));
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 450, 1400}, std::vector<double> {0, 450, 1400},
-									std::vector<double> {0, 600, 1475}, std::vector<double> {0, 600, 1475}));
 
+	AddSequential(new AHRSDriveStraightCmd(BOILER_SIDE_APPROACH_DIST_BLUE, BOILER_SIDE_APPROACH_DIST_RED));
+	AddSequential(new SilkyRotateCmd(60));
+	AddSequential(new AHRSDriveStraightCmd(DRIVE_TO_BOILER_SIDE_SHAFT_BLUE, DRIVE_TO_BOILER_SIDE_SHAFT_RED));
 	//Open gear flaps
 	AddSequential(new OpenGearFlapsCmd());
 	//Wait at gear

@@ -44,9 +44,9 @@ constexpr float BOILER_SHOOT_TIME_1 = 1.0;
 #define AHRSInterface SPI::kMXP
 
 //Shoot Speeds
-constexpr float KEY_SHOT_SHOOTER_SPEED = -2250;
+constexpr float KEY_SHOT_SHOOTER_SPEED = -2325;
 //constexpr float BOILER_SHOT_SHOOTER_SPEED = -1905;
-constexpr float BOILER_SHOT_SHOOTER_SPEED = -2250;
+constexpr float BOILER_SHOT_SHOOTER_SPEED = -2325;
 //constexpr float AUTO_BOILER_SHOT_SHOOTER_SPEED = -2000;
 constexpr float AUTO_BOILER_SHOT_SHOOTER_SPEED = -2285;
 
@@ -80,16 +80,16 @@ constexpr int HOPPER_PCM_ID1 = 2;
 constexpr int HOPPER_PCM_ID2 = 3;
 
 // Drivetrain values
-constexpr float DRIVETRAIN_DIS_PER_PULSE_LEFT = 5000.0/6611.0;
+constexpr float DRIVETRAIN_DIS_PER_PULSE_LEFT = 5000.0/6550.0;
 		//2000.0/2621.0;
-constexpr float DRIVETRAIN_DIS_PER_PULSE_RIGHT = 5000.0/6693.0;
+constexpr float DRIVETRAIN_DIS_PER_PULSE_RIGHT = 5000.0/6600.0;
 constexpr int ENCODER_CONVERSION_FACTOR = 4;
 
 //Auto Enc Distances
 //1 m = 1318 encoder ticks
 //1 encoder tick = 1.32 mm
 constexpr int LOAD_STRAIGHT_DIST_BLUE = 1950;
-constexpr int LOAD_STRAIGHT_DIST_RED = 2050;
+constexpr int LOAD_STRAIGHT_DIST_RED = 1950;
 constexpr int GEAR_WAIT_TIME = 2;
 constexpr int CENTER_TO_BOILER = 2224;
 constexpr int TURN_TO_BOILER_DEGREE = -119;
