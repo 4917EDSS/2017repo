@@ -36,7 +36,6 @@ bool SilkyRotateCmd::IsFinished() {
 
 // Called once after isFinished returns true
 void SilkyRotateCmd::End() {
-	std::cout << "DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << std::endl;
 	drivetrainSub->drive(0,0);
 	drivetrainSub->resetAHRS();
 }
