@@ -172,9 +172,6 @@ double SilkyRotationManager::execute(double currentAngle) {
 	double error = rotationInfo.dis - currentAngle;
 	double errorDeriv = (error - lastError) / (timeSinceStart - lastTime);
 
-	SmartDashboard::PutNumber("SRM ERROR: ", error);
-	SmartDashboard::PutNumber("SRM ERROR DERIV: ", errorDeriv);
-
 	lastError = error;
 	lastTime = timeSinceStart;
 
