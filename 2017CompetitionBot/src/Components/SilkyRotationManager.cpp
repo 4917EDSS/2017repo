@@ -22,16 +22,16 @@
 // Robot-specific constants - all in degrees, seconds
 // To make this component more generic, these values should be passed-in (via constructor) but
 // to make implementation and compiles faster, define them here.
-constexpr double MAX_ANGULAR_ACCEL = 333; 					// deg/s^2
-constexpr double MAX_ANGULAR_DECEL = 665;					// deg/s^2
-constexpr double MAX_ANGULAR_VEL = 166; 					// deg/s
+constexpr double MAX_ANGULAR_ACCEL = 150; 					// deg/s^2
+constexpr double MAX_ANGULAR_DECEL = 450;					// deg/s^2
+constexpr double MAX_ANGULAR_VEL = 212; 					// deg/s
 constexpr double STOPPING_ANGULAR_DISTANCE_TOLERANCE = 1;	// deg			// TODO: Set correct value
 //constexpr double STOPPING_ANGULAR_SPEED_TOLERANCE = 1;		// deg/s		// TODO: Set correct value
-constexpr double SILKY_ROT_KV = 1/MAX_ANGULAR_VEL*1.5;				// TODO: Set correct value
-constexpr double SILKY_ROT_KA = 1/MAX_ANGULAR_DECEL*1.5;				// TODO: Set correct value
-constexpr double SILKY_ROT_KP = 0.282;//.010;										// TODO: Set correct value
-constexpr double SILKY_ROT_KI = 0;//.00001;	//not used
-constexpr double SILKY_ROT_KD = 0.02;//.00002;									// TODO: Set correct value
+constexpr double SILKY_ROT_KV = (1/MAX_ANGULAR_VEL)*2.1;				// TODO: Set correct value
+constexpr double SILKY_ROT_KA = (1/MAX_ANGULAR_DECEL)*0.575;				// TODO: Set correct value
+constexpr double SILKY_ROT_KP = 0.19;//.010;										// TODO: Set correct value
+constexpr double SILKY_ROT_KI = 0*0;//.00001;	//not used
+constexpr double SILKY_ROT_KD = 0.0025;//.00002;									// TODO: Set correct value
 
 
 SilkyRotationManager::SilkyRotationManager(double angle)
@@ -171,6 +171,9 @@ double SilkyRotationManager::execute(double currentAngle) {
 
 	double error = rotationInfo.dis - currentAngle;
 	double errorDeriv = (error - lastError) / (timeSinceStart - lastTime);
+
+	SmartDashboard::PutNumber("SRM ERROR: ", error);
+	SmartDashboard::PutNumber("SRM ERROR DERIV: ", errorDeriv);
 
 	lastError = error;
 	lastTime = timeSinceStart;
