@@ -1,0 +1,11 @@
+// drive to peg
+AddSequential(new AHRSDriveStraightCmd(1950));
+AddSequential(new OpenGearFlapsCmd(true));
+AddSequential(new WaitCmd(2));
+// reverse
+AddSequential(new SilkyDriveCmd{std::vector<double> {0, -150, -1850}, std::vector<double> {0, -150, -500}, std::vector<double> {0, -150, -500}, std::vector<double> {0, -150, -1775}));
+AddSequential(new OpenGearFlapsCmd(true));
+AddParallel(new SpinUpCmd(BOILER_SHOT_SHOOTER_SPEED));
+// drive to boiler
+AddSequential(new SilkyDriveCmd{std::vector<double> {0, 1200, 2175, 3210}, std::vector<double> {0, 1200, 2575, 3875}, std::vector<double> {0, 1800, 3000, 4225}, std::vector<double> {0, 1800, 2550, 3679}));
+AddSequential(new ShootCmdGrp());
