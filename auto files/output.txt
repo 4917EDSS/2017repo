@@ -1,7 +1,7 @@
 // drive to boiler gear
-AddSequential(new AHRSDriveStraightCmd(2000, 1900));
+AddSequential(new AHRSDriveStraightCmd(2000, 1850));
 AddSequential(new SilkyRotateCmd(60));
-AddSequential(new AHRSDriveStraightCmd(1700, 1700));
+AddSequential(new AHRSDriveStraightCmd(1700, 1775));
 // open gear flaps
 AddSequential(new OpenGearFlapsCmd(true));
 AddSequential(new WaitCmd(1.5));
@@ -12,5 +12,5 @@ AddSequential(new SilkyDriveCmd(std::vector<double> {0, -200, -300}, std::vector
 // close gear flaps
 AddSequential(new OpenGearFlapsCmd(false));
 // drive to boiler
-AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 2300, 2575}, std::vector<double> {0, 1000, 1900, 2130}, std::vector<double> {0, 650, 1650, 1893}, std::vector<double> {0, 650, 2150, 2475}));
+AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 2300, 2575}, std::vector<double> {0, 1000, 1900, 2130}, std::vector<double> {0, 1000, 1900, 1993}, std::vector<double> {0, 1000, 2400, 2575}));
 AddSequential(new ShootCmdGrp());

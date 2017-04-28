@@ -26,6 +26,6 @@ AutoBoilerGearShootGrp::AutoBoilerGearShootGrp() {
 	// close gear flaps
 	AddSequential(new OpenGearFlapsCmd(false));
 	// drive to boiler
-	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 2300, 2575}, std::vector<double> {0, 1000, 1900, 2130}, std::vector<double> {0, 650, 1650, 1893}, std::vector<double> {0, 650, 2150, 2475}));
+	AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 2300, 2575}, std::vector<double> {0, 1000, 1900, 2130}, std::vector<double> {0, 1000, 1900, 1993}, std::vector<double> {0, 1000, 2400, 2575}));
 	AddSequential(new ShootCmdGrp());
 }
