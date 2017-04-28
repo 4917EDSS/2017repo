@@ -19,7 +19,7 @@
 // constexpr int RANGE_FINDER_PORT = 1;
 // constexpr int RANGE_FINDER_MODULE = 1;
 
-#define PRACTICE_BOT
+//#define PRACTICE_BOT
 
 enum Alliance {
 	RED,
@@ -97,7 +97,7 @@ constexpr int BACK_OFF_OF_SHAFT_DIST = -301;
 constexpr int LOADER_SIDE_APPROACH_DIST_BLUE = 1853;
 constexpr int LOADER_SIDE_APPROACH_DIST_RED = 2040;
 constexpr int BOILER_SIDE_APPROACH_DIST_BLUE = 2000;
-constexpr int BOILER_SIDE_APPROACH_DIST_RED = 1940;
+constexpr int BOILER_SIDE_APPROACH_DIST_RED = 1900;
 constexpr int DRIVE_TO_LOADER_SIDE_SHAFT_BLUE = 1750;
 constexpr int DRIVE_TO_LOADER_SIDE_SHAFT_RED = 1650;
 constexpr int DRIVE_TO_BOILER_SIDE_SHAFT_BLUE = 1700;
