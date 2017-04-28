@@ -1,13 +1,14 @@
 # approach
 L
 1853
-1950
+2040
 # rotate
 R
 -60
 # drive to peg
-l
+L
 1750
+1650
 G
 W
 6

@@ -194,6 +194,7 @@ std::vector<AutoFile::Operation>& AutoFile::readFile(void)
 				break;
 			case 'g':
 				cb = readGearFlaps(false);
+				break;
 			case 'G':
 				cb = readGearFlaps(true);
 				break;

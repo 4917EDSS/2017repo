@@ -1,28 +1,30 @@
-g
 # drive to boiler gear
 L
-1853
-2090
+2000
+1940
 R
 60
 L
-1750
-1650
+1700
+1700
+# open gear flaps
 G
 W
 1.5
+# start up shooter
 Up
-g
 # reverse
 S
 0 -200 -300
 0 -200 -2350
 0 -350 -2550
 0 -350 -550
+# close gear flaps
+g
 # drive to boiler
 S
-0 400 1900 2425
-0 400 1500 1980
+0 1000 2300 2575
+0 1000 1900 2130
 0 400 1400 1643
 0 400 1900 2225
 F
