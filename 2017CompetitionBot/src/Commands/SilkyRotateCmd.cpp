@@ -22,16 +22,24 @@ void SilkyRotateCmd::Execute() {
 	drivetrainSub->drive(power, -power);
 }
 
+#define MAX(a, b) ((a)<(b)?(b):(a))
+
 // Make this return true when this Command no longer needs to run execute()
 bool SilkyRotateCmd::IsFinished() {
+
+	double maxSpeed = MAX(fabs(drivetrainSub->getLeftEncoderSpeed()), fabs(drivetrainSub->getRightEncoderSpeed()));
 	// TODO:  Compensate for Yaw going negative at the 179/-180 point
-	if(fabs(drivetrainSub->getLeftEncoderSpeed()) < 40 and fabs(drivetrainSub->getRightEncoderSpeed()) < 40){
+	if(fabs(maxSpeed) < 40){
 		timeFromLastMove = TimeSinceInitialized() - lastMoveTime;
 	}
 	else{
 		lastMoveTime = TimeSinceInitialized();
 	}
-	return ((srm.isFinished(drivetrainSub->getYaw(), drivetrainSub->getRightEncoderSpeed())) or (timeFromLastMove > 1));
+	if((srm.isFinished(drivetrainSub->getYaw(), maxSpeed)) or (timeFromLastMove > 1)) {
+		std::cout << "Velocity: " << maxSpeed << std::endl;
+		std::cout << "Yaw: " << drivetrainSub->getYaw() << std::endl;
+	}
+	return ((srm.isFinished(drivetrainSub->getYaw(), maxSpeed)) or (timeFromLastMove > 1));
 }
 
 // Called once after isFinished returns true
