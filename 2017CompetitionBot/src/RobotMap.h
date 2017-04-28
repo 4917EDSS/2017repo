@@ -44,9 +44,9 @@ constexpr float BOILER_SHOOT_TIME_1 = 1.0;
 #define AHRSInterface SPI::kMXP
 
 //Shoot Speeds
-constexpr float KEY_SHOT_SHOOTER_SPEED = -2325;
+constexpr float KEY_SHOT_SHOOTER_SPEED = -2285;
 //constexpr float BOILER_SHOT_SHOOTER_SPEED = -1905;
-constexpr float BOILER_SHOT_SHOOTER_SPEED = -2325;
+constexpr float BOILER_SHOT_SHOOTER_SPEED = -2285;
 //constexpr float AUTO_BOILER_SHOT_SHOOTER_SPEED = -2000;
 constexpr float AUTO_BOILER_SHOT_SHOOTER_SPEED = -2285;
 
@@ -95,11 +95,11 @@ constexpr int CENTER_TO_BOILER = 2224;
 constexpr int TURN_TO_BOILER_DEGREE = -119;
 constexpr int BACK_OFF_OF_SHAFT_DIST = -301;
 constexpr int LOADER_SIDE_APPROACH_DIST_BLUE = 1853;
-constexpr int LOADER_SIDE_APPROACH_DIST_RED = 2040;
+constexpr int LOADER_SIDE_APPROACH_DIST_RED = 2175;
 constexpr int BOILER_SIDE_APPROACH_DIST_BLUE = 2000;
 constexpr int BOILER_SIDE_APPROACH_DIST_RED = 1850;
 constexpr int DRIVE_TO_LOADER_SIDE_SHAFT_BLUE = 1750;
-constexpr int DRIVE_TO_LOADER_SIDE_SHAFT_RED = 1650;
+constexpr int DRIVE_TO_LOADER_SIDE_SHAFT_RED = 1445;
 constexpr int DRIVE_TO_BOILER_SIDE_SHAFT_BLUE = 1700;
 constexpr int DRIVE_TO_BOILER_SIDE_SHAFT_RED = 1775;
 constexpr int SHOOTING_DRIVE_DISTANCE = -269;

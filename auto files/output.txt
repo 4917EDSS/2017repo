@@ -1,16 +1,9 @@
-// drive to boiler gear
-AddSequential(new AHRSDriveStraightCmd(2000, 1850));
-AddSequential(new SilkyRotateCmd(60));
-AddSequential(new AHRSDriveStraightCmd(1700, 1775));
-// open gear flaps
-AddSequential(new OpenGearFlapsCmd(true));
-AddSequential(new WaitCmd(1.5));
-// start up shooter
-AddParallel(new SpinUpCmd(BOILER_SHOT_SHOOTER_SPEED));
-// reverse
-AddSequential(new SilkyDriveCmd(std::vector<double> {0, -200, -300}, std::vector<double> {0, -200, -2350}, std::vector<double> {0, -350, -2550}, std::vector<double> {0, -350, -550}));
-// close gear flaps
+// approach
 AddSequential(new OpenGearFlapsCmd(false));
-// drive to boiler
-AddSequential(new SilkyDriveCmd(std::vector<double> {0, 1000, 2300, 2575}, std::vector<double> {0, 1000, 1900, 2130}, std::vector<double> {0, 1000, 1900, 1993}, std::vector<double> {0, 1000, 2400, 2575}));
-AddSequential(new ShootCmdGrp());
+AddSequential(new AHRSDriveStraightCmd(1853, 2175));
+// rotate
+AddSequential(new SilkyRotateCmd(-60));
+// drive to peg
+AddSequential(new AHRSDriveStraightCmd(1750, 1445));
+AddSequential(new OpenGearFlapsCmd(true));
+AddSequential(new WaitCmd(6));
