@@ -88,7 +88,7 @@ constexpr int ENCODER_CONVERSION_FACTOR = 4;
 //Auto Enc Distances
 //1 m = 1318 encoder ticks
 //1 encoder tick = 1.32 mm
-constexpr int LOAD_STRAIGHT_DIST_BLUE = 1950;
+constexpr int LOAD_STRAIGHT_DIST_BLUE = 2050;
 constexpr int LOAD_STRAIGHT_DIST_RED = 1950;
 constexpr int GEAR_WAIT_TIME = 2;
 constexpr int CENTER_TO_BOILER = 2224;
@@ -99,7 +99,7 @@ constexpr int LOADER_SIDE_APPROACH_DIST_RED = 2175;
 constexpr int BOILER_SIDE_APPROACH_DIST_BLUE = 2000;
 constexpr int BOILER_SIDE_APPROACH_DIST_RED = 1850;
 constexpr int DRIVE_TO_LOADER_SIDE_SHAFT_BLUE = 1750;
-constexpr int DRIVE_TO_LOADER_SIDE_SHAFT_RED = 1445;
+constexpr int DRIVE_TO_LOADER_SIDE_SHAFT_RED = 1650;
 constexpr int DRIVE_TO_BOILER_SIDE_SHAFT_BLUE = 1700;
 constexpr int DRIVE_TO_BOILER_SIDE_SHAFT_RED = 1775;
 constexpr int SHOOTING_DRIVE_DISTANCE = -269;
