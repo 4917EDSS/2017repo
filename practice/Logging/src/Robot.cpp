@@ -1,5 +1,4 @@
 #include <memory>
-#include <syslog.h>
 
 #include <Commands/Command.h>
 #include <Commands/Scheduler.h>
@@ -10,16 +9,24 @@
 
 #include "Commands/ExampleCommand.h"
 #include "CommandBase.h"
+#include <WPILib.h>
+#include "frc4917/log.h"
+
 
 class Robot: public frc::IterativeRobot {
 public:
+	frc4917::Log logger;
+
 	void RobotInit() override {
+		logger.enableChannels(logger.ERRORS);									// At a minimum we should log errors
+		logger.enableChannels(logger.WARNINGS | logger.ASSERTS | logger.DEBUG);	// Should look at these during development
+		logger.addOutputPath(new frc4917::ConsoleOutput());						// Enable console output and/or
+		logger.addOutputPath(new frc4917::SyslogOutput("10.49.17.20"));			// Enable syslog output
+		logger.send(logger.DEBUG, "Robot code started @ %f\n", GetTime());
+
 		chooser.AddDefault("Default Auto", new ExampleCommand());
 		// chooser.AddObject("My Auto", new MyAutoCommand());
 		frc::SmartDashboard::PutData("Auto Modes", &chooser);
-
-		openlog("4917",LOG_NDELAY, LOG_USER);
-		syslog(LOG_DEBUG, "Testing 1 2 3");
 	}
 
 	/**
@@ -74,17 +81,10 @@ public:
 		if (autonomousCommand != nullptr) {
 			autonomousCommand->Cancel();
 		}
-		syslog(LOG_DEBUG, "TeleopInit");
 	}
 
 	void TeleopPeriodic() override {
 		frc::Scheduler::GetInstance()->Run();
-		static int interval = 2;
-		static int count = 1;
-		if(interval-- <1) {
-			interval = 2;
-			syslog(LOG_DEBUG, "Count is %d\n", count++);
-		}
 	}
 
 	void TestPeriodic() override {
