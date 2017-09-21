@@ -8,6 +8,7 @@
 #ifndef SRC_LOGOUTPUT_H_
 #define SRC_LOGOUTPUT_H_
 
+#include <string>
 
 namespace frc4917 {
 
@@ -29,7 +30,8 @@ namespace frc4917 {
 	private:
 		static int objectCount;
 	public:
-		SyslogOutput(const char *ipAddress);
+		SyslogOutput(const std::string ipAddress);
+		void updateRemoteAddress(std::string ipAddress);
 		void output(const char *fmt, ...);
 		~SyslogOutput();
 	};
