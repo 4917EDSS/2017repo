@@ -10,7 +10,7 @@
 #include "Commands/ExampleCommand.h"
 #include "CommandBase.h"
 #include <WPILib.h>
-#include "frc4917/log.h"
+#include "frc4917/Log.h"
 
 
 class Robot: public frc::IterativeRobot {

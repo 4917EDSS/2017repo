@@ -1,8 +1,8 @@
 /*
- * Log.cpp
+ * LogOutputs.cpp
  *
  *  Created on: Sep 8, 2017
- *      Author: Gaudets
+ *      Author: 4917
  */
 #include <stdio.h>
 #include <stdarg.h>

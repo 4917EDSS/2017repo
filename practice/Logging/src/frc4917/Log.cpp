@@ -2,10 +2,9 @@
  * Log.cpp
  *
  *  Created on: Sep 8, 2017
- *      Author: Gaudets
+ *      Author: 4917
  */
 #include <stdarg.h>
-#include <syslog.h>
 #include "Log.h"
 
 
@@ -20,7 +19,7 @@ namespace frc4917 {
 	// Don't pass in a LogOutput class, pass in one of it's child classes.
 	// Currently, ConsoleOutput and SyslogOutput are supported
 	void Log::addOutputPath(LogOutput *newOutput) {
-		outputs.emplace_back(*newOutput);
+		outputs.emplace_back(newOutput);
 	}
 
 	// Remove all of the output paths
@@ -59,14 +58,17 @@ namespace frc4917 {
 			for(auto curOut : outputs) {
 				va_list ap;
 				va_start(ap, fmt);
-				curOut.output(fmt, ap);
+				curOut->output(fmt, ap);
 				va_end(ap);
 			}
 		}
 	}
 
 	Log::~Log() {
-		// Nothing special to do here
+		for (auto curOut : outputs) {
+			delete curOut;
+		}
+		outputs.clear();
 	}
 }
 

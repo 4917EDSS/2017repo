@@ -1,8 +1,8 @@
 /*
- * Log.h
+ * LogOutput.h
  *
  *  Created on: Sep 8, 2017
- *      Author: Gaudets
+ *      Author: 4917
  */
 
 #ifndef SRC_LOGOUTPUT_H_

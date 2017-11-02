@@ -15,7 +15,7 @@ namespace frc4917 {
 
 	class Log {
 	private:
-		std::vector<frc4917::LogOutput> outputs;	// Where the log messages go
+		std::vector<frc4917::LogOutput *> outputs;	// Where the log messages go
 		unsigned long channelMask;					// Which log channels are active/inactive
 	public:
 		// Replace "chanX" with a meaningful name (up to 32 channels)
