@@ -16,6 +16,10 @@ public:
 		chooser.AddDefault("Default Auto", new ExampleCommand());
 		// chooser.AddObject("My Auto", new MyAutoCommand());
 		frc::SmartDashboard::PutData("Auto Modes", &chooser);
+
+		std::cout << "Starting 4917 code...\n";
+
+		CommandBase::drivetrainSub.get()->initHardware();
 	}
 
 	/**

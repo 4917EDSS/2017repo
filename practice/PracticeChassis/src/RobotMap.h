@@ -12,10 +12,12 @@
 // following variables to use with your drivetrain subsystem.
 // constexpr int LEFTMOTOR = 1;
 // constexpr int RIGHTMOTOR = 2;
-constexpr int LEFT_MOTOR1_CANID = 0;
-constexpr int LEFT_MOTOR2_CANID = 1;
-constexpr int RIGHT_MOTOR1_CANID = 2;
-constexpr int RIGHT_MOTOR2_CANID = 3;
+constexpr int LEFT_MOTOR1_CANID = 1;
+constexpr int LEFT_MOTOR2_CANID = 2;
+constexpr int LEFT_MOTOR3_CANID = 3;
+constexpr int RIGHT_MOTOR1_CANID = 4;
+constexpr int RIGHT_MOTOR2_CANID = 5;
+constexpr int RIGHT_MOTOR3_CANID = 6;
 
 
 // If you are using multiple modules, make sure to define both the port
