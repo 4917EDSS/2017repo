@@ -36,9 +36,9 @@ void DrivetrainSub::drive(double lSpeed, double rSpeed)
 {
 //	std::cout << "Setting speed to " << lSpeed << ", " << rSpeed;
 
-	leftMotor1->Set(lSpeed);
-	leftMotor2->Set(lSpeed);
-	leftMotor3->Set(lSpeed);
+	leftMotor1->Set(-lSpeed);
+	leftMotor2->Set(-lSpeed);
+	leftMotor3->Set(-lSpeed);
 
 	rightMotor1->Set(rSpeed);
 	rightMotor2->Set(rSpeed);
