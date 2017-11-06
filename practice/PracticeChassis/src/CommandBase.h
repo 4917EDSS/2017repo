@@ -7,6 +7,7 @@
 #include <Commands/Command.h>
 
 #include "OI.h"
+#include "frc4917/Log.h"
 #include "Subsystems/ExampleSubsystem.h"
 #include "Subsystems/DrivetrainSub.h"
 
@@ -25,6 +26,7 @@ public:
 	static std::unique_ptr<ExampleSubsystem> exampleSubsystem;
 	static std::unique_ptr<DrivetrainSub> drivetrainSub;
 	static std::unique_ptr<OI> oi;
+	static std::unique_ptr<frc4917::Log> logger;
 };
 
 #endif  // COMMAND_BASE_H

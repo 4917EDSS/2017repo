@@ -34,8 +34,7 @@ void DrivetrainSub::initHardware() {
 // here. Call these from Commands.
 void DrivetrainSub::drive(double lSpeed, double rSpeed)
 {
-//	std::cout << "Setting speed to " << lSpeed << ", " << rSpeed;
-
+	CommandBase::logger->send(CommandBase::logger->DRIVETRAIN, "DT: drive %1.3f, %1.3f\n", lSpeed, rSpeed);
 	leftMotor1->Set(-lSpeed);
 	leftMotor2->Set(-lSpeed);
 	leftMotor3->Set(-lSpeed);
@@ -43,6 +42,4 @@ void DrivetrainSub::drive(double lSpeed, double rSpeed)
 	rightMotor1->Set(rSpeed);
 	rightMotor2->Set(rSpeed);
 	rightMotor3->Set(rSpeed);
-
-//	std::cout << " LM1 @ " << leftMotor1->Get() << " RM1 @ " << rightMotor1->Get() << std::endl;
 }

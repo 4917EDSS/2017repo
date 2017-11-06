@@ -10,16 +10,30 @@
 #include "Commands/ExampleCommand.h"
 #include "CommandBase.h"
 
+
 class Robot: public frc::IterativeRobot {
 public:
 	void RobotInit() override {
+		std::cout << "Starting 4917 code...\n";
+
 		chooser.AddDefault("Default Auto", new ExampleCommand());
 		// chooser.AddObject("My Auto", new MyAutoCommand());
 		frc::SmartDashboard::PutData("Auto Modes", &chooser);
 
-		std::cout << "Starting 4917 code...\n";
+		// Configure the logging system
+		// Log messages can be sent to the Driver's station and/or Linux's syslog
+		CommandBase::logger->enableChannels(CommandBase::logger->ERRORS);						// At a minimum we should log errors
+		CommandBase::logger->enableChannels(CommandBase::logger->WARNINGS | CommandBase::logger->ASSERTS | CommandBase::logger->DEBUG);	// Should look at these during development
+		CommandBase::logger->enableChannels(CommandBase::logger->DRIVETRAIN);
+		CommandBase::logger->addOutputPath(new frc4917::ConsoleOutput());						// Uncomment to enable console output and/or
+		CommandBase::logger->addOutputPath(new frc4917::SyslogOutput("10.49.17.20"));			// Uncomment to enable syslog output
+		CommandBase::logger->send(CommandBase::logger->DEBUG, "Robot code started @ %f\n", GetTime());
 
+		// Delayed Talon init to work around WPILib bug
 		CommandBase::drivetrainSub.get()->initHardware();
+
+
+
 	}
 
 	/**
