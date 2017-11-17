@@ -24,5 +24,9 @@ constexpr int RIGHT_MOTOR3_CANID = 6;
 // number and the module. For example you with a rangefinder:
 // constexpr int RANGE_FINDER_PORT = 1;
 // constexpr int RANGE_FINDER_MODULE = 1;
+constexpr int LEFT_MOTOR_ENC1_DIO = 0;
+constexpr int LEFT_MOTOR_ENC2_DIO = 1;
+constexpr int RIGHT_MOTOR_ENC1_DIO = 2;
+constexpr int RIGHT_MOTOR_ENC2_DIO = 3;
 
 #endif  // ROBOTMAP_H

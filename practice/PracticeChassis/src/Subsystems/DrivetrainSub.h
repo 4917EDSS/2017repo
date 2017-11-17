@@ -14,13 +14,15 @@ private:
 	std::shared_ptr<CANTalon> rightMotor1;
 	std::shared_ptr<CANTalon> rightMotor2;
 	std::shared_ptr<CANTalon> rightMotor3;
-
+	std::shared_ptr<frc::Encoder> leftMotorEnc;
+	std::shared_ptr<frc::Encoder> rightMotorEnc;
 
 public:
 	DrivetrainSub();
 	void InitDefaultCommand();
 	void initHardware();
 	void drive(double lSpeed, double rSpeed);
+	double getEncoderValue(int encoderId);
 };
 
 #endif  // DrivetrainSub_H
